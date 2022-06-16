@@ -1,6 +1,8 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Gordon_Moore> ns1:knownFor <http://dbpedia.org/resource/Gordon_and_Betty_Moore_Foundation>,
-        <http://dbpedia.org/resource/Intel>,
-        <http://dbpedia.org/resource/Moore's_law> .
+<http://dbpedia.org/resource/Scott_Fahlman> ns1:knownFor <http://dbpedia.org/resource/Automated_planning_and_scheduling>,
+        <http://dbpedia.org/resource/Common_Lisp>,
+        <http://dbpedia.org/resource/Lucid_Inc.>,
+        <http://dbpedia.org/resource/Neural_network>,
+        <http://dbpedia.org/resource/Semantic_network> .
 

@@ -1,5 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Hard_Cash_(2002_film)> ns1:producer <http://dbpedia.org/resource/Emmett/Furla_Oasis>,
-        <http://dbpedia.org/resource/Randall_Emmett> .
+<http://dbpedia.org/resource/20,000_Years_in_Sing_Sing> ns1:producer <http://dbpedia.org/resource/Raymond_Griffith> .
 

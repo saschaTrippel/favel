@@ -1,5 +1,0 @@
-@prefix ns1: <http://dbpedia.org/property/> .
-
-<http://dbpedia.org/resource/Command_Decision_(film)> ns1:producer <http://dbpedia.org/resource/Mosfilm>,
-        <http://dbpedia.org/resource/Tom_Rosenberg> .
-

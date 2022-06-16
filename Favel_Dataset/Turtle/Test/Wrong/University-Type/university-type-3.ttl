@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Acharya_Nagarjuna_University> ns1:type <http://dbpedia.org/resource/Research_university> .
+<http://dbpedia.org/resource/Acharya_Narendra_Dev_College> ns1:type <http://dbpedia.org/resource/Private_university> .
 

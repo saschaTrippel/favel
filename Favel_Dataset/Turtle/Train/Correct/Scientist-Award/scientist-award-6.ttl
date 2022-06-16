@@ -1,8 +1,11 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Kip_Thorne> ns1:award <http://dbpedia.org/resource/Gruber_Prize_in_Cosmology>,
-        <http://dbpedia.org/resource/Lewis_Thomas_Prize>,
-        <http://dbpedia.org/resource/Nobel_Prize_in_Physics>,
-        <http://dbpedia.org/resource/Princess_of_Asturias_Awards>,
-        <http://dbpedia.org/resource/Shaw_Prize> .
+<http://dbpedia.org/resource/Gordon_Moore> ns1:award <http://dbpedia.org/resource/Computer_History_Museum>,
+        <http://dbpedia.org/resource/IEEE_Founders_Medal>,
+        <http://dbpedia.org/resource/John_Fritz_Medal>,
+        <http://dbpedia.org/resource/National_Medal_of_Technology_and_Innovation>,
+        <http://dbpedia.org/resource/Nierenberg_Prize>,
+        <http://dbpedia.org/resource/Othmer_Gold_Medal>,
+        <http://dbpedia.org/resource/Perkin_Medal>,
+        <http://dbpedia.org/resource/Presidential_Medal_of_Freedom> .
 

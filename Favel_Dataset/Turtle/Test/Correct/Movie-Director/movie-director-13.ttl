@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Intimate_Confessions_of_a_Chinese_Courtesan> ns1:director <http://dbpedia.org/resource/Chor_Yuen> .
+<http://dbpedia.org/resource/Iron_Maiden:_Flight_666> ns1:director <http://dbpedia.org/resource/Scot_McFadyen> .
 

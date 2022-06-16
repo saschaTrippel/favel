@@ -1,0 +1,4 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/June_Lloyd,_Baroness_Lloyd_of_Highbury> ns1:education <http://dbpedia.org/resource/Dickinson_College> .
+

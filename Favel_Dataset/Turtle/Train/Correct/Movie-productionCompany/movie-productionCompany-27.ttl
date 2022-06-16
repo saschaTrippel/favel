@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Funny_Girl_(film)> ns1:productionCompany <http://dbpedia.org/resource/Ray_Stark> .
+<http://dbpedia.org/resource/Gloria_(1999_American_film)> ns1:productionCompany <http://dbpedia.org/resource/Mandalay_Entertainment> .
 

@@ -1,5 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/David_Keightley> ns1:education <http://dbpedia.org/resource/Columbia_University>,
-        <http://dbpedia.org/resource/New_York_University> .
+<http://dbpedia.org/resource/Xiaowei_Zhuang> ns1:education <http://dbpedia.org/resource/University_of_California,_Berkeley>,
+        <http://dbpedia.org/resource/University_of_Science_and_Technology_of_China> .
 

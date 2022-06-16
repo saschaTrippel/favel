@@ -1,0 +1,5 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Jon_Kleinberg> ns1:education <http://dbpedia.org/resource/Cornell_University>,
+        <http://dbpedia.org/resource/Massachusetts_Institute_of_Technology> .
+

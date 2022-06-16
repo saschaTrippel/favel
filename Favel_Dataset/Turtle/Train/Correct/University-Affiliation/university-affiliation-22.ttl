@@ -1,5 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_the_Arts_Bremen> ns1:affiliation <http://dbpedia.org/resource/European_Association_of_Conservatoires>,
-        <http://dbpedia.org/resource/European_League_of_Institutes_of_the_Arts> .
+<http://dbpedia.org/resource/Dhaka_International_University> ns1:affiliation <http://dbpedia.org/resource/University_Grants_Commission_(Bangladesh)> .
 

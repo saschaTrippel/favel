@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Joanne_Berger-Sweeney> ns1:education <http://dbpedia.org/resource/University_of_Bristol> .
+<http://dbpedia.org/resource/Leo_Postman> ns1:education <http://dbpedia.org/resource/University_of_California,_Berkeley> .
 

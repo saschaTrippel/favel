@@ -1,5 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Command_Decision_(film)> ns1:producer <http://dbpedia.org/resource/Gottfried_Reinhardt>,
-        <http://dbpedia.org/resource/Sidney_Franklin_(director)> .
+<http://dbpedia.org/resource/Conflict_(1936_film)> ns1:producer <http://dbpedia.org/resource/Trem_Carr> .
 

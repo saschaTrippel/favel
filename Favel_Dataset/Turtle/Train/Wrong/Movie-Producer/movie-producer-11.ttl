@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Force_of_Arms> ns1:producer <http://dbpedia.org/resource/Reg_Grundy> .
+<http://dbpedia.org/resource/Adventure's_End> ns1:producer <http://dbpedia.org/resource/Gottfried_Reinhardt> .
 

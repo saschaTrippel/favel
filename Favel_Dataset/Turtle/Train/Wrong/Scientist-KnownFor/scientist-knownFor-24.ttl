@@ -1,5 +1,6 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Neal_Schmitt> ns1:knownFor <http://dbpedia.org/resource/Kevlar>,
-        <http://dbpedia.org/resource/Operational_semantics> .
+<http://dbpedia.org/resource/Kip_Thorne> ns1:knownFor <http://dbpedia.org/resource/LIGO>,
+        <http://dbpedia.org/resource/Model_organism>,
+        <http://dbpedia.org/resource/The_Unix_System> .
 

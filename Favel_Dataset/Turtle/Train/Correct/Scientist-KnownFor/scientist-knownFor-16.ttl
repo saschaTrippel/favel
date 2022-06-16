@@ -1,5 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Charles_Geschke> ns1:knownFor <http://dbpedia.org/resource/Adobe_Inc.>,
-        <http://dbpedia.org/resource/PostScript> .
+<http://dbpedia.org/resource/Kip_Thorne> ns1:knownFor <http://dbpedia.org/resource/LIGO>,
+        <http://dbpedia.org/resource/Roman_ring> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Gypsies_Are_Found_Near_Heaven> ns1:producer <http://dbpedia.org/resource/Mosfilm> .
+<http://dbpedia.org/resource/Chip_an'_Dale> ns1:producer <http://dbpedia.org/resource/Walt_Disney> .
 

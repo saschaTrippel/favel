@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Legend_(2014_film)> ns1:director <http://dbpedia.org/resource/Laurence_Olivier> .
+<http://dbpedia.org/resource/The_Adventures_of_Hajji_Baba> ns1:director <http://dbpedia.org/resource/Maury_Dexter> .
 

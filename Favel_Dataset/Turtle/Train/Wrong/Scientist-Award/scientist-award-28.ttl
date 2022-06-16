@@ -1,5 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Kenneth_G._Wilson> ns1:award <http://dbpedia.org/resource/IEEE_Medal_of_Honor>,
-        <http://dbpedia.org/resource/Sackler_Prize> .
+<http://dbpedia.org/resource/Frank_Wilczek> ns1:award <http://dbpedia.org/resource/American_Society_of_Animal_Science>,
+        <http://dbpedia.org/resource/Marconi_Prize> .
 

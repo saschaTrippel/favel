@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Aalto_University> ns1:type <http://dbpedia.org/resource/Private_university> .
+<http://dbpedia.org/resource/Bangladesh_University> ns1:type <http://dbpedia.org/resource/Public_university> .
 

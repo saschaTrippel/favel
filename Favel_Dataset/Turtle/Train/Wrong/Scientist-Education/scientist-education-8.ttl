@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Walter_Hayman> ns1:education <http://dbpedia.org/resource/Purdue_University> .
+<http://dbpedia.org/resource/K._Daniel_O'Leary> ns1:education <http://dbpedia.org/resource/University_of_Ghana> .
 

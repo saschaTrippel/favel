@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/In_the_Valley_of_Elah> ns1:productionCompany <http://dbpedia.org/resource/NALA_Films> .
+<http://dbpedia.org/resource/Beverly_Hills_Chihuahua> ns1:productionCompany <http://dbpedia.org/resource/Walt_Disney_Pictures> .
 

@@ -1,5 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_North_Carolina_at_Charlotte> ns1:city <http://dbpedia.org/resource/Swansea>,
-        <http://dbpedia.org/resource/Sylhet> .
+<http://dbpedia.org/resource/Cross_River_University_of_Technology> ns1:city <http://dbpedia.org/resource/Columbia,_South_Carolina> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Arnall_Patz> ns1:education <http://dbpedia.org/resource/Emory_University> .
+<http://dbpedia.org/resource/Norman_Allinger> ns1:education <http://dbpedia.org/resource/University_of_California> .
 

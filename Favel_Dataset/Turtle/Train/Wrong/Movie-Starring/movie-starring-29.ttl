@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Hamlet_(1990_film)> ns1:starring <http://dbpedia.org/resource/David_Emge> .
+<http://dbpedia.org/resource/Harishchandra_(1955_film)> ns1:starring <http://dbpedia.org/resource/Steve_Zahn>,
+        <http://dbpedia.org/resource/Zachary_Gordon> .
 

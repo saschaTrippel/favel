@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/51_(film)> ns1:starring <http://dbpedia.org/resource/Jason_London> .
+<http://dbpedia.org/resource/Lord_of_the_Flies_(1990_film)> ns1:starring <http://dbpedia.org/resource/James_Badge_Dale> .
 
