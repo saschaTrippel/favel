@@ -1,6 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Charlie_Bartlett> ns1:producer <http://dbpedia.org/resource/Randall_Emmett>,
-        <http://dbpedia.org/resource/Sol_M._Wurtzel>,
-        <http://dbpedia.org/resource/Trem_Carr> .
+<http://dbpedia.org/resource/Futurama:_The_Beast_with_a_Billion_Backs> ns1:producer <http://dbpedia.org/resource/Peter_MacGregor-Scott> .
 

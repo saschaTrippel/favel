@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Commandos_Strike_at_Dawn> ns1:producer <http://dbpedia.org/resource/Benjamin_Glazer> .
+<http://dbpedia.org/resource/Hard_Cash_(2002_film)> ns1:producer <http://dbpedia.org/resource/Robert_Chartoff>,
+        <http://dbpedia.org/resource/Sidney_Franklin_(director)> .
 

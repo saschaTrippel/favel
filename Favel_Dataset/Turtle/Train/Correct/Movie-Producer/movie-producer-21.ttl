@@ -1,5 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/ABBA:_The_Movie> ns1:producer <http://dbpedia.org/resource/Reg_Grundy>,
-        <http://dbpedia.org/resource/Stig_Anderson> .
+<http://dbpedia.org/resource/Along_Came_Jones_(film)> ns1:producer <http://dbpedia.org/resource/Gary_Cooper> .
 

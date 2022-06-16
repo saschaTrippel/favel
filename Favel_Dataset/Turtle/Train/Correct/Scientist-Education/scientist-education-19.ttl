@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Walter_Hayman> ns1:education <http://dbpedia.org/resource/University_of_Cambridge> .
+<http://dbpedia.org/resource/James_Unnever> ns1:education <http://dbpedia.org/resource/New_Mexico_State_University>,
+        <http://dbpedia.org/resource/University_of_Florida> .
 

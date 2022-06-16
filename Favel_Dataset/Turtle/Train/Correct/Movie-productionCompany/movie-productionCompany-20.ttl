@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Along_Came_Jones_(film)> ns1:productionCompany <http://dbpedia.org/resource/International_Pictures> .
+<http://dbpedia.org/resource/ABBA:_The_Movie> ns1:productionCompany <http://dbpedia.org/resource/Reg_Grundy_Organisation> .
 

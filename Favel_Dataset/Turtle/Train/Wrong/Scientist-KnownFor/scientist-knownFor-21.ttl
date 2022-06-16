@@ -1,7 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Kip_Thorne> ns1:knownFor <http://dbpedia.org/resource/LIGO>,
-        <http://dbpedia.org/resource/Model_organism>,
-        <http://dbpedia.org/resource/Race_and_crime_in_the_United_States>,
-        <http://dbpedia.org/resource/The_Unix_System> .
+<http://dbpedia.org/resource/Paul_Milgrom> ns1:knownFor <http://dbpedia.org/resource/Intel> .
 

@@ -1,6 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Beverly_Hills_Chihuahua> ns1:producer <http://dbpedia.org/resource/Leonard_Ho>,
-        <http://dbpedia.org/resource/Michael_Herz_(producer)>,
-        <http://dbpedia.org/resource/Walt_Disney> .
+<http://dbpedia.org/resource/Charlie_Bartlett> ns1:producer <http://dbpedia.org/resource/Randall_Emmett>,
+        <http://dbpedia.org/resource/Sol_M._Wurtzel> .
 

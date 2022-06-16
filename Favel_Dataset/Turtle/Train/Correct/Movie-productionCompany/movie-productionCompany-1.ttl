@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Chip_an'_Dale> ns1:productionCompany <http://dbpedia.org/resource/The_Walt_Disney_Company> .
+<http://dbpedia.org/resource/Futurama:_Bender's_Game> ns1:productionCompany <http://dbpedia.org/resource/Rough_Draft_Studios>,
+        <http://dbpedia.org/resource/The_ULULU_Company> .
 

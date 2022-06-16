@@ -1,5 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Elegy_(film)> ns1:producer <http://dbpedia.org/resource/Gary_Lucchesi>,
-        <http://dbpedia.org/resource/Tom_Rosenberg> .
+<http://dbpedia.org/resource/Eastern_Condors> ns1:producer <http://dbpedia.org/resource/Corey_Yuen>,
+        <http://dbpedia.org/resource/Wu_Ma> .
 

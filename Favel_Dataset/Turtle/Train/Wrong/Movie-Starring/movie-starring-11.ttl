@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Kannika> ns1:starring <http://dbpedia.org/resource/Brendan_Fraser> .
+<http://dbpedia.org/resource/Casper_Meets_Wendy> ns1:starring <http://dbpedia.org/resource/M._N._Nambiar> .
 

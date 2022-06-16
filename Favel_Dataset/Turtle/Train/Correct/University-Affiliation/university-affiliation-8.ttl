@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Jinnah_University_for_Women> ns1:affiliation <http://dbpedia.org/resource/Higher_Education_Commission_(Pakistan)> .
+<http://dbpedia.org/resource/United_International_University> ns1:affiliation <http://dbpedia.org/resource/Institution_of_Engineers,_Bangladesh>,
+        <http://dbpedia.org/resource/University_Grants_Commission_(Bangladesh)> .
 

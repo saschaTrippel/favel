@@ -1,8 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Islamic_University,_Bangladesh> ns1:affiliation <http://dbpedia.org/resource/Bangladesh_Technical_Education_Board>,
-        <http://dbpedia.org/resource/Canadian_University_Society_for_Intercollegiate_Debate>,
-        <http://dbpedia.org/resource/Excellent_Long-Established_University_Consortium_of_Taiwan>,
-        <http://dbpedia.org/resource/International_Association_of_Universities>,
-        <http://dbpedia.org/resource/Utrecht_Network> .
+<http://dbpedia.org/resource/CINVESTAV> ns1:affiliation <http://dbpedia.org/resource/All_India_Council_for_Technical_Education> .
 

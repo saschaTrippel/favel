@@ -1,6 +1,8 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/June_Lloyd,_Baroness_Lloyd_of_Highbury> ns1:knownFor <http://dbpedia.org/resource/Lipid_metabolism>,
-        <http://dbpedia.org/resource/Metabolic_disorder>,
-        <http://dbpedia.org/resource/Royal_College_of_Paediatrics_and_Child_Health> .
+<http://dbpedia.org/resource/Stephen_R._Bourne> ns1:knownFor <http://dbpedia.org/resource/ACM_Queue>,
+        <http://dbpedia.org/resource/ALGOL_68C>,
+        <http://dbpedia.org/resource/Advanced_Debugger>,
+        <http://dbpedia.org/resource/Bourne_shell>,
+        <http://dbpedia.org/resource/Cambridge_Algebra_System> .
 

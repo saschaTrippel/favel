@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Malcolm_Baker> ns1:education <http://dbpedia.org/resource/Brown_University> .
+<http://dbpedia.org/resource/Mike_Paterson> ns1:education <http://dbpedia.org/resource/University_of_Cambridge> .
 

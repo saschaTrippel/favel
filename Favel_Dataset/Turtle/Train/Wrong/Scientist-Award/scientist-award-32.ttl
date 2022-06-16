@@ -1,5 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Stephanie_Kwolek> ns1:award <http://dbpedia.org/resource/Guggenheim_Fellowship>,
-        <http://dbpedia.org/resource/Shaw_Prize> .
+<http://dbpedia.org/resource/Yves_Meyer> ns1:award <http://dbpedia.org/resource/Research_Corporation>,
+        <http://dbpedia.org/resource/Sloan_Research_Fellowship> .
 

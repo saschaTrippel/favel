@@ -1,5 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Elegy_(film)> ns1:producer <http://dbpedia.org/resource/Emmett/Furla_Oasis>,
-        <http://dbpedia.org/resource/Jeffrey_Lau> .
+<http://dbpedia.org/resource/Futurama:_Bender's_Game> ns1:producer <http://dbpedia.org/resource/Menahem_Golan> .
 

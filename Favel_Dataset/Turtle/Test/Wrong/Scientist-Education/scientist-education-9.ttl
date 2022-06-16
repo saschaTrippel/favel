@@ -1,0 +1,4 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/David_Keightley> ns1:education <http://dbpedia.org/resource/University_of_California,_Santa_Cruz> .
+

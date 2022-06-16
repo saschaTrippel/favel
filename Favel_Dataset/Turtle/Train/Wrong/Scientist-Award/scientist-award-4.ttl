@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Walter_Hayman> ns1:award <http://dbpedia.org/resource/Enrico_Fermi_Award> .
+<http://dbpedia.org/resource/Stephanie_Kwolek> ns1:award <http://dbpedia.org/resource/Guggenheim_Fellowship>,
+        <http://dbpedia.org/resource/Shaw_Prize> .
 

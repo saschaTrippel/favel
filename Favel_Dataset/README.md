@@ -4,7 +4,7 @@ FAVEL Dataset is created for the evaluation of fact validation algorithms. All f
 
 FAVEL Dataset is a set of [RDF](https://www.w3.org/TR/rdf-primer/) Models. Each model contains a singular fact and its truth value. It consists of **train set**, **test set** and auxilliary files which are needed to create the models.
 
-# RELATIONS
+# Relations
 FAVEL Dataset contains data of 11 relations. This data is directly extracted from Wikipedia(DBPedia).
 | # | Property | Description | 
 |--|--|--|
@@ -24,10 +24,10 @@ FAVEL Dataset contains data of 11 relations. This data is directly extracted fro
 
 FAVEL Dataset is structured in train set and test set of facts. Typically, the train set should be used to fit your algorithm and the test set to evaluate the algorithm.
 
-#Positive Data
-The positive data is collected from DBPedia. For each relation we queried DBPedia by issuing a SPARQL query and took top 50 results. We collected a total of 550 correct facts (150 in test set and 400 in train set). 
+# **Positive Data**
+The positive data is collected from DBPedia. For each relation we queried DBPedia by issuing a SPARQL query and took top 50 results. We collected a total of 550 correct facts (165 in test set and 385 in train set). 
 
-#Negative Data
+# **Negative Data**
 The negative data is created by using the positive data that we have extracted earlier.
 Assume a triple (s,p,o) in a knowledge base K.
 1. We created triples (s',p,o) by random shuffling of s.
@@ -36,6 +36,9 @@ Assume a triple (s,p,o) in a knowledge base K.
 
 We have also validated the negative triples by querying [DBPedia](https://dbpedia.org/sparql).
  
-We have generated a total of 550 wrong facts(150 in test set and 400 in train set).
+We have generated a total of 550 wrong facts (165 in test set and 385 in train set).
+
+# **Train - Test Split**
+The training and test sets are divided randomly in the ratio of 70:30 respectively for all relations.
 
 

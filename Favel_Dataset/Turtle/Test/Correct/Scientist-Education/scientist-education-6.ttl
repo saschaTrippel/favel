@@ -1,0 +1,5 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Gilbert_Gee> ns1:education <http://dbpedia.org/resource/Johns_Hopkins_University>,
+        <http://dbpedia.org/resource/Oberlin_College> .
+

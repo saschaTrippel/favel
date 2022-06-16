@@ -1,5 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Busting> ns1:producer <http://dbpedia.org/resource/Irwin_Winkler>,
-        <http://dbpedia.org/resource/Robert_Chartoff> .
+<http://dbpedia.org/resource/Charlie_Bartlett> ns1:producer <http://dbpedia.org/resource/David_Permut>,
+        <http://dbpedia.org/resource/Jay_Roach> .
 

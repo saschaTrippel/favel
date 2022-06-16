@@ -1,10 +1,11 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Xiaowei_Zhuang> ns1:award <http://dbpedia.org/resource/ACS_Award_in_Pure_Chemistry>,
-        <http://dbpedia.org/resource/Breakthrough_Prize_in_Life_Sciences>,
-        <http://dbpedia.org/resource/MacArthur_Fellows_Program>,
-        <http://dbpedia.org/resource/Max_Delbruck_Prize>,
-        <http://dbpedia.org/resource/NAS_Award_in_Molecular_Biology>,
-        <http://dbpedia.org/resource/Sackler_Prize>,
-        <http://dbpedia.org/resource/Vilcek_Foundation> .
+<http://dbpedia.org/resource/Gordon_Moore> ns1:award <http://dbpedia.org/resource/Computer_History_Museum>,
+        <http://dbpedia.org/resource/IEEE_Founders_Medal>,
+        <http://dbpedia.org/resource/John_Fritz_Medal>,
+        <http://dbpedia.org/resource/National_Medal_of_Technology_and_Innovation>,
+        <http://dbpedia.org/resource/Nierenberg_Prize>,
+        <http://dbpedia.org/resource/Othmer_Gold_Medal>,
+        <http://dbpedia.org/resource/Perkin_Medal>,
+        <http://dbpedia.org/resource/Presidential_Medal_of_Freedom> .
 

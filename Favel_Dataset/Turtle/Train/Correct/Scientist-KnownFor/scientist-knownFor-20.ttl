@@ -1,6 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Kenneth_G._Wilson> ns1:knownFor <http://dbpedia.org/resource/Phase_transition>,
-        <http://dbpedia.org/resource/Renormalization_group>,
-        <http://dbpedia.org/resource/Wilson_loop> .
+<http://dbpedia.org/resource/June_Lloyd,_Baroness_Lloyd_of_Highbury> ns1:knownFor <http://dbpedia.org/resource/Lipid_metabolism>,
+        <http://dbpedia.org/resource/Metabolic_disorder> .
 
