@@ -25,6 +25,8 @@ class AssertionsRunner(AbstractJobRunner):
         """
         Validate the assertions using self.approach.
         """
+        output = []
+
         logging.info("Validating assertions using {}".format(self.approach))
         for assertion in self.assertions:
             response = self._validateAssertion(assertion)
@@ -35,4 +37,8 @@ class AssertionsRunner(AbstractJobRunner):
                                 .format(response, assertion, self.approach))
             else:
                 assertion.score[self.approach] = float(response)
+                output.append((self.approach, assertion.subject, assertion.predicate, assertion.object, response))
 
+        with open("./OutputService/Outputs/rawOutputs/Output_Raw.csv", 'w+') as fp:
+            for item in output:
+                fp.write("{}\n".format(item))

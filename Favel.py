@@ -8,9 +8,9 @@ from OutputService.Output import Output
 def main():
 
     # Start Containers
-    containers = Containers()
-    containers.startContainers()
-    containers.status()
+    # containers = Containers()
+    # containers.startContainers()
+    # containers.status()
 
     # Parse arguments
     args = parseArguments()
@@ -27,12 +27,11 @@ def main():
     else:
         validateInputData(args, configParser)    
     
-    # Outputs written to a file './OutputService/Outputs/Output_Clean.csv'
-    op = Output()
-    op.getCleanOutput()
+    # Outputs written to a file './OutputService/Outputs/Output.csv'
+    outputs = getOutputs()
 
     # Stop Containers
-    containers.rmContainers()
+    # containers.rmContainers()
     
 def validateInputData(args, configParser):
     # Read input
@@ -72,6 +71,12 @@ def configureLoggin(configParser:configparser.ConfigParser):
     
     logging.basicConfig(level=loggingOptions[configParser['General']['logging']])
     
+def getOutputs():
+    op = Output()
+    op.getCleanOutput()
+    op.allApproaches()
+    #op.gerbilFormat()
+
 
 if __name__ == '__main__':
     main()
