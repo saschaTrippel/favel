@@ -1,6 +1,7 @@
 import pandas as pd
 import csv
 from OutputService.GerbilFormat import GerbilFormat
+from MLService.ML import ML
 
 class Output(GerbilFormat):
 
@@ -49,6 +50,10 @@ class Output(GerbilFormat):
         df10 = self.approachOutput("simrank")
         dff = []
         dfs = [df1,df2,df3,df4,df5,df6,df7,df8,df9,df10]
+
+        ml = ML()
+        prediction = ml.getEnsembleScore(dfs)
+
         for i in range(len(dfs) - 1):
             if not dfs[i].empty:
                 dff.append(dfs[i])
@@ -72,3 +77,6 @@ class Output(GerbilFormat):
 
     def gerbilFormat(self):
         gerbil = self.getGerbilFormat()
+
+
+
