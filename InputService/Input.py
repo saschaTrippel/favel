@@ -1,19 +1,27 @@
 import logging
+import pandas as pd
 from datastructures.Assertion import Assertion
+from InputService.ReadFiles import ReadFiles
 
 class Input:
-    # TODO: this is just an example method
     
     def getInput(self, filePath:str):
+        
+        rf = ReadFiles()
+        
         result = []
-        with open(filePath, 'r') as file:
-            for line in file.readlines():
-                result.append(self.parseLine(line))
+        if(str(filePath).lower().find("favel") != -1):
+            df = rf.getFavel(filePath)
+        elif(str(filePath).lower().find("factbench") != -1):
+            df = rf.getFactbench(filePath)
+        elif(str(filePath).lower().find("bpdp") != -1):
+            df = rf.getBPDP(filePath)
+        result = self.parseTriples(df)
         logging.info("Read {} assertions".format(len(result)))
-        return result 
-                
-    def parseLine(self, line:str):
-        line = line.replace('\n', '')
-        line = line.replace('"', '')
-        elements = line.split(' ')
-        return (Assertion(elements[0], elements[1], elements[2][:-1]))
+        return result
+            
+    def parseTriples(self, df):
+        result = []
+        for i, (s,p,o,t) in df.iterrows():
+            result.append(Assertion(s,p,o))
+        return result
