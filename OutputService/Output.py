@@ -32,8 +32,6 @@ class Output(GerbilFormat):
         df.drop("score", inplace=True, axis=1)
 
         newdf = df.dropna(axis=0, how='any', inplace=False)
-        newdf.to_csv("./OutputService/Outputs/approachOutputs/Output_{}.csv".format(approach),index=False)
-
         return(newdf)
             
     def allApproaches(self):
