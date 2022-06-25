@@ -1,7 +1,7 @@
 import pandas as pd
 import csv
-
 from OutputService.GerbilFormat import GerbilFormat
+from MLService.ML import ML
 
 class Output(GerbilFormat):
 
@@ -32,15 +32,27 @@ class Output(GerbilFormat):
 					result[str(approach)] = [assertionScore.score[str(approach)]]
 
 		df = pd.DataFrame(result)
-		df.to_csv("./OutputService/Outputs/Output.csv",index=False)
-
-		return(df)
-
+		dff = self.ensembleScores(df)
+		
+		dff.to_csv("./OutputService/Outputs/Output.csv",index=False)
+		
+		return(dff)
+		
 	def parseLine(self, line):
 		line = line.replace('<', '')
 		line = line.replace('>', '')
 
 		return(line.split(' '))
+
+	def ensembleScores(self, df):
+		"""
+		To get ensemble score from ML Service.
+        """
+		ml = ML()
+		ensembleScore = []
+		ensembleScore = ml.getEnsembleScore(df)
+		df['ensemble_score'] = ensembleScore
+		return(df)
 
 	def gerbilFormat(self):
 		"""
@@ -49,3 +61,4 @@ class Output(GerbilFormat):
         """
 		super().__init__()
 		self.getGerbilFormat()
+
