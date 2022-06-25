@@ -1,80 +1,51 @@
 import pandas as pd
 import csv
+
 from OutputService.GerbilFormat import GerbilFormat
-from MLService.ML import ML
 
 class Output(GerbilFormat):
 
-    def getCleanOutput(self):
-        
-        result = []
+	def __init__(self,assertionScores,approaches):
+		self.assertionScores = assertionScores
+		self.approaches = approaches
 
-        with open('./OutputService/Outputs/rawOutputs/Output_Raw.csv', 'r') as file:
-            for line in file.readlines():
-                result.append(self.parseLine(line))
+	def getOutput(self):
 
-        r = "".join(map(str, result))        
-                 
-        with open('./OutputService/Outputs/rawOutputs/Output_Clean.csv', 'w+') as file:
-            file.write(r) 
+		"""
+		To create the output DataFrame that consists of triples and scores from each approach for that particular triple.
+		Returns a DataFrame that would be used by MLService to give the Ensemble score
+        """
+		result = dict()
+		result['subject'] = []
+		result['predicate'] = []
+		result['object'] = []
 
-        df = pd.read_csv("./OutputService/Outputs/rawOutputs/Output_Clean.csv", sep=";", header=None)
-        df.to_csv("./OutputService/Outputs/rawOutputs/Output_Clean.csv", header=["approach", "subject", "predicate", "object", "score"], index=False)
-    
-    def approachOutput(self,approach:str):
+		for assertionScore in self.assertionScores:
+			result['subject'] += self.parseLine(assertionScore.subject)
+			result['predicate'] += self.parseLine(assertionScore.predicate)
+			result['object'] += self.parseLine(assertionScore.object)
 
-        df = None
+			for approach in self.approaches.keys():
+				if str(approach) in result:
+					result[str(approach)].append(assertionScore.score[str(approach)])
+				else:
+					result[str(approach)] = [assertionScore.score[str(approach)]]
 
-        df = pd.read_csv("./OutputService/Outputs/rawOutputs/Output_Clean.csv")
+		df = pd.DataFrame(result)
+		df.to_csv("./OutputService/Outputs/Output.csv",index=False)
 
-        df[approach] = df.loc[(df["approach"]==approach), ["score"]]  
-        df.drop("approach", inplace=True, axis=1)
-        df.drop("score", inplace=True, axis=1)
+		return(df)
 
-        newdf = df.dropna(axis=0, how='any', inplace=False)
-        return(newdf)
-            
-    def allApproaches(self):
+	def parseLine(self, line):
+		line = line.replace('<', '')
+		line = line.replace('>', '')
 
-        df1 = self.approachOutput("adamic_adar")
-        df2 = self.approachOutput("copaal")
-        df3 = self.approachOutput("degree_product")
-        df4 = self.approachOutput("jaccard")
-        df5 = self.approachOutput("katz")
-        df6 = self.approachOutput("kl")
-        df7 = self.approachOutput("kl_rel")
-        df8 = self.approachOutput("ks")
-        df9 = self.approachOutput("pathent")
-        df10 = self.approachOutput("simrank")
-        dff = []
-        dfs = [df1,df2,df3,df4,df5,df6,df7,df8,df9,df10]
+		return(line.split(' '))
 
-        ml = ML()
-        prediction = ml.getEnsembleScore(dfs)
-
-        for i in range(len(dfs) - 1):
-            if not dfs[i].empty:
-                dff.append(dfs[i])
-        if len(dff)>1:
-            for i in range(len(dff) - 1):
-                dff[i+1] = pd.merge(dff[i],dff[i+1], validate ="many_to_one")
-
-            dff[i+1].to_csv("./OutputService/Outputs/Output.csv",index=False)
-        else:
-            dff[0].to_csv("./OutputService/Outputs/Output.csv",index=False)            
-
-
-    def parseLine(self, line:str):
-        line = line.replace('(', '')
-        line = line.replace("'", '')
-        line = line.replace(')', '')
-        line = line.replace('<', '')    
-        line = line.replace('>', '')
-        line = line.replace(', ', ';')
-        return(line) 
-
-    def gerbilFormat(self):
-        gerbil = self.getGerbilFormat()
-
-
-
+	def gerbilFormat(self):
+		"""
+		To convert datasets used by Favel into GERBIL format.
+		Also, converts output from Favel to GERBIL format for Evaluation purposes.
+        """
+		super().__init__()
+		self.getGerbilFormat()
