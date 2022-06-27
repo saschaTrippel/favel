@@ -30,22 +30,15 @@ import operator
 import sys
 from sklearn.model_selection import *
 from sklearn.svm import *
-
 from sklearn import *
 import warnings
+import pdb
 if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
 def trn_data_triples(df):
-    df.fillna(0, inplace=True)
-    
-    
-    X=df.drop(['true_value','subject','object','predicate'
-              ], axis=1)
+    X=df.drop(['true_value',], axis=1)
     y=df.true_value
-
-    X.fillna(0, inplace=True)
-    y.fillna(0, inplace=True)
     
     X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.33, random_state=42)
@@ -60,18 +53,8 @@ def trn_data_triples(df):
 
 
 def trn_data_wo_triples(df):
-    df.fillna(0, inplace=True)
-    
-    X=df.drop(['true_value',
-               'subject',
-               'predicate',
-               'object'
-              ], axis=1)
+    X=df.drop(['true_value',], axis=1)
     y=df.true_value
-
-
-    X.fillna(0, inplace=True)
-    y.fillna(0, inplace=True)
     
     X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.33, random_state=42)
@@ -97,6 +80,15 @@ def train_model(X_train, X_test, y_train, y_test, model, result_df):
     return result_df
 
 
+def train_on_all_data(df, model):    
+    X=df.drop(['true_value',], axis=1)
+    y=df.true_value
+
+    model=model.fit(X, y)
+    print(f'All data train roc_auc_score of {model.__class__.__name__}: ', roc_auc_score(y, model.predict_proba(X)[:, 1]),)
+    return model
+
+
 
 def main(df, models_list, output_path):
     result_df=pd.DataFrame()    
@@ -109,10 +101,11 @@ def main(df, models_list, output_path):
                               trn_data.y_test.item(), 
                               model, 
                               result_df)
-    
+    result_df=result_df.reset_index(drop=True) 
+
     print(result_df)   
     print(result_df.auc_roc.idxmax())
-    result_df=result_df.reset_index(drop=True) 
+    
     best_method=result_df.loc[result_df.auc_roc.idxmax()]
     
     print(f'''
@@ -122,12 +115,14 @@ def main(df, models_list, output_path):
 
     '''
     )
-    
+
+    final_model = train_on_all_data(df, best_method.method)
+
     Path(output_path).mkdir(parents=True, exist_ok=True)    
     
-    with open(f'{output_path}/classifier.pkl','wb') as fp: pickle.dump(best_method.method,fp)
+    with open(f'{output_path}/classifier.pkl','wb') as fp: pickle.dump(final_model,fp)
 
-    return result_df.reset_index(drop=True)
+    return result_df
 
 
 if __name__=="__main__":
@@ -145,6 +140,24 @@ if __name__=="__main__":
     DecisionTreeClassifier(), BaggingClassifier(DecisionTreeClassifier(), max_samples=0.5, max_features = 1.0, n_estimators =50), 
     make_pipeline(StandardScaler(), SVC(gamma='auto', probability=True))
     ]
-    df = pd.read_csv(sys.argv[1])
+    print('path: ', sys.argv[1])
 
-    main(df, models_list, output_path)        
+    df = pd.read_csv(sys.argv[1])
+    
+    df.fillna(0, inplace=True)
+
+    # remove triples here
+    if sum(df.columns.str.contains('subject', case=False)): df=df.drop(['subject',], axis=1)
+    if sum(df.columns.str.contains('predicate', case=False)): df=df.drop(['predicate',], axis=1)
+    if sum(df.columns.str.contains('object', case=False)): df=df.drop(['object',], axis=1)
+    
+    print(df.shape)
+    print(df.head())
+
+    main(df, models_list, output_path)     
+
+
+
+
+
+
