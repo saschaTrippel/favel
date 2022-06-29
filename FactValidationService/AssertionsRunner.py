@@ -13,7 +13,8 @@ class AssertionsRunner(AbstractJobRunner):
     def run(self):
         try:
             self._execute()
-            self.server.close()
+            if self.server != None:
+                self.server.close()
         except ConnectionRefusedError:
             return
 
