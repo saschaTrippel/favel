@@ -131,3 +131,6 @@ dmypy.json
 # Eclipse
 .project
 .pydevproject
+
+# Mac OS
+.DS_Store
