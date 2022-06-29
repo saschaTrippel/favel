@@ -6,7 +6,7 @@ class ReadFiles:
     
     def extract_favel_triples(self, path):
         g = Graph()
-        g.parse(path)
+        g.parse(path, format='ttl')
         for s, p, o in g.triples((None,  None, None)):
             return str(s), str(p), str(o)
         
