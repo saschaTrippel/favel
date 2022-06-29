@@ -67,7 +67,7 @@ class ReadFiles:
         subject = ""
         object_g = ""
         g = Graph()
-        g.parse(file)
+        g.parse(file, format='ttl')
         if file.find("birth") != -1:
             predicate1 = "http://dbpedia.org/ontology/birth"
             predicate2 = "http://dbpedia.org/ontology/birthPlace"
