@@ -18,7 +18,7 @@ class Assertion:
             self._expectedScore = score
             
     def getTurtle(self):
-        return "{} {} {} .".format(self.subject, self.predicate, self.object)
+        return "<{}> <{}> <{}> .".format(self.subject, self.predicate, self.object)
         
     def __str__(self):
         return self.getTurtle()
