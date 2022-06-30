@@ -40,15 +40,37 @@ class Controller:
         logging.basicConfig(level=loggingOptions[self.configParser['General']['logging']])
     
     def getMethod(self):
+        """
+        Return what is supposed to be done.
+        - 'cache' validate the cache
+        - 'train' train the model
+        - 'test' test the model
+        """
         # TODO: should return either 'cache', 'train', or 'test'
         if self.args.cache:
             return "cache"
         return "train"
+    
+    def startContainers(self):
+        if self.args.containers:
+            logging.info("Starting Containers")
+            c = Containers()
+            c.startContainers() 
+            c.status()
+    
+    def stopContainers(self):
+        if self.args.containers:
+            logging.info("Stopping Containers")
+            c.rmContainers()
 
     def validateCache():
+        self.startContainers()
+
         logging.info("Checking cache for correctness")
         validator = Validator(dict(self.configParser['Approaches']), self.configParser['General']['cachePath'])
         validator.validateCache()
+        
+        self.stopContainers()
         
     def input(self):
         """
@@ -62,10 +84,14 @@ class Controller:
         """
         Validate the assertions that are held in self.assertions.
         """
+        self.startContainers()
+        
         validator = Validator(dict(self.configParser['Approaches']),
                               self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
 
         validator.validate(self.assertions)
+        
+        self.stopContainers()
     
     def train(self):
         """

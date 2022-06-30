@@ -17,21 +17,6 @@ def main():
     # Outputs written to a file './OutputService/Outputs/Output.csv'
     #getOutputs(assertionScores,configParser)
 
-def containers(args, configParser):
-
-    # To start and stop containers with Favel if they are not already running on VM 
-    logging.info("Starting Containers")
-    c = Containers()
-    c.startContainers() 
-    c.status()
-
-    assertionScores = validateInputData(args, configParser)
-
-    logging.info("Stopping Containers")
-    c.rmContainers()
-
-    return(assertionScores)
-
 def getOutputs(assertionScores,configParser):
     op = Output(assertionScores,dict(configParser['Approaches']))
     op.getOutput()
