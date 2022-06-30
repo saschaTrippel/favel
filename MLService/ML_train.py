@@ -108,6 +108,7 @@ if __name__=="__main__":
     
     models_list=[
     AdaBoostClassifier(),
+    LogisticRegression(random_state=0),
     GradientBoostingClassifier(n_estimators=100, learning_rate=1.0, max_depth=1, random_state=0),
     RandomForestClassifier(n_estimators=50,oob_score = True),
     StackingClassifier(estimators=[('dt',DecisionTreeClassifier()), ('rf',RandomForestClassifier(random_state=0))], final_estimator=GradientBoostingClassifier(random_state=0)),
