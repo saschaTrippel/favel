@@ -16,3 +16,6 @@ python3 Favel.py [options]
   ```-sc, --containers``` 
 + To be added next to [options]
 + To Start/Stop containers, if not already running on VM
+
+# Architecture
+![Favel component diagram](FavelArchitecture.png)
