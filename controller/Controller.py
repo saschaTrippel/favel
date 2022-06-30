@@ -1,5 +1,10 @@
 import logging, argparse, configparser
 
+from FactValidationService.Validator import Validator
+from InputService.Input import Input
+from ContainerService.Containers import Containers
+from OutputService.Output import Output
+
 class Controller:
     """
     Controler that interacts with the different services.
@@ -34,6 +39,48 @@ class Controller:
         
         logging.basicConfig(level=loggingOptions[self.configParser['General']['logging']])
     
-    def validateCache(self):
-        return args.cache
+    def getMethod(self):
+        # TODO: should return either 'cache', 'train', or 'test'
+        if self.args.cache:
+            return "cache"
+        return "train"
+
+    def validateCache():
+        logging.info("Checking cache for correctness")
+        validator = Validator(dict(self.configParser['Approaches']), self.configParser['General']['cachePath'])
+        validator.validateCache()
         
+    def input(self):
+        """
+        Read the input dataset that was specified using the '-d' argument.
+        The assertions are held in self.assertions.
+        """
+        input = Input()
+        self.assertions = input.getInput(self.args.data)
+    
+    def validate(self):
+        """
+        Validate the assertions that are held in self.assertions.
+        """
+        validator = Validator(dict(self.configParser['Approaches']),
+                              self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
+
+        validator.validate(self.assertions)
+    
+    def train(self):
+        """
+        Train the ML model
+        """
+        pass
+    
+    def test(self):
+        """
+        Test the ML model
+        """
+        pass
+    
+    def output(self):
+        """
+        Write the results to disk.
+        """
+        pass
