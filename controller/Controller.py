@@ -3,6 +3,7 @@ import logging, argparse, configparser
 from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from ContainerService.Containers import Containers
+from MLService.ML import ML
 from OutputService.Output import Output
 
 class Controller:
@@ -61,6 +62,7 @@ class Controller:
     def stopContainers(self):
         if self.args.containers:
             logging.info("Stopping Containers")
+            c = Containers()
             c.rmContainers()
 
     def validateCache():
@@ -89,7 +91,7 @@ class Controller:
         validator = Validator(dict(self.configParser['Approaches']),
                               self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
 
-        validator.validate(self.assertions)
+        self.result = validator.validate(self.assertions)
         
         self.stopContainers()
     
@@ -104,12 +106,13 @@ class Controller:
         """
         Test the ML model
         """
-        # TODO: call MLService to test model
-        pass
+        ml = ML()
+        self.df = ml.getEnsembleScore(self.result,dict(self.configParser['Approaches']))
     
     def output(self):
         """
         Write the results to disk.
         """
-        # TODO: call OutputService to write results to disk
-        pass
+        op = Output()
+        op.writeOutput(self.df)
+        #op.gerbilFormat()
