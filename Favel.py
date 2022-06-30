@@ -14,14 +14,5 @@ def main():
         controller.test()
         controller.output()
 
-    # Outputs written to a file './OutputService/Outputs/Output.csv'
-    #getOutputs(assertionScores,configParser)
-
-def getOutputs(assertionScores,configParser):
-    op = Output(assertionScores,dict(configParser['Approaches']))
-    op.getOutput()
-    #op.gerbilFormat()
-
-
 if __name__ == '__main__':
     main()
