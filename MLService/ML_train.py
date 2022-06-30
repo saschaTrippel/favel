@@ -2,23 +2,17 @@ import pandas as pd
 import os
 from sklearn import preprocessing
 from sklearn import metrics
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import *
 from sklearn.ensemble import *
 from sklearn.tree import *
-# from sklearn.metrics import classification_report
 import pandas as pd
-from sklearn.model_selection import KFold
 import numpy as np
-# from sklearn.model_selection import cross_val_score
-# from sklearn.model_selection import StratifiedKFold
 from sklearn.naive_bayes import *
 from sklearn.neighbors import *
 import pickle, sklearn
 from sklearn.neural_network import *
 from pathlib import Path
 from sklearn.metrics import *
-# from sklearn.svm import *
 from sklearn.pipeline import *
 from sklearn.preprocessing import *
 from joblib import dump, load
@@ -39,7 +33,6 @@ if not sys.warnoptions:
 def trn_data_triples(df):
     X=df.drop(['true_value',], axis=1)
     y=df.true_value
-    
     X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.33, random_state=42)
 
@@ -50,24 +43,6 @@ def trn_data_triples(df):
         'y_test':[y_test],
     })
     return trn_data
-
-
-def trn_data_wo_triples(df):
-    X=df.drop(['true_value',], axis=1)
-    y=df.true_value
-    
-    X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.33, random_state=42)
-
-    trn_data=pd.DataFrame({
-        'X_train':[X_train],
-        'X_test':[X_test],
-        'y_train':[y_train],
-        'y_test':[y_test],
-    })
-    return trn_data
-
-
 
 def train_model(X_train, X_test, y_train, y_test, model, result_df):
     model=model.fit(X_train, y_train)
@@ -121,7 +96,6 @@ def main(df, models_list, output_path):
     Path(output_path).mkdir(parents=True, exist_ok=True)    
     
     with open(f'{output_path}/classifier.pkl','wb') as fp: pickle.dump(final_model,fp)
-
     return result_df
 
 
@@ -148,16 +122,17 @@ if __name__=="__main__":
 
     # remove triples here
     if sum(df.columns.str.contains('subject', case=False)): df=df.drop(['subject',], axis=1)
-    if sum(df.columns.str.contains('predicate', case=False)): df=df.drop(['predicate',], axis=1)
+    #if sum(df.columns.str.contains('predicate', case=False)): df=df.drop(['predicate',], axis=1)
     if sum(df.columns.str.contains('object', case=False)): df=df.drop(['object',], axis=1)
-    
     print(df.shape)
     print(df.head())
 
+    le = preprocessing.LabelEncoder()
+    le.fit(df['predicate'])
+    df['predicate']=le.transform(df['predicate'])
+    filehandler = open("models/le_predicate.obj","wb")
+    pickle.dump(le,filehandler)
+    filehandler.close()
+    #print(df)
+    
     main(df, models_list, output_path)     
-
-
-
-
-
-
