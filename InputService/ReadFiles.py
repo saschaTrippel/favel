@@ -100,3 +100,9 @@ class ReadFiles:
                         triple=triple+(str(0),)
                     triples = triples.append({'subject':triple[0], 'predicate':triple[1], 'object':triple[2], 'truth':triple[3]}, ignore_index=True)
         return triples
+    
+    def getCsv(self, path):
+        triples = pd.DataFrame(data=[], columns=['subject', 'predicate', 'object', 'truth'])
+        inputData = pd.read_csv(path)
+        return inputData
+        

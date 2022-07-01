@@ -10,7 +10,9 @@ class Input:
         rf = ReadFiles()
         
         result = []
-        if(str(filePath).lower().find("favel") != -1):
+        if (filePath.endswith(".csv")):
+            df = rf.getCsv(filePath)
+        elif(str(filePath).lower().find("favel") != -1):
             df = rf.getFavel(filePath)
         elif(str(filePath).lower().find("factbench") != -1):
             df = rf.getFactbench(filePath)
