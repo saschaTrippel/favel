@@ -41,7 +41,7 @@ class ReadFiles:
         
         for root, dirs, files in os.walk(path):
             for name in files:
-                graph.parse(path+name, format="nt")
+                graph.parse(os.path.join(path, name), format="nt")
                 
         ids = self.extract_ids(graph)
         
