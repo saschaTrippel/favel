@@ -65,30 +65,23 @@ class GerbilFormat:
 				with open("./OutputService/Outputs/GerbilFormat/favel.nt","w+") as file:
 					file.write(array)
 
-	def createOutputFileForEvaluation(self,algorithmName,fileName):
-		#Writing the output file in the specified Format
+	def createOutputFileForEvaluation(self):
+		#Writing the output file (for ensemble scores only) in the specified Format
 		array = " "
 		for outputFileIndex,rows in self.data.iterrows():
 	        # Triple Name
 			datasetName = self.title + str(outputFileIndex) + ">"
-			array += self.createTruthValueTriple(datasetName , str(rows[algorithmName]))
+			array += self.createTruthValueTriple(datasetName , str(rows['ensemble_score']))
 
-			with open("./OutputService/Outputs/GerbilFormat/{}".format(fileName),"w+") as file:
+			with open("./OutputService/Outputs/GerbilFormat/favel_ensemble.nt","w+") as file:
 				file.write(array)
 
 	def getGerbilFormat(self):
-		# Create output files for different algorithms
-		# COPAAL	degree_product	jaccard	Katz	KL	klrel	KS	pathent	simrank	adamic_adar
-		self.createOutputFileForEvaluation("adamic_adar","favel_adamic_adar.nt")
-		self.createOutputFileForEvaluation("copaal","favel_copaal.nt")
-		self.createOutputFileForEvaluation("degree_product","favel_degree_product.nt")
-		self.createOutputFileForEvaluation("jaccard","favel_jaccard.nt")
-		self.createOutputFileForEvaluation("katz","favel_katz.nt")
-		self.createOutputFileForEvaluation("kl","favel_kl.nt")
-		self.createOutputFileForEvaluation("kl_rel","favel_kl_rel.nt")
-		self.createOutputFileForEvaluation("ks","favel_ks.nt")
-		self.createOutputFileForEvaluation("pathent","favel_pathent.nt")
-		self.createOutputFileForEvaluation("simrank","favel_simrank.nt")
+		
+		# Create output file in GERBIL format for ensemble scores given by FaVEL
+	
+		self.createOutputFileForEvaluation()
+
 		
 
 
