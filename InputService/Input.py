@@ -6,24 +6,31 @@ from InputService.ReadFiles import ReadFiles
 class Input:
     
     def getInput(self, filePath:str):
-        
+
         rf = ReadFiles()
-        
+
         result = []
         if (filePath.endswith(".csv")):
             df = rf.getCsv(filePath)
+            result = self.parseTriples(df)
+            logging.info("Read {} assertions".format(len(result)))
+            return result
+        
         elif(str(filePath).lower().find("favel") != -1):
-            df = rf.getFavel(filePath)
+            df_train, df_test = rf.getFavel(filePath)
         elif(str(filePath).lower().find("factbench") != -1):
-            df = rf.getFactbench(filePath)
+            df_train, df_test = rf.getFactbench(filePath)
         elif(str(filePath).lower().find("bpdp") != -1):
-            df = rf.getBPDP(filePath)
-        result = self.parseTriples(df)
-        logging.info("Read {} assertions".format(len(result)))
-        return result
+            df_train, df_test = rf.getBPDP(filePath)
+        result_train = self.parseTriples(df_train)
+        result_test = self.parseTriple(df_test)
+        logging.info("Read {} training assertions, {} testing assertions".format(len(result_train),len(result_test)))
+        return result_train, result_test
             
     def parseTriples(self, df):
         result = []
         for i, (s,p,o,t) in df.iterrows():
-            result.append(Assertion(s,p,o))
+            a = Assertion(s,p,o)
+            a._expectedScore = t
+            result.append(a)
         return result

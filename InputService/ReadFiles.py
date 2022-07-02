@@ -12,7 +12,8 @@ class ReadFiles:
         
     
     def getFavel(self, path):
-        triples = pd.DataFrame(data=[], columns=['subject','predicate','object','truth'])
+        triples_test = pd.DataFrame(data=[], columns=['subject','predicate','object','truth'])
+        triples_train = pd.DataFrame(data=[], columns=['subject','predicate','object','truth'])
         paths = [os.path.join(path,'Turtle/Test/Correct/'), 
                  os.path.join(path,'Turtle/Test/Wrong/'), 
                  os.path.join(path,'Turtle/Train/Correct/'), 
@@ -26,8 +27,12 @@ class ReadFiles:
                         triple=triple+(str(1),)
                     else:
                         triple=triple+(str(0),)
-                    triples = triples.append({'subject':triple[0], 'predicate':triple[1], 'object':triple[2], 'truth':triple[3]}, ignore_index=True)
-        return triples
+                    if p.find("Train") != -1:
+                        triples_train = triples_train.append({'subject':triple[0], 'predicate':triple[1], 'object':triple[2], 'truth':triple[3]}, ignore_index=True)
+                    else:
+                        triples_test = triples_test.append({'subject':triple[0], 'predicate':triple[1], 'object':triple[2], 'truth':triple[3]}, ignore_index=True)
+
+        return triples_train, triples_test
         
 
     def extract_ids(self, graph):
@@ -61,7 +66,7 @@ class ReadFiles:
                     subject=str(o)
             triples = triples.append({'subject':subject, 'predicate':predicate, 'object':object_elt, 'truth':truth}, ignore_index=True)
 
-        return triples
+        return triples.iloc[:int(len(triples)*0.7)], triples.iloc[int(len(triples)*0.7):]
     
     def extract_bpdp_triples(self, file):
         subject = ""
@@ -83,7 +88,8 @@ class ReadFiles:
 
     def getBPDP(self, path):
         
-        triples = pd.DataFrame(data=[], columns=['subject','predicate','object','truth'])
+        triples_train = pd.DataFrame(data=[], columns=['subject','predicate','object','truth'])
+        triples_test = pd.DataFrame(data=[], columns=['subject','predicate','object','truth'])
         paths = [os.path.join(path,'Test/True/'), 
                  os.path.join(path,'Test/False/'), 
                  os.path.join(path,'Train/True/'), 
@@ -98,8 +104,12 @@ class ReadFiles:
                         triple=triple+(str(1),)
                     else:
                         triple=triple+(str(0),)
-                    triples = triples.append({'subject':triple[0], 'predicate':triple[1], 'object':triple[2], 'truth':triple[3]}, ignore_index=True)
-        return triples
+                    if p.find("Train") != -1:
+                        triples_train = triples_train.append({'subject':triple[0], 'predicate':triple[1], 'object':triple[2], 'truth':triple[3]}, ignore_index=True)
+                    else:
+                        triples_test = triples_test.append({'subject':triple[0], 'predicate':triple[1], 'object':triple[2], 'truth':triple[3]}, ignore_index=True)
+                        
+        return triples_train, triples_test
     
     def getCsv(self, path):
         triples = pd.DataFrame(data=[], columns=['subject', 'predicate', 'object', 'truth'])
