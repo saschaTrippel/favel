@@ -4,6 +4,7 @@ from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
+from MLService.ML_train import train_global_model
 from OutputService.Output import Output
 
 class Controller:
@@ -77,21 +78,22 @@ class Controller:
     def input(self):
         """
         Read the input dataset that was specified using the '-d' argument.
-        The assertions are held in self.assertions.
+        The assertions are held in self.train_assertions and self.test_assertions.
         """
         input = Input()
-        self.assertions = input.getInput(self.args.data)
+        self.trainAssertions, self.testAssertions = input.getInput(self.args.data)
     
     def validate(self):
         """
-        Validate the assertions that are held in self.assertions.
+        Validate the assertions that are held in self.train_assertions and self.test_assertions.
         """
         self.startContainers()
         
         validator = Validator(dict(self.configParser['Approaches']),
                               self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
 
-        self.result = validator.validate(self.assertions)
+        self.resultTrain = validator.validate(self.trainAssertions)
+        self.resultTest = validator.validate(self.testAssertions)
         
         self.stopContainers()
     
@@ -100,14 +102,14 @@ class Controller:
         Train the ML model
         """
         # TODO: call MLService to train model
-        pass
+        train_global_model(self.resultTrain)
     
     def test(self):
         """
         Test the ML model
         """
         ml = ML()
-        self.df = ml.getEnsembleScore(self.result,dict(self.configParser['Approaches']))
+        self.df = ml.getEnsembleScore(self.resultTest,dict(self.configParser['Approaches']))
     
     def output(self):
         """
