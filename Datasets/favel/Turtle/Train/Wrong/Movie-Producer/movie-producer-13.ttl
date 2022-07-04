@@ -1,0 +1,5 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Elegy_(film)> ns1:producer <http://dbpedia.org/resource/Emmett/Furla_Oasis>,
+        <http://dbpedia.org/resource/Jeffrey_Lau> .
+

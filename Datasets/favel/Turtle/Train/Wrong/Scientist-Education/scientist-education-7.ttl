@@ -1,0 +1,5 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Neal_Schmitt> ns1:education <http://dbpedia.org/resource/Indiana_University>,
+        <http://dbpedia.org/resource/Vrije_Universiteit_Amsterdam> .
+

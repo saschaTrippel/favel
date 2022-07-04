@@ -1,0 +1,21 @@
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://dbpedia.org/resource/Duns_Scotus__1>
+        dbo:birthPlace  <http://dbpedia.org/resource/Cologne> ;
+        dbo:from        "1265-0-0"^^xsd:date ;
+        dbo:to          "1265-0-0"^^xsd:date .
+
+<http://dbpedia.org/resource/Cologne>
+        rdfs:label     "Cologne"@fr , "Köln"@de , "Cologne"@en ;
+        owl:sameAs     <http://fr.dbpedia.org/resource/Cologne> , <http://de.dbpedia.org/resource/Köln> ;
+        skos:altLabel  "Cologne"@fr , "Köln"@de , "Cologne"@en .
+
+<http://dbpedia.org/resource/Duns_Scotus>
+        rdfs:label     "Jean Duns Scot"@fr , "Johannes Duns Scotus"@de , "Duns Scotus"@en ;
+        dbo:birth      <http://dbpedia.org/resource/Duns_Scotus__1> ;
+        owl:sameAs     <http://fr.dbpedia.org/resource/Jean_Duns_Scot> , <http://de.dbpedia.org/resource/Johannes_Duns_Scotus> ;
+        skos:altLabel  "Jean Duns Scot"@fr , "Johannes Duns Scotus"@de , "Duns Scotus"@en .

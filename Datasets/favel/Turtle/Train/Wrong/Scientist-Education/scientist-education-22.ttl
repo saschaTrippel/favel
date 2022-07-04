@@ -1,0 +1,5 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Vincenzo_Di_Nicola> ns1:education <http://dbpedia.org/resource/Emory_University>,
+        <http://dbpedia.org/resource/University_of_California,_Berkeley> .
+

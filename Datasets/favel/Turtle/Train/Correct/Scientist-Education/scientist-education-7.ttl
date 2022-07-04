@@ -1,0 +1,4 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Kenneth_G._Wilson> ns1:education <http://dbpedia.org/resource/Harvard_University> .
+

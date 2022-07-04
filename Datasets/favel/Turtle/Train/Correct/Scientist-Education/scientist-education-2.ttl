@@ -1,0 +1,4 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/David_Wheeler_(computer_scientist)> ns1:education <http://dbpedia.org/resource/University_of_Cambridge> .
+

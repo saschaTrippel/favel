@@ -1,0 +1,4 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Walter_Hayman> ns1:education <http://dbpedia.org/resource/University_of_Cambridge> .
+

@@ -1,0 +1,5 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Eastern_Condors> ns1:producer <http://dbpedia.org/resource/Corey_Yuen>,
+        <http://dbpedia.org/resource/Wu_Ma> .
+

@@ -1,0 +1,4 @@
+@prefix ns1: <http://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Robin_Engel> ns1:education <http://dbpedia.org/resource/University_at_Albany,_SUNY> .
+
