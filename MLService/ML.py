@@ -16,6 +16,7 @@ class ML:
 
     def getEnsembleScore(self, assertionScores,approaches):
 
+        # TODO: must not make a call to OutputService, otherwise services would be coupled
         op = Output()
         input_df = op.getOutput(assertionScores,approaches)
 
