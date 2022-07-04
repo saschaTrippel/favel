@@ -14,6 +14,8 @@ class Controller:
         self.args = self._parseArguments()
         self.configParser = self._loadConfig()
         self._configureLogging()
+        self.testingData = None
+        self.trainingData = None
 
     def _parseArguments(self):
         argumentParser = argparse.ArgumentParser()
@@ -80,7 +82,7 @@ class Controller:
         The assertions are held in self.assertions.
         """
         input = Input()
-        self.assertions = input.getInput(self.args.data)
+        self.trainingData, self.testingData = input.getInput(self.args.data)
     
     def validate(self):
         """
@@ -91,7 +93,8 @@ class Controller:
         validator = Validator(dict(self.configParser['Approaches']),
                               self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
 
-        self.result = validator.validate(self.assertions)
+        validator.validate(self.trainingData)
+        validator.validate(self.testingData)
         
         self.stopContainers()
     
@@ -107,7 +110,7 @@ class Controller:
         Test the ML model
         """
         ml = ML()
-        self.df = ml.getEnsembleScore(self.result,dict(self.configParser['Approaches']))
+        self.df = ml.getEnsembleScore(self.testingData,dict(self.configParser['Approaches']))
     
     def output(self):
         """
