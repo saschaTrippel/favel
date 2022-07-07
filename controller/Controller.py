@@ -94,7 +94,7 @@ class Controller:
                               self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
 
         validator.validate(self.trainingData)
-        validator.validate(self.testingData)
+        self.scores = validator.validate(self.testingData)
         
         self.stopContainers()
     
@@ -110,12 +110,13 @@ class Controller:
         Test the ML model
         """
         ml = ML()
-        self.df = ml.getEnsembleScore(self.testingData,dict(self.configParser['Approaches']))
+        self.df = ml.getEnsembleScore(self.scores,dict(self.configParser['Approaches']))
     
     def output(self):
         """
         Write the results to disk.
+        Also, Conversion to GERBIL format.
         """
         op = Output()
         op.writeOutput(self.df)
-        #op.gerbilFormat()
+        op.gerbilFormat(self.testingData)
