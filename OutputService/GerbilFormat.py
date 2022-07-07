@@ -3,10 +3,7 @@ import csv
 
 class GerbilFormat:
 
-	def __init__(self):
-
-		self.data = pd.read_csv('./OutputService/Outputs/Output.csv')	# Read the Output from our software containing scores of each algorithm
-		self.data1 = pd.read_csv('./Favel_Dataset/favel_data.csv')		# Read the Dataset with triples and Truth value
+	def __init__(self,testingData):
 
 		self.title = "<http://favel.dice-research.org/task/dataset/"
 		self.subject = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#subject>"
@@ -16,7 +13,7 @@ class GerbilFormat:
 		self.doubleText = "<http://www.w3.org/2001/XMLSchema#double>"
 		self.tripleType = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
 		self.statement = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement>"
-
+		self.testingData = testingData
 		self.formatDataset()
 
 	def createTripleSubject(self, datasetName,subjectString):
@@ -45,9 +42,25 @@ class GerbilFormat:
 		return string
 
 	def formatDataset(self):
-		#Writing the sample dataset in specified format
+		'''Writing the testingData in specified format'''
+
+		df = dict()
+		df['subject'] = []
+		df['predicate'] = []
+		df['object'] = []
+		df['true_value'] = []
+
+		for assertion in self.testingData:
+			df['subject'].append(assertion.subject)
+			df['predicate'].append(assertion.predicate)
+			df['object'].append(assertion.object)
+			df['true_value'].append(assertion._expectedScore)
+			print(assertion._expectedScore)
+		
+		data1 = pd.DataFrame(df)	# DataFrame with triples and Truth value
+
 		array = " "
-		for index,rows in self.data1.iterrows():
+		for index,rows in data1.iterrows():
 		#    if(index == 0):
 		        # Triple Name
 				datasetName = self.title + str(index) + ">"
@@ -66,9 +79,12 @@ class GerbilFormat:
 					file.write(array)
 
 	def createOutputFileForEvaluation(self):
-		#Writing the output file (for ensemble scores only) in the specified Format
+		'''Writing the output file (for ensemble scores only) in the specified Format'''
+
+		data = pd.read_csv('./OutputService/Outputs/Output.csv')	# Read the Output from our software containing ensemble_score
+
 		array = " "
-		for outputFileIndex,rows in self.data.iterrows():
+		for outputFileIndex,rows in data.iterrows():
 	        # Triple Name
 			datasetName = self.title + str(outputFileIndex) + ">"
 			array += self.createTruthValueTriple(datasetName , str(rows['ensemble_score']))
