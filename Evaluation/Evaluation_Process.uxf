@@ -5,7 +5,7 @@
     <id>UMLState</id>
     <coordinates>
       <x>430</x>
-      <y>440</y>
+      <y>340</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
@@ -19,7 +19,7 @@ bg=yellow</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>740</x>
-      <y>440</y>
+      <y>340</y>
       <w>260</w>
       <h>70</h>
     </coordinates>
@@ -31,7 +31,7 @@ bg=yellow</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>430</x>
-      <y>620</y>
+      <y>520</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
@@ -43,7 +43,7 @@ bg=blue</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>740</x>
-      <y>620</y>
+      <y>520</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
@@ -56,7 +56,7 @@ bg=blue</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>430</x>
-      <y>750</y>
+      <y>650</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
@@ -69,11 +69,12 @@ bg=blue</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>740</x>
-      <y>750</y>
+      <y>650</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>Save ML model to file
+in experiment folder
 bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
@@ -81,7 +82,7 @@ bg=blue</panel_attributes>
     <id>UMLSpecialState</id>
     <coordinates>
       <x>530</x>
-      <y>150</y>
+      <y>50</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -92,7 +93,7 @@ bg=blue</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>530</x>
-      <y>150</y>
+      <y>50</y>
       <w>30</w>
       <h>130</h>
     </coordinates>
@@ -103,7 +104,7 @@ bg=blue</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>430</x>
-      <y>890</y>
+      <y>790</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
@@ -116,7 +117,7 @@ bg=blue</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>740</x>
-      <y>890</y>
+      <y>790</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
@@ -129,7 +130,7 @@ bg=blue</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>430</x>
-      <y>1030</y>
+      <y>930</y>
       <w>260</w>
       <h>70</h>
     </coordinates>
@@ -141,7 +142,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>630</x>
-      <y>460</y>
+      <y>360</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -152,7 +153,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>530</x>
-      <y>500</y>
+      <y>400</y>
       <w>350</w>
       <h>140</h>
     </coordinates>
@@ -163,7 +164,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>630</x>
-      <y>640</y>
+      <y>540</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -174,7 +175,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>530</x>
-      <y>670</y>
+      <y>570</y>
       <w>340</w>
       <h>100</h>
     </coordinates>
@@ -185,7 +186,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>630</x>
-      <y>770</y>
+      <y>670</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -196,7 +197,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>520</x>
-      <y>800</y>
+      <y>700</y>
       <w>340</w>
       <h>110</h>
     </coordinates>
@@ -207,7 +208,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>630</x>
-      <y>910</y>
+      <y>810</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -217,8 +218,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>840</x>
-      <y>1050</y>
+      <x>860</x>
+      <y>1040</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -229,18 +230,18 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>680</x>
-      <y>1050</y>
-      <w>180</w>
+      <y>950</y>
+      <w>80</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>510</x>
-      <y>940</y>
+      <y>840</y>
       <w>340</w>
       <h>110</h>
     </coordinates>
@@ -251,7 +252,7 @@ bg=yellow</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>50</x>
-      <y>100</y>
+      <y>0</y>
       <w>370</w>
       <h>70</h>
     </coordinates>
@@ -265,12 +266,12 @@ Blue background = performed by Favel software
     <id>UMLState</id>
     <coordinates>
       <x>430</x>
-      <y>260</y>
+      <y>160</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>Create folder for
-evaluation run named
+an experiment named
 eval[XXX] (e.g. eval042)
 bg=yellow</panel_attributes>
     <additional_attributes/>
@@ -279,7 +280,7 @@ bg=yellow</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>740</x>
-      <y>260</y>
+      <y>160</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
@@ -292,7 +293,7 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>530</x>
-      <y>320</y>
+      <y>220</y>
       <w>350</w>
       <h>140</h>
     </coordinates>
@@ -303,11 +304,35 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>630</x>
-      <y>280</y>
+      <y>180</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>740</x>
+      <y>930</y>
+      <w>260</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Document experiment in
+Evaluation Overview
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>990</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
