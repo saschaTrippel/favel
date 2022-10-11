@@ -23,13 +23,15 @@ class Controller:
     
         exclusionGroup.add_argument("-d", "--data", help="Path to input data")
         exclusionGroup.add_argument("-c", "--cache", action="store_true", help="Check whether the cache entries are correct")
+
+        argumentParser.add_argument("-e", "--experiment", required=True, help="Name of the experiment to execute. The name must correspond to one directory in the Evaluation directory which contains a configuration file")
         argumentParser.add_argument("-sc", "--containers", action="store_true", help="To Start/Stop containers, if not already running")
     
         return argumentParser.parse_args()
         
     def _loadConfig(self):
         configParser = configparser.ConfigParser()
-        configParser.read("favel.conf")
+        configParser.read("../Evaluation/{}/favel.conf".format(self.args.experiment))
         return configParser
     
     def _configureLogging(self):
