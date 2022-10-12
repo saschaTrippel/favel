@@ -16,6 +16,8 @@ class Controller:
         self._configureLogging()
         self.testingData = None
         self.trainingData = None
+        self.validateTrainingData = None
+        self.ml = ML()
 
     def _parseArguments(self):
         argumentParser = argparse.ArgumentParser()
@@ -95,7 +97,7 @@ class Controller:
         validator = Validator(dict(self.configParser['Approaches']),
                               self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
 
-        validator.validate(self.trainingData)
+        self.validateTrainingData = validator.validate(self.trainingData)
         self.scores = validator.validate(self.testingData)
         
         self.stopContainers()
@@ -105,14 +107,19 @@ class Controller:
         Train the ML model
         """
         # TODO: call MLService to train model
+        data = self.ml.createDataFrame(self.validateTrainingData,dict(self.configParser['Approaches']))
+
+        self.ml.train(data)
+
         pass
     
     def test(self):
         """
         Test the ML model
         """
-        ml = ML()
-        self.df = ml.getEnsembleScore(self.scores,dict(self.configParser['Approaches']))
+        
+        self.df = self.ml.getEnsembleScore(self.scores,dict(self.configParser['Approaches']))
+        
     
     def output(self):
         """

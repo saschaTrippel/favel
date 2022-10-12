@@ -100,18 +100,18 @@ def main(df, models_list, output_path):
 
 
 def train(df):
-    # The chosen model
 
     output_path = "models/"
 
+    # The chosen model
     models_list=[
         LogisticRegression(random_state=0),
     ]
     
     
-    print('path: ', sys.argv[1])
+    # print('path: ', sys.argv[1])
 
-    df = pd.read_csv(sys.argv[1])
+    # df = pd.read_csv(sys.argv[1])
     
     df.fillna(0, inplace=True)
 
