@@ -63,8 +63,7 @@ def train_on_all_data(df, model):
     print(f'All data train roc_auc_score of {model.__class__.__name__}: ', roc_auc_score(y, model.predict_proba(X)[:, 1]),)
     return model
 
-
-
+# Change model list here to be a single model
 def main(df, models_list, output_path):
     result_df=pd.DataFrame()    
     
@@ -99,22 +98,17 @@ def main(df, models_list, output_path):
     return result_df
 
 
-if __name__=="__main__":
-    
+
+def train(df):
+    # The chosen model
+
     output_path = "models/"
-    
-    # model_df = pd.read_csv(sys.argv[2])
-    # models_list=model_df['model_lists'].to_list()
-    
+
     models_list=[
-    AdaBoostClassifier(),
-    LogisticRegression(random_state=0),
-    GradientBoostingClassifier(n_estimators=100, learning_rate=1.0, max_depth=1, random_state=0),
-    RandomForestClassifier(n_estimators=50,oob_score = True),
-    StackingClassifier(estimators=[('dt',DecisionTreeClassifier()), ('rf',RandomForestClassifier(random_state=0))], final_estimator=GradientBoostingClassifier(random_state=0)),
-    DecisionTreeClassifier(), BaggingClassifier(DecisionTreeClassifier(), max_samples=0.5, max_features = 1.0, n_estimators =50), 
-    make_pipeline(StandardScaler(), SVC(gamma='auto', probability=True))
+        LogisticRegression(random_state=0),
     ]
+    
+    
     print('path: ', sys.argv[1])
 
     df = pd.read_csv(sys.argv[1])
@@ -137,3 +131,12 @@ if __name__=="__main__":
     #print(df)
     
     main(df, models_list, output_path)     
+
+# if __name__=="__main__":
+    
+#     output_path = "models/"
+    
+    # model_df = pd.read_csv(sys.argv[2])
+    # models_list=model_df['model_lists'].to_list()
+    
+    # train_global_model(df) 
