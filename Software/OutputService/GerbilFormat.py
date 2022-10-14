@@ -3,7 +3,8 @@ import csv
 
 class GerbilFormat:
 
-	def __init__(self,testingData):
+	def __init__(self, testingData, experimentPath:str):
+		self.experimentPath = experimentPath
 
 		self.title = "<http://favel.dice-research.org/task/dataset/"
 		self.subject = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#subject>"
@@ -75,21 +76,21 @@ class GerbilFormat:
 		        # Truth Value
 				array += self.createTruthValueTriple(datasetName,rows["true_value"])
 		        
-				with open("./OutputService/Outputs/GerbilFormat/favel.nt","w+") as file:
+				with open("{}favel.nt".format(self.experimentPath), "w+") as file:
 					file.write(array)
 
 	def createOutputFileForEvaluation(self):
 		'''Writing the output file (for ensemble scores only) in the specified Format'''
 
-		data = pd.read_csv('./OutputService/Outputs/Output.csv')	# Read the Output from our software containing ensemble_score
+		data = pd.read_csv('{}Output.csv'.format(self.experimentPath))	# Read the Output from our software containing ensemble_score
 
 		array = " "
 		for outputFileIndex,rows in data.iterrows():
 	        # Triple Name
 			datasetName = self.title + str(outputFileIndex) + ">"
-			array += self.createTruthValueTriple(datasetName , str(rows['ensemble_score']))
+			array += self.createTruthValueTriple(datasetName, str(rows['ensemble_score']))
 
-			with open("./OutputService/Outputs/GerbilFormat/favel_ensemble.nt","w+") as file:
+			with open("{}favel_ensemble.nt".format(self.experimentPath), "w+") as file:
 				file.write(array)
 
 	def getGerbilFormat(self):

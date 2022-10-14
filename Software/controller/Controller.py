@@ -126,6 +126,6 @@ class Controller:
         Write the results to disk.
         Also, Conversion to GERBIL format.
         """
-        op = Output()
+        op = Output("../Evaluation/{}/".format(self.args.experiment))
         op.writeOutput(self.df)
         op.gerbilFormat(self.testingData)
