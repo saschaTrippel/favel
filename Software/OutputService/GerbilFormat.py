@@ -17,25 +17,17 @@ class GerbilFormat:
 		self.testingData = testingData
 		self.formatDataset()
 
-	def createTripleSubject(self, datasetName,subjectString):
-		string = ""
-		string += datasetName + " " + self.subject + " " +  "<" + subjectString + ">" +" ." + "\n"
-		return string
+	def createTripleSubject(self, datasetName:str, subjectString:str):
+		return "{} {} <{}>.\n".format(datasetName, self.subject, subjectString)
 
-	def createTriplePredicate(self, datasetName,predicateString):
-		string = ""
-		string += datasetName + " " + self.predicate +  " " + "<" + predicateString + ">" +" ." + "\n"
-		return string
+	def createTriplePredicate(self, datasetName:str, predicateString:str):
+		return "{} {} <{}>.\n".format(datasetName, self.predicate, predicateString)
 
-	def createTripleObject(self, datasetName,objectString):
-		string = ""
-		string += datasetName + " " + self.object +  " " + "<" + objectString + ">" +" ." + "\n"
-		return string   
+	def createTripleObject(self, datasetName:str, objectString:str):
+		return "{} {} <{}>.\n".format(datasetName, self.object, objectString)
 	
-	def createTripleType(self, datasetName):
-		string = ""
-		string += datasetName + " " + self.tripleType + " " + self.statement + " ." + "\n"
-		return string
+	def createTripleType(self, datasetName:str):
+		return "{} {} {} .\n".format(datasetName, self.tripleType, self.statement)
 
 	def createTruthValueTriple(self, datasetName, truthValueFloat):
 		string = ""
@@ -43,7 +35,7 @@ class GerbilFormat:
 		return string
 
 	def formatDataset(self):
-		'''Writing the testingData in specified format'''
+		"""Writing the testingData in specified format"""
 
 		df = dict()
 		df['subject'] = []
@@ -80,7 +72,7 @@ class GerbilFormat:
 					file.write(array)
 
 	def createOutputFileForEvaluation(self):
-		'''Writing the output file (for ensemble scores only) in the specified Format'''
+		"""Writing the output file (for ensemble scores only) in the specified Format"""
 
 		data = pd.read_csv('{}Output.csv'.format(self.experimentPath))	# Read the Output from our software containing ensemble_score
 
