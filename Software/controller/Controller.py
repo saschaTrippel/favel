@@ -4,7 +4,9 @@ from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
+from MLService.ML_train import train, test
 from OutputService.Output import Output
+# from MLService.ML_train import main
 
 class Controller:
     """
@@ -71,7 +73,7 @@ class Controller:
             c = Containers()
             c.rmContainers()
 
-    def validateCache():
+    def validateCache(self):
         self.startContainers()
 
         logging.info("Checking cache for correctness")
@@ -98,8 +100,8 @@ class Controller:
                               self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
 
         self.validateTrainingData = validator.validate(self.trainingData)
-        self.scores = validator.validate(self.testingData)
-        
+        self.scores               = validator.validate(self.testingData)
+
         self.stopContainers()
     
     def train(self):
@@ -107,25 +109,23 @@ class Controller:
         Train the ML model
         """
         # TODO: call MLService to train model
-        data = self.ml.createDataFrame(self.validateTrainingData,dict(self.configParser['Approaches']))
+        training_df = self.ml.createDataFrame(self.validateTrainingData,dict(self.configParser['Approaches']))
+        train_result = train(training_df, ml_model=self.configParser['MLApproches']['method'], output_path=self.args.experiment)
 
-        self.ml.train(data)
-
-        pass
-    
     def test(self):
         """
         Test the ML model
         """
-        
-        self.df = self.ml.getEnsembleScore(self.scores,dict(self.configParser['Approaches']))
-        
+        testing_df = self.ml.createDataFrame(self.scores,dict(self.configParser['Approaches']))
+        testing_result = test(testing_df, output_path=self.args.experiment)
+        self.ml_test_result = testing_result
     
+
     def output(self):
         """
         Write the results to disk.
         Also, Conversion to GERBIL format.
         """
         op = Output("../Evaluation/{}/".format(self.args.experiment))
-        op.writeOutput(self.df)
+        op.writeOutput(self.ml_test_result)
         op.gerbilFormat(self.testingData)

@@ -41,7 +41,6 @@ class ML:
         return(df)
 
     def getEnsembleScore(self, assertionScores,approaches):
-
         input_df = self.createDataFrame(assertionScores,approaches)
 
         ensembleScore = []
@@ -50,7 +49,7 @@ class ML:
         input_df.predicate = self.le_predicate.transform(input_df.predicate)
         input_df = input_df.drop(['subject','object'], axis=1)
         ensembleScore = self.model.predict(input_df)
-        
+
         input_df['ensemble_score'] = ensembleScore
 
         return(input_df)

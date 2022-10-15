@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 from sklearn import preprocessing
 from sklearn import metrics
 from sklearn.linear_model import *
@@ -17,7 +16,6 @@ from sklearn.pipeline import *
 from sklearn.preprocessing import *
 from joblib import dump, load
 import pickle
-import sys
 import csv,sys
 from functools import reduce
 import operator
@@ -25,80 +23,87 @@ import sys
 from sklearn.model_selection import *
 from sklearn.svm import *
 from sklearn import *
-import warnings
 import pdb
+import os, sys, warnings
 if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
-def trn_data_triples(df):
-    X=df.drop(['true_value',], axis=1)
-    y=df.true_value
-    X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.33, random_state=42)
-
-    trn_data=pd.DataFrame({
-        'X_train':[X_train],
-        'X_test':[X_test],
-        'y_train':[y_train],
-        'y_test':[y_test],
-    })
-    return trn_data
-
-def train_model(X_train, X_test, y_train, y_test, model, result_df):
-    model=model.fit(X_train, y_train)
-    mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
-    tmpdf=pd.DataFrame({'method_name': [mdl_name], 
-                        'method': [model], 
-                        'accuracy':[model.score(X_test, y_test)], 
-                        'auc_roc':[roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])]})
-    result_df=pd.concat([result_df, tmpdf])
-    return result_df
 
 
-def train_on_all_data(df, model):    
-    X=df.drop(['true_value',], axis=1)
-    y=df.true_value
 
+# def trn_data_triples(df):
+#     X=df.drop(['true_value',], axis=1)
+#     y=df.true_value
+#     # X_train, X_test, y_train, y_test = train_test_split(
+#     # X, y, test_size=0.33, random_state=42)
+
+#     trn_data=pd.DataFrame({
+#         'X_train':[X_train],
+#         # 'X_test':[X_test],
+#         'y_train':[y_train],
+#         # 'y_test':[y_test],
+#     })
+#     return trn_data
+
+# def train_model(X_train, X_test, y_train, y_test, model, result_df):
+# def train_model(X_train, y_train, model, result_df):
+
+#     model=model.fit(X_train, y_train)
+#     mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
+
+#     tmpdf=pd.DataFrame({'method_name': [mdl_name], 
+#                         'method': [model], 
+#                         'accuracy':[model.score(X_train, y_train)], 
+#                         'auc_roc':[roc_auc_score(y_train, model.predict_proba(X_train)[:, 1])]})
+#     result_df=pd.concat([result_df, tmpdf])
+#     return result_df
+
+
+
+
+# def train_on_all_data(df, model):    
+#     X=df.drop(['true_value',], axis=1)
+#     y=df.true_value
+
+#     model=model.fit(X, y)
+#     print(f'All data train roc_auc_score of {model.__class__.__name__}: ', roc_auc_score(y, model.predict_proba(X)[:, 1]),)
+#     return model
+
+def train_model(X, y, model):
     model=model.fit(X, y)
-    print(f'All data train roc_auc_score of {model.__class__.__name__}: ', roc_auc_score(y, model.predict_proba(X)[:, 1]),)
-    return model
+    mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
+    roc_auc = roc_auc_score(y, model.predict_proba(X)[:, 1])
+
+    return mdl_name, roc_auc
 
 # Change model list here to be a single model
-def main(df, models_list, output_path):
-    result_df=pd.DataFrame()    
-    
-    for model in models_list:
-        trn_data = trn_data_triples(df)
-        result_df=train_model(trn_data.X_train.item(), 
-                              trn_data.X_test.item(), 
-                              trn_data.y_train.item(), 
-                              trn_data.y_test.item(), 
-                              model, 
-                              result_df)
-    result_df=result_df.reset_index(drop=True) 
+def train(df, ml_model, output_path):
+    le = preprocessing.LabelEncoder()
+    le.fit(df['predicate'])
+    df['predicate']=le.transform(df['predicate'])
 
-    print(result_df)   
-    print(result_df.auc_roc.idxmax())
-    
-    best_method=result_df.loc[result_df.auc_roc.idxmax()]
-    
-    print(f'''
-        Best Model: {best_method.method_name}
-        Auc_Roc:    {best_method.auc_roc}
-        Accuracy:   {best_method.accuracy}
+    X=df.drop(['true_value', 'subject', 'object'], axis=1)
+    y=df.true_value
 
-    '''
-    )
+    model_name, roc_auc = train_model(X, y, ml_model)
+    with open(f'{output_path}/results.txt', 'w') as f:
+        f.write(f'''
+            TRAIN RESULT:
+            model name: {model_name}
+            roc auc score: {roc_auc}
+        ''')
 
-    final_model = train_on_all_data(df, best_method.method)
+    with open(f'{output_path}/classifier.pkl','wb') as fp: pickle.dump(model,fp)
+    with open(f'{output_path}/predicate_le.pkl','wb') as fp: pickle.dump(le,fp)
 
-    Path(output_path).mkdir(parents=True, exist_ok=True)    
-    
-    with open(f'{output_path}/classifier.pkl','wb') as fp: pickle.dump(final_model,fp)
-    return result_df
+    return True
 
 
 
+
+
+
+'''
 def train(df):
 
     output_path = "models/"
@@ -131,6 +136,7 @@ def train(df):
     #print(df)
     
     main(df, models_list, output_path)     
+'''
 
 # if __name__=="__main__":
     
@@ -140,3 +146,9 @@ def train(df):
     # models_list=model_df['model_lists'].to_list()
     
     # train_global_model(df) 
+
+
+# 1. dont split in main function
+# 2. in train_model() calculate acc on train data
+# 3. write function for test data
+# 4. export model and label_encoding of predicates to output_path folder
