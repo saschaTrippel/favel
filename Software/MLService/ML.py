@@ -41,15 +41,4 @@ class ML:
         return(df)
 
     def getEnsembleScore(self, assertionScores,approaches):
-        input_df = self.createDataFrame(assertionScores,approaches)
-
-        ensembleScore = []
-        input_df['predicate'] = input_df['predicate'].map(lambda s: '<unknown>' if s not in self.le_predicate.classes_ else s)
-        self.le_predicate.classes_ = np.append(self.le_predicate.classes_, '<unknown>')
-        input_df.predicate = self.le_predicate.transform(input_df.predicate)
-        input_df = input_df.drop(['subject','object'], axis=1)
-        ensembleScore = self.model.predict(input_df)
-
-        input_df['ensemble_score'] = ensembleScore
-
-        return(input_df)
+        pass

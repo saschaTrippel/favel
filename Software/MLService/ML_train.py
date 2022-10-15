@@ -99,7 +99,36 @@ def train(df, ml_model, output_path):
     return True
 
 
+def test(df, output_path):
+    # read saved model
+    with open(f'{output_path}/classifier.pkl','wb') as fp: ml_model = pickle.load(fp)
 
+    # read predicate label encoder
+    with open(f'{output_path}/predicate_le.pkl','wb') as fp: le_predicate = pickle.load(fp)
+
+
+    X=df.drop(['true_value','subject', 'object'], axis=1)
+    y=df.true_value
+
+    # predict on test df
+    ensembleScore = []
+    X['predicate'] = X['predicate'].map(lambda s: '<unknown>' if s not in le_predicate.classes_ else s)
+    le_predicate.classes_ = np.append(le_predicate.classes_, '<unknown>')
+    X.predicate = le_predicate.transform(X.predicate)
+    X = df.drop(['subject','object'], axis=1)
+    ensembleScore = ml_model.predict(X)
+    
+    df['ensemble_score'] = ensembleScore
+
+    roc_auc = roc_auc_score(y, ensembleScore)
+
+    with open(f'{output_path}/results.txt', 'a') as f:
+        f.write(f'''
+            TEST RESULT:
+            roc auc score: {roc_auc}
+        ''')
+
+    return df
 
 
 
