@@ -110,14 +110,14 @@ class Controller:
         """
         # TODO: call MLService to train model
         training_df = self.ml.createDataFrame(self.validateTrainingData,dict(self.configParser['Approaches']))
-        train_result = train(training_df, ml_model=self.configParser['MLApproches']['method'], output_path=self.args.experiment)
+        train_result = self.ml.train(training_df, ml_model=self.configParser['MLApproches']['method'], output_path=self.args.experiment)
 
     def test(self):
         """
         Test the ML model
         """
         testing_df = self.ml.createDataFrame(self.scores,dict(self.configParser['Approaches']))
-        testing_result = test(testing_df, output_path=self.args.experiment)
+        testing_result = self.ml.test(testing_df, output_path=self.args.experiment)
         self.ml_test_result = testing_result
     
 
