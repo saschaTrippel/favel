@@ -12,8 +12,8 @@ class Controller:
     """
     Controler that interacts with the different services.
     """
-    def __init__(self):
-        self.args = self._parseArguments()
+    def __init__(self, argv=None):
+        self.args = self._parseArguments(argv)
         self.configParser = self._loadConfig()
         self._configureLogging()
         self.testingData = None
@@ -21,7 +21,7 @@ class Controller:
         self.validateTrainingData = None
         self.ml = ML()
 
-    def _parseArguments(self):
+    def _parseArguments(self, argv=None):
         argumentParser = argparse.ArgumentParser()
         exclusionGroup = argumentParser.add_mutually_exclusive_group(required=True)
     
@@ -31,7 +31,7 @@ class Controller:
         argumentParser.add_argument("-e", "--experiment", required=True, help="Name of the experiment to execute. The name must correspond to one directory in the Evaluation directory which contains a configuration file")
         argumentParser.add_argument("-sc", "--containers", action="store_true", help="To Start/Stop containers, if not already running")
     
-        return argumentParser.parse_args()
+        return argumentParser.parse_args(argv)
         
     def _loadConfig(self):
         configParser = configparser.ConfigParser()
