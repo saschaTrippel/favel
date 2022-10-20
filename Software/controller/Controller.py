@@ -20,7 +20,6 @@ class Controller:
         self.trainingData = None
         self.validateTrainingData = None
         self.ml = ML()
-        self.ml_train = ML_train()
 
     def _parseArguments(self, argv=None):
         argumentParser = argparse.ArgumentParser()
