@@ -27,4 +27,4 @@ class TestController(unittest.TestCase):
 
     def test_validate(self):
         self.ctrl.validate()
-        print(len(self.ctrl.validateTrainingData))
+        self.assertGreaterEqual(len(self.ctrl.testingData), 1)

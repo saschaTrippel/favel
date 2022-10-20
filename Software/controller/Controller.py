@@ -4,7 +4,7 @@ from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
-from MLService.ML_train import train, test
+from MLService.ML_train import train as train_model, test as test_model
 from OutputService.Output import Output
 # from MLService.ML_train import main
 
@@ -20,6 +20,7 @@ class Controller:
         self.trainingData = None
         self.validateTrainingData = None
         self.ml = ML()
+        self.ml_train = ML_train()
 
     def _parseArguments(self, argv=None):
         argumentParser = argparse.ArgumentParser()
@@ -110,14 +111,14 @@ class Controller:
         """
         # TODO: call MLService to train model
         training_df = self.ml.createDataFrame(self.validateTrainingData,dict(self.configParser['Approaches']))
-        train_result = self.ml.train(training_df, ml_model=self.configParser['MLApproches']['method'], output_path=self.args.experiment)
+        train_result = train_model(training_df, ml_model=self.configParser['MLApproches']['method'], output_path=self.args.experiment)
 
     def test(self):
         """
         Test the ML model
         """
         testing_df = self.ml.createDataFrame(self.scores,dict(self.configParser['Approaches']))
-        testing_result = self.ml.test(testing_df, output_path=self.args.experiment)
+        testing_result = test_model(testing_df, output_path=self.args.experiment)
         self.ml_test_result = testing_result
     
 
