@@ -24,3 +24,7 @@ class TestController(unittest.TestCase):
         self.ctrl.input()
         self.assertGreaterEqual(len(self.ctrl.trainingData), 1)
         self.assertGreaterEqual(len(self.ctrl.testingData), 1)
+
+    def test_validate(self):
+        self.ctrl.validate()
+        print(len(self.ctrl.validateTrainingData))
