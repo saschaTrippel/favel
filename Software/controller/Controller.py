@@ -4,7 +4,7 @@ from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
-from MLService.ML_train import train as train_model, test as test_model
+# from MLService.ML_train import train as train_model, test as test_model
 from OutputService.Output import Output
 # from MLService.ML_train import main
 
@@ -19,7 +19,12 @@ class Controller:
         self.testingData = None
         self.trainingData = None
         self.validateTrainingData = None
-        self.ml = ML()
+
+        
+        self.ml = ML(
+            log_file=f"../Evaluation/{self.args.experiment}/ml_logs.log",
+        )
+
 
     def _parseArguments(self, argv=None):
         argumentParser = argparse.ArgumentParser()
@@ -108,16 +113,25 @@ class Controller:
         """
         Train the ML model
         """
+
         # TODO: call MLService to train model
         training_df = self.ml.createDataFrame(self.validateTrainingData,dict(self.configParser['Approaches']))
-        train_result = train_model(training_df, ml_model=self.configParser['MLApproches']['method'], output_path=self.args.experiment)
+        # if not training_df: logging.info('[controller train] Error in createDataFrame')
+
+        train_result = self.ml.train_model(training_df, ml_model=self.configParser['MLApproches']['method'], output_path=f"../Evaluation/{self.args.experiment}")
+        # if not train_result: logging.info('[controller train] Error in train_model')
+
 
     def test(self):
         """
         Test the ML model
         """
         testing_df = self.ml.createDataFrame(self.scores,dict(self.configParser['Approaches']))
-        testing_result = test_model(testing_df, output_path=self.args.experiment)
+        # if not testing_df: logging.info('[controller test] Error in createDataFrame')
+
+        testing_result = self.ml.validate_model(testing_df, output_path=f"../Evaluation/{self.args.experiment}")
+        # if not testing_result: logging.info('[controller test] Error in validate_model')
+
         self.ml_test_result = testing_result
     
 
