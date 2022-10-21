@@ -25,159 +25,171 @@ from sklearn.svm import *
 from sklearn import *
 import pdb
 import os, sys, warnings
-if not sys.warnoptions:
-    warnings.simplefilter("ignore")
+import logging, argparse, configparser
+
+if not sys.warnoptions: warnings.simplefilter("ignore")
+
+import time
+time.ctime() # 'Mon Oct 18 13:35:29 2010'
+
+
+def loadConfig(experiment):
+    configParser = configparser.ConfigParser()
+    print('logging path: ', f"./PG/Evaluation/{experiment}/favel.conf", os.getcwd())
+    configParser.read(f"./PG/Evaluation/{experiment}/favel.conf")
+    return configParser
+    
+def configureLogging(configParser):
+    loggingOptions = dict()
+    loggingOptions['debug'] = logging.DEBUG
+    loggingOptions['info'] = logging.INFO
+    loggingOptions['warning'] = logging.WARNING
+    loggingOptions['error'] = logging.ERROR
+    loggingOptions['critical'] = logging.CRITICAL
+
+    logging.basicConfig(
+        filename='ml_logs.log',
+        level=   loggingOptions[configParser['General']['logging']]
+    )
 
 
 
+def custom_model_train(X, y, model):
+    try:
+        model=model.fit(X, y)
+        mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
+        roc_auc = roc_auc_score(y, model.predict_proba(X)[:, 1])
 
-# def trn_data_triples(df):
-#     X=df.drop(['true_value',], axis=1)
-#     y=df.true_value
-#     # X_train, X_test, y_train, y_test = train_test_split(
-#     # X, y, test_size=0.33, random_state=42)
+        return model, mdl_name, roc_auc
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        # print('Error in custom_model_train: ', exc_type, fname, exc_tb.tb_lineno)
+        logging.info('Error in custom_model_train: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+        return False, False, False
 
-#     trn_data=pd.DataFrame({
-#         'X_train':[X_train],
-#         # 'X_test':[X_test],
-#         'y_train':[y_train],
-#         # 'y_test':[y_test],
-#     })
-#     return trn_data
-
-# def train_model(X_train, X_test, y_train, y_test, model, result_df):
-# def train_model(X_train, y_train, model, result_df):
-
-#     model=model.fit(X_train, y_train)
-#     mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
-
-#     tmpdf=pd.DataFrame({'method_name': [mdl_name], 
-#                         'method': [model], 
-#                         'accuracy':[model.score(X_train, y_train)], 
-#                         'auc_roc':[roc_auc_score(y_train, model.predict_proba(X_train)[:, 1])]})
-#     result_df=pd.concat([result_df, tmpdf])
-#     return result_df
-
-
-
-
-# def train_on_all_data(df, model):    
-#     X=df.drop(['true_value',], axis=1)
-#     y=df.true_value
-
-#     model=model.fit(X, y)
-#     print(f'All data train roc_auc_score of {model.__class__.__name__}: ', roc_auc_score(y, model.predict_proba(X)[:, 1]),)
-#     return model
-
-def train_model(X, y, model):
-    model=model.fit(X, y)
-    mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
-    roc_auc = roc_auc_score(y, model.predict_proba(X)[:, 1])
-
-    return mdl_name, roc_auc
 
 # Change model list here to be a single model
-def train(df, ml_model, output_path):
-    le = preprocessing.LabelEncoder()
-    le.fit(df['predicate'])
-    df['predicate']=le.transform(df['predicate'])
+def train_model(df, ml_model, output_path):
+    try:
+        le = preprocessing.LabelEncoder()
+        le.fit(df['predicate'])
+        df['predicate']=le.transform(df['predicate'])
 
-    X=df.drop(['true_value', 'subject', 'object'], axis=1)
-    y=df.true_value
+        X=df.drop(['true_value', 'subject', 'object'], axis=1)
+        y=df.true_value
 
-    model_name, roc_auc = train_model(X, y, ml_model)
-    with open(f'{output_path}/results.txt', 'w') as f:
-        f.write(f'''
-            TRAIN RESULT:
-            model name: {model_name}
-            roc auc score: {roc_auc}
-        ''')
+        print('TRAIN: ', X.shape, y.shape)
 
-    with open(f'{output_path}/classifier.pkl','wb') as fp: pickle.dump(model,fp)
-    with open(f'{output_path}/predicate_le.pkl','wb') as fp: pickle.dump(le,fp)
+        model, model_name, roc_auc = custom_model_train(X, y, ml_model)
 
-    return True
+        logging.info('ML model trained')
 
+        if not model and not model_name and not roc_auc: 
+            return False
+        else:
+            with open(f'{output_path}/results.txt', 'w') as f:
+                f.write(f'''
+                    {time.strftime('%l:%M%p %Z on %b %d, %Y')}
+                    TRAIN RESULT:
+                    model name: {model_name}
+                    roc auc score: {roc_auc}
+                ''')
 
-def test(df, output_path):
-    # read saved model
-    with open(f'{output_path}/classifier.pkl','wb') as fp: ml_model = pickle.load(fp)
+            with open(f'{output_path}/classifier.pkl','wb') as fp:   pickle.dump(model,fp)
+            with open(f'{output_path}/predicate_le.pkl','wb') as fp: pickle.dump(le,   fp)
 
-    # read predicate label encoder
-    with open(f'{output_path}/predicate_le.pkl','wb') as fp: le_predicate = pickle.load(fp)
+            logging.info('ML model and labelencoder saved in output path')
 
+            return True
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        # print('Error in train_model: ', exc_type, fname, exc_tb.tb_lineno)
+        logging.info('Error in train_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
 
-    X=df.drop(['true_value','subject', 'object'], axis=1)
-    y=df.true_value
-
-    # predict on test df
-    ensembleScore = []
-    X['predicate'] = X['predicate'].map(lambda s: '<unknown>' if s not in le_predicate.classes_ else s)
-    le_predicate.classes_ = np.append(le_predicate.classes_, '<unknown>')
-    X.predicate = le_predicate.transform(X.predicate)
-    X = df.drop(['subject','object'], axis=1)
-    ensembleScore = ml_model.predict(X)
-    
-    df['ensemble_score'] = ensembleScore
-
-    roc_auc = roc_auc_score(y, ensembleScore)
-
-    with open(f'{output_path}/results.txt', 'a') as f:
-        f.write(f'''
-            TEST RESULT:
-            roc auc score: {roc_auc}
-        ''')
-
-    return df
+        return False
 
 
+def validate_model(df, output_path):
+    try:
+        # read saved model
+        with open(f'{output_path}/classifier.pkl','rb') as fp: ml_model = pickle.load(fp)
 
-'''
-def train(df):
-
-    output_path = "models/"
-
-    # The chosen model
-    models_list=[
-        LogisticRegression(random_state=0),
-    ]
-    
-    
-    # print('path: ', sys.argv[1])
-
-    # df = pd.read_csv(sys.argv[1])
-    
-    df.fillna(0, inplace=True)
-
-    # remove triples here
-    if sum(df.columns.str.contains('subject', case=False)): df=df.drop(['subject',], axis=1)
-    #if sum(df.columns.str.contains('predicate', case=False)): df=df.drop(['predicate',], axis=1)
-    if sum(df.columns.str.contains('object', case=False)): df=df.drop(['object',], axis=1)
-    print(df.shape)
-    print(df.head())
-
-    le = preprocessing.LabelEncoder()
-    le.fit(df['predicate'])
-    df['predicate']=le.transform(df['predicate'])
-    filehandler = open("models/le_predicate.obj","wb")
-    pickle.dump(le,filehandler)
-    filehandler.close()
-    #print(df)
-    
-    main(df, models_list, output_path)     
-'''
-
-# if __name__=="__main__":
-    
-#     output_path = "models/"
-    
-    # model_df = pd.read_csv(sys.argv[2])
-    # models_list=model_df['model_lists'].to_list()
-    
-    # train_global_model(df) 
+        # read predicate label encoder
+        with open(f'{output_path}/predicate_le.pkl','rb') as fp: le_predicate = pickle.load(fp)
 
 
-# 1. dont split in main function
-# 2. in train_model() calculate acc on train data
-# 3. write function for test data
-# 4. export model and label_encoding of predicates to output_path folder
+        X=df.drop(['true_value','subject', 'object'], axis=1)
+        y=df.true_value
+
+        # predict on test df
+        ensembleScore = []
+        X['predicate'] = X['predicate'].map(lambda s: '<unknown>' if s not in le_predicate.classes_ else s)
+        le_predicate.classes_ = np.append(le_predicate.classes_, '<unknown>')
+        X.predicate = le_predicate.transform(X.predicate)
+        # X = df.drop(['subject','object'], axis=1)
+        ensembleScore = ml_model.predict(X)
+        
+        df['ensemble_score'] = ensembleScore
+
+        roc_auc = roc_auc_score(y, ensembleScore)
+
+        logging.info('validation completed')
+
+        with open(f'{output_path}/results.txt', 'a') as f:
+            f.write(f'''
+                {time.strftime('%l:%M%p %Z on %b %d, %Y')}
+                VALIDATION RESULT:
+                roc auc score: {roc_auc}
+            ''')
+
+        logging.info('validation results written in results file')
+
+        return df
+
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        # print('Error in validate_model: ', exc_type, fname, exc_tb.tb_lineno)
+        logging.info('Error in validate_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+        
+        return False
+
+
+def test_model(df, output_path):
+    try:
+        # read saved model
+        with open(f'{output_path}/classifier.pkl','rb') as fp: ml_model = pickle.load(fp)
+
+        # read predicate label encoder
+        with open(f'{output_path}/predicate_le.pkl','rb') as fp: le_predicate = pickle.load(fp)
+
+
+        X=df.drop(['true_value','subject', 'object'], axis=1)
+
+        # predict on test df
+        ensembleScore = []
+        X['predicate'] = X['predicate'].map(lambda s: -1 if s not in le_predicate.classes_ else s)
+        le_predicate.classes_ = np.append(le_predicate.classes_, -1)
+        X.predicate = le_predicate.transform(X.predicate)
+        # X = df.drop(['subject','object'], axis=1)
+        ensembleScore = ml_model.predict(X)
+        
+        df['ensemble_score'] = ensembleScore
+
+        logging.info('predictions done')
+
+        return df
+
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        # print('Error in test_model: ', exc_type, fname, exc_tb.tb_lineno)
+        logging.info('Error in test_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+
+        return False
+
+
+
+
