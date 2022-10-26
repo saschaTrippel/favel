@@ -7,15 +7,18 @@ class TestDataStructure(unittest.TestCase):
     def setUp(self):
         self.assertion = Assertion("Barack Obama", "born", "America")
 
+    def testExpectedScoreRange(self):
+        self.assertion.expectedScore = 1
+        # Set an extreme value
+        self.assertion.expectedScore = 10
+        self.assertIn(self.assertion.expectedScore, [0,1])
+
     def testExpectedScore(self):
-        self.assertion.expectedScore(1)
-        self.asset
+        self.assertion.expectedScore = 1
+        self.assertEqual(self.assertion.expectedScore, 1)
 
     def testGetTurtle(self):
-        method = self.ctrl.getMethod()
-        self.assertIn(method, ["train", "cache", "test"])
+        self.assertEqual(self.assertion.getTurtle(), "<Barack Obama> <born> <America> .")
 
     def testCastingToString(self):
-        self.ctrl.input()
-        self.assertGreaterEqual(len(self.ctrl.trainingData), 1)
-        self.assertGreaterEqual(len(self.ctrl.testingData), 1)
+        self.assertEqual(str(self.assertion), "<Barack Obama> <born> <America> .")
