@@ -2,7 +2,7 @@ FROM debian:11 AS knowledgestream
 
 # Get required software packages
 RUN apt-get update
-RUN apt-get install -y build-essential unzip curl python2 python2-dev git
+RUN apt-get install -y build-essential curl python2 python2-dev git
 
 # Get required python2 modules
 RUN curl --output get-pip.py https://bootstrap.pypa.io/pip/2.7/get-pip.py
@@ -25,11 +25,9 @@ RUN mkdir output
 RUN python2 setup.py build_ext -if
 RUN python2 setup.py install
 
-# Get knowledge graph from zenodo.org
-RUN curl --output data.zip https://zenodo.org/record/4487154/files/data.zip
-
-# Unpack knowledgegraph
-RUN unzip data.zip
+# Get knowledge graph
+RUN curl --output data.tar.gz https://uni-paderborn.sciebo.de/s/fR2O4m7wjWGM8Dh/download
+RUN tar -xf data.tar.gz
 
 # Expose port
 EXPOSE 4006/tcp
