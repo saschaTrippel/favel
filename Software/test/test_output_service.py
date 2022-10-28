@@ -22,23 +22,22 @@ class TestOutputService(unittest.TestCase):
         os.remove("./../Evaluation/example/Output.csv")
 
     def mockTestingData(self):
-        result = []
         a = Assertion("Barack Obama", "born", "America")
         a._expectedScore = 1
-        result.append(a)
+        return [a]
 
     def testCreateTripleSubject(self):
-        result = self.gerbil.createTripleSubject("<http://favel/", "born")
+        result = self.gerbil.createTripleSubject("<http://favel/>", "born")
         self.assertEqual(result, "<http://favel/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <born>.\n")
 
     def testCreateTripleObject(self):
-        result = self.gerbil.createTripleObject("<http://favel/", "born")
+        result = self.gerbil.createTripleObject("<http://favel/>", "born")
         self.assertEqual(result, "<http://favel/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <born>.\n")
 
     def testCreateTriplePredicate(self):
-        result = self.gerbil.createTriplePredicate("<http://favel/", "born")
+        result = self.gerbil.createTriplePredicate("<http://favel/>", "born")
         self.assertEqual(result, "<http://favel/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <born>.\n")
 
     def testCreateTripleType(self):
-        result = self.gerbil.createTriplePredicate("<http://favel/", "born")
-        self.assertEqual(result, "<http://favel/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <born>.\n")
+        result = self.gerbil.createTruthValueTriple("<http://favel/>", 1.0)
+        self.assertEqual(result, '<http://favel/> <http://swc2017.aksw.org/hasTruthValue> "1.0"^^<http://www.w3.org/2001/XMLSchema#double> .\n')
