@@ -26,7 +26,7 @@ from sklearn import *
 import pdb
 import os, sys, warnings
 import logging, argparse, configparser
-
+from pathlib import Path
 if not sys.warnoptions: warnings.simplefilter("ignore")
 
 import time
@@ -80,10 +80,14 @@ class ML:
             return False
 
 
+    def get_model_name(self, model):
+        mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
+        return mdl_name
+
     def custom_model_train(self,X, y, model):
         try:
             model=model.fit(X, y)
-            mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
+            mdl_name=get_model_name(model)
             roc_auc = roc_auc_score(y, model.predict_proba(X)[:, 1])
 
             return model, mdl_name, roc_auc
@@ -138,7 +142,7 @@ class ML:
             return False
 
 
-    def validate_model(self, df, output_path):
+    def validate_model(self, df, output_path, dataset_path):
         try:
             # read saved model
             with open(f'{output_path}/classifier.pkl','rb') as fp: ml_model = pickle.load(fp)
@@ -152,6 +156,7 @@ class ML:
 
             # predict on test df
             ensembleScore = []
+
             X['predicate'] = X['predicate'].map(lambda s: '<unknown>' if s not in le_predicate.classes_ else s)
             le_predicate.classes_ = np.append(le_predicate.classes_, '<unknown>')
             X.predicate = le_predicate.transform(X.predicate)
@@ -171,6 +176,25 @@ class ML:
                     VALIDATION RESULT:
                     roc auc score: {roc_auc}
                     ''')
+
+            # Dataset Folder Name | ML Model Name | Accuracy | Eval Folder | Model Path 
+
+            evaluation_path = Path(output_path).parent
+            print('>>>> ', evaluation_path)
+
+            Path(f'{evaluation_path}/ML_Results').mkdir(parents=True, exist_ok=True)
+            new_result = pd.DataFrame({
+                    'dataset_path': [dataset_path],
+                    'ml_model_name': [self.get_model_name(ml_model)],
+                    'roc_auc': [roc_auc],
+                    'experiment_folder': [output_path]
+            })
+            try:
+                ml_result = pd.read_excel(f"{evaluation_path}/ml_results.xlsx")
+                ml_result=pd.concat([ml_result, new_result])
+            except:
+                ml_result=new_result.copy()
+            ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx')
 
             logging.info('validation results written in results file')
 
