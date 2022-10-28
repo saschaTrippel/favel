@@ -87,7 +87,7 @@ class ML:
     def custom_model_train(self,X, y, model):
         try:
             model=model.fit(X, y)
-            mdl_name=get_model_name(model)
+            mdl_name=self.get_model_name(model)
             roc_auc = roc_auc_score(y, model.predict_proba(X)[:, 1])
 
             return model, mdl_name, roc_auc
@@ -97,6 +97,25 @@ class ML:
             # print('Error in custom_model_train: ', exc_type, fname, exc_tb.tb_lineno)
             logging.info('Error in custom_model_train: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
             return False, False, False
+
+
+    def custom_model_train_cv(self, X, y, model):
+        try:
+            skfold=StratifiedKFold(n_splits=5)
+            scores=cross_val_score(model, X, y,cv=skfold, scoring="roc_auc")
+            # roc_auc_cv = np.mean(scores)
+
+            mdl_name=self.get_model_name(model)
+
+            return model, mdl_name, scores
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print('Error in custom_model_train: ', exc_type, fname, exc_tb.tb_lineno)
+            logging.info('Error in custom_model_train_cv: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+            return False, False, False
+
+
 
 
     # Change model list here to be a single model
@@ -111,11 +130,17 @@ class ML:
 
             print('TRAIN: ', X.shape, y.shape, ml_model)
 
-            trained_model, model_name, roc_auc = self.custom_model_train(X, y, ml_model)
+            # trained_model, model_name, roc_auc = self.custom_model_train(X, y, ml_model)
+            trained_model, model_name, roc_auc = self.custom_model_train_cv(X, y, ml_model)
+
 
             logging.info('ML model trained')
 
-            if not trained_model and not model_name and not roc_auc: 
+            # if trained_model==False and model_name==False and roc_auc==False:
+            #     print('check working')
+
+            # pdb.set_trace()
+            if trained_model==False and model_name==False and roc_auc==False: 
                 return False
             else:
                 with open(f'{output_path}/results.txt', 'w') as f:
@@ -125,6 +150,7 @@ class ML:
                         TRAIN RESULT:
                         model name: {model_name}
                         roc auc score: {roc_auc}
+                        roc auc score mean: {np.mean(roc_auc)}
                         ''')
 
                 with open(f'{output_path}/classifier.pkl','wb') as fp:   pickle.dump(trained_model,fp)
