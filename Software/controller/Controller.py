@@ -129,7 +129,7 @@ class Controller:
         testing_df = self.ml.createDataFrame(self.scores,dict(self.configParser['Approaches']))
         # if not testing_df: logging.info('[controller test] Error in createDataFrame')
 
-        testing_result = self.ml.validate_model(testing_df, output_path=f"../Evaluation/{self.args.experiment}")
+        testing_result = self.ml.validate_model(testing_df, output_path=f"../Evaluation/{self.args.experiment}", dataset_path=self.args.data)
         # if not testing_result: logging.info('[controller test] Error in validate_model')
 
         self.ml_test_result = testing_result
