@@ -20,15 +20,12 @@ class AbstractJobRunner(threading.Thread):
         """
         Validate a single assertion.
         """
-        # If not connected, connect to server
-        if self.server == None:
-            self._connect()
             
         # Send assertion in turtle format
-        self.server.send(assertion.getTurtle().encode())
+        self._send(assertion.getTurtle())
         
         # Receive score
-        return self.server.recv(1024).decode()
+        return self._receive()
     
     def _connect(self):
         try:
@@ -37,3 +34,24 @@ class AbstractJobRunner(threading.Thread):
         except ConnectionRefusedError as ex:
             logging.warning("Cannot connect to approach '{}'".format(self.approach))
             raise(ex)
+        
+    def _send(self, message:str):
+        if self.server == None:
+            self._connect()
+        self.server.send(message.encode())
+        
+    def _receive(self):
+        return self.server.recv(1024).decode()
+    
+    def unsupervised(self):
+        return "unsupervised" in self._type()
+        
+    def _type(self):
+        self._send("type")
+        return self._receive()
+    
+    def train(self):
+        pass
+    
+    def trainingComplete(self):
+        pass
