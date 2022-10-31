@@ -4,6 +4,10 @@ import logging
 from FactValidationService.AbstractJobRunner import AbstractJobRunner
 
 class AssertionsRunner(AbstractJobRunner):
+    """
+    Subclass of AbstractJobRunner.
+    Uses the functionality of AbstracJobRunner to validate a list of assertions.
+    """
 
     def __init__(self, approach:str, port:int, assertions:list):
         super().__init__(approach, port)

@@ -5,6 +5,7 @@ from FactValidationService.AssertionsCacheRunner import AssertionsCacheRunner
 from FactValidationService.CacheRunner import CacheRunner
 
 class Validator:
+    
     def __init__(self, approaches, cachePath:str=None, useCache:bool=True):
         self.approaches = approaches
         self.cachePath = cachePath

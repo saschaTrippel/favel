@@ -4,6 +4,11 @@ import logging
 from datastructures.Assertion import Assertion
 
 class AbstractJobRunner(threading.Thread):
+    """
+    Abstract class that implements basic functionality.
+    Able to connect to a fact validation approach via TCP, send assertions in
+    turtle format and receive their score.
+    """
 
     def __init__(self, approach:str, port:int):
         threading.Thread.__init__(self)

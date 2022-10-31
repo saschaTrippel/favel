@@ -5,6 +5,10 @@ from FactValidationService.Cache import Cache
 from FactValidationService.AssertionsRunner import AssertionsRunner
 
 class AssertionsCacheRunner(AssertionsRunner):
+    """
+    Uses the functionallity of AssertionsRunner to validate a list of assertions.
+    Overrides validation of an assertion to cache results.
+    """
 
     def __init__(self, approach:str, port:int, assertions:list, cachePath:str):
         super().__init__(approach, port, assertions)
