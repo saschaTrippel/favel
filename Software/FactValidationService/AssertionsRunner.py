@@ -9,9 +9,16 @@ class AssertionsRunner(AbstractJobRunner):
     Uses the functionality of AbstracJobRunner to validate a list of assertions.
     """
 
-    def __init__(self, approach:str, port:int, assertions:list):
+    def __init__(self, approach:str, port:int, trainingAssertions:list, testingAssertions:list):
         super().__init__(approach, port)
-        self.assertions = assertions
+        self.trainingAssertions = trainingAssertions
+        self.testingAssertions = testingAssertions
+        
+        # TODO: remove
+        self.assertions = []
+        self.assertions.extend(trainingAssertions)
+        self.assertions.extend(testingAssertions)
+
         self.errorCount = 0
     
     def run(self):

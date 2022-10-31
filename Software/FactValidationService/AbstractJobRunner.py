@@ -50,8 +50,12 @@ class AbstractJobRunner(threading.Thread):
         self._send("type")
         return self._receive()
     
+    def trainingStart(self):
+        self._send("training_start")
+        return "train_start_ack" in self._receive()
+    
     def train(self):
         pass
     
     def trainingComplete(self):
-        pass
+        self._send("training_complete")

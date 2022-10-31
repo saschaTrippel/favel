@@ -14,7 +14,7 @@ class Validator:
         else:
             self.useCache = useCache
 
-    def validate(self, assertions:list):
+    def validate(self, trainingAssertions:list, testingAssertions:list):
         """
         Validate the given assertions on every approach.
         Assertions expected as a list of assertions.
@@ -25,9 +25,9 @@ class Validator:
         # Start a thread for each approach
         for approach in self.approaches.keys():
             if self.useCache:
-                jobRunner = AssertionsCacheRunner(approach, int(self.approaches[approach]), assertions, self.cachePath)
+                jobRunner = AssertionsCacheRunner(approach, int(self.approaches[approach]), trainingAssertions, testingAssertions, self.cachePath)
             else:
-                jobRunner = AssertionsRunner(approach, int(self.approaches[approach]), assertions)
+                jobRunner = AssertionsRunner(approach, int(self.approaches[approach]), trainingAssertions, testingAssertions)
             jobs.append(jobRunner)
             jobRunner.start()
             
@@ -35,7 +35,7 @@ class Validator:
         for job in jobs:
             job.join()
 
-        return assertions
+        return trainingAssertions, testingAssertions
         
     def validateCache(self):
         jobs = []

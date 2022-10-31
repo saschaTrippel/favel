@@ -10,8 +10,8 @@ class AssertionsCacheRunner(AssertionsRunner):
     Overrides validation of an assertion to cache results.
     """
 
-    def __init__(self, approach:str, port:int, assertions:list, cachePath:str):
-        super().__init__(approach, port, assertions)
+    def __init__(self, approach:str, port:int, trainingAssertions:list, testingAssertions:list, cachePath:str):
+        super().__init__(approach, port, trainingAssertions, testingAssertions)
         threading.Thread.__init__(self)
         self.cachePath = cachePath
     
