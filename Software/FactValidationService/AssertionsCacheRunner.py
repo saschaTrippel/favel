@@ -3,6 +3,7 @@ import socket
 import logging
 from FactValidationService.Cache import Cache
 from FactValidationService.AssertionsRunner import AssertionsRunner
+from FactValidationService.Message import Message
 
 class AssertionsCacheRunner(AssertionsRunner):
     """
@@ -21,12 +22,12 @@ class AssertionsCacheRunner(AssertionsRunner):
         self.cache.close()
             
     def _validateAssertion(self, assertion):
-        result = self.cache.getScore(assertion.subject, assertion.predicate, assertion.object)
-        if result != None:
-            return result
+        cacheResult = self.cache.getScore(assertion.subject, assertion.predicate, assertion.object)
+        if cacheResult != None:
+            return Message(type="test_result", score=cacheResult)
         
         result = super()._validateAssertion(assertion)
-        if not "ERROR" in result:
-            self.cache.insert(assertion.subject, assertion.predicate, assertion.object, result)
+        if result.type == "test_result":
+            self.cache.insert(assertion.subject, assertion.predicate, assertion.object, result.score)
         return result
         

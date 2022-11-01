@@ -1,8 +1,8 @@
 import threading
 import socket
 import logging
-import json
 from datastructures.Assertion import Assertion
+from FactValidationService.Message import Message
 
 class AbstractJobRunner(threading.Thread):
     """
@@ -22,17 +22,23 @@ class AbstractJobRunner(threading.Thread):
         Validate a single assertion.
         """
             
-        # Send assertion in turtle format
-        self._send(assertion.getTurtle())
+        # Send assertion
+        self._send(Message(type="test", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object))
         
         # Receive score
-        return self._receive()
+        return Message(text=self._receive())
     
     def _trainAssertion(self, assertion:Assertion):
         """
         Send the assertion to a supervised approach as training data.
         """
-        self._send(json.dumps({"Assertion": assertion.getTurtle(), "Class": assertion.expectedScore}))
+        self._send(Message(
+            type="train", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object, score=assertion.expectedScore))
+        return Message(self._receive())
+        
+    def _type(self):
+        self._send(Message(type="call", content="type"))
+        return Message(text=self._receive())
     
     def _connect(self):
         try:
@@ -42,24 +48,10 @@ class AbstractJobRunner(threading.Thread):
             logging.warning("Cannot connect to approach '{}'".format(self.approach))
             raise(ex)
         
-    def _send(self, message:str):
+    def _send(self, message:Message):
         if self.server == None:
             self._connect()
-        self.server.send(message.encode())
+        self.server.send(message.serialize().encode())
         
     def _receive(self):
         return self.server.recv(1024).decode()
-    
-    def unsupervised(self):
-        return "unsupervised" in self._type()
-        
-    def _type(self):
-        self._send("type")
-        return self._receive()
-    
-    def trainingStart(self):
-        self._send("training_start")
-        return "train_start_ack" in self._receive()
-    
-    def trainingComplete(self):
-        self._send("training_complete")

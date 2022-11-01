@@ -18,7 +18,8 @@ class AssertionsRunner(AbstractJobRunner):
     def run(self):
         try:
             # Train supervised approach
-            if not self.unsupervised():
+            typeMessage = self._type()
+            if typeMessage.type == "type_response" and typeMessage.content == "supervised":
                 self._train()
 
             # Validate train and test data
@@ -39,7 +40,9 @@ class AssertionsRunner(AbstractJobRunner):
         logging.info("Start training {}".format(self.approach))
         
         for assertion in self.trainingAssertions:
-            self._trainAssertion(assertion)
+            response = self._trainAssertion(assertion)
+            if response.type != 'ack':
+                logging.warning("Something went wrong while training {}".format(self.approach))
 
         self._trainingComplete()
         logging.info("Training of {} completed".format(self.approach))
@@ -58,9 +61,9 @@ class AssertionsRunner(AbstractJobRunner):
         for assertion in self.assertions:
             response = self._validateAssertion(assertion)
 
-            if type(response) == str and "ERROR" in response:
+            if response.type == "error":
                 self.errorCount += 1
                 logging.warning("'{}' while validating {} using {}."
-                                .format(response, assertion, self.approach))
+                                .format(response.content, assertion, self.approach))
             else:
-                assertion.score[self.approach] = float(response)
+                assertion.score[self.approach] = float(response.score)

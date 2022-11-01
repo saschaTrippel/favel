@@ -15,7 +15,7 @@ class Message:
         if text != None:
             self.parse(text)
         else:
-            self.type = type
+            self._type = type
             self.content = content
             self.subject = subject
             self.predicate = predicate
@@ -42,4 +42,15 @@ class Message:
             self.content = response["content"]
         elif self.type == "error":
             self.content = response['content']
+            
+    @property
+    def type(self):
+        return self._type
+    
+    @type.setter
+    def type(self, type):
+        if type in ["call", "train", "test", "test_result", "ack", "type_response", "error"]:
+            self._type = type
+        
+        
 
