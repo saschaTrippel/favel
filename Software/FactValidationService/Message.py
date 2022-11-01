@@ -23,11 +23,11 @@ class Message:
             self.score = score
     
     def serialize(self):
-        if type == call:
+        if type == "call":
             return json.dumps({"type": self.type, "content": self.content})
-        if type == training:
+        if type == "training":
             return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object, "score": self.score})
-        if type == testing:
+        if type == "testing":
             return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object})
     
     def parse(self, text:str):
