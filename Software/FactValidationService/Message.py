@@ -31,7 +31,7 @@ class Message:
             return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object})
     
     def parse(self, text:str):
-        response = json.parse(text)
+        response = json.loads(text)
         self.type = response["type"]
 
         if self.type == "test_result":
