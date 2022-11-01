@@ -5,6 +5,9 @@ from FactValidationService.AbstractJobRunner import AbstractJobRunner
 from FactValidationService.Cache import Cache
 
 class CacheRunner(AbstractJobRunner):
+    """
+    Uses the functionality of AbstractJobRunner to validate cache entries.
+    """
     
     def __init__(self, approach:str, port:int, cachePath:str):
         super().__init__(approach, port)

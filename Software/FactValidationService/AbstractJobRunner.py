@@ -2,8 +2,14 @@ import threading
 import socket
 import logging
 from datastructures.Assertion import Assertion
+from FactValidationService.Message import Message
 
 class AbstractJobRunner(threading.Thread):
+    """
+    Abstract class that implements basic functionality.
+    Able to connect to a fact validation approach via TCP, send assertions in
+    turtle format and receive their score.
+    """
 
     def __init__(self, approach:str, port:int):
         threading.Thread.__init__(self)
@@ -15,15 +21,24 @@ class AbstractJobRunner(threading.Thread):
         """
         Validate a single assertion.
         """
-        # If not connected, connect to server
-        if self.server == None:
-            self._connect()
             
-        # Send assertion in turtle format
-        self.server.send(assertion.getTurtle().encode())
+        # Send assertion
+        self._send(Message(type="test", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object))
         
         # Receive score
-        return self.server.recv(1024).decode()
+        return Message(text=self._receive())
+    
+    def _trainAssertion(self, assertion:Assertion):
+        """
+        Send the assertion to a supervised approach as training data.
+        """
+        self._send(Message(
+            type="train", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object, score=assertion.expectedScore))
+        return Message(self._receive())
+        
+    def _type(self):
+        self._send(Message(type="call", content="type"))
+        return Message(text=self._receive())
     
     def _connect(self):
         try:
@@ -32,3 +47,11 @@ class AbstractJobRunner(threading.Thread):
         except ConnectionRefusedError as ex:
             logging.warning("Cannot connect to approach '{}'".format(self.approach))
             raise(ex)
+        
+    def _send(self, message:Message):
+        if self.server == None:
+            self._connect()
+        self.server.send(message.serialize().encode())
+        
+    def _receive(self):
+        return self.server.recv(1024).decode()

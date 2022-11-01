@@ -1,6 +1,11 @@
 import sqlite3, logging
 
 class Cache:
+    """
+    Wrapper that encapsulates the SQL database
+    that is used to cache validation results.
+    """
+    
     def __init__(self, dbpath:str, approach:str):
         self.db = sqlite3.connect(dbpath)
         self.approach = approach
