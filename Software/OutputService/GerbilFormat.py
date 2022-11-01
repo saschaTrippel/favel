@@ -48,8 +48,7 @@ class GerbilFormat:
 			df['predicate'].append(assertion.predicate)
 			df['object'].append(assertion.object)
 			df['true_value'].append(assertion._expectedScore)
-			print(assertion._expectedScore)
-		
+
 		data1 = pd.DataFrame(df)	# DataFrame with triples and Truth value
 
 		array = " "
