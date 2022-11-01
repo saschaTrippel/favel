@@ -58,7 +58,7 @@ class AssertionsRunner(AbstractJobRunner):
         assertions.extend(self.trainingAssertions)
         assertions.extend(self.testingAssertions)
 
-        for assertion in self.assertions:
+        for assertion in assertions:
             response = self._validateAssertion(assertion)
 
             if response.type == "error":
