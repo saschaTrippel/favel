@@ -13,17 +13,18 @@ class AssertionsRunner(AbstractJobRunner):
         super().__init__(approach, port)
         self.trainingAssertions = trainingAssertions
         self.testingAssertions = testingAssertions
-        
-        # TODO: remove
-        self.assertions = []
-        self.assertions.extend(trainingAssertions)
-        self.assertions.extend(testingAssertions)
-
         self.errorCount = 0
     
     def run(self):
         try:
-            self._execute()
+            # Train supervised approach
+            if not self.unsupervised():
+                self._train()
+
+            # Validate train and test data
+            self._test()
+            
+            # Close connection
             if self.server != None:
                 self.server.close()
         except ConnectionRefusedError:
@@ -33,11 +34,27 @@ class AssertionsRunner(AbstractJobRunner):
             logging.info("Validated {} out of {} assertions successfully using {}."
                          .format(len(self.assertions) - self.errorCount, len(self.assertions), self.approach))
 
-    def _execute(self):
+    def _train(self):
+        self._trainingStart()
+        logging.info("Start training {}".format(self.approach))
+        
+        for assertion in self.trainingAssertions:
+            self._trainAssertion(assertion)
+
+        self._trainingComplete()
+        logging.info("Training of {} completed".format(self.approach))
+
+    
+    def _test(self):
         """
         Validate the assertions using self.approach.
         """
         logging.info("Validating assertions using {}".format(self.approach))
+
+        assertions = []
+        assertions.extend(self.trainingAssertions)
+        assertions.extend(self.testingAssertions)
+
         for assertion in self.assertions:
             response = self._validateAssertion(assertion)
 
