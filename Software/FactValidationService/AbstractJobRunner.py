@@ -1,6 +1,7 @@
 import threading
 import socket
 import logging
+import json
 from datastructures.Assertion import Assertion
 
 class AbstractJobRunner(threading.Thread):
@@ -26,6 +27,12 @@ class AbstractJobRunner(threading.Thread):
         
         # Receive score
         return self._receive()
+    
+    def _trainAssertion(self, assertion:Assertion):
+        """
+        Send the assertion to a supervised approach as training data.
+        """
+        self._send(json.dumps({"Assertion": assertion.getTurtle(), "Class": assertion.expectedScore}))
     
     def _connect(self):
         try:
@@ -53,9 +60,6 @@ class AbstractJobRunner(threading.Thread):
     def trainingStart(self):
         self._send("training_start")
         return "train_start_ack" in self._receive()
-    
-    def train(self):
-        pass
     
     def trainingComplete(self):
         self._send("training_complete")
