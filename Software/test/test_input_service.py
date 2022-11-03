@@ -1,8 +1,12 @@
 import unittest
+
+import rdflib.term
+
 from InputService.Input import Input
 from InputService.ReadFiles import ReadFiles
 from datastructures.Assertion import Assertion
 import pandas as pd
+from rdflib import Graph
 
 
 class TestInputService(unittest.TestCase):
@@ -39,6 +43,32 @@ class TestInputService(unittest.TestCase):
 
     def testGetFavel(self):
         train, test = self.readFile.getFavel(self.path)
+        self.assertIsInstance(train, pd.DataFrame)
+        self.assertGreater(len(train), 1)
+        self.assertGreater(len(test), 1)
+
+    def testExtractIds(self):
+        g = Graph()
+        g.parse(self.path+"Turtle/Test/Correct/Movie-Director/movie-director-0.ttl", format='ttl')
+        a = rdflib.term.URIRef("http://dbpedia.org/resource/Legend_(2014_film)")
+        self.assertIn(a, self.readFile.extract_ids(g))
+
+    def testGetFactbench(self):
+        # TODO Replace this with the path to the dataset
+        triples = self.readFile.getFactbench("./../../Datasets/factbench")
+        self.assertIsInstance(triples, tuple)
+        self.assertGreater(len(triples), 1)
+
+    def testExtractBpdpTriples(self):
+        # TODO Replace this with the path to the dataset
+        subject, predicate, object_g = self.readFile.extract_bpdp_triples("./../../Datasets/bpdp/Test/False/birth_154.ttl")
+        self.assertEqual(subject, "http://dbpedia.org/resource/Ambrose")
+        self.assertEqual(predicate, "http://dbpedia.org/ontology/birthPlace")
+        self.assertEqual(object_g, "http://dbpedia.org/resource/Milan")
+
+    def testGetBPDP(self):
+        # TODO check the parsing problem of the dataset
+        train, test = self.readFile.getBPDP("./../../Datasets/bpdp")
         self.assertIsInstance(train, pd.DataFrame)
         self.assertGreater(len(train), 1)
         self.assertGreater(len(test), 1)
