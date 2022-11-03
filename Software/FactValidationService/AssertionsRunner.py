@@ -31,9 +31,10 @@ class AssertionsRunner(AbstractJobRunner):
         except ConnectionRefusedError:
             return
 
-        if self.errorCount < len(self.assertions):
+        size = len(self.trainingAssertions) + len(self.testingAssertions)
+        if self.errorCount < size:
             logging.info("Validated {} out of {} assertions successfully using {}."
-                         .format(len(self.assertions) - self.errorCount, len(self.assertions), self.approach))
+                         .format(size - self.errorCount, size, self.approach))
 
     def _train(self):
         self._trainingStart()
