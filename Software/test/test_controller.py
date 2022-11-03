@@ -9,7 +9,7 @@ class TestController(unittest.TestCase):
 
     def testLoadConfig(self):
         self.ctrl._loadConfig()
-        self.assertIn("Approaches", self.ctrl.configParser)
+        self.assertIn("Approaches", self.ctrl.configParser, "Expect configuration file to contains Approaches")
         self.assertIn("MLApproches", self.ctrl.configParser)
         self.assertIn("General", self.ctrl.configParser)
         self.assertIn("logging", self.ctrl.configParser["General"])
