@@ -27,6 +27,8 @@ import pdb
 import os, sys, warnings
 import logging, argparse, configparser
 from pathlib import Path
+import statistics
+from sklearn.metrics import classification_report
 if not sys.warnoptions: warnings.simplefilter("ignore")
 
 import time
@@ -88,15 +90,21 @@ class ML:
         try:
             model=model.fit(X, y)
             mdl_name=self.get_model_name(model)
-            roc_auc = roc_auc_score(y, model.predict_proba(X)[:, 1])
+            # y_pred=model.predict_proba(X)[:, 1]
+            y_pred=model.predict(X)
 
-            return model, mdl_name, roc_auc
+            roc_auc = roc_auc_score(y, y_pred)
+
+            report_df = pd.DataFrame(classification_report(np.array(y, dtype=int), np.array(y_pred, dtype=int), output_dict=True)).T
+            print('>>>>> trn acc: ', sum(np.array(y, dtype=int)==np.array(y_pred, dtype=int))/ len(y), roc_auc)
+
+            return model, mdl_name, roc_auc, report_df
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            # print('Error in custom_model_train: ', exc_type, fname, exc_tb.tb_lineno)
-            logging.info('Error in custom_model_train: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            return False, False, False
+            logging.info('Error in custom_model_train: ' +' '+str(e)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+
+            return False, False, False, False
 
 
     def custom_model_train_cv(self, X, y, model):
@@ -132,12 +140,12 @@ class ML:
 
             roc_auc_cv_scores = self.custom_model_train_cv(X, y, ml_model)
 
-            trained_model, model_name, roc_auc_overall_score = self.custom_model_train(X, y, ml_model)
+            trained_model, model_name, roc_auc_overall_score, report_df = self.custom_model_train(X, y, ml_model)
 
             logging.info('ML model trained')
 
 
-            if trained_model==False and model_name==False and roc_auc==False: 
+            if trained_model==False and model_name==False and roc_auc_overall_score==False: 
                 return False
             else:
 
@@ -150,16 +158,21 @@ class ML:
                         'dataset_path': [dataset_path],
                         'ml_model_name': [model_name],
                         'roc_auc_overall_train': [roc_auc_overall_score],
-                        'roc_auc _score_mean': [np.mean(roc_auc_cv_scores)],
+                        'roc_auc_cv_mean': [np.mean(roc_auc_cv_scores)],
+                        'roc_auc_cv_std': [round(statistics.stdev(roc_auc_cv_scores), 2)], 
                         'experiment_folder': [output_path]
                 })
+
+
                 try:
                     ml_result = pd.read_excel(f"{evaluation_path}/ML_Results/ml_results.xlsx")
                     ml_result=pd.concat([ml_result, new_result])
                 except:
                     ml_result=new_result.copy()
 
-                ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx')
+                ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx', index=False)
+
+                report_df.to_excel(f'{output_path}/Classifcation Report.xlsx', index=False)
 
                 with open(f'{output_path}/classifier.pkl','wb') as fp:   pickle.dump(trained_model,fp)
                 with open(f'{output_path}/predicate_le.pkl','wb') as fp: pickle.dump(le,   fp)
@@ -220,7 +233,7 @@ class ML:
                 ml_result = pd.merge(ml_result, new_result, how='inner', on='eval_key')
             except:
                 ml_result=new_result.copy()
-            ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx')
+            ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx', index=False)
 
             logging.info('validation results written in results file')
 
