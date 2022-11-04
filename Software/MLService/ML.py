@@ -107,7 +107,7 @@ class ML:
 
             mdl_name=self.get_model_name(model)
 
-            return model, mdl_name, scores
+            return scores
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
@@ -119,39 +119,47 @@ class ML:
 
 
     # Change model list here to be a single model
-    def train_model(self, df, ml_model, output_path):
+    def train_model(self, df, ml_model, output_path, dataset_path):
         try:
             le = preprocessing.LabelEncoder()
             le.fit(df['predicate'])
-            df['predicate']=le.transform(df['predicate'])
+            df['predicate']=le.transform(np.array(df['predicate'].astype(str), dtype=object))
 
             X=df.drop(['true_value', 'subject', 'object'], axis=1)
             y=df.true_value
 
-            print('TRAIN: ', X.shape, y.shape, ml_model)
+            print('TRAIN: ', X.shape, y.shape, ml_model, y.dtypes)
 
-            # trained_model, model_name, roc_auc = self.custom_model_train(X, y, ml_model)
-            trained_model, model_name, roc_auc = self.custom_model_train_cv(X, y, ml_model)
+            roc_auc_cv_scores = self.custom_model_train_cv(X, y, ml_model)
 
+            trained_model, model_name, roc_auc_overall_score = self.custom_model_train(X, y, ml_model)
 
             logging.info('ML model trained')
 
-            # if trained_model==False and model_name==False and roc_auc==False:
-            #     print('check working')
 
-            # pdb.set_trace()
             if trained_model==False and model_name==False and roc_auc==False: 
                 return False
             else:
-                with open(f'{output_path}/results.txt', 'w') as f:
-                    f.write(
-                        f'''
-                        {time.strftime('%l:%M%p %Z on %b %d, %Y')}
-                        TRAIN RESULT:
-                        model name: {model_name}
-                        roc auc score: {roc_auc}
-                        roc auc score mean: {np.mean(roc_auc)}
-                        ''')
+
+                evaluation_path = Path(output_path).parent
+
+                Path(f'{evaluation_path}/ML_Results').mkdir(parents=True, exist_ok=True)
+                new_result = pd.DataFrame({
+                        'time': [time.strftime('%l:%M%p %Z on %b %d, %Y')],
+                        'eval_key': [os.path.basename(os.path.normpath(output_path))],
+                        'dataset_path': [dataset_path],
+                        'ml_model_name': [model_name],
+                        'roc_auc_overall_train': [roc_auc_overall_score],
+                        'roc_auc _score_mean': [np.mean(roc_auc_cv_scores)],
+                        'experiment_folder': [output_path]
+                })
+                try:
+                    ml_result = pd.read_excel(f"{evaluation_path}/ML_Results/ml_results.xlsx")
+                    ml_result=pd.concat([ml_result, new_result])
+                except:
+                    ml_result=new_result.copy()
+
+                ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx')
 
                 with open(f'{output_path}/classifier.pkl','wb') as fp:   pickle.dump(trained_model,fp)
                 with open(f'{output_path}/predicate_le.pkl','wb') as fp: pickle.dump(le,   fp)
@@ -163,13 +171,14 @@ class ML:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in train_model: ', exc_type, fname, exc_tb.tb_lineno)
-            logging.info('Error in train_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+            logging.info('Error in train_model: ' +' '+str(e)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
 
             return False
 
 
     def validate_model(self, df, output_path, dataset_path):
         try:
+            
             # read saved model
             with open(f'{output_path}/classifier.pkl','rb') as fp: ml_model = pickle.load(fp)
 
@@ -183,10 +192,13 @@ class ML:
             # predict on test df
             ensembleScore = []
 
-            X['predicate'] = X['predicate'].map(lambda s: '<unknown>' if s not in le_predicate.classes_ else s)
-            le_predicate.classes_ = np.append(le_predicate.classes_, '<unknown>')
-            X.predicate = le_predicate.transform(X.predicate)
+            X['predicate'] = X['predicate'].map(lambda s: '-1' if s not in le_predicate.classes_ else s)
+            le_predicate.classes_ = np.append(le_predicate.classes_, '-1')
+
+            # pdb.set_trace()
+            X['predicate'] = le_predicate.transform(np.array(X['predicate'].astype(str), dtype=object))
             # X = df.drop(['subject','object'], axis=1)
+
             ensembleScore = ml_model.predict(X)
             
             df['ensemble_score'] = ensembleScore
@@ -195,29 +207,17 @@ class ML:
 
             logging.info('validation completed')
 
-            with open(f'{output_path}/results.txt', 'a') as f:
-                f.write(
-                    f'''
-                    {time.strftime('%l:%M%p %Z on %b %d, %Y')}
-                    VALIDATION RESULT:
-                    roc auc score: {roc_auc}
-                    ''')
-
-            # Dataset Folder Name | ML Model Name | Accuracy | Eval Folder | Model Path 
-
             evaluation_path = Path(output_path).parent
             print('>>>> ', evaluation_path)
 
             Path(f'{evaluation_path}/ML_Results').mkdir(parents=True, exist_ok=True)
             new_result = pd.DataFrame({
-                    'dataset_path': [dataset_path],
-                    'ml_model_name': [self.get_model_name(ml_model)],
-                    'roc_auc': [roc_auc],
-                    'experiment_folder': [output_path]
+                    'eval_key': [os.path.basename(os.path.normpath(output_path))],
+                    'roc_auc_overall_validation': [roc_auc],
             })
             try:
-                ml_result = pd.read_excel(f"{evaluation_path}/ml_results.xlsx")
-                ml_result=pd.concat([ml_result, new_result])
+                ml_result = pd.read_excel(f"{evaluation_path}/ML_Results/ml_results.xlsx")
+                ml_result = pd.merge(ml_result, new_result, how='inner', on='eval_key')
             except:
                 ml_result=new_result.copy()
             ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx')
@@ -230,7 +230,7 @@ class ML:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in validate_model: ', exc_type, fname, exc_tb.tb_lineno)
-            logging.info('Error in validate_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+            logging.info('Error in validate_model: ' +str(e)+ ' ' +str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
             
             return False
 
