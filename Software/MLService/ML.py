@@ -133,8 +133,8 @@ class ML:
             le.fit(df['predicate'])
             df['predicate']=le.transform(np.array(df['predicate'].astype(str), dtype=object))
 
-            X=df.drop(['true_value', 'subject', 'object'], axis=1)
-            y=df.true_value
+            X=df.drop(['truth', 'subject', 'object'], axis=1)
+            y=df.truth
 
             print('TRAIN: ', X.shape, y.shape, ml_model, y.dtypes)
 
@@ -199,8 +199,8 @@ class ML:
             with open(f'{output_path}/predicate_le.pkl','rb') as fp: le_predicate = pickle.load(fp)
 
 
-            X=df.drop(['true_value','subject', 'object'], axis=1)
-            y=df.true_value
+            X=df.drop(['truth','subject', 'object'], axis=1)
+            y=df.truth
 
             # predict on test df
             ensembleScore = []
@@ -257,7 +257,7 @@ class ML:
             with open(f'{output_path}/predicate_le.pkl','rb') as fp: le_predicate = pickle.load(fp)
 
 
-            X=df.drop(['true_value','subject', 'object'], axis=1)
+            X=df.drop(['truth','subject', 'object'], axis=1)
 
             # predict on test df
             ensembleScore = []
