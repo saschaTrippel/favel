@@ -1,15 +1,17 @@
 import unittest
+
+from sklearn.tree import DecisionTreeClassifier
+
 from MLService.ML import ML
 import pandas as pd
 from datastructures.Assertion import Assertion
 
 
 def createMockForTriples():
-
     approaches = {"Adamic_Adar": 4000, "Copaal": 3333}
     data = []
     for i in range(3):
-        assertion = Assertion("<http://favel/Donald>", "<http://favel/born>", "<http://favel/Africa"+str(i)+">")
+        assertion = Assertion("<http://favel/Donald>", "<http://favel/born>", "<http://favel/Africa" + str(i) + ">")
         assertion.expectedScore = i % 2
         data.append(assertion)
     return data, approaches
@@ -21,8 +23,17 @@ class TestMLService(unittest.TestCase):
         self.path = "./../Favel_Dataset/"
         self.ml = ML(self.path + "log.txt")
 
-    def testCreateDataFrame(self):
+    def getFakeDataForML(self):
         data, approaches = createMockForTriples()
-        test = self.ml.createDataFrame(data, approaches)
-        self.assertIsInstance(test, pd.DataFrame)
+        return self.ml.createDataFrame(data, approaches)
 
+    def testCreateDataFrame(self):
+        self.assertIsInstance(self.getFakeDataForML(), pd.DataFrame)
+
+    def testTrainModel(self):
+        data = self.getFakeDataForML()
+        data["truth"] = [0, 1, 0]
+        a = self.ml.train_model(data,
+                                DecisionTreeClassifier(),
+                                self.path, self.path)
+        self.assertEqual(a, True)
