@@ -37,6 +37,7 @@ class AssertionsRunner(AbstractJobRunner):
                          .format(size - self.errorCount, size, self.approach))
 
     def _train(self):
+        # TODO: check if acks are returned
         self._trainingStart()
         logging.info("Start training {}".format(self.approach))
         
