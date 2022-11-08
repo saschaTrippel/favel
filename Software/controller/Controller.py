@@ -117,7 +117,10 @@ class Controller:
         training_df = self.ml.createDataFrame(self.trainingData, dict(self.configParser['Approaches']))
         # if not training_df: logging.info('[controller train] Error in createDataFrame')
 
-        train_result = self.ml.train_model(training_df, ml_model=self.configParser['MLApproches']['method'], output_path=f"../Evaluation/{self.args.experiment}")
+        train_result = self.ml.train_model(df=training_df, 
+                                            ml_model=self.configParser['MLApproches']['method'], 
+                                            output_path=f"../Evaluation/{self.args.experiment}", 
+                                            dataset_path=self.args.data)
         # if not train_result: logging.info('[controller train] Error in train_model')
 
 
@@ -128,7 +131,9 @@ class Controller:
         testing_df = self.ml.createDataFrame(self.testingData, dict(self.configParser['Approaches']))
         # if not testing_df: logging.info('[controller test] Error in createDataFrame')
 
-        testing_result = self.ml.validate_model(testing_df, output_path=f"../Evaluation/{self.args.experiment}", dataset_path=self.args.data)
+        testing_result = self.ml.validate_model(df=testing_df, 
+                                                output_path=f"../Evaluation/{self.args.experiment}", 
+                                                dataset_path=self.args.data)
         # if not testing_result: logging.info('[controller test] Error in validate_model')
 
         self.ml_test_result = testing_result

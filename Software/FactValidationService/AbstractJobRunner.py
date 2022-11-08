@@ -34,7 +34,15 @@ class AbstractJobRunner(threading.Thread):
         """
         self._send(Message(
             type="train", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object, score=assertion.expectedScore))
-        return Message(self._receive())
+        return Message(text=self._receive())
+
+    def _trainingStart(self):
+        self._send(Message(type="call", content="training_start"))
+        return Message(text=self._receive())
+    
+    def _trainingComplete(self):
+        self._send(Message(type="call", content="training_complete"))
+        return Message(text=self._receive())
         
     def _type(self):
         self._send(Message(type="call", content="type"))
