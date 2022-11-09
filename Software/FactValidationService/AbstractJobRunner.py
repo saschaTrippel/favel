@@ -59,7 +59,10 @@ class AbstractJobRunner(threading.Thread):
     def _send(self, message:Message):
         if self.server == None:
             self._connect()
+        logging.debug("Sending messege: {}".format(message.serialize()))
         self.server.send(message.serialize().encode())
         
     def _receive(self):
-        return self.server.recv(1024).decode()
+        tmp = self.server.recv(1024).decode()
+        logging.debug("Received message: {}".format(tmp))
+        return tmp
