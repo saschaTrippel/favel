@@ -7,6 +7,9 @@ from MLService.ML import ML
 # from MLService.ML_train import train as train_model, test as test_model
 from OutputService.Output import Output
 # from MLService.ML_train import main
+import sklearn
+import pandas as pd
+import pdb
 
 class Controller:
     """
@@ -108,6 +111,12 @@ class Controller:
 
         self.stopContainers()
     
+    def get_sklearn_model(self, model_name):
+        xdf=pd.DataFrame(sklearn.utils.all_estimators())
+        model = xdf[xdf[0]==model_name][1].item()
+        return model()
+
+
     def train(self):
         """
         Train the ML model
@@ -117,8 +126,11 @@ class Controller:
         training_df = self.ml.createDataFrame(self.trainingData, dict(self.configParser['Approaches']))
         # if not training_df: logging.info('[controller train] Error in createDataFrame')
 
+        ml_model_name = self.configParser['MLApproches']['method']
+        ml_model = self.get_sklearn_model(ml_model_name)
+
         train_result = self.ml.train_model(df=training_df, 
-                                            ml_model=self.configParser['MLApproches']['method'], 
+                                            ml_model=ml_model, 
                                             output_path=f"../Evaluation/{self.args.experiment}", 
                                             dataset_path=self.args.data)
         # if not train_result: logging.info('[controller train] Error in train_model')
