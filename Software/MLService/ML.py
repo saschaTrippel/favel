@@ -55,11 +55,13 @@ class ML:
             result['subject'] = []
             result['predicate'] = []
             result['object'] = []
+            result['truth'] = []
 
             for assertionScore in assertionScores:
                 result['subject'].append(assertionScore.subject)
                 result['predicate'].append(assertionScore.predicate)
                 result['object'].append(assertionScore.object)
+                result['truth'].append(assertionScore._expectedScore)
 
                 for approach in approaches.keys():
                     try:
@@ -78,7 +80,7 @@ class ML:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in createDataFrame: ', exc_type, fname, exc_tb.tb_lineno)
-            logging.info('Error in createDataFrame: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+            logging.info('Error in createDataFrame: ' +' '+ str(e) + ' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
             return False
 
 
@@ -120,12 +122,12 @@ class ML:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             print('Error in custom_model_train: ', exc_type, fname, exc_tb.tb_lineno)
-            logging.info('Error in custom_model_train_cv: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+            logging.info('Error in custom_model_train_cv: '+' '+str(e) +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
             return False, False, False
 
 
 
-
+    
     # Change model list here to be a single model
     def train_model(self, df, ml_model, output_path, dataset_path):
         try:
