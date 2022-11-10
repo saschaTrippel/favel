@@ -12,9 +12,8 @@ RUN python2 -m pip install cython
 RUN python2 -m pip install numpy
 RUN python2 -m pip install scipy
 RUN python2 -m pip install pandas
-RUN python2 -m pip install ujson
 RUN python2 -m pip install sklearn
-RUN python2 -m pip install rdflib
+RUN python2 -m pip install scikit-learn
 
 # Get knowledgestream
 RUN git clone 'https://github.com/saschaTrippel/knowledgestream.git'
