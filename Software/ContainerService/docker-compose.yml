@@ -46,7 +46,7 @@ services:
     build: ./simrank
     ports: 
       - 4008:4008
-  
+        
   copaal: 
     build: ./copaal
     ports: 
