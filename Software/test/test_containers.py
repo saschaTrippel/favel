@@ -7,7 +7,6 @@ class TestContainers(unittest.TestCase):
         self.containers = Containers()
 
     def testStartContainers(self):
-        pass
-        #self.containers.startContainers()
-        #print(self.containers.docker.compose.images())
+        self.containers.startContainers()
+        print(self.containers.docker.compose.images())
 
