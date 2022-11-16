@@ -47,6 +47,16 @@ services:
     ports: 
       - 4008:4008
         
+  pra:
+    build: ./pra
+    ports: 
+      - 4009:4009
+        
+  predpath:
+    build: ./predpath
+    ports: 
+      - 4010:4010
+        
   copaal: 
     build: ./copaal
     ports: 
