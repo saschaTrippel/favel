@@ -88,6 +88,18 @@ class ML:
         mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
         return mdl_name
 
+
+    def get_sklearn_model(self, model_name, ml_model_params):
+        xdf=pd.DataFrame(sklearn.utils.all_estimators())
+        model = xdf[xdf[0]==model_name][1].item()
+
+        model=model()
+
+        model.set_params(**ml_model_params)
+
+        return model
+
+
     def custom_model_train(self,X, y, model):
         try:
             model=model.fit(X, y)
@@ -97,8 +109,8 @@ class ML:
 
             roc_auc = roc_auc_score(y, y_pred)
 
-            report_df = pd.DataFrame(classification_report(np.array(y, dtype=int), np.array(y_pred, dtype=int), output_dict=True)).T
-            print('>>>>> trn acc: ', sum(np.array(y, dtype=int)==np.array(y_pred, dtype=int))/ len(y), roc_auc)
+            report_df = pd.DataFrame(classification_report(np.array(y, dtype=int), np.array(y_pred, dtype=int), output_dict=True)).T.reset_index(drop=False).rename(columns={'index': 'label'})
+            # print('>>>>> trn acc: ', sum(np.array(y, dtype=int)==np.array(y_pred, dtype=int))/ len(y), roc_auc)
 
             return model, mdl_name, roc_auc, report_df
         except Exception as e:
