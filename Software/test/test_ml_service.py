@@ -6,10 +6,11 @@ import pandas as pd
 from datastructures.Assertion import Assertion
 
 
+
 def createMockForTriples():
     approaches = {"Adamic_Adar": 4000, "Copaal": 3333}
     data = []
-    for i in range(3):
+    for i in range(10):
         assertion = Assertion("<http://favel/Donald>", "<http://favel/born>", "<http://favel/Africa" + str(i) + ">")
         assertion.expectedScore = i % 2
         data.append(assertion)
@@ -31,7 +32,7 @@ class TestMLService(unittest.TestCase):
 
     def testTrainModel(self):
         data = self.getFakeDataForML()
-        data["truth"] = [0, 1, 0]
+        # data["truth"] = [0, 1, 0]
         a = self.ml.train_model(data,
                                 DecisionTreeClassifier(),
                                 self.path, self.path)
@@ -50,12 +51,12 @@ class TestMLService(unittest.TestCase):
 
     def testValidateModel(self):
         df = self.getFakeDataForML()
-        df["truth"] = [0, 1, 0]
+        # df["truth"] = [0, 1, 0]
         output = self.ml.validate_model(df, self.path, "")
         self.assertIsInstance(output, pd.DataFrame)
 
     def testTestModel(self):
         df = self.getFakeDataForML()
-        df["truth"] = [0, 1, 0]
+        # df["truth"] = [0, 1, 0]
         output = self.ml.test_model(df, self.path)
         self.assertIsInstance(output, pd.DataFrame)
