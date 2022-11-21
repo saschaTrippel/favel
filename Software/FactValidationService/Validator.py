@@ -2,7 +2,6 @@ import logging
 
 from FactValidationService.AssertionsRunner import AssertionsRunner
 from FactValidationService.AssertionsCacheRunner import AssertionsCacheRunner
-from FactValidationService.CacheRunner import CacheRunner
 
 class Validator:
     
@@ -36,17 +35,6 @@ class Validator:
             job.join()
 
         return trainingAssertions, testingAssertions
-        
-    def validateCache(self):
-        jobs = []
-        for approach in self.approaches.keys():
-            jobRunner = CacheRunner(approach, int(self.approaches[approach]), self.cachePath)
-            jobs.append(jobRunner)
-            jobRunner.start()
-            
-        # Wait for all threads to finish
-        for job in jobs:
-            job.join()
             
         
 

@@ -32,13 +32,10 @@ class Controller:
 
     def _parseArguments(self, argv=None):
         argumentParser = argparse.ArgumentParser()
-        exclusionGroup = argumentParser.add_mutually_exclusive_group(required=True)
-    
-        exclusionGroup.add_argument("-d", "--data", help="Path to input data")
-        exclusionGroup.add_argument("-c", "--cache", action="store_true", help="Check whether the cache entries are correct")
 
+        argumentParser.add_argument("-d", "--data", required=True, help="Path to input data")
         argumentParser.add_argument("-e", "--experiment", required=True, help="Name of the experiment to execute. The name must correspond to one directory in the Evaluation directory which contains a configuration file")
-        argumentParser.add_argument("-sc", "--containers", action="store_true", help="To Start/Stop containers, if not already running")
+        argumentParser.add_argument("-c", "--containers", action="store_true", help="To Start/Stop containers, if not already running")
     
         return argumentParser.parse_args(argv)
         
@@ -57,18 +54,6 @@ class Controller:
         
         logging.basicConfig(level=loggingOptions[self.configParser['General']['logging']])
     
-    def getMethod(self):
-        """
-        Return what is supposed to be done.
-        - 'cache' validate the cache
-        - 'train' train the model
-        - 'test' test the model
-        """
-        # TODO: should return either 'cache', 'train', or 'test'
-        if self.args.cache:
-            return "cache"
-        return "train"
-    
     def startContainers(self):
         if self.args.containers:
             logging.info("Starting Containers")
@@ -81,15 +66,6 @@ class Controller:
             logging.info("Stopping Containers")
             c = Containers()
             c.rmContainers()
-
-    def validateCache(self):
-        self.startContainers()
-
-        logging.info("Checking cache for correctness")
-        validator = Validator(dict(self.configParser['Approaches']), self.configParser['General']['cachePath'])
-        validator.validateCache()
-        
-        self.stopContainers()
         
     def input(self):
         """
