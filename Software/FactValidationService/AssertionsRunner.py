@@ -16,6 +16,7 @@ class AssertionsRunner(AbstractJobRunner):
         self.testingAssertions = testingAssertions
         self.errorCount = 0
         self.trainingComplete = False
+        self.exception = None
     
     def run(self):
         try:
@@ -25,13 +26,19 @@ class AssertionsRunner(AbstractJobRunner):
             # Close connection
             if self.server != None:
                 self.server.close()
-        except ConnectionRefusedError:
+        except Exception as ex:
+            self.exception = ex
             return
 
         size = len(self.trainingAssertions) + len(self.testingAssertions)
         if self.errorCount < size:
             logging.info("Validated {} out of {} assertions successfully using {}."
                          .format(size - self.errorCount, size, self.approach))
+        
+    def join(self):
+        threading.Thread.join(self)
+        if self.exception:
+            raise self.exception
             
     def _validateAssertion(self, assertion:Assertion):
         # Train supervised approach

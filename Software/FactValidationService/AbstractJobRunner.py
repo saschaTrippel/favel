@@ -70,7 +70,7 @@ class AbstractJobRunner(threading.Thread):
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.connect(("127.0.0.1", self.port))
         except ConnectionRefusedError as ex:
-            logging.warning("Cannot connect to approach '{}'".format(self.approach))
+            logging.error("Cannot connect to approach '{}'".format(self.approach))
             raise(ex)
         
     def _send(self, message:Message):
