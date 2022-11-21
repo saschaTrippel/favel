@@ -17,9 +17,12 @@ class AssertionsCacheRunner(AssertionsRunner):
         self.cachePath = cachePath
     
     def run(self):
-        self.cache = Cache(self.cachePath, self.approach)
-        super().run()
-        self.cache.close()
+        try:
+            self.cache = Cache(self.cachePath, self.approach)
+            super().run()
+            self.cache.close()
+        except Exception as ex:
+            self.exception = ex
             
     def _validateAssertion(self, assertion):
         cacheResult = self.cache.getScore(assertion.subject, assertion.predicate, assertion.object)

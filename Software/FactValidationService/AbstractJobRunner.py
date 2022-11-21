@@ -2,6 +2,7 @@ import threading
 import socket
 import logging
 from datastructures.Assertion import Assertion
+from datastructures.exceptions.FactValidationApproachTypeException import FactValidationApproachTypeException
 from FactValidationService.Message import Message
 
 class AbstractJobRunner(threading.Thread):
@@ -30,8 +31,10 @@ class AbstractJobRunner(threading.Thread):
         if response.type == "type_response":
             self._type = response.content
             return response.content
-        
-        return None
+
+        if response.type == "error":
+            logging.error(response.content)
+            raise FactValidationApproachTypeException(response.content)
     
     @type.setter
     def type(self, type):

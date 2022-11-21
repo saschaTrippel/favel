@@ -3,6 +3,7 @@ import socket
 import logging
 from FactValidationService.AbstractJobRunner import AbstractJobRunner
 from datastructures.Assertion import Assertion
+from datastructures.exceptions.TrainingException import TrainingException
 
 class AssertionsRunner(AbstractJobRunner):
     """
@@ -49,16 +50,25 @@ class AssertionsRunner(AbstractJobRunner):
         return super()._validateAssertion(assertion)
     
     def _train(self):
-        # TODO: check if acks are returned
-        self._trainingStart()
-        logging.info("Start training {}".format(self.approach))
-        
-        for assertion in self.trainingAssertions:
-            response = self._trainAssertion(assertion)
-            if response.type != 'ack':
-                logging.warning("Something went wrong while training {}".format(self.approach))
-
-        self._trainingComplete()
+        try:
+            # Send start training call
+            response = self._trainingStart()
+            if response.type != "ack":
+                raise TrainingException("TrainingException while calling {} to start training".format(self.approach))
+            logging.info("Start training {}".format(self.approach))
+            
+            # Send training data
+            for assertion in self.trainingAssertions:
+                response = self._trainAssertion(assertion)
+                if response.type != 'ack':
+                    raise TrainingException("TrainingException while training {}".format(self.approach))
+    
+            # Send training complete call
+            self._trainingComplete()
+        except TrainingException as ex:
+            logging.error("Something went wrong while training {}".format(self.approach))
+            raise ex
+            
         logging.info("Training of {} completed".format(self.approach))
 
     
@@ -77,7 +87,7 @@ class AssertionsRunner(AbstractJobRunner):
 
             if response.type == "error":
                 self.errorCount += 1
-                logging.warning("'{}' while validating {} using {}."
+                logging.error("'{}' while validating {} using {}."
                                 .format(response.content, assertion, self.approach))
             else:
                 assertion.score[self.approach] = float(response.score)

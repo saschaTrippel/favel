@@ -1,4 +1,5 @@
 import sqlite3, logging
+from datastructures.exceptions.CacheException import CacheException
 
 class Cache:
     """
@@ -7,7 +8,11 @@ class Cache:
     """
     
     def __init__(self, dbpath:str, approach:str):
-        self.db = sqlite3.connect(dbpath)
+        try:
+            self.db = sqlite3.connect(dbpath)
+        except sqlite3.OperationalError:
+            raise CacheException("Cannot access FactValidationService cache")
+            
         self.approach = approach
         try:
             self.createTable()
