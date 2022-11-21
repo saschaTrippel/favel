@@ -7,8 +7,10 @@ from FactValidationService.Message import Message
 class AbstractJobRunner(threading.Thread):
     """
     Abstract class that implements basic functionality.
-    Able to connect to a fact validation approach via TCP, send assertions in
-    turtle format and receive their score.
+    - Connect to a fact validation approach
+    - Get the type of a fact validation approach (supervised / unsupervised)
+    - Send training data to supervised approaches
+    - Send assertions to approaches for validation
     """
 
     def __init__(self, approach:str, port:int):
