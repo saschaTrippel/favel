@@ -3,7 +3,7 @@ FAVEL ML Service
 
 # Configuration
 
-We have to specify the ML algorithm in favel.conf under the MLApproaches tag. The algorithm name must be the sklearn module. The parameters of this algorithm have to be passed in JSON format.
+The machine learning (ML) algorithm has to be specified in the configuration file favel.conf under the MLApproaches tag. The algorithm name must be the sklearn module. The parameters of this algorithm have to be passed in JSON format.
 
 ```
 [MLApproches]
