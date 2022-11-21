@@ -16,6 +16,25 @@ class AbstractJobRunner(threading.Thread):
         self.approach = approach
         self.port = port
         self.server = None
+        self._type = None
+        
+    @property
+    def type(self):
+        if self._type != None:
+            return self._type
+        self._send(Message(type="call", content="type"))
+        response = Message(text=self._receive())
+        
+        if response.type == "type_response":
+            self._type = response.content
+            return response.content
+        
+        return None
+    
+    @type.setter
+    def type(self, type):
+        if type in ["supervised", "unsupervised"]:
+            self._type = type
     
     def _validateAssertion(self, assertion:Assertion):
         """
@@ -42,10 +61,6 @@ class AbstractJobRunner(threading.Thread):
     
     def _trainingComplete(self):
         self._send(Message(type="call", content="training_complete"))
-        return Message(text=self._receive())
-        
-    def _type(self):
-        self._send(Message(type="call", content="type"))
         return Message(text=self._receive())
     
     def _connect(self):

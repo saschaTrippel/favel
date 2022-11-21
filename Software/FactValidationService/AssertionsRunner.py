@@ -2,6 +2,7 @@ import threading
 import socket
 import logging
 from FactValidationService.AbstractJobRunner import AbstractJobRunner
+from datastructures.Assertion import Assertion
 
 class AssertionsRunner(AbstractJobRunner):
     """
@@ -14,14 +15,10 @@ class AssertionsRunner(AbstractJobRunner):
         self.trainingAssertions = trainingAssertions
         self.testingAssertions = testingAssertions
         self.errorCount = 0
+        self.trainingComplete = False
     
     def run(self):
         try:
-            # Train supervised approach
-            typeMessage = self._type()
-            if typeMessage.type == "type_response" and typeMessage.content == "supervised":
-                self._train()
-
             # Validate train and test data
             self._test()
             
@@ -35,7 +32,15 @@ class AssertionsRunner(AbstractJobRunner):
         if self.errorCount < size:
             logging.info("Validated {} out of {} assertions successfully using {}."
                          .format(size - self.errorCount, size, self.approach))
-
+            
+    def _validateAssertion(self, assertion:Assertion):
+        # Train supervised approach
+        if not self.trainingComplete and self.type == "supervised":
+            self._train()
+            self.trainingComplete = True
+        
+        return super()._validateAssertion(assertion)
+    
     def _train(self):
         # TODO: check if acks are returned
         self._trainingStart()
