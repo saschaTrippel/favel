@@ -46,7 +46,7 @@ class ML:
         )
 
 
-    def createDataFrame(self,assertionScores,approaches):
+    def createDataFrame(self, assertions):
         try:
             """
             To create the DataFrame that consists of triples and scores from each approach for that particular triple.
@@ -56,21 +56,19 @@ class ML:
             result['predicate'] = []
             result['object'] = []
             result['truth'] = []
+            
+            approaches = assertions[0].score.keys()
 
-            for assertionScore in assertionScores:
-                result['subject'].append(assertionScore.subject)
-                result['predicate'].append(assertionScore.predicate)
-                result['object'].append(assertionScore.object)
-                result['truth'].append(assertionScore._expectedScore)
-
-                for approach in approaches.keys():
-                    try:
-                        if str(approach) in result:
-                            result[str(approach)].append(assertionScore.score[str(approach)])
-                        else:
-                            result[str(approach)] = [assertionScore.score[str(approach)]]
-                    except KeyError as ex:
-                        pass
+            for assertion in assertions:
+                result['subject'].append(assertion.subject)
+                result['predicate'].append(assertion.predicate)
+                result['object'].append(assertion.object)
+                result['truth'].append(assertion.expectedScore)
+                
+                for approach in approaches:
+                    if not approach in result:
+                        result[approach] = []
+                    result[approach].append(assertion.score[approach])
 
             df = pd.DataFrame(result)
             

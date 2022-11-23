@@ -87,7 +87,7 @@ class Controller:
         """
         Train the ML model
         """
-        training_df = self.ml.createDataFrame(self.trainingData, dict(self.configParser['Approaches']))
+        training_df = self.ml.createDataFrame(self.trainingData)
         # if not training_df: logging.info('[controller train] Error in createDataFrame')
 
         ml_model_name = self.configParser['MLApproches']['method']
@@ -104,7 +104,7 @@ class Controller:
         """
         Test the ML model
         """
-        testing_df = self.ml.createDataFrame(self.testingData, dict(self.configParser['Approaches']))
+        testing_df = self.ml.createDataFrame(self.testingData)
         # if not testing_df: logging.info('[controller test] Error in createDataFrame')
 
         testing_result = self.ml.validate_model(df=testing_df, 
