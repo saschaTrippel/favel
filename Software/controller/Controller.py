@@ -4,10 +4,7 @@ from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
-# from MLService.ML_train import train as train_model, test as test_model
 from OutputService.Output import Output
-# from MLService.ML_train import main
-import sklearn
 import pandas as pd
 import ast
 import pdb
@@ -88,17 +85,6 @@ class Controller:
 
         self.stopContainers()
     
-    def get_sklearn_model(self, model_name, ml_model_params):
-        xdf=pd.DataFrame(sklearn.utils.all_estimators())
-        model = xdf[xdf[0]==model_name][1].item()
-
-        model=model()
-
-        model.set_params(**ml_model_params)
-
-        return model
-
-
     def train(self):
         """
         Train the ML model
@@ -114,7 +100,7 @@ class Controller:
 
         ml_model_params=ast.literal_eval(ml_model_params)
 
-        ml_model = self.get_sklearn_model(ml_model_name, ml_model_params)
+        ml_model = self.ml.get_sklearn_model(ml_model_name, ml_model_params)
 
         train_result = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
