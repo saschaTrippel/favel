@@ -42,7 +42,11 @@ class AssertionsRunner(AbstractJobRunner):
             raise self.exception
             
     def _validateAssertion(self, assertion:Assertion):
-        # Train supervised approach
+        """
+        Overrides super method.
+        If the approach is supervised, train before sending an assertion
+        for validation.
+        """
         if not self.trainingComplete and self.type == "supervised":
             self._train()
             self.trainingComplete = True
@@ -50,6 +54,12 @@ class AssertionsRunner(AbstractJobRunner):
         return super()._validateAssertion(assertion)
     
     def _train(self):
+        """
+        Train a supervised approach.
+        - Send call to begin training
+        - Send training data
+        - Send call to finish training
+        """
         try:
             # Send start training call
             response = self._trainingStart()
@@ -74,7 +84,8 @@ class AssertionsRunner(AbstractJobRunner):
     
     def _test(self):
         """
-        Validate the assertions using self.approach.
+        Validate assertions in the self.trainingAssertions list
+        and in the self.testingAssertions list using self.approach.
         """
         logging.info("Validating assertions using {}".format(self.approach))
 

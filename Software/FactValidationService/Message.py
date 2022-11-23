@@ -4,14 +4,6 @@ from builtins import object
 class Message:
     
     def __init__(self, type:str=None, content=None, subject:str=None, predicate:str=None, object:str=None, score=None, text:str=None):
-        """
-        Available types are:
-            call    with content:
-                - type
-                - training_start
-                - training_complete
-            training with contents
-        """
         if text != None:
             self.parse(text)
         else:
