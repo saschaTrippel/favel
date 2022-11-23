@@ -1,5 +1,6 @@
 import pandas as pd
 import csv
+from os import path
 from OutputService.GerbilFormat import GerbilFormat
 
 class Output():
@@ -11,7 +12,7 @@ class Output():
 		"""
 		Writes results to file.
         """
-		df.to_csv("{}Output.csv".format(self.experimentPath), index=False)
+		df.to_csv(path.join(self.experimentPath, "Output.csv"), index=False)
 
 	def gerbilFormat(self,testingData):
 		"""

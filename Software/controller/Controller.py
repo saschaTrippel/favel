@@ -1,11 +1,11 @@
-import logging, argparse, configparser
+import logging, argparse, configparser, ast
 
+from os import path
 from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
 from OutputService.Output import Output
-import ast
 
 class Controller:
     """
@@ -13,17 +13,14 @@ class Controller:
     """
     def __init__(self, argv=None):
         self.args = self._parseArguments(argv)
+        self.experimentPath = self._loadExperimentPath()
         self.configParser = self._loadConfig()
         self._configureLogging()
         self.testingData = None
         self.trainingData = None
         self.validateTrainingData = None
 
-        
-        self.ml = ML(
-            log_file=f"../Evaluation/{self.args.experiment}/ml_logs.log",
-        )
-
+        self.ml = ML(log_file=path.join(self.experimentPath, "ml_logs.log"))
 
     def _parseArguments(self, argv=None):
         argumentParser = argparse.ArgumentParser()
@@ -33,10 +30,19 @@ class Controller:
         argumentParser.add_argument("-c", "--containers", action="store_true", help="To Start/Stop containers, if not already running")
     
         return argumentParser.parse_args(argv)
+    
+    def _loadExperimentPath(self):
+        favelPath = path.realpath(__file__)
+        pathLst = favelPath.split('/')
+        favelPath = "/".join(pathLst[:-3])
+        return path.join(favelPath, "Evaluation", self.args.experiment)
         
     def _loadConfig(self):
+        configPath = path.join(self.experimentPath, "favel.conf")
+        if not path.exists(configPath):
+            raise FileNotFoundError(f"Config file {configPath} does not exist")
         configParser = configparser.ConfigParser()
-        configParser.read("../Evaluation/{}/favel.conf".format(self.args.experiment))
+        configParser.read(configPath)
         return configParser
     
     def _configureLogging(self):
@@ -97,7 +103,7 @@ class Controller:
 
         train_result = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
-                                            output_path=f"../Evaluation/{self.args.experiment}", 
+                                            output_path=self.experimentPath, 
                                             dataset_path=self.args.data)
 
     def test(self):
@@ -108,7 +114,7 @@ class Controller:
         # if not testing_df: logging.info('[controller test] Error in createDataFrame')
 
         testing_result = self.ml.validate_model(df=testing_df, 
-                                                output_path=f"../Evaluation/{self.args.experiment}", 
+                                                output_path=self.experimentPath, 
                                                 dataset_path=self.args.data)
         # if not testing_result: logging.info('[controller test] Error in validate_model')
 
@@ -120,6 +126,6 @@ class Controller:
         Write the results to disk.
         Also, Conversion to GERBIL format.
         """
-        op = Output("../Evaluation/{}/".format(self.args.experiment))
+        op = Output(self.experimentPath)
         op.writeOutput(self.ml_test_result)
         op.gerbilFormat(self.testingData)
