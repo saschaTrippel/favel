@@ -5,9 +5,7 @@ from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
 from OutputService.Output import Output
-import pandas as pd
 import ast
-import pdb
 
 class Controller:
     """
@@ -89,25 +87,18 @@ class Controller:
         """
         Train the ML model
         """
-
-        # TODO: call MLService to train model
         training_df = self.ml.createDataFrame(self.trainingData, dict(self.configParser['Approaches']))
         # if not training_df: logging.info('[controller train] Error in createDataFrame')
 
         ml_model_name = self.configParser['MLApproches']['method']
-
         ml_model_params = self.configParser['MLApproches']['parameters']
-
         ml_model_params=ast.literal_eval(ml_model_params)
-
         ml_model = self.ml.get_sklearn_model(ml_model_name, ml_model_params)
 
         train_result = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
                                             output_path=f"../Evaluation/{self.args.experiment}", 
                                             dataset_path=self.args.data)
-        # if not train_result: logging.info('[controller train] Error in train_model')
-
 
     def test(self):
         """
