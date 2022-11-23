@@ -18,5 +18,3 @@ python3 Favel.py [options]
 * ```-d DATA, --data DATA``` path to the dataset to validate
 * ```-c, --containers``` automatically Start/Stop containers
 
-# Architecture
-![Favel component diagram](FavelArchitecture.png)
