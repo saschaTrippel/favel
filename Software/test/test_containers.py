@@ -1,5 +1,9 @@
 import unittest
 from ContainerService.Containers import Containers
+import os
+import time
+
+pid = os.fork()
 
 
 class TestContainers(unittest.TestCase):
@@ -7,9 +11,13 @@ class TestContainers(unittest.TestCase):
         self.containers = Containers()
 
     def testStartContainers(self):
-        self.containers.startContainers()
-        containers = self.containers.docker.compose.ps()
-        self.assertGreaterEqual(len(containers), 1)
+        if pid:
+            self.containers.startContainers()
+            containers = self.containers.docker.compose.ps()
+            self.assertGreaterEqual(len(containers), 1)
+        else:
+            pass
+
 
     def testStopContainers(self):
         self.containers.stopContainers()
@@ -23,4 +31,3 @@ class TestContainers(unittest.TestCase):
         self.containers.rmContainers()
         containers = self.containers.docker.compose.ps()
         self.assertEqual(len(containers), 0)
-
