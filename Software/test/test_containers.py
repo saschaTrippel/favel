@@ -7,10 +7,9 @@ class TestContainers(unittest.TestCase):
         self.containers = Containers()
 
     def testStartContainers(self):
-        pass
-        # self.containers.startContainers()
-        # containers = self.containers.docker.compose.ps()
-        # self.assertGreaterEqual(len(containers), 1)
+        self.containers.startContainers()
+        containers = self.containers.docker.compose.ps()
+        self.assertGreaterEqual(len(containers), 1)
 
     def testStopContainers(self):
         self.containers.stopContainers()
