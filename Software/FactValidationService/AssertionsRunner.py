@@ -97,6 +97,7 @@ class AssertionsRunner(AbstractJobRunner):
             response = self._validateAssertion(assertion)
 
             if response.type == "error":
+                assertion.score[self.approach] = None
                 self.errorCount += 1
                 logging.error("'{}' while validating {} using {}."
                                 .format(response.content, assertion, self.approach))
