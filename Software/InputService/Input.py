@@ -14,7 +14,7 @@ class Input:
             df = rf.getCsv(filePath)
             result = self.parseTriples(df)
             logging.info("Read {} assertions".format(len(result)))
-            return result
+            return result,result
         
         elif(str(filePath).lower().find("favel") != -1):
             df_train, df_test = rf.getFavel(filePath)

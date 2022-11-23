@@ -2,13 +2,16 @@ import threading
 import socket
 import logging
 from datastructures.Assertion import Assertion
+from datastructures.exceptions.FactValidationApproachTypeException import FactValidationApproachTypeException
 from FactValidationService.Message import Message
 
 class AbstractJobRunner(threading.Thread):
     """
     Abstract class that implements basic functionality.
-    Able to connect to a fact validation approach via TCP, send assertions in
-    turtle format and receive their score.
+    - Connect to a fact validation approach
+    - Get the type of a fact validation approach (supervised / unsupervised)
+    - Send training data to supervised approaches
+    - Send assertions to approaches for validation
     """
 
     def __init__(self, approach:str, port:int):
@@ -16,6 +19,27 @@ class AbstractJobRunner(threading.Thread):
         self.approach = approach
         self.port = port
         self.server = None
+        self._type = None
+        
+    @property
+    def type(self):
+        if self._type != None:
+            return self._type
+        self._send(Message(type="call", content="type"))
+        response = Message(text=self._receive())
+        
+        if response.type == "type_response":
+            self._type = response.content
+            return response.content
+
+        if response.type == "error":
+            logging.error(response.content)
+            raise FactValidationApproachTypeException(response.content)
+    
+    @type.setter
+    def type(self, type):
+        if type in ["supervised", "unsupervised"]:
+            self._type = type
     
     def _validateAssertion(self, assertion:Assertion):
         """
@@ -43,17 +67,13 @@ class AbstractJobRunner(threading.Thread):
     def _trainingComplete(self):
         self._send(Message(type="call", content="training_complete"))
         return Message(text=self._receive())
-        
-    def _type(self):
-        self._send(Message(type="call", content="type"))
-        return Message(text=self._receive())
     
     def _connect(self):
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.connect(("127.0.0.1", self.port))
         except ConnectionRefusedError as ex:
-            logging.warning("Cannot connect to approach '{}'".format(self.approach))
+            logging.error("Cannot connect to approach '{}'".format(self.approach))
             raise(ex)
         
     def _send(self, message:Message):

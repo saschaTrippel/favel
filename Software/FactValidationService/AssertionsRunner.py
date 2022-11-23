@@ -2,6 +2,8 @@ import threading
 import socket
 import logging
 from FactValidationService.AbstractJobRunner import AbstractJobRunner
+from datastructures.Assertion import Assertion
+from datastructures.exceptions.TrainingException import TrainingException
 
 class AssertionsRunner(AbstractJobRunner):
     """
@@ -14,45 +16,76 @@ class AssertionsRunner(AbstractJobRunner):
         self.trainingAssertions = trainingAssertions
         self.testingAssertions = testingAssertions
         self.errorCount = 0
+        self.trainingComplete = False
+        self.exception = None
     
     def run(self):
         try:
-            # Train supervised approach
-            typeMessage = self._type()
-            if typeMessage.type == "type_response" and typeMessage.content == "supervised":
-                self._train()
-
             # Validate train and test data
             self._test()
             
             # Close connection
             if self.server != None:
                 self.server.close()
-        except ConnectionRefusedError:
+        except Exception as ex:
+            self.exception = ex
             return
 
         size = len(self.trainingAssertions) + len(self.testingAssertions)
         if self.errorCount < size:
             logging.info("Validated {} out of {} assertions successfully using {}."
                          .format(size - self.errorCount, size, self.approach))
-
-    def _train(self):
-        # TODO: check if acks are returned
-        self._trainingStart()
-        logging.info("Start training {}".format(self.approach))
         
-        for assertion in self.trainingAssertions:
-            response = self._trainAssertion(assertion)
-            if response.type != 'ack':
-                logging.warning("Something went wrong while training {}".format(self.approach))
-
-        self._trainingComplete()
+    def join(self):
+        threading.Thread.join(self)
+        if self.exception:
+            raise self.exception
+            
+    def _validateAssertion(self, assertion:Assertion):
+        """
+        Overrides super method.
+        If the approach is supervised, train before sending an assertion
+        for validation.
+        """
+        if not self.trainingComplete and self.type == "supervised":
+            self._train()
+            self.trainingComplete = True
+        
+        return super()._validateAssertion(assertion)
+    
+    def _train(self):
+        """
+        Train a supervised approach.
+        - Send call to begin training
+        - Send training data
+        - Send call to finish training
+        """
+        try:
+            # Send start training call
+            response = self._trainingStart()
+            if response.type != "ack":
+                raise TrainingException("TrainingException while calling {} to start training".format(self.approach))
+            logging.info("Start training {}".format(self.approach))
+            
+            # Send training data
+            for assertion in self.trainingAssertions:
+                response = self._trainAssertion(assertion)
+                if response.type != 'ack':
+                    raise TrainingException("TrainingException while training {}".format(self.approach))
+    
+            # Send training complete call
+            self._trainingComplete()
+        except TrainingException as ex:
+            logging.error("Something went wrong while training {}".format(self.approach))
+            raise ex
+            
         logging.info("Training of {} completed".format(self.approach))
 
     
     def _test(self):
         """
-        Validate the assertions using self.approach.
+        Validate assertions in the self.trainingAssertions list
+        and in the self.testingAssertions list using self.approach.
         """
         logging.info("Validating assertions using {}".format(self.approach))
 
@@ -64,8 +97,9 @@ class AssertionsRunner(AbstractJobRunner):
             response = self._validateAssertion(assertion)
 
             if response.type == "error":
+                assertion.score[self.approach] = None
                 self.errorCount += 1
-                logging.warning("'{}' while validating {} using {}."
+                logging.error("'{}' while validating {} using {}."
                                 .format(response.content, assertion, self.approach))
             else:
                 assertion.score[self.approach] = float(response.score)
