@@ -1,4 +1,4 @@
-FROM debian:11 AS simrank
+FROM debian:11 AS predPath
 
 # Get required software packages
 RUN apt-get update
@@ -29,7 +29,7 @@ RUN curl --output data.tar.gz https://uni-paderborn.sciebo.de/s/E98jf2WqzIW9C1W/
 RUN tar -xf data.tar.gz
 
 # Expose port
-EXPOSE 4008/tcp
+EXPOSE 4010/tcp
 
 # Start knowledgestream
-CMD kstream -m simrank -p 4008
+CMD kstream -m predpath -p 4010

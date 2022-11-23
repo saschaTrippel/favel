@@ -16,12 +16,5 @@ python3 Favel.py [options]
 ### Options
 * ```-e EXPIRIMENT``` name of the experiment, corresponds with the name of the experiment folder in the ```Evaluation``` directory
 * ```-d DATA, --data DATA``` path to the dataset to validate
-* ```-c, --cache``` Check the cache for correctness
+* ```-c, --containers``` automatically Start/Stop containers
 
-### Optional ContainerService
-  ```-sc, --containers``` 
-+ To be added next to [options]
-+ To Start/Stop containers, if not already running on VM
-
-# Architecture
-![Favel component diagram](FavelArchitecture.png)

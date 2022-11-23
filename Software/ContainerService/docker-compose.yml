@@ -4,49 +4,59 @@ services:
 
   adamic_adar:
     build: ./adamic_adar
-    ports: 
+    ports:
       - 4000:4000
-    
+
   degree_product:
     build: ./degree_product
-    ports: 
+    ports:
       - 4001:4001
-  
+
   jaccard:
     build: ./jaccard
-    ports: 
+    ports:
       - 4002:4002
-  
+
   katz:
     build: ./katz
-    ports: 
+    ports:
       - 4003:4003
-  
+
   klinker:
     build: ./klinker
-    ports: 
+    ports:
       - 4004:4004
-  
+
   relklinker:
     build: ./relklinker
-    ports: 
+    ports:
       - 4005:4005
-  
+
   knowledgestream:
     build: ./knowledgestream
-    ports: 
+    ports:
       - 4006:4006
-  
+
   pathent:
     build: ./pathent
-    ports: 
+    ports:
       - 4007:4007
-  
+
   simrank:
     build: ./simrank
-    ports: 
+    ports:
       - 4008:4008
-  
+
+  pra:
+    build: ./pra
+    ports:
+      - 4009:4009
+
+  predpath:
+    build: ./predpath
+    ports:
+      - 4010:4010
+
   copaal: 
     build: ./copaal
     ports: 

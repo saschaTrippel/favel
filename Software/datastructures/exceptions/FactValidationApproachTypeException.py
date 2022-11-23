@@ -1,0 +1,2 @@
+class FactValidationApproachTypeException(Exception):
+    pass
