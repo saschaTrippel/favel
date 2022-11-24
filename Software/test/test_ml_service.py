@@ -25,7 +25,7 @@ class TestMLService(unittest.TestCase):
 
     def getFakeDataForML(self):
         data, approaches = createMockForTriples()
-        return self.ml.createDataFrame(data, approaches)
+        return self.ml.createDataFrame(data)
 
     def testCreateDataFrame(self):
         self.assertIsInstance(self.getFakeDataForML(), pd.DataFrame)
