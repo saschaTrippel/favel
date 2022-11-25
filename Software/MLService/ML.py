@@ -177,9 +177,14 @@ class ML:
 
                 try:
                     ml_result = pd.read_excel(f"{evaluation_path}/ML_Results/ml_results.xlsx")
+
+                    # if we have an existing record for current eval_key, then remove the previous record
+                    ml_result= ml_result[~ml_result.eval_key.isin(new_result.eval_key)]
+
                     ml_result=pd.concat([ml_result, new_result])
-                except:
+                except Exception as e:
                     ml_result=new_result.copy()
+
 
                 ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx', index=False)
 
@@ -241,9 +246,14 @@ class ML:
             })
             try:
                 ml_result = pd.read_excel(f"{evaluation_path}/ML_Results/ml_results.xlsx")
-                ml_result = pd.merge(ml_result, new_result, how='inner', on='eval_key')
-            except:
+
+                eval_key=eval_key=os.path.basename(os.path.normpath(output_path))
+                ml_result.loc[ml_result['eval_key']==eval_key, 'roc_auc_overall_validation']=roc_auc
+
+            except Exception as e:
                 ml_result=new_result.copy()
+
+
             ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx', index=False)
 
             logging.info('validation results written in results file')
