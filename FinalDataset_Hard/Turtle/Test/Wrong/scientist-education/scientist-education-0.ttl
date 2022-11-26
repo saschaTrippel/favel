@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Thomas_Ollendick> ns1:education <http://dbpedia.org/resource/Virginia_Tech> .
+

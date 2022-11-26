@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Leon_Kass> ns1:birthPlace <http://dbpedia.org/resource/Chicago> .
+

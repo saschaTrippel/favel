@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Nanda_Rea> ns1:education <http://dbpedia.org/resource/University_of_Amsterdam> .
+

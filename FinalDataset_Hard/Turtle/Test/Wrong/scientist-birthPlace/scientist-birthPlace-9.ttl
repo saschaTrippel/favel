@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Norman_Rostoker> ns1:birthPlace <http://dbpedia.org/resource/Irvine,_California> .
+
