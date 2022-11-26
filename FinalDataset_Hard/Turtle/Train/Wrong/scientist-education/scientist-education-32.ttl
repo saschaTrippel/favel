@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Thomas_Michael_O'Neil> ns1:education <http://dbpedia.org/resource/University_of_California,_San_Diego> .
+

@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Susan_Huganir_Magsamen> ns1:education <http://dbpedia.org/resource/Towson_University> .
+
