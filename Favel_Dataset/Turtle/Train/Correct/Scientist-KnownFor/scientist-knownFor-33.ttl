@@ -1,7 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Kip_Thorne> ns1:knownFor <http://dbpedia.org/resource/Gravitation_(book)>,
-        <http://dbpedia.org/resource/Gravitational_wave>,
-        <http://dbpedia.org/resource/LIGO>,
-        <http://dbpedia.org/resource/Roman_ring> .
+<http://dbpedia.org/resource/Kenneth_G._Wilson> ns1:knownFor <http://dbpedia.org/resource/Phase_transition>,
+        <http://dbpedia.org/resource/Wilson_loop> .
 

@@ -1,9 +1,8 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Scott_Fahlman> ns1:knownFor <http://dbpedia.org/resource/Automated_planning_and_scheduling>,
-        <http://dbpedia.org/resource/Common_Lisp>,
-        <http://dbpedia.org/resource/Dylan_(programming_language)>,
-        <http://dbpedia.org/resource/Lucid_Inc.>,
-        <http://dbpedia.org/resource/Neural_network>,
-        <http://dbpedia.org/resource/Semantic_network> .
+<http://dbpedia.org/resource/Stephen_R._Bourne> ns1:knownFor <http://dbpedia.org/resource/ACM_Queue>,
+        <http://dbpedia.org/resource/ALGOL_68C>,
+        <http://dbpedia.org/resource/Advanced_Debugger>,
+        <http://dbpedia.org/resource/Bourne_shell>,
+        <http://dbpedia.org/resource/Cambridge_Algebra_System> .
 

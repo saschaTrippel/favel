@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Rani_Durgavati_Vishwavidyalaya> ns1:city <http://dbpedia.org/resource/Jabalpur> .
+<http://dbpedia.org/resource/Bearys_Institute_of_Technology> ns1:city <http://dbpedia.org/resource/Mangalore> .
 

@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Gilbert_Gee> ns1:education <http://dbpedia.org/resource/Princeton_University> .
+<http://dbpedia.org/resource/Gordon_Moore> ns1:education <http://dbpedia.org/resource/University_of_Michigan>,
+        <http://dbpedia.org/resource/University_of_Minnesota> .
 

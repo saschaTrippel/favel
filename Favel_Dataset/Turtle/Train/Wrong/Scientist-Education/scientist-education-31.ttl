@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Stephen_R._Bourne> ns1:education <http://dbpedia.org/resource/Cornell_University> .
+<http://dbpedia.org/resource/Garland_E._Allen> ns1:education <http://dbpedia.org/resource/Harvard_University>,
+        <http://dbpedia.org/resource/University_of_Bristol> .
 

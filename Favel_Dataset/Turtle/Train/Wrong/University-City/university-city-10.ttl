@@ -1,5 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Govind_Guru_Tribal_University> ns1:city <http://dbpedia.org/resource/Avadi>,
-        <http://dbpedia.org/resource/Lucknow> .
+<http://dbpedia.org/resource/Sorbonne_Paris_North_University> ns1:city <http://dbpedia.org/resource/Sydney> .
 

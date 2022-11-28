@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/William_Michael_Lynn> ns1:award <http://dbpedia.org/resource/International_Council_on_Hotel,_Restaurant,_and_Institutional_Education> .
+<http://dbpedia.org/resource/Dan_Ingalls> ns1:award <http://dbpedia.org/resource/ACS_Award_in_Pure_Chemistry>,
+        <http://dbpedia.org/resource/Royal_Astronomical_Society> .
 

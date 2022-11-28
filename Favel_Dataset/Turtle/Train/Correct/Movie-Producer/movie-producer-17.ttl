@@ -1,5 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/20,000_Years_in_Sing_Sing> ns1:producer <http://dbpedia.org/resource/Darryl_F._Zanuck>,
-        <http://dbpedia.org/resource/Raymond_Griffith> .
+<http://dbpedia.org/resource/Eastern_Condors> ns1:producer <http://dbpedia.org/resource/Corey_Yuen>,
+        <http://dbpedia.org/resource/Wu_Ma> .
 

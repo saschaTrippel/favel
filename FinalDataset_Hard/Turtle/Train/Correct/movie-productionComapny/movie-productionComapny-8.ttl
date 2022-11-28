@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/ontology/> .
+
+<http://dbpedia.org/resource/Uzhaippali> ns1:productionCompany <http://dbpedia.org/resource/Vijaya_Vauhini_Studios> .
+

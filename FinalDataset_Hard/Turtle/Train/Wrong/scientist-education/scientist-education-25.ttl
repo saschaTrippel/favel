@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Michael_Cole_(psychologist)> ns1:education <http://dbpedia.org/resource/University_of_California> .
+

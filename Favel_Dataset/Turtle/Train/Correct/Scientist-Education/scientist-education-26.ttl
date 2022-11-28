@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/June_Lloyd,_Baroness_Lloyd_of_Highbury> ns1:education <http://dbpedia.org/resource/University_of_Bristol> .
+<http://dbpedia.org/resource/Vincenzo_Di_Nicola> ns1:education <http://dbpedia.org/resource/McGill_University>,
+        <http://dbpedia.org/resource/University_of_London> .
 

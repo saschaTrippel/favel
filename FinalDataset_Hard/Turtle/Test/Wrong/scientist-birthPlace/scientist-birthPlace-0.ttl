@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Nalini_Balbir> ns1:birthPlace <http://dbpedia.org/resource/Munich> .
+

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Jawaharlal_Nehru_Krishi_Vishwa_Vidyalaya> ns1:city <http://dbpedia.org/resource/Sydney> .
+<http://dbpedia.org/resource/Sylhet_Medical_University> ns1:city <http://dbpedia.org/resource/Songkhla_Province> .
 

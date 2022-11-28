@@ -1,4 +1,5 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Futurama:_Into_the_Wild_Green_Yonder> ns1:producer <http://dbpedia.org/resource/Claudia_Katz> .
+<http://dbpedia.org/resource/Charlie_Bartlett> ns1:producer <http://dbpedia.org/resource/Randall_Emmett>,
+        <http://dbpedia.org/resource/Sol_M._Wurtzel> .
 

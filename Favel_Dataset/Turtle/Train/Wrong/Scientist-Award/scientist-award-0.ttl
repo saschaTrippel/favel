@@ -4,7 +4,5 @@
         <http://dbpedia.org/resource/Fellow>,
         <http://dbpedia.org/resource/Gruber_Prize_in_Cosmology>,
         <http://dbpedia.org/resource/Lilienfeld_Prize>,
-        <http://dbpedia.org/resource/National_Women's_Hall_of_Fame>,
-        <http://dbpedia.org/resource/Presidential_Medal_of_Freedom>,
-        <http://dbpedia.org/resource/Steacie_Prize> .
+        <http://dbpedia.org/resource/Presidential_Medal_of_Freedom> .
 

@@ -1,7 +1,6 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Ray_Jayawardhana> ns1:knownFor <http://dbpedia.org/resource/Brown_dwarf>,
-        <http://dbpedia.org/resource/Exoplanet>,
-        <http://dbpedia.org/resource/Nebular_hypothesis>,
-        <http://dbpedia.org/resource/Popular_science> .
+<http://dbpedia.org/resource/Gordon_Moore> ns1:knownFor <http://dbpedia.org/resource/Gordon_and_Betty_Moore_Foundation>,
+        <http://dbpedia.org/resource/Intel>,
+        <http://dbpedia.org/resource/Moore's_law> .
 

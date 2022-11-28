@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Chip_an'_Dale> ns1:producer <http://dbpedia.org/resource/Walt_Disney> .
+<http://dbpedia.org/resource/Double_Dribble_(film)> ns1:producer <http://dbpedia.org/resource/Walt_Disney> .
 

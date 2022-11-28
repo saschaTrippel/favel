@@ -1,5 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Password_(2019_Bangladeshi_film)> ns1:starring <http://dbpedia.org/resource/Balthazar_Getty>,
-        <http://dbpedia.org/resource/Ian_Holm> .
+<http://dbpedia.org/resource/Kamaladalam> ns1:starring <http://dbpedia.org/resource/Santiago_Segura> .
 

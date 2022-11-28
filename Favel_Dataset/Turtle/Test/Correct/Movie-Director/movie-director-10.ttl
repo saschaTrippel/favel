@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Little_Tokyo,_U.S.A.> ns1:director <http://dbpedia.org/resource/Otto_Brower> .
+<http://dbpedia.org/resource/Nameless_Men> ns1:director <http://dbpedia.org/resource/Christy_Cabanne> .
 

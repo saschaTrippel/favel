@@ -1,0 +1,4 @@
+@prefix ns1: <https://dbpedia.org/property/> .
+
+<http://dbpedia.org/resource/Ubaidur_Rahman> ns1:birthPlace <http://dbpedia.org/resource/Japan> .
+

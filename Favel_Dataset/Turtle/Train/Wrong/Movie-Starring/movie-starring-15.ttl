@@ -1,6 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Casper:_A_Spirited_Beginning> ns1:starring <http://dbpedia.org/resource/Amit_Hasan>,
-        <http://dbpedia.org/resource/K._P._A._C._Lalitha>,
-        <http://dbpedia.org/resource/Prem_Nazir> .
+<http://dbpedia.org/resource/A_Guy_Thing> ns1:starring <http://dbpedia.org/resource/Dilip_Kumar> .
 

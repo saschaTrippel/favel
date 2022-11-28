@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Aaniiih_Nakoda_College> ns1:type <http://dbpedia.org/resource/Research_university> .
+<http://dbpedia.org/resource/Jawaharlal_Nehru_Krishi_Vishwa_Vidyalaya> ns1:type <http://dbpedia.org/resource/Private_university> .
 
