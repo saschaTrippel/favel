@@ -82,8 +82,7 @@ class Controller:
         """
         self.startContainers()
         
-        validator = Validator(dict(self.configParser['Approaches']),
-                              self.configParser['General']['cachePath'], self.configParser['General']['useCache'])
+        validator = Validator(dict(self.configParser['Approaches']), self.configParser['General']['useCache'])
 
         validator.validate(self.trainingData, self.testingData)
 
