@@ -75,14 +75,14 @@ class Controller:
         """
         input = Input()
         self.trainingData, self.testingData = input.getInput(self.args.data)
-    
+
     def validate(self):
         """
         Validate the assertions that are held in self.assertions.
         """
         self.startContainers()
         
-        validator = Validator(dict(self.configParser['Approaches']), self.configParser['General']['useCache'])
+        validator = Validator(dict(self.configParser['Approaches']), bool(self.configParser['General']['useCache']))
 
         validator.validate(self.trainingData, self.testingData)
 
