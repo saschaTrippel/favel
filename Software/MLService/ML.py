@@ -247,7 +247,7 @@ class ML:
             try:
                 ml_result = pd.read_excel(f"{evaluation_path}/ML_Results/ml_results.xlsx")
 
-                eval_key=eval_key=os.path.basename(os.path.normpath(output_path))
+                eval_key=os.path.basename(os.path.normpath(output_path))
                 ml_result.loc[ml_result['eval_key']==eval_key, 'roc_auc_overall_validation']=roc_auc
 
             except Exception as e:
