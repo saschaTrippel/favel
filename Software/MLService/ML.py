@@ -212,10 +212,7 @@ class ML:
 
             roc_auc = roc_auc_score(y, ensembleScore)
 
-            logging.info('validation completed')
-
-            evaluation_path = Path(output_path).parent
-            print('>>>> ', evaluation_path)
+            logging.info('Validation completed')
 
             return df
 

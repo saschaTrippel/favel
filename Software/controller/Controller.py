@@ -95,8 +95,8 @@ class Controller:
         training_df = self.ml.createDataFrame(self.trainingData)
         # if not training_df: logging.info('[controller train] Error in createDataFrame')
 
-        ml_model_name = self.configParser['MLApproches']['method']
-        ml_model_params = self.configParser['MLApproches']['parameters']
+        ml_model_name = self.configParser['MLAlgorithm']['method']
+        ml_model_params = self.configParser['MLAlgorithm']['parameters']
         ml_model_params=ast.literal_eval(ml_model_params)
         ml_model = self.ml.get_sklearn_model(ml_model_name, ml_model_params)
 
@@ -127,5 +127,5 @@ class Controller:
         """
         op = Output(self.experimentPath)
         op.writeOutput(self.ml_test_result)
-        op.writeOverview(self.ml_test_result, self.experimentPath, self.args.data, dict(self.configParser['Approaches']).keys(), self.configParser['MLApproches']['method'], self.trainMetrics)
+        op.writeOverview(self.ml_test_result, self.experimentPath, self.args.data, dict(self.configParser['Approaches']).keys(), self.configParser['MLAlgorithm']['method'], self.trainMetrics)
         op.gerbilFormat(self.testingData)
