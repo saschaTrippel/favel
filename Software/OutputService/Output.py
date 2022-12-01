@@ -16,20 +16,33 @@ class Output():
 		"""
         df.to_csv(path.join(self.experimentPath, "Output.csv"), index=False)
         
-    def writeTestOverview(self, df, experimentPath:str, datasetPath:str):
+    def writeTestOverview(self, df, experimentPath:str, datasetPath:str, approaches):
+        
+        ### Calculate metrics ###
+        # Ensemble score
         y = df.truth
         ensembleScore = df.ensemble_score
-
         auc_roc = metrics.roc_auc_score(y, ensembleScore)
+        
+        # Individual scores
+        bestApproach = None
+        bestScore = 0
+        for approach in approaches:
+            approachScore = df[approach]
+            auc_roc_single = metrics.roc_auc_score(y, approachScore)
+            if auc_roc_single > bestScore:
+                bestScore = auc_roc_single
+                bestApproach = approach
 
+        ### Write file ###
         # Read existing file, or create new data frame
         try:
             overviewFrame = pd.read_excel(path.join(self._getEvaluation(experimentPath), "Overview.xlsx"))
         except Exception as ex:
-            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "AUC-ROC Score"])
+            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Best Single Approach", "Best Single Score", "AUC-ROC Score"])
             
         # Create a new row for current experiment
-        row = pd.Series([self._getExperiment(experimentPath), self._getDataset(datasetPath), auc_roc], index=overviewFrame.columns)
+        row = pd.Series([self._getExperiment(experimentPath), self._getDataset(datasetPath), bestApproach, bestScore, auc_roc], index=overviewFrame.columns)
         
         # See if there already is a row for the current experiment and dataset
         exSet = set(overviewFrame.index[overviewFrame.Experiment == row.Experiment].tolist())
