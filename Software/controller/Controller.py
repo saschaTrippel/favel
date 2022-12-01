@@ -11,59 +11,28 @@ class Controller:
     """
     Controler that interacts with the different services.
     """
-    def __init__(self, argv=None):
-        self.args = self._parseArguments(argv)
-        self.experimentPath = self._loadExperimentPath()
-        self.configParser = self._loadConfig()
-        self._configureLogging()
+    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters, experimentPath:str, datasetPath:str, useCache:bool, handleContainers:bool):
+        self.approaches = approaches
+        self.mlAlgorithm = mlAlgorithm
+        self.mlParameters = mlParameters
+        self.experimentPath = experimentPath
+        self.datasetPath = datasetPath
+        self.useCache = useCache
+        self.handleContainers = handleContainers
         self.testingData = None
         self.trainingData = None
-        self.validateTrainingData = None
 
         self.ml = ML(log_file=path.join(self.experimentPath, "ml_logs.log"))
 
-    def _parseArguments(self, argv=None):
-        argumentParser = argparse.ArgumentParser()
-
-        argumentParser.add_argument("-d", "--data", required=True, help="Path to input data")
-        argumentParser.add_argument("-e", "--experiment", required=True, help="Name of the experiment to execute. The name must correspond to one directory in the Evaluation directory which contains a configuration file")
-        argumentParser.add_argument("-c", "--containers", action="store_true", help="To Start/Stop containers, if not already running")
-    
-        return argumentParser.parse_args(argv)
-    
-    def _loadExperimentPath(self):
-        favelPath = path.realpath(__file__)
-        pathLst = favelPath.split('/')
-        favelPath = "/".join(pathLst[:-3])
-        return path.join(favelPath, "Evaluation", self.args.experiment)
-        
-    def _loadConfig(self):
-        configPath = path.join(self.experimentPath, "favel.conf")
-        if not path.exists(configPath):
-            raise FileNotFoundError(f"Config file {configPath} does not exist")
-        configParser = configparser.ConfigParser()
-        configParser.read(configPath)
-        return configParser
-    
-    def _configureLogging(self):
-        loggingOptions = dict()
-        loggingOptions['debug'] = logging.DEBUG
-        loggingOptions['info'] = logging.INFO
-        loggingOptions['warning'] = logging.WARNING
-        loggingOptions['error'] = logging.ERROR
-        loggingOptions['critical'] = logging.CRITICAL
-        
-        logging.basicConfig(level=loggingOptions[self.configParser['General']['logging']])
-    
     def startContainers(self):
-        if self.args.containers:
+        if self.handleContainers:
             logging.info("Starting Containers")
             c = Containers()
             c.startContainers() 
             c.status()
     
     def stopContainers(self):
-        if self.args.containers:
+        if self.handleContainers:
             logging.info("Stopping Containers")
             c = Containers()
             c.rmContainers()
@@ -74,7 +43,7 @@ class Controller:
         The assertions are held in self.assertions.
         """
         input = Input()
-        self.trainingData, self.testingData = input.getInput(self.args.data)
+        self.trainingData, self.testingData = input.getInput(self.datasetPath)
 
     def validate(self):
         """
@@ -82,8 +51,7 @@ class Controller:
         """
         self.startContainers()
         
-        validator = Validator(dict(self.configParser['Approaches']), bool(self.configParser['General']['useCache']))
-
+        validator = Validator(self.approaches, self.useCache)
         validator.validate(self.trainingData, self.testingData)
 
         self.stopContainers()
@@ -95,15 +63,15 @@ class Controller:
         training_df = self.ml.createDataFrame(self.trainingData)
         # if not training_df: logging.info('[controller train] Error in createDataFrame')
 
-        ml_model_name = self.configParser['MLAlgorithm']['method']
-        ml_model_params = self.configParser['MLAlgorithm']['parameters']
+        ml_model_name = self.mlAlgorithm
+        ml_model_params = self.mlParameters
         ml_model_params=ast.literal_eval(ml_model_params)
         ml_model = self.ml.get_sklearn_model(ml_model_name, ml_model_params)
 
         self.model, self.lableEncoder, self.trainMetrics = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
                                             output_path=self.experimentPath, 
-                                            dataset_path=self.args.data)
+                                            dataset_path=self.datasetPath)
 
     def test(self):
         """
@@ -114,7 +82,7 @@ class Controller:
 
         testing_result = self.ml.validate_model(df=testing_df, 
                                                 output_path=self.experimentPath, 
-                                                dataset_path=self.args.data)
+                                                dataset_path=self.datasetPath)
         # if not testing_result: logging.info('[controller test] Error in validate_model')
 
         self.ml_test_result = testing_result
@@ -127,5 +95,6 @@ class Controller:
         """
         op = Output(self.experimentPath)
         op.writeOutput(self.ml_test_result)
-        op.writeOverview(self.ml_test_result, self.experimentPath, self.args.data, dict(self.configParser['Approaches']).keys(), self.configParser['MLAlgorithm']['method'], self.trainMetrics)
+        op.writeOverview(self.ml_test_result, self.experimentPath, self.datasetPath,
+                         self.approaches.keys(), self.mlAlgorithm, self.trainMetrics)
         op.gerbilFormat(self.testingData)
