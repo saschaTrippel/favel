@@ -166,35 +166,6 @@ class ML:
             if trained_model==False and model_name==False and roc_auc_overall_score==False: 
                 return False
             else:
-
-                evaluation_path = Path(output_path).parent
-
-                Path(f'{evaluation_path}/ML_Results').mkdir(parents=True, exist_ok=True)
-                new_result = pd.DataFrame({
-                        'time': [time.strftime('%l:%M%p %Z on %b %d, %Y')],
-                        'eval_key': [os.path.basename(os.path.normpath(output_path))],
-                        'dataset_path': [dataset_path],
-                        'ml_model_name': [model_name],
-                        'roc_auc_overall_train': [roc_auc_overall_score],
-                        'roc_auc_cv_mean': [np.mean(roc_auc_cv_scores)],
-                        'roc_auc_cv_std': [round(statistics.stdev(roc_auc_cv_scores), 2)], 
-                        'experiment_folder': [output_path]
-                })
-
-
-                try:
-                    ml_result = pd.read_excel(f"{evaluation_path}/ML_Results/ml_results.xlsx")
-
-                    # if we have an existing record for current eval_key, then remove the previous record
-                    ml_result= ml_result[~ml_result.eval_key.isin(new_result.eval_key)]
-
-                    ml_result=pd.concat([ml_result, new_result])
-                except Exception as e:
-                    ml_result=new_result.copy()
-
-
-                ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx', index=False)
-
                 report_df.to_excel(f'{output_path}/Classifcation Report.xlsx', index=False)
 
                 with open(f'{output_path}/classifier.pkl','wb') as fp:   pickle.dump(trained_model,fp)
@@ -245,25 +216,6 @@ class ML:
 
             evaluation_path = Path(output_path).parent
             print('>>>> ', evaluation_path)
-
-            Path(f'{evaluation_path}/ML_Results').mkdir(parents=True, exist_ok=True)
-            new_result = pd.DataFrame({
-                    'eval_key': [os.path.basename(os.path.normpath(output_path))],
-                    'roc_auc_overall_validation': [roc_auc],
-            })
-            try:
-                ml_result = pd.read_excel(f"{evaluation_path}/ML_Results/ml_results.xlsx")
-
-                eval_key=os.path.basename(os.path.normpath(output_path))
-                ml_result.loc[ml_result['eval_key']==eval_key, 'roc_auc_overall_validation']=roc_auc
-
-            except Exception as e:
-                ml_result=new_result.copy()
-
-
-            ml_result.to_excel(f'{evaluation_path}/ML_Results/ml_results.xlsx', index=False)
-
-            logging.info('validation results written in results file')
 
             return df
 
