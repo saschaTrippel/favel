@@ -16,7 +16,7 @@ class Output():
 		"""
         df.to_csv(path.join(self.experimentPath, "Output.csv"), index=False)
         
-    def writeTestOverview(self, df, experimentPath:str, datasetPath:str, approaches):
+    def writeOverview(self, df, experimentPath:str, datasetPath:str, approaches, trainingMetrics):
         
         ### Calculate metrics ###
         # Ensemble score
@@ -39,10 +39,10 @@ class Output():
         try:
             overviewFrame = pd.read_excel(path.join(self._getEvaluation(experimentPath), "Overview.xlsx"))
         except Exception as ex:
-            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Best Single Approach", "Best Single Score", "AUC-ROC Score"])
+            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Best Single Approach", "Best Single Score", "Training AUC-ROC Score", "AUC-ROC Score"])
             
         # Create a new row for current experiment
-        row = pd.Series([self._getExperiment(experimentPath), self._getDataset(datasetPath), bestApproach, bestScore, auc_roc], index=overviewFrame.columns)
+        row = pd.Series([self._getExperiment(experimentPath), self._getDataset(datasetPath), bestApproach, bestScore, trainingMetrics['overall'], auc_roc], index=overviewFrame.columns)
         
         # See if there already is a row for the current experiment and dataset
         exSet = set(overviewFrame.index[overviewFrame.Experiment == row.Experiment].tolist())

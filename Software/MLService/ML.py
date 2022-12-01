@@ -139,6 +139,12 @@ class ML:
     
     # Change model list here to be a single model
     def train_model(self, df, ml_model, output_path, dataset_path):
+        """
+        Returns:
+            - Model
+            - Predicate lable encoder
+            - Training AUC-ROC score
+        """
         try:
             le = preprocessing.LabelEncoder()
             le.fit(df['predicate'])
@@ -152,6 +158,7 @@ class ML:
             roc_auc_cv_scores = self.custom_model_train_cv(X, y, ml_model)
 
             trained_model, model_name, roc_auc_overall_score, report_df = self.custom_model_train(X, y, ml_model)
+            metrics = {"overall": roc_auc_overall_score, "cv_mean": np.mean(roc_auc_cv_scores), "cv_std": round(statistics.stdev(roc_auc_cv_scores), 2)}
 
             logging.info('ML model trained')
 
@@ -195,14 +202,14 @@ class ML:
 
                 logging.info('ML model and labelencoder saved in output path')
 
-                return True
-        except Exception as e:
+                return trained_model, le, metrics
+        except Exception as ex:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in train_model: ', exc_type, fname, exc_tb.tb_lineno)
-            logging.error('Error in train_model: ' +' '+str(e)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+            logging.error('Error in train_model: ' +' '+str(ex)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
 
-            return False
+            raise ex
 
 
     def validate_model(self, df, output_path, dataset_path):

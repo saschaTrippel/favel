@@ -100,7 +100,7 @@ class Controller:
         ml_model_params=ast.literal_eval(ml_model_params)
         ml_model = self.ml.get_sklearn_model(ml_model_name, ml_model_params)
 
-        train_result = self.ml.train_model(df=training_df, 
+        self.model, self.lableEncoder, self.trainMetrics = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
                                             output_path=self.experimentPath, 
                                             dataset_path=self.args.data)
@@ -127,5 +127,5 @@ class Controller:
         """
         op = Output(self.experimentPath)
         op.writeOutput(self.ml_test_result)
-        op.writeTestOverview(self.ml_test_result, self.experimentPath, self.args.data, dict(self.configParser['Approaches']).keys())
+        op.writeOverview(self.ml_test_result, self.experimentPath, self.args.data, dict(self.configParser['Approaches']).keys(), self.trainMetrics)
         op.gerbilFormat(self.testingData)
