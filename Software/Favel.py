@@ -2,6 +2,7 @@ import configparser, logging, argparse
 
 from os import path
 from controller.Controller import Controller
+from argparse import ArgumentParser
 
 def main():
     args = _parseArguments()
@@ -9,26 +10,39 @@ def main():
     config = _loadConfig(experimentPath)
     _configureLogging(config)
 
-    controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                            experimentPath=experimentPath, datasetPath=args.data, useCache=bool(config['General']['useCache']), handleContainers=args.containers)
+    #gen = powerset(list(dict(config['Approaches']).keys()))
 
-    try:
+    if not args.experiment is None:
+        controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
+                                experimentPath=experimentPath, datasetPath=args.data, useCache=bool(config['General']['useCache']), handleContainers=args.containers)
         controller.input()
         controller.validate()
         controller.train()
         controller.test()
         controller.output()
-    except Exception as ex:
-        raise ex
         
+    elif not args.batch is None:
+        pass
 
+def powerset(approaches:list):
+    if len(approaches) <= 0:
+        yield approaches
+    else:
+        for item in powerset(approaches[1:]):
+            yield [approaches[0]] + item
+            yield item
+                
+    
 
 def _parseArguments(argv=None):
     argumentParser = argparse.ArgumentParser()
 
     argumentParser.add_argument("-d", "--data", required=True, help="Path to input data")
-    argumentParser.add_argument("-e", "--experiment", required=True, help="Name of the experiment to execute. The name must correspond to one directory in the Evaluation directory which contains a configuration file")
     argumentParser.add_argument("-c", "--containers", action="store_true", help="To Start/Stop containers, if not already running")
+
+    group = argumentParser.add_mutually_exclusive_group(required=True)
+    group.add_argument("-e", "--experiment", help="Name of the experiment to execute. The name must correspond to one directory in the Evaluation directory which contains a configuration file")
+    group.add_argument("-b", "--batch", help="Name of the experiment to execute in batch mode. Batch mode executes an experiment for each set in the powerset of the approaches.")
     
     return argumentParser.parse_args(argv)
     
