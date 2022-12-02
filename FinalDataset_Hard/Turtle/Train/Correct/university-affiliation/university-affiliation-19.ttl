@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Limerick> ns1:affiliation <http://dbpedia.org/resource/Irish_Universities_Association> .
+<http://dbpedia.org/resource/University_of_Huddersfield> ns1:affiliation <http://dbpedia.org/resource/University_Alliance> .
 

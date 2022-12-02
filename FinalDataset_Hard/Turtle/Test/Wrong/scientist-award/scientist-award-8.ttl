@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Pardis_Sabeti> ns1:award <http://dbpedia.org/resource/Time_100> .
+<http://dbpedia.org/resource/Peter_Wells_(medical_physicist)> ns1:award <http://dbpedia.org/resource/Duddell_Medal_and_Prize> .
 

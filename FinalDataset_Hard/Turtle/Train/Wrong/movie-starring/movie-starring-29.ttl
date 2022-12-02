@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dark_Victory> ns1:starring <http://dbpedia.org/resource/Daniel_Petrie> .
+<http://dbpedia.org/resource/Demons_of_the_Mind> ns1:starring <http://dbpedia.org/resource/Christopher_Wicking> .
 

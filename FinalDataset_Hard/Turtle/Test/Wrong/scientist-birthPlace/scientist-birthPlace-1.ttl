@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Leonard_Broom> ns1:birthPlace <http://dbpedia.org/resource/Santa_Barbara,_California> .
+<http://dbpedia.org/resource/Lawrence_Alexander_Hardie> ns1:birthPlace <http://dbpedia.org/resource/Seaside,_California> .
 

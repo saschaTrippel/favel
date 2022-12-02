@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Rose_Frisch> ns1:education <http://dbpedia.org/resource/Columbia_University> .
+<http://dbpedia.org/resource/Zhi-Quan_Tom_Luo> ns1:education <http://dbpedia.org/resource/Peking_University> .
 

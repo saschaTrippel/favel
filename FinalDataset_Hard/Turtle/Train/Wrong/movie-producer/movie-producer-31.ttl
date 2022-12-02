@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Deadly_Advice> ns1:producer <http://dbpedia.org/resource/George_Joseph_Smith> .
+<http://dbpedia.org/resource/Analyze_This> ns1:producer <http://dbpedia.org/resource/Chazz_Palminteri> .
 

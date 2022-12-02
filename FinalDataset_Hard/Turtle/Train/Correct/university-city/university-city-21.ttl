@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Amrita_Vishwa_Vidyapeetham> ns1:city <http://dbpedia.org/resource/Ettimadai> .
+<http://dbpedia.org/resource/University_of_Hertfordshire> ns1:city <http://dbpedia.org/resource/Hertfordshire> .
 

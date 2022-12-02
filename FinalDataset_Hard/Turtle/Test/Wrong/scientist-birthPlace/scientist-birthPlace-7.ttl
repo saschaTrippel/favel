@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Tanel_Tammet> ns1:birthPlace <http://dbpedia.org/resource/Gothenburg> .
+<http://dbpedia.org/resource/Nalini_Balbir> ns1:birthPlace <http://dbpedia.org/resource/Munich> .
 

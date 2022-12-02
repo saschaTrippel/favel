@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Hertfordshire> ns1:chancellor <http://dbpedia.org/resource/Andy_Goldsworthy> .
+<http://dbpedia.org/resource/University_School_of_Law_and_Legal_Studies> ns1:chancellor <http://dbpedia.org/resource/Mahesh_Verma> .
 

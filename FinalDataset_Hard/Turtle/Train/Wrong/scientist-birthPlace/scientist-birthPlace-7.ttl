@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Maha_Ashour-Abdalla> ns1:birthPlace <http://dbpedia.org/resource/Los_Angeles> .
+<http://dbpedia.org/resource/Kenneth_G._Wilson> ns1:birthPlace <http://dbpedia.org/resource/Saco,_Maine> .
 

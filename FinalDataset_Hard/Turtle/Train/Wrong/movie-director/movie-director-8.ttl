@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Almost_Married_(1932_film)> ns1:director <http://dbpedia.org/resource/Violet_Heming> .
+<http://dbpedia.org/resource/After_Your_Own_Heart> ns1:director <http://dbpedia.org/resource/Benjamin_H._Kline> .
 

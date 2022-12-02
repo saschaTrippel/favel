@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/William_Healey_Dall> ns1:academicDiscipline <http://dbpedia.org/resource/Anthropology> .
+<http://dbpedia.org/resource/Vladimir_Lobashev> ns1:academicDiscipline <http://dbpedia.org/resource/Genetics> .
 

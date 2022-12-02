@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Melbourne> ns1:city <http://dbpedia.org/resource/Werribee,_Victoria> .
+<http://dbpedia.org/resource/University_of_Wales> ns1:city <http://dbpedia.org/resource/Bangor,_Wales> .
 

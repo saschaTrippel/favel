@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Portsmouth> ns1:chancellor <http://dbpedia.org/resource/Andrew_Miller_(politician)> .
+<http://dbpedia.org/resource/University_of_Glasgow> ns1:chancellor <http://dbpedia.org/resource/Amal_Azzudin> .
 

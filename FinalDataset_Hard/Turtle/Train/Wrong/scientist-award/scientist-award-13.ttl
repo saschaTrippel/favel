@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/John_Lindl> ns1:award <http://dbpedia.org/resource/Ernest_Orlando_Lawrence_Award> .
+<http://dbpedia.org/resource/Arnall_Patz> ns1:award <http://dbpedia.org/resource/Lasker_Award> .
 

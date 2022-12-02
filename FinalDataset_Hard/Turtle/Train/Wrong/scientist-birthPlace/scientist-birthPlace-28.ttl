@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Malcolm_Haines> ns1:birthPlace <http://dbpedia.org/resource/Cambridge> .
+<http://dbpedia.org/resource/Rogers_H._Wright> ns1:birthPlace <http://dbpedia.org/resource/California> .
 

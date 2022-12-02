@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Danger:_Diabolik> ns1:starring <http://dbpedia.org/resource/Michel_Piccoli> .
+<http://dbpedia.org/resource/All_About_Women> ns1:starring <http://dbpedia.org/resource/Gwei_Lun-mei> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/American_Pie_2> ns1:productionCompany <http://dbpedia.org/resource/VHS> .
+<http://dbpedia.org/resource/Bosko's_Knight-Mare> ns1:productionCompany <http://dbpedia.org/resource/Warner_Bros._Pictures> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Amy_(2015_film)> ns1:director <http://dbpedia.org/resource/Asif_Kapadia> .
+<http://dbpedia.org/resource/Bowery_Bugs> ns1:director <http://dbpedia.org/resource/Arthur_Davis_(animator)> .
 

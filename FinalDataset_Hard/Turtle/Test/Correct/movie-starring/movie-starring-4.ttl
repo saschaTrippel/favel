@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Amy_(2015_film)> ns1:starring <http://dbpedia.org/resource/Amy_Winehouse> .
+<http://dbpedia.org/resource/Almost_Famous> ns1:starring <http://dbpedia.org/resource/Kate_Hudson> .
 

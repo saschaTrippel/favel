@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Darna_Zaroori_Hai> ns1:producer <http://dbpedia.org/resource/Amal_Neerad> .
+<http://dbpedia.org/resource/Death_to_Smoochy> ns1:producer <http://dbpedia.org/resource/Adam_Resnick> .
 

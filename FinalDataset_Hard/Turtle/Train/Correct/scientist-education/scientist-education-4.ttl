@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Vickie_Mays> ns1:education <http://dbpedia.org/resource/Loyola_University_Chicago> .
+<http://dbpedia.org/resource/William_Happer> ns1:education <http://dbpedia.org/resource/University_of_North_Carolina_at_Chapel_Hill> .
 

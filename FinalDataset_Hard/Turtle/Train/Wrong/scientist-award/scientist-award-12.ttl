@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Francis_T._Cullen> ns1:award <http://dbpedia.org/resource/Stockholm_Prize_in_Criminology> .
+<http://dbpedia.org/resource/Maor_Farid> ns1:award <http://dbpedia.org/resource/Fulbright_Program> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dangerous_Dan_McFoo> ns1:director <http://dbpedia.org/resource/Virgil_Ross> .
+<http://dbpedia.org/resource/Vacanze_di_Natale> ns1:director <http://dbpedia.org/resource/Aurelio_De_Laurentiis> .
 

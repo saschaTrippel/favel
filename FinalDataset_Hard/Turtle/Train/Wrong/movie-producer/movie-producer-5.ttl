@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Adventure_in_the_Hopfields> ns1:producer <http://dbpedia.org/resource/Dandy_Nichols> .
+<http://dbpedia.org/resource/Vacanze_di_Natale> ns1:producer <http://dbpedia.org/resource/Carlo_Vanzina> .
 

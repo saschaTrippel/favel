@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vijayanagara_Sri_Krishnadevaraya_University> ns1:affiliation <http://dbpedia.org/resource/Gulbarga_University> .
+<http://dbpedia.org/resource/University_of_Gloucestershire> ns1:affiliation <http://dbpedia.org/resource/University_of_Brighton> .
 

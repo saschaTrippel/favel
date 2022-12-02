@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Victoria> ns1:city <http://dbpedia.org/resource/Greater_Victoria> .
+<http://dbpedia.org/resource/University_of_Salford> ns1:city <http://dbpedia.org/resource/City_of_Salford> .
 

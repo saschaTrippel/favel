@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Robert_Bell_(geologist)> ns1:award <http://dbpedia.org/resource/Cullum_Geographical_Medal> .
+<http://dbpedia.org/resource/Ajit_Ram_Verma> ns1:award <http://dbpedia.org/resource/Shanti_Swarup_Bhatnagar_Prize_for_Science_and_Technology> .
 

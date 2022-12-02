@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Danger:_Diabolik> ns1:director <http://dbpedia.org/resource/American_Zoetrope> .
+<http://dbpedia.org/resource/1971_(2007_film)> ns1:director <http://dbpedia.org/resource/Vivek_Mishra> .
 

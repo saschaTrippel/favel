@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Universiti_Sains_Malaysia> ns1:affiliation <http://dbpedia.org/resource/University_Alliance_in_Talent_Education_Development> .
+<http://dbpedia.org/resource/Ulster_University_at_Coleraine> ns1:affiliation <http://dbpedia.org/resource/Ulster_University> .
 

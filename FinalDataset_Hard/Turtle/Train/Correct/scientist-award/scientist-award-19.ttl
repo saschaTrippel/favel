@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Lance_Liotta> ns1:award <http://dbpedia.org/resource/American_Association_for_Clinical_Chemistry> .
+<http://dbpedia.org/resource/Walter_Hayman> ns1:award <http://dbpedia.org/resource/Berwick_Prize> .
 

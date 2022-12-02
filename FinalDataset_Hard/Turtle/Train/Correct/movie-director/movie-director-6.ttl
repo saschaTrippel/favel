@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Day_Watch_(film)> ns1:director <http://dbpedia.org/resource/Timur_Bekmambetov> .
+<http://dbpedia.org/resource/Along_Came_Daffy> ns1:director <http://dbpedia.org/resource/Friz_Freleng> .
 

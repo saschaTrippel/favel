@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/William_L._Kruer> ns1:education <http://dbpedia.org/resource/University_of_Louisville> .
+<http://dbpedia.org/resource/Steven_Blair> ns1:education <http://dbpedia.org/resource/Indiana_University_Bloomington> .
 

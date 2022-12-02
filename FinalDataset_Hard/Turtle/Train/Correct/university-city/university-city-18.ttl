@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vijayanagara_Sri_Krishnadevaraya_University> ns1:city <http://dbpedia.org/resource/Karnataka> .
+<http://dbpedia.org/resource/Texas_A&M_University_at_Qatar> ns1:city <http://dbpedia.org/resource/Education_City> .
 

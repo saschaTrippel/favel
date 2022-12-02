@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dastak_(1996_film)> ns1:producer <http://dbpedia.org/resource/Alka_Yagnik> .
+<http://dbpedia.org/resource/Dante's_Inferno_(1935_film)> ns1:producer <http://dbpedia.org/resource/Dante_Alighieri> .
 

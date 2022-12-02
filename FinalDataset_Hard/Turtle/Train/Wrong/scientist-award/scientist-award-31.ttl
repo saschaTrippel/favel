@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/David_Lee_(physicist)> ns1:award <http://dbpedia.org/resource/List_of_Jewish_Nobel_laureates> .
+<http://dbpedia.org/resource/Guy_Rocher> ns1:award <http://dbpedia.org/resource/Sir_John_William_Dawson_Medal> .
 

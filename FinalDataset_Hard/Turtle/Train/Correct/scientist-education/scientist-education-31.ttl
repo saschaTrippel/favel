@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Roy_W._Gould> ns1:education <http://dbpedia.org/resource/California_Institute_of_Technology> .
+<http://dbpedia.org/resource/Rose_Frisch> ns1:education <http://dbpedia.org/resource/Columbia_University> .
 

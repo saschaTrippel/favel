@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Dundee> ns1:affiliation <http://dbpedia.org/resource/Association_of_Commonwealth_Universities> .
+<http://dbpedia.org/resource/Pondicherry_University> ns1:affiliation <http://dbpedia.org/resource/University_Grants_Commission_(India)> .
 

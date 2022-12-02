@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/David_(2013_Tamil_film)> ns1:producer <http://dbpedia.org/resource/Sheetal_Menon> .
+<http://dbpedia.org/resource/Devil_May_Hare> ns1:producer <http://dbpedia.org/resource/Phil_DeLara> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Cat_Feud> ns1:producer <http://dbpedia.org/resource/John_W._Burton_(film_producer)> .
+<http://dbpedia.org/resource/Dark_Victory> ns1:producer <http://dbpedia.org/resource/David_Lewis_(producer)> .
 
