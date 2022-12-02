@@ -6,6 +6,7 @@ from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
 from OutputService.Output import Output
+import pdb 
 
 class Controller:
     """
@@ -66,7 +67,8 @@ class Controller:
         ml_model_name = self.mlAlgorithm
         ml_model_params = self.mlParameters
         ml_model_params=ast.literal_eval(ml_model_params)
-        ml_model = self.ml.get_sklearn_model(ml_model_name, ml_model_params)
+
+        ml_model = self.ml.get_sklearn_model(ml_model_name, ml_model_params, training_df)
 
         self.model, self.lableEncoder, self.trainMetrics = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
