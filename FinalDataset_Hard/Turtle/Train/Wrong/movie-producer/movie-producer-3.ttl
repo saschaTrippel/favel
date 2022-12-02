@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/An_Eastern_Westerner> ns1:producer <http://dbpedia.org/resource/Wallace_Howe> .
+<http://dbpedia.org/resource/Deep_Impact_(film)> ns1:producer <http://dbpedia.org/resource/David_M._Walker_(astronaut)> .
 

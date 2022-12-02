@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Ulster_University_at_Coleraine> ns1:affiliation <http://dbpedia.org/resource/Northern_Ireland> .
+<http://dbpedia.org/resource/University_of_Westminster> ns1:affiliation <http://dbpedia.org/resource/Westminster_International_University_in_Tashkent> .
 

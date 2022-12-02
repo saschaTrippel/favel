@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Rose_Frisch> ns1:education <http://dbpedia.org/resource/Harvard_T.H._Chan_School_of_Public_Health> .
+<http://dbpedia.org/resource/Zhi-Quan_Tom_Luo> ns1:education <http://dbpedia.org/resource/University_of_Minnesota> .
 

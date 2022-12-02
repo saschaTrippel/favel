@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vasuvum_Saravananum_Onna_Padichavanga> ns1:producer <http://dbpedia.org/resource/Varun_Parandhaman> .
+<http://dbpedia.org/resource/Demons_of_the_Mind> ns1:producer <http://dbpedia.org/resource/Virginia_Wetherell> .
 

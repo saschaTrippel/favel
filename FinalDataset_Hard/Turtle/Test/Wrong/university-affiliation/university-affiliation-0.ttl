@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Manonmaniam_Sundaranar_University> ns1:affiliation <http://dbpedia.org/resource/Madurai_Kamaraj_University> .
+<http://dbpedia.org/resource/University_of_Dar_es_Salaam> ns1:affiliation <http://dbpedia.org/resource/Chadema> .
 

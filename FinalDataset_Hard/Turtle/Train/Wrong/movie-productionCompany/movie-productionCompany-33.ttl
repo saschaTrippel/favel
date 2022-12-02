@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dancer_in_the_Dark> ns1:productionCompany <http://dbpedia.org/resource/Les_films_du_losange> .
+<http://dbpedia.org/resource/Cat_Feud> ns1:productionCompany <http://dbpedia.org/resource/Warner_Bros.> .
 

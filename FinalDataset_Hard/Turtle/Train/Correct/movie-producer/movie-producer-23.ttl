@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Danger:_Diabolik> ns1:producer <http://dbpedia.org/resource/Dino_De_Laurentiis> .
+<http://dbpedia.org/resource/Anandam> ns1:producer <http://dbpedia.org/resource/Ramoji_Rao> .
 

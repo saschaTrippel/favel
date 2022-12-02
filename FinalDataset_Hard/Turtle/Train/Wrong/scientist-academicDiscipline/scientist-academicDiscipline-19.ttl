@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/William_Nordhaus> ns1:academicDiscipline <http://dbpedia.org/resource/Stern_Review> .
+<http://dbpedia.org/resource/Norman_Rostoker> ns1:academicDiscipline <http://dbpedia.org/resource/Solid-state_physics> .
 

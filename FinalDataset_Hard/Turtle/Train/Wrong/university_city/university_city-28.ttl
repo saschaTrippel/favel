@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Lincoln> ns1:city <http://dbpedia.org/resource/Leicester> .
+<http://dbpedia.org/resource/Australian_National_University> ns1:city <http://dbpedia.org/resource/Darwin,_Northern_Territory> .
 

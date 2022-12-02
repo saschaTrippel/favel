@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/William_Shadish> ns1:birthPlace <http://dbpedia.org/resource/New_York_(state)> .
+<http://dbpedia.org/resource/Ray_Jayawardhana> ns1:birthPlace <http://dbpedia.org/resource/Sri_Lanka> .
 

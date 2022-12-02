@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Ted_Janssen> ns1:birthPlace <http://dbpedia.org/resource/Vught> .
+<http://dbpedia.org/resource/Kip_Thorne> ns1:birthPlace <http://dbpedia.org/resource/Logan,_Utah> .
 

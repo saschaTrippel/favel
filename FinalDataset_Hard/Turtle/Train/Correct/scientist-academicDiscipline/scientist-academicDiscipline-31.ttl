@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Zohar_Manna> ns1:academicDiscipline <http://dbpedia.org/resource/Computer_science> .
+<http://dbpedia.org/resource/Pierre_Roubertoux> ns1:academicDiscipline <http://dbpedia.org/resource/Behavioural_genetics> .
 

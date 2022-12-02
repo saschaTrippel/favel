@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Oscar_Ratnoff> ns1:birthPlace <http://dbpedia.org/resource/New_York_City> .
+<http://dbpedia.org/resource/Maha_Ashour-Abdalla> ns1:birthPlace <http://dbpedia.org/resource/Kingdom_of_Egypt> .
 

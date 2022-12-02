@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Valley_of_the_Giants_(film)> ns1:director <http://dbpedia.org/resource/William_Keighley> .
+<http://dbpedia.org/resource/Dante's_Inferno:_An_Animated_Epic> ns1:director <http://dbpedia.org/resource/Yasuomi_Umetsu> .
 

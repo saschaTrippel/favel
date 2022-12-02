@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Demons_of_the_Mind> ns1:starring <http://dbpedia.org/resource/Yvonne_Mitchell> .
+<http://dbpedia.org/resource/Darling_(2015_Indian_film)> ns1:starring <http://dbpedia.org/resource/Nikki_Galrani> .
 

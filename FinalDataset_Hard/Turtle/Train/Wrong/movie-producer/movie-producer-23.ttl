@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Uzhaippali> ns1:producer <http://dbpedia.org/resource/Vaali_(poet)> .
+<http://dbpedia.org/resource/Dastak_(1996_film)> ns1:producer <http://dbpedia.org/resource/Alka_Yagnik> .
 

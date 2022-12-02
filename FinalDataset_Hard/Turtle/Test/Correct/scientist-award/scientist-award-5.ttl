@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Francesco_d'Errico> ns1:award <http://dbpedia.org/resource/CNRS_Gold_Medal> .
+<http://dbpedia.org/resource/David_MacDougall> ns1:award <http://dbpedia.org/resource/Royal_Anthropological_Institute_of_Great_Britain_and_Ireland> .
 

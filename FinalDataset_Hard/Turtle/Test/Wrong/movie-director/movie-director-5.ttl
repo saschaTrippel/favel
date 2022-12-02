@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Alvin_and_the_Chipmunks:_Chipwrecked> ns1:director <http://dbpedia.org/resource/Alvin_and_the_Chipmunks> .
+<http://dbpedia.org/resource/Amy_(2015_film)> ns1:director <http://dbpedia.org/resource/Amy_Winehouse> .
 

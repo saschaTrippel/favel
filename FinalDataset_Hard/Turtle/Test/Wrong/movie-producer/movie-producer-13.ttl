@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Africa_Squeaks> ns1:producer <http://dbpedia.org/resource/David_Livingstone> .
+<http://dbpedia.org/resource/All_the_Best:_Fun_Begins> ns1:producer <http://dbpedia.org/resource/Vijay_Patkar> .
 

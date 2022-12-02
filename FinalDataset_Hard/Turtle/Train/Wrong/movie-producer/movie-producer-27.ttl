@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dangerous_Dan_McFoo> ns1:producer <http://dbpedia.org/resource/Virgil_Ross> .
+<http://dbpedia.org/resource/Valley_of_the_Giants_(film)> ns1:producer <http://dbpedia.org/resource/Wade_Boteler> .
 

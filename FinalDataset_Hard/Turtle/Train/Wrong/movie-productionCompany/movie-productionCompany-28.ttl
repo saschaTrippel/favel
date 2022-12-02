@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Along_Came_Daffy> ns1:productionCompany <http://dbpedia.org/resource/Warner_Bros.> .
+<http://dbpedia.org/resource/Danger:_Diabolik> ns1:productionCompany <http://dbpedia.org/resource/American_Zoetrope> .
 

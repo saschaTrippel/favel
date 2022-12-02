@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Paul_Milgrom> ns1:birthPlace <http://dbpedia.org/resource/Oak_Park,_Michigan> .
+<http://dbpedia.org/resource/William_Howard_Stein> ns1:birthPlace <http://dbpedia.org/resource/Scarsdale,_New_York> .
 

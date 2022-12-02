@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/William_Healey_Dall> ns1:education <http://dbpedia.org/resource/Harvard_College> .
+<http://dbpedia.org/resource/Robert_H._Grubbs> ns1:education <http://dbpedia.org/resource/University_of_Florida> .
 

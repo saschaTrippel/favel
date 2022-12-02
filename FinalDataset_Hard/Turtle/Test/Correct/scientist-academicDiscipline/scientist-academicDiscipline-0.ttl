@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Yves_Meyer> ns1:academicDiscipline <http://dbpedia.org/resource/Mathematics> .
+<http://dbpedia.org/resource/Shinobu_Kitayama> ns1:academicDiscipline <http://dbpedia.org/resource/Social_psychology> .
 

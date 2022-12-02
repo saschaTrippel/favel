@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Patrick_F._Sullivan> ns1:education <http://dbpedia.org/resource/University_of_Notre_Dame> .
+<http://dbpedia.org/resource/Raymond_Wolters> ns1:education <http://dbpedia.org/resource/University_of_California,_Berkeley> .
 

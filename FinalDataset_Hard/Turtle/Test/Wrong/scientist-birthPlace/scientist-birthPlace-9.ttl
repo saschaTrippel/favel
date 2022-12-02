@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Norman_Rostoker> ns1:birthPlace <http://dbpedia.org/resource/Irvine,_California> .
+<http://dbpedia.org/resource/Nanda_Rea> ns1:birthPlace <http://dbpedia.org/resource/Fermi_Gamma-ray_Space_Telescope> .
 

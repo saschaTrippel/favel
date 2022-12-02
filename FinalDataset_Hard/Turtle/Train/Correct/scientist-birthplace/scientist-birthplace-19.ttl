@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Nektarios_Tavernarakis> ns1:birthPlace <http://dbpedia.org/resource/Heraklion> .
+<http://dbpedia.org/resource/Paul_Farmer> ns1:birthPlace <http://dbpedia.org/resource/North_Adams,_Massachusetts> .
 

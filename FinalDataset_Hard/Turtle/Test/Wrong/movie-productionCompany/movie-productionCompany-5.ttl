@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Analyze_This> ns1:productionCompany <http://dbpedia.org/resource/Warner_Bros._Pictures> .
+<http://dbpedia.org/resource/Dead_Tired> ns1:productionCompany <http://dbpedia.org/resource/Buena_Vista_International> .
 

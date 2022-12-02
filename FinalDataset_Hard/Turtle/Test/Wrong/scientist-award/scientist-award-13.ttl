@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Edsger_W._Dijkstra> ns1:award <http://dbpedia.org/resource/Distinguished_Fellow_of_the_British_Computer_Society> .
+<http://dbpedia.org/resource/Norman_Allinger> ns1:award <http://dbpedia.org/resource/Arthur_C._Cope_Award> .
 

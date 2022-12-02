@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Walter_Wilczynski> ns1:academicDiscipline <http://dbpedia.org/resource/Neuroanatomy> .
+<http://dbpedia.org/resource/Wilmatte_Porter_Cockerell> ns1:academicDiscipline <http://dbpedia.org/resource/United_States_National_Herbarium> .
 

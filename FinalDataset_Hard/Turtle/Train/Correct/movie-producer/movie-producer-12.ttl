@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vampire_Circus> ns1:producer <http://dbpedia.org/resource/Michael_Carreras> .
+<http://dbpedia.org/resource/Veeram_(2014_film)> ns1:producer <http://dbpedia.org/resource/B._Venkatarama_Reddy> .
 

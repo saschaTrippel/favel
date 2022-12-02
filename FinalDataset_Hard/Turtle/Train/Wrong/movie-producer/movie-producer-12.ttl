@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Valley_of_the_Giants_(film)> ns1:producer <http://dbpedia.org/resource/Wade_Boteler> .
+<http://dbpedia.org/resource/All_Through_the_Night_(film)> ns1:producer <http://dbpedia.org/resource/Vincent_Sherman> .
 

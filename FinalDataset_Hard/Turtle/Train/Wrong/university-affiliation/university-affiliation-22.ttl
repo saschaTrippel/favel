@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Victoria> ns1:affiliation <http://dbpedia.org/resource/Association_of_Universities_and_Colleges_of_Canada> .
+<http://dbpedia.org/resource/Northern_University_of_Business_and_Technology_Khulna> ns1:affiliation <http://dbpedia.org/resource/Northern_University,_Bangladesh> .
 

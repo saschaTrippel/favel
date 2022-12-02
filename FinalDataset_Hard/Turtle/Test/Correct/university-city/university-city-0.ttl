@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/SNDT_Women's_University> ns1:city <http://dbpedia.org/resource/Mumbai> .
+<http://dbpedia.org/resource/Dr._NTR_University_of_Health_Sciences> ns1:city <http://dbpedia.org/resource/Vijayawada> .
 

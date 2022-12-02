@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Darna_Zaroori_Hai> ns1:productionCompany <http://dbpedia.org/resource/K_Sera_Sera_Limited> .
+<http://dbpedia.org/resource/Vasuvum_Saravananum_Onna_Padichavanga> ns1:productionCompany <http://dbpedia.org/resource/PVP_cinema> .
 

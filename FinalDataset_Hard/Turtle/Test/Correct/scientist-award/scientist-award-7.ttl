@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/J._Robert_Oppenheimer> ns1:award <http://dbpedia.org/resource/Enrico_Fermi_Award> .
+<http://dbpedia.org/resource/Pardis_Sabeti> ns1:award <http://dbpedia.org/resource/The_Paul_&_Daisy_Soros_Fellowships_for_New_Americans> .
 

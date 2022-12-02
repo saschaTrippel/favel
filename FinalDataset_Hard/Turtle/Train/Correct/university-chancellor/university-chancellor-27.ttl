@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Derby> ns1:chancellor <http://dbpedia.org/resource/William_Cavendish,_Earl_of_Burlington> .
+<http://dbpedia.org/resource/University_of_Pretoria> ns1:chancellor <http://dbpedia.org/resource/Wiseman_Lumkile_Nkuhlu> .
 

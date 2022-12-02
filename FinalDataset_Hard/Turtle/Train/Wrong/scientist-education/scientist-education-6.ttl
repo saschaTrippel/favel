@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Paul_Milgrom> ns1:education <http://dbpedia.org/resource/Northwestern_University> .
+<http://dbpedia.org/resource/Stephanie_Kwolek> ns1:education <http://dbpedia.org/resource/Clarkson_University> .
 

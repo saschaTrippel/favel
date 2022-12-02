@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Pondicherry_University> ns1:affiliation <http://dbpedia.org/resource/Chemistry> .
+<http://dbpedia.org/resource/University_of_Strathclyde> ns1:affiliation <http://dbpedia.org/resource/University_of_Strathclyde_Students'_Association> .
 

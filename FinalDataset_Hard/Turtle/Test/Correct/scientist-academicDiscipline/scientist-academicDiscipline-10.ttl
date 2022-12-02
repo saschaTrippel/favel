@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Pierre_Roubertoux> ns1:academicDiscipline <http://dbpedia.org/resource/Behavioural_genetics> .
+<http://dbpedia.org/resource/Ronald_Akers> ns1:academicDiscipline <http://dbpedia.org/resource/Criminology> .
 
