@@ -4,7 +4,6 @@ from sklearn import metrics
 from sklearn.linear_model import *
 from sklearn.ensemble import *
 from sklearn.tree import *
-import pandas as pd
 import numpy as np
 from sklearn.naive_bayes import *
 from sklearn.neighbors import *
@@ -16,7 +15,7 @@ from sklearn.pipeline import *
 from sklearn.preprocessing import *
 from joblib import dump, load
 import pickle
-import csv,sys
+import csv,sys, ast
 from functools import reduce
 import operator
 import sys
@@ -29,10 +28,12 @@ import logging, argparse, configparser
 from pathlib import Path
 import statistics
 from sklearn.metrics import classification_report
+from skopt import BayesSearchCV
+from skopt.space import Real, Categorical, Integer
 if not sys.warnoptions: warnings.simplefilter("ignore")
-
 import time
 time.ctime() # 'Mon Oct 18 13:35:29 2010'
+
 
 class ML:
 
@@ -87,13 +88,47 @@ class ML:
         return mdl_name
 
 
-    def get_sklearn_model(self, model_name, ml_model_params):
+    def search_best_params(self,model, ml_model_params, X, y):
+        params_range_dict={}
+        for x in ml_model_params:
+            if type(x['range'])==tuple:
+                if type(x['range'][0]) == int: 
+                    params_range_dict[x['name']] = Integer(x['range'][0], x['range'][1])
+                elif type(x['range'][0]) == float: 
+                    params_range_dict[x['name']] = Real(x['range'][0], x['range'][1])
+            elif type(x['range']) == list:
+                params_range_dict[x['name']] = Categorical(x['range'])
+
+        opt = BayesSearchCV(
+                    model,
+                    params_range_dict,
+                    n_iter=5,
+                    random_state=0
+                )
+        _ = opt.fit(X, y)
+        best_params=dict(opt.best_params_)
+        return best_params
+
+    def get_sklearn_model(self, model_name, ml_model_params, train_data):
+        X=train_data.drop(['subject', 'predicate', 'object', 'truth'], axis=1)
+        y=train_data.truth
+
         xdf=pd.DataFrame(sklearn.utils.all_estimators())
         model = xdf[xdf[0]==model_name][1].item()
 
-        model=model()
+        if ml_model_params == 'default':
+            model=model()
 
-        model.set_params(**ml_model_params)
+        elif type(ast.literal_eval(ml_model_params)) == dict:
+            model=model()
+            ml_model_params=ast.literal_eval(ml_model_params)
+            model.set_params(**ml_model_params)
+
+        elif type(ast.literal_eval(ml_model_params)) == list:
+            ml_model_params=ast.literal_eval(ml_model_params)
+            model=model()
+            best_params=self.search_best_params(model, ml_model_params, X, y) # skopt
+            model.set_params(**best_params)
 
         return model
 
@@ -177,7 +212,7 @@ class ML:
         except Exception as ex:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            # print('Error in train_model: ', exc_type, fname, exc_tb.tb_lineno)
+            print('Error in train_model: ', ex, exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in train_model: ' +' '+str(ex)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
 
             raise ex
