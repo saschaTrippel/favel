@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Technology_Malaysia> ns1:affiliation <http://dbpedia.org/resource/University_of_Sydney> .
+<http://dbpedia.org/resource/University_of_Hull> ns1:affiliation <http://dbpedia.org/resource/Hull_City_Council> .
 

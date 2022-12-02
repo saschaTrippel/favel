@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Paul_Milgrom> ns1:award <http://dbpedia.org/resource/Golden_Goose_Award> .
+<http://dbpedia.org/resource/J._Robert_Oppenheimer> ns1:award <http://dbpedia.org/resource/Enrico_Fermi_Award> .
 

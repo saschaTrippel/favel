@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Harvey_J._Alter> ns1:award <http://dbpedia.org/resource/2020_Nobel_Prize_in_Physiology_or_Medicine> .
+<http://dbpedia.org/resource/Robert_H._Grubbs> ns1:award <http://dbpedia.org/resource/Arthur_C._Cope_Award> .
 

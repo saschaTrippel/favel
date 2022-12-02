@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/An_Eastern_Westerner> ns1:starring <http://dbpedia.org/resource/Wallace_Howe> .
+<http://dbpedia.org/resource/After_Your_Own_Heart> ns1:starring <http://dbpedia.org/resource/William_Fox_(producer)> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Edsger_W._Dijkstra> ns1:award <http://dbpedia.org/resource/Harry_H._Goode_Memorial_Award> .
+<http://dbpedia.org/resource/Joe_Neilands> ns1:award <http://dbpedia.org/resource/Guggenheim_Fellowship> .
 

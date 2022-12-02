@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Almost_Married_(1932_film)> ns1:producer <http://dbpedia.org/resource/William_Sistrom> .
+<http://dbpedia.org/resource/Dedication_(film)> ns1:producer <http://dbpedia.org/resource/Celine_Rattray> .
 

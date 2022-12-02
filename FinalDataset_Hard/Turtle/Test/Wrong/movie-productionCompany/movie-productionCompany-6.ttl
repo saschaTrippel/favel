@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Against_All_Odds_(1924_film)> ns1:productionCompany <http://dbpedia.org/resource/Fox_Film_Corporation> .
+<http://dbpedia.org/resource/Veeram_(2014_film)> ns1:productionCompany <http://dbpedia.org/resource/Indo-Asian_News_Service> .
 

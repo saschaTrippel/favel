@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Michael_Telch> ns1:education <http://dbpedia.org/resource/University_of_Texas_at_Austin> .
+<http://dbpedia.org/resource/Vickie_Mays> ns1:education <http://dbpedia.org/resource/University_of_California,_Los_Angeles> .
 

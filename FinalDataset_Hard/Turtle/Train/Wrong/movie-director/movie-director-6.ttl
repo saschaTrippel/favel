@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Day_of_the_Dead_(2008_film)> ns1:director <http://dbpedia.org/resource/Ving_Rhames> .
+<http://dbpedia.org/resource/Dan_in_Real_Life> ns1:director <http://dbpedia.org/resource/Alison_Sudol> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/St._Paul's_University_College> ns1:affiliation <http://dbpedia.org/resource/University_of_Waterloo> .
+<http://dbpedia.org/resource/University_of_Portsmouth> ns1:affiliation <http://dbpedia.org/resource/University_Alliance> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Nouria_Hernandez> ns1:education <http://dbpedia.org/resource/University_of_Geneva> .
+<http://dbpedia.org/resource/Stephen_R._Bourne> ns1:education <http://dbpedia.org/resource/King's_College_London> .
 

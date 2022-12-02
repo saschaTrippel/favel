@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Almost_Famous> ns1:director <http://dbpedia.org/resource/Cameron_Crowe> .
+<http://dbpedia.org/resource/Death_to_Smoochy> ns1:director <http://dbpedia.org/resource/Danny_DeVito> .
 

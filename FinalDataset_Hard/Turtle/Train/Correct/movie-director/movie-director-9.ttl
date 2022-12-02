@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Deep_Blue_Sea_(1999_film)> ns1:director <http://dbpedia.org/resource/Renny_Harlin> .
+<http://dbpedia.org/resource/After_Your_Own_Heart> ns1:director <http://dbpedia.org/resource/George_Marshall_(director)> .
 

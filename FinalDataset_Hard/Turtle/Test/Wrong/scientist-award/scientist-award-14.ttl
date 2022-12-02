@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Frank_Wilczek> ns1:award <http://dbpedia.org/resource/King_Faisal_International_Prize> .
+<http://dbpedia.org/resource/Douglas_Hofstadter> ns1:award <http://dbpedia.org/resource/Nobel_Prize> .
 

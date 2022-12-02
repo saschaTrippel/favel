@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Michael_Cole_(psychologist)> ns1:education <http://dbpedia.org/resource/Indiana_University> .
+<http://dbpedia.org/resource/Saul_Perlmutter> ns1:education <http://dbpedia.org/resource/Harvard_University> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vinoba_Bhave_University> ns1:affiliation <http://dbpedia.org/resource/Ranchi_University> .
+<http://dbpedia.org/resource/Universiti_Sains_Malaysia> ns1:affiliation <http://dbpedia.org/resource/Malaysian_Anti-Corruption_Commission> .
 

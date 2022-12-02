@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Anandam> ns1:productionCompany <http://dbpedia.org/resource/Ushakiran_Movies> .
+<http://dbpedia.org/resource/1971_(2007_film)> ns1:productionCompany <http://dbpedia.org/resource/Sagar_Arts> .
 

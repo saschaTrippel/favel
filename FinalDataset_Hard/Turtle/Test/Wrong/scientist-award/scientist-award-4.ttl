@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Robert_H._Grubbs> ns1:award <http://dbpedia.org/resource/Arthur_C._Cope_Award> .
+<http://dbpedia.org/resource/James_F._Scott> ns1:award <http://dbpedia.org/resource/Fellow_of_the_Royal_Society> .
 

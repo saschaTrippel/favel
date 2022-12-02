@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Nouria_Hernandez> ns1:education <http://dbpedia.org/resource/University_of_Lausanne> .
+<http://dbpedia.org/resource/Robert_H._Grubbs> ns1:education <http://dbpedia.org/resource/Michigan_State_University> .
 

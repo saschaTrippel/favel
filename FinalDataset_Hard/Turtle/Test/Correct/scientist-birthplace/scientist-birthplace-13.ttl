@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Leonard_Broom> ns1:birthPlace <http://dbpedia.org/resource/Boston> .
+<http://dbpedia.org/resource/Norman_Allinger> ns1:birthPlace <http://dbpedia.org/resource/Alameda,_California> .
 

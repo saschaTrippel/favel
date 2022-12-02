@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Universiti_Sains_Malaysia> ns1:affiliation <http://dbpedia.org/resource/Malaysian_Anti-Corruption_Commission> .
+<http://dbpedia.org/resource/University_of_Hertfordshire> ns1:affiliation <http://dbpedia.org/resource/The_Watford_UTC> .
 

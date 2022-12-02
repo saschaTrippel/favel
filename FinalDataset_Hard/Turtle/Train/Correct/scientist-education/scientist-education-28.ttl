@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Ronald_V._Clarke> ns1:education <http://dbpedia.org/resource/University_of_Bristol> .
+<http://dbpedia.org/resource/William_Henry_Pickering> ns1:education <http://dbpedia.org/resource/Massachusetts_Institute_of_Technology> .
 

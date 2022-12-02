@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Deadly_Advice> ns1:producer <http://dbpedia.org/resource/Nigel_Stafford-Clark> .
+<http://dbpedia.org/resource/Africa_Squeaks> ns1:producer <http://dbpedia.org/resource/Leon_Schlesinger> .
 

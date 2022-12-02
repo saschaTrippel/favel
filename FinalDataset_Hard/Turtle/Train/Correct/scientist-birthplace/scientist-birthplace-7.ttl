@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Yves_Meyer> ns1:birthPlace <http://dbpedia.org/resource/France> .
+<http://dbpedia.org/resource/Samuel_Greenhouse> ns1:birthPlace <http://dbpedia.org/resource/The_Bronx> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dante's_Inferno:_An_Animated_Epic> ns1:director <http://dbpedia.org/resource/Yasuomi_Umetsu> .
+<http://dbpedia.org/resource/Day_of_the_Dead_(2008_film)> ns1:director <http://dbpedia.org/resource/Steve_Miner> .
 

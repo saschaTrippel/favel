@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Susan_Huganir_Magsamen> ns1:education <http://dbpedia.org/resource/Shepherd_University> .
+<http://dbpedia.org/resource/Xiaowei_Zhuang> ns1:education <http://dbpedia.org/resource/Harvard_University> .
 

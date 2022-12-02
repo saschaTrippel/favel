@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Warren_B._Mori> ns1:education <http://dbpedia.org/resource/University_of_California,_Berkeley> .
+<http://dbpedia.org/resource/Perry_A._Frey> ns1:education <http://dbpedia.org/resource/Brandeis_University> .
 

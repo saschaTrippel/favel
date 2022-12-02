@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Symbiosis_International_University> ns1:city <http://dbpedia.org/resource/Noida> .
+<http://dbpedia.org/resource/Vellore_Institute_of_Technology> ns1:city <http://dbpedia.org/resource/Chennai> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Guy_Rocher> ns1:award <http://dbpedia.org/resource/Sir_John_William_Dawson_Medal> .
+<http://dbpedia.org/resource/Francis_T._Cullen> ns1:award <http://dbpedia.org/resource/Stockholm_Prize_in_Criminology> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Anandamanandamaye> ns1:producer <http://dbpedia.org/resource/Amanchi_Venkata_Subrahmanyam> .
+<http://dbpedia.org/resource/Dead_Snow> ns1:producer <http://dbpedia.org/resource/Stig_Frode_Henriksen> .
 

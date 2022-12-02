@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/property/> .
 
-<http://dbpedia.org/resource/Vincenzo_Di_Nicola> ns1:education <http://dbpedia.org/resource/McGill_University> .
+<http://dbpedia.org/resource/Stephen_Salter> ns1:education <http://dbpedia.org/resource/University_of_Cambridge> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/All_at_Sea_(1935_film)> ns1:producer <http://dbpedia.org/resource/Robert_Arthur_(film_producer)> .
+<http://dbpedia.org/resource/Amy_(2015_film)> ns1:producer <http://dbpedia.org/resource/James_Gay-Rees> .
 
