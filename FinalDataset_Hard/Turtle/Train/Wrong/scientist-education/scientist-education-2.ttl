@@ -1,4 +1,0 @@
-@prefix ns1: <http://dbpedia.org/property/> .
-
-<http://dbpedia.org/resource/Tanel_Tammet> ns1:education <http://dbpedia.org/resource/Tallinn_University_of_Technology> .
-
