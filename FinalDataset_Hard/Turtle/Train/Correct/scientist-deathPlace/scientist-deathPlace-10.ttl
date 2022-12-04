@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Harold_Agnew> ns1:deathPlace <http://dbpedia.org/resource/Solana_Beach,_California> .
+<http://dbpedia.org/resource/Elving_Anderson> ns1:deathPlace <http://dbpedia.org/resource/Stillwater,_Minnesota> .
 

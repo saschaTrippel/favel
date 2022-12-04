@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Albrecht_Penck> ns1:deathPlace <http://dbpedia.org/resource/Leipzig> .
+<http://dbpedia.org/resource/Warren_Ambrose> ns1:deathPlace <http://dbpedia.org/resource/Virden,_Illinois> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Frederick_DuCane_Godman> ns1:deathPlace <http://dbpedia.org/resource/London> .
+<http://dbpedia.org/resource/David_A._Huffman> ns1:deathPlace <http://dbpedia.org/resource/Santa_Cruz,_California> .
 

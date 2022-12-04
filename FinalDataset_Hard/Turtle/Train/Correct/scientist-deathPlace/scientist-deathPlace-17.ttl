@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vladimir_Mikhailovich_Myasishchev> ns1:deathPlace <http://dbpedia.org/resource/Soviet_Union> .
+<http://dbpedia.org/resource/Francis_J._Ryan> ns1:deathPlace <http://dbpedia.org/resource/Manhattan> .
 
