@@ -62,7 +62,7 @@ class Overview:
     
     def _getEvaluation(self, experimentPath:str):
         pathLst = experimentPath.split('/')
-        pathStr = "/".join(pathLst[:-1])
+        pathStr = "/".join(pathLst[:pathLst.index("Evaluation")+1])
         return pathStr
     
     def _getDataset(self, datasetPath:str):
