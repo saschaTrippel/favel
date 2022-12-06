@@ -58,7 +58,9 @@ class Overview:
   
     def _getExperiment(self, experimentPath:str):
         pathLst = experimentPath.split('/')
-        return pathLst[-1]
+        pathLst = pathLst[pathLst.index("Evaluation")+1:]
+        pathStr = ".".join(pathLst)
+        return pathStr
     
     def _getEvaluation(self, experimentPath:str):
         pathLst = experimentPath.split('/')
