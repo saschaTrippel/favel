@@ -41,6 +41,7 @@ class Overview:
                 overviewFrame.loc[index, ['Improvement']] = self.testingAucRoc - self.bestApproachScore
                 overviewFrame.loc[index, ['Best Single Approach']] = self.bestApproach
                 overviewFrame.loc[index, ['Best Single Score']] = self.bestApproachScore
+                overviewFrame.loc[index, ['Experiment']] = self.experiment
 
         else:
             # Add new row
