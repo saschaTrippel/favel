@@ -22,7 +22,22 @@ def main():
         controller.output()
         
     elif not args.batch is None:
-        pass
+        subsetGen = powerset(list(dict(config['Approaches']).items()))
+        i = 0
+        for subset in subsetGen:
+            if len(subset) >= 2:
+                subExperimentPath = path.join(experimentPath, f"sub{str(i).rjust(4, '0')}")
+                controller = Controller(approaches=dict(subset), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
+                                        experimentPath=subExperimentPath, datasetPath=args.data, useCache=bool(config['General']['useCache']), handleContainers=args.containers)
+                
+                controller.createSubExperiment()
+                controller.input()
+                controller.validate()
+                controller.train()
+                controller.test()
+                controller.output()
+
+                i += 1
 
 def powerset(approaches:list):
     if len(approaches) <= 0:
@@ -50,8 +65,11 @@ def _loadExperimentPath(args):
     favelPath = path.realpath(__file__)
     pathLst = favelPath.split('/')
     favelPath = "/".join(pathLst[:-2])
-    return path.join(favelPath, "Evaluation", args.experiment)
-
+    if not args.experiment is None:
+        return path.join(favelPath, "Evaluation", args.experiment)
+    if not args.batch is None:
+        return path.join(favelPath, "Evaluation", args.batch)
+        
 def _loadConfig(experimentPath:str):
     configPath = path.join(experimentPath, "favel.conf")
     if not path.exists(configPath):
