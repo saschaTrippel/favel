@@ -102,5 +102,5 @@ class Controller:
         op = Output(self.experimentPath)
         op.writeOutput(self.ml_test_result)
         op.writeOverview(self.ml_test_result, self.experimentPath, self.datasetPath,
-                         self.approaches.keys(), self.mlAlgorithm, self.trainMetrics)
+                         self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainMetrics)
         op.gerbilFormat(self.testingData)

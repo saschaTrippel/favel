@@ -4,13 +4,16 @@ from sklearn import metrics
 
 class Overview:
 
-    def __init__(self, df, experimentPath:str, datasetPath:str, approaches:list, mlAlgorithm:str, trainingMetrics):
+    def __init__(self, df, experimentPath:str, datasetPath:str, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics):
         self.evaluation = self._getEvaluation(experimentPath)
         self.experiment = self._getExperiment(experimentPath)
         self.dataset = self._getDataset(datasetPath)
         self.trainingMetrics = trainingMetrics
         self.mlAlgorithm = mlAlgorithm
         
+        self.approaches = list(approaches)
+        self.approaches.sort()
+        self.mlParameters = mlParameters
         self.bestApproach, self.bestApproachScore = self._getBestApproach(df, approaches)
         self.testingAucRoc = self._testingAucRoc(df)
         
@@ -19,10 +22,10 @@ class Overview:
         try:
             overviewFrame = pd.read_excel(path.join(self.evaluation, "Overview.xlsx"))
         except Exception as ex:
-            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Best Single Approach", "Best Single Score", "ML Algorithm", "Training AUC-ROC Score", "AUC-ROC Score"])
+            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Fact Validation Approaches", "Best Single Approach", "Best Single Score", "ML Algorithm", "ML Parameters", "Training AUC-ROC Score", "Testing AUC-ROC Score", "Improvement"])
             
         # Create a new row for current experiment
-        row = pd.Series([self.experiment, self.dataset, self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.trainingMetrics['overall'], self.testingAucRoc], index=overviewFrame.columns)
+        row = pd.Series([self.experiment, self.dataset, ", ".join(self.approaches), self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.mlParameters, self.trainingMetrics['overall'], self.testingAucRoc, self.testingAucRoc-self.bestApproachScore], index=overviewFrame.columns)
         
         # See if there already is a row for the current experiment and dataset
         exSet = set(overviewFrame.index[overviewFrame.Experiment == row.Experiment].tolist())
