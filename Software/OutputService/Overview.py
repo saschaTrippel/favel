@@ -28,13 +28,20 @@ class Overview:
         row = pd.Series([self.experiment, self.dataset, ", ".join(self.approaches), self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.mlParameters, self.trainingMetrics['overall'], self.testingAucRoc, self.testingAucRoc-self.bestApproachScore], index=overviewFrame.columns)
         
         # See if there already is a row for the current experiment and dataset
-        exSet = set(overviewFrame.index[overviewFrame.Experiment == row.Experiment].tolist())
         dataSet = set(overviewFrame.index[overviewFrame.Dataset == row.Dataset].tolist())
-        inter = exSet & dataSet
+        apSet = set(overviewFrame.index[overviewFrame["Fact Validation Approaches"] == row["Fact Validation Approaches"]].tolist())
+        mlSet = set(overviewFrame.index[overviewFrame["ML Algorithm"] == row["ML Algorithm"]].tolist())
+        mlParamSet = set(overviewFrame.index[overviewFrame["ML Parameters"] == row["ML Parameters"]].tolist())
+        inter = dataSet & apSet & mlSet & mlParamSet
         if len(inter) > 0:
             # Update existing row
             for index in inter:
                 overviewFrame.loc[index, ['Testing AUC-ROC Score']] = self.testingAucRoc
+                overviewFrame.loc[index, ['Training AUC-ROC Score']] = self.trainingMetrics['overall']
+                overviewFrame.loc[index, ['Improvement']] = self.testingAucRoc - self.bestApproachScore
+                overviewFrame.loc[index, ['Best Single Approach']] = self.bestApproach
+                overviewFrame.loc[index, ['Best Single Score']] = self.bestApproachScore
+
         else:
             # Add new row
             overviewFrame = overviewFrame.append(row, ignore_index=True)
