@@ -34,7 +34,7 @@ class Overview:
         if len(inter) > 0:
             # Update existing row
             for index in inter:
-                overviewFrame.loc[index, ['AUC-ROC Score']] = self.testingAucRoc
+                overviewFrame.loc[index, ['Testing AUC-ROC Score']] = self.testingAucRoc
         else:
             # Add new row
             overviewFrame = overviewFrame.append(row, ignore_index=True)
