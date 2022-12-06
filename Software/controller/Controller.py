@@ -1,4 +1,4 @@
-import logging, argparse, configparser, ast
+import logging, ast, os
 
 from os import path
 from FactValidationService.Validator import Validator
@@ -24,6 +24,12 @@ class Controller:
         self.trainingData = None
 
         self.ml = ML(log_file=path.join(self.experimentPath, "ml_logs.log"))
+        
+    def createSubExperiment(self):
+        try:
+            os.mkdir(self.experimentPath)
+        except FileExistsError:
+            pass
 
     def startContainers(self):
         if self.handleContainers:
@@ -98,5 +104,5 @@ class Controller:
         op = Output(self.experimentPath)
         op.writeOutput(self.ml_test_result)
         op.writeOverview(self.ml_test_result, self.experimentPath, self.datasetPath,
-                         self.approaches.keys(), self.mlAlgorithm, self.trainMetrics)
+                         self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainMetrics)
         op.gerbilFormat(self.testingData)
