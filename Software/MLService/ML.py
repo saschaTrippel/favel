@@ -247,6 +247,8 @@ class ML:
 
             roc_auc = roc_auc_score(y, ensembleScore)
 
+            print("For test we have the roc:auc score "+str(roc_auc))
+
             logging.info('Validation completed')
 
             return df

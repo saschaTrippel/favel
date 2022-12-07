@@ -17,9 +17,10 @@ def main():
                                 experimentPath=experimentPath, datasetPath=args.data, useCache=bool(config['General']['useCache']), handleContainers=args.containers)
         controller.input()
         controller.validate()
-        controller.train()
-        controller.test()
-        controller.output()
+        controller.testMe()
+        # controller.train()
+        # controller.test()
+        # controller.output()
         
     elif not args.batch is None:
         subsetGen = powerset(list(dict(config['Approaches']).items()))

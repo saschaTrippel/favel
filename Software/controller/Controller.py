@@ -1,6 +1,11 @@
 import logging, ast, os
 
 from os import path
+
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, roc_auc_score
+
 from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from ContainerService.Containers import Containers
@@ -73,10 +78,34 @@ class Controller:
         ml_model_name = self.mlAlgorithm
         ml_model = self.ml.get_sklearn_model(ml_model_name, self.mlParameters, training_df)
 
-        self.model, self.lableEncoder, self.trainMetrics = self.ml.train_model(df=training_df, 
+        self.model, self.lableEncoder, self.trainMetrics = self.ml.train_model(df=training_df,
                                             ml_model=ml_model, 
                                             output_path=self.experimentPath, 
                                             dataset_path=self.datasetPath)
+
+    def testMe(self):
+        df = self.ml.createDataFrame(self.trainingData)
+        X = df.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
+        y = df.truth
+        clf = GradientBoostingClassifier(n_estimators=100, learning_rate=1.0, max_depth=1, random_state=0).fit(X, y)
+
+        df = self.ml.createDataFrame(self.testingData)
+
+        X = df.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
+        y = df.truth
+
+        yPredict = clf.predict(X)
+
+        val = accuracy_score(y, yPredict)
+
+        roc_auc = roc_auc_score(y, yPredict)
+
+        print("hhahhaha "+str(clf.score(X, y)))
+        print("ROC AUC"+str(roc_auc))
+
+        print("Score "+str(val))
+
+        logging.info('ML model trained')
 
     def test(self):
         """
