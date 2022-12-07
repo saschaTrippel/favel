@@ -11,7 +11,12 @@ from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
 from OutputService.Output import Output
-import pdb 
+import pdb
+import keras
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.utils import to_categorical
+
 
 class Controller:
     """
@@ -87,23 +92,37 @@ class Controller:
         df = self.ml.createDataFrame(self.trainingData)
         X = df.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
         y = df.truth
-        clf = GradientBoostingClassifier(n_estimators=100, learning_rate=1.0, max_depth=1, random_state=0).fit(X, y)
+        model = Sequential()
+        model.add(Dense(500, activation='relu', input_dim=8))
+        model.add(Dense(100, activation='relu'))
+        model.add(Dense(50, activation='relu'))
+        model.add(Dense(2, activation='softmax'))
 
-        df = self.ml.createDataFrame(self.testingData)
+        # Compile the model
+        model.compile(optimizer='adam',
+                      loss='categorical_crossentropy',
+                      metrics=['accuracy'])
 
-        X = df.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
-        y = df.truth
+        model.fit(X, y, epochs=20)
 
-        yPredict = clf.predict(X)
 
-        val = accuracy_score(y, yPredict)
+        df_test = self.ml.createDataFrame(self.testingData)
 
-        roc_auc = roc_auc_score(y, yPredict)
+        X_test = df_test.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
+        y_test = df_test.truth
 
-        print("hhahhaha "+str(clf.score(X, y)))
-        print("ROC AUC"+str(roc_auc))
+        yPredict = model.predict(X_test)
 
-        print("Score "+str(val))
+        scores2 = model.evaluate(X_test, y_test, verbose=0)
+
+        print('Accuracy on test data: {}% \n Error on test data: {}'.format(scores2[1], 1 - scores2[1]))
+
+
+
+        roc_auc = roc_auc_score(y_test, yPredict)
+
+
+        print("AUC "+str(roc_auc))
 
         logging.info('ML model trained')
 
