@@ -1,18 +1,10 @@
-from sklearn import *
 from sklearn import metrics
 from sklearn import preprocessing
-from sklearn.ensemble import *
-from sklearn.linear_model import *
 from sklearn.metrics import *
 from sklearn.metrics import classification_report
 from sklearn.model_selection import *
 from sklearn.naive_bayes import *
-from sklearn.neighbors import *
-from sklearn.neural_network import *
-from sklearn.pipeline import *
 from sklearn.preprocessing import *
-from sklearn.svm import *
-from sklearn.tree import *
 from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
 import sys, ast
