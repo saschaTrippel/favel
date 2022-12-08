@@ -1,6 +1,7 @@
-import pandas as pd
 from os import path
 from sklearn import metrics
+import logging
+import pandas as pd
 
 class Overview:
 
@@ -36,6 +37,7 @@ class Overview:
         if len(inter) > 0:
             # Update existing row
             for index in inter:
+                logging.debug(f"Updated row in evaluation overvew \n{row}")
                 overviewFrame.loc[index, ['Testing AUC-ROC Score']] = self.testingAucRoc
                 overviewFrame.loc[index, ['Training AUC-ROC Score']] = self.trainingMetrics['overall']
                 overviewFrame.loc[index, ['Improvement']] = self.testingAucRoc - self.bestApproachScore
@@ -46,6 +48,7 @@ class Overview:
         else:
             # Add new row
             overviewFrame = overviewFrame.append(row, ignore_index=True)
+            logging.debug(f"Added row to evaluation overview \n{row}")
 
             
         overviewFrame.to_excel(path.join(self.evaluation, "Overview.xlsx"), index=False)

@@ -8,9 +8,8 @@ def main():
     config = _loadConfig(experimentPath)
     _configureLogging(config)
 
-    #gen = powerset(list(dict(config['Approaches']).keys()))
-
     if not args.experiment is None:
+        logging.info("Experiment started")
         controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
                                 experimentPath=experimentPath, datasetPath=args.data, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
         controller.input()
@@ -18,12 +17,14 @@ def main():
         controller.train()
         controller.test()
         controller.output()
+        logging.info("Experiment finished")
         
     elif not args.batch is None:
         subsetGen = powerset(list(dict(config['Approaches']).items()))
         i = 0
         for subset in subsetGen:
             if len(subset) >= 2:
+                logging.info("Experiment started")
                 subExperimentPath = path.join(experimentPath, f"sub{str(i).rjust(4, '0')}")
                 controller = Controller(approaches=dict(subset), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
                                         experimentPath=subExperimentPath, datasetPath=args.data, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
@@ -34,6 +35,7 @@ def main():
                 controller.train()
                 controller.test()
                 controller.output()
+                logging.info("Experiment finished")
 
                 i += 1
 
