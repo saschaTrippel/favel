@@ -1,22 +1,17 @@
 from sklearn import metrics
 from sklearn import preprocessing
-from sklearn.metrics import *
-from sklearn.metrics import classification_report
-from sklearn.model_selection import *
-from sklearn.naive_bayes import *
+from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import cross_val_score
 from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
-import sys, ast
 import logging
 import numpy as np
 import os
 import pandas as pd
 import pickle
-import pickle, sklearn
+import sklearn
 import statistics
-import time
-time.ctime() # 'Mon Oct 18 13:35:29 2010'
-
+import sys, ast
 
 class ML:
 
@@ -123,9 +118,9 @@ class ML:
             # y_pred=model.predict_proba(X)[:, 1]
             y_pred=model.predict(X)
 
-            roc_auc = roc_auc_score(y, y_pred)
+            roc_auc = metrics.roc_auc_score(y, y_pred)
 
-            report_df = pd.DataFrame(classification_report(np.array(y, dtype=int), np.array(y_pred, dtype=int), output_dict=True)).T.reset_index(drop=False).rename(columns={'index': 'label'})
+            report_df = pd.DataFrame(metrics.classification_report(np.array(y, dtype=int), np.array(y_pred, dtype=int), output_dict=True)).T.reset_index(drop=False).rename(columns={'index': 'label'})
             # print('>>>>> trn acc: ', sum(np.array(y, dtype=int)==np.array(y_pred, dtype=int))/ len(y), roc_auc)
 
             return model, mdl_name, roc_auc, report_df
@@ -151,9 +146,6 @@ class ML:
             logging.error('Error in custom_model_train_cv: '+' '+str(e) +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
             raise e
 
-
-
-    
     # Change model list here to be a single model
     def train_model(self, df, ml_model, output_path, dataset_path):
         """
@@ -226,7 +218,7 @@ class ML:
             
             df['ensemble_score'] = ensembleScore
 
-            roc_auc = roc_auc_score(y, ensembleScore)
+            roc_auc = metrics.roc_auc_score(y, ensembleScore)
 
             logging.info('Validation completed')
 
@@ -270,8 +262,3 @@ class ML:
             # print('Error in test_model: ', exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in test_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
             raise e
-
-
-
-
-
