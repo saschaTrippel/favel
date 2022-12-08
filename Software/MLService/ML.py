@@ -1,36 +1,28 @@
-import pandas as pd
-from sklearn import preprocessing
+from sklearn import *
 from sklearn import metrics
-from sklearn.linear_model import *
+from sklearn import preprocessing
 from sklearn.ensemble import *
-from sklearn.tree import *
-import numpy as np
+from sklearn.linear_model import *
+from sklearn.metrics import *
+from sklearn.metrics import classification_report
+from sklearn.model_selection import *
 from sklearn.naive_bayes import *
 from sklearn.neighbors import *
-import pickle, sklearn
 from sklearn.neural_network import *
-from pathlib import Path
-from sklearn.metrics import *
 from sklearn.pipeline import *
 from sklearn.preprocessing import *
-from joblib import dump, load
-import pickle
-import csv,sys, ast
-from functools import reduce
-import operator
-import sys
-from sklearn.model_selection import *
 from sklearn.svm import *
-from sklearn import *
-import pdb
-import os, sys, warnings
-import logging, argparse, configparser
-from pathlib import Path
-import statistics
-from sklearn.metrics import classification_report
+from sklearn.tree import *
 from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
-if not sys.warnoptions: warnings.simplefilter("ignore")
+import sys, ast
+import logging
+import numpy as np
+import os
+import pandas as pd
+import pickle
+import pickle, sklearn
+import statistics
 import time
 time.ctime() # 'Mon Oct 18 13:35:29 2010'
 
