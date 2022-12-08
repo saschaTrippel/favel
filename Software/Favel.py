@@ -14,7 +14,7 @@ def main():
 
     if not args.experiment is None:
         controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                experimentPath=experimentPath, datasetPath=args.data, useCache=bool(config['General']['useCache']), handleContainers=args.containers)
+                                experimentPath=experimentPath, datasetPath=args.data, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
         controller.input()
         controller.validate()
         controller.train()
@@ -28,7 +28,7 @@ def main():
             if len(subset) >= 2:
                 subExperimentPath = path.join(experimentPath, f"sub{str(i).rjust(4, '0')}")
                 controller = Controller(approaches=dict(subset), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                        experimentPath=subExperimentPath, datasetPath=args.data, useCache=bool(config['General']['useCache']), handleContainers=args.containers)
+                                        experimentPath=subExperimentPath, datasetPath=args.data, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
                 
                 controller.createSubExperiment()
                 controller.input()
