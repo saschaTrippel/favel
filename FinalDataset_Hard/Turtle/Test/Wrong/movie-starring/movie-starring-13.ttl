@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dante's_Inferno:_An_Animated_Epic> ns1:starring <http://dbpedia.org/resource/Dante_Alighieri> .
+<http://dbpedia.org/resource/All_the_Best:_Fun_Begins> ns1:starring <http://dbpedia.org/resource/Suraj_Jagan> .
 

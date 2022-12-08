@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Devil_May_Hare> ns1:director <http://dbpedia.org/resource/Robert_McKimson> .
+<http://dbpedia.org/resource/All_About_Women> ns1:director <http://dbpedia.org/resource/Tsui_Hark> .
 

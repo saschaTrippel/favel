@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/American_Wedding> ns1:director <http://dbpedia.org/resource/Alyson_Hannigan> .
+<http://dbpedia.org/resource/Africa_Squeaks> ns1:director <http://dbpedia.org/resource/David_Livingstone> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Francesco_d'Errico> ns1:award <http://dbpedia.org/resource/CNRS_Gold_Medal> .
+<http://dbpedia.org/resource/Colin_L._Masters> ns1:award <http://dbpedia.org/resource/King_Faisal_Prize> .
 

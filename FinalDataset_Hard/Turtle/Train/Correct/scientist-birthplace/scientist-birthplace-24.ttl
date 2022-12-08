@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Yves_Meyer> ns1:birthPlace <http://dbpedia.org/resource/France> .
+<http://dbpedia.org/resource/Nanda_Rea> ns1:birthPlace <http://dbpedia.org/resource/Rome> .
 

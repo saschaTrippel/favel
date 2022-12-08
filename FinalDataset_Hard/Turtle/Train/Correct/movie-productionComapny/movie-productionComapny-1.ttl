@@ -1,4 +1,0 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
-
-<http://dbpedia.org/resource/Dead_End_(1937_film)> ns1:productionCompany <http://dbpedia.org/resource/Samuel_Goldwyn_Productions> .
-

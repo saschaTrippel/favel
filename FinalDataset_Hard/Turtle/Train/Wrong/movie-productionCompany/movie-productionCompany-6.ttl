@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/David_(2013_Tamil_film)> ns1:productionCompany <http://dbpedia.org/resource/T-Series_(company)> .
+<http://dbpedia.org/resource/Darna_Zaroori_Hai> ns1:productionCompany <http://dbpedia.org/resource/K_Sera_Sera_Limited> .
 

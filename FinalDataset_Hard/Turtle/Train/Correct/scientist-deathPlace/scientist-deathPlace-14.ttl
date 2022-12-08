@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/William_Bowie_(engineer)> ns1:deathPlace <http://dbpedia.org/resource/Washington,_D.C.> .
+<http://dbpedia.org/resource/William_J._Breed> ns1:deathPlace <http://dbpedia.org/resource/Flagstaff,_Arizona> .
 

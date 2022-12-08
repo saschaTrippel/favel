@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Bowery_Bugs> ns1:producer <http://dbpedia.org/resource/Merrie_Melodies> .
+<http://dbpedia.org/resource/Dead_Snow> ns1:producer <http://dbpedia.org/resource/Stig_Frode_Henriksen> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vladimir_Chelomey> ns1:deathPlace <http://dbpedia.org/resource/Russian_Soviet_Federative_Socialist_Republic> .
+<http://dbpedia.org/resource/William_Astbury> ns1:deathPlace <http://dbpedia.org/resource/Leeds> .
 

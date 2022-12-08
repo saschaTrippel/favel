@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Wilson_Teixeira_Beraldo> ns1:birthPlace <http://dbpedia.org/resource/Belo_Horizonte> .
+<http://dbpedia.org/resource/Yves_Meyer> ns1:birthPlace <http://dbpedia.org/resource/Tunis> .
 

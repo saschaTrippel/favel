@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Ashoka_University> ns1:city <http://dbpedia.org/resource/Sonipat> .
+<http://dbpedia.org/resource/University_of_Melbourne> ns1:city <http://dbpedia.org/resource/Melbourne> .
 

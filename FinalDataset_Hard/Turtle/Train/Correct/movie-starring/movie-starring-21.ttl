@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/All_About_Women> ns1:starring <http://dbpedia.org/resource/Gwei_Lun-mei> .
+<http://dbpedia.org/resource/Uzhaippali> ns1:starring <http://dbpedia.org/resource/Rajinikanth> .
 

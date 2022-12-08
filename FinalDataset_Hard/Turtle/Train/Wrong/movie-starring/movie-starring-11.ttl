@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/American_Pie_2> ns1:starring <http://dbpedia.org/resource/Adam_Herz> .
+<http://dbpedia.org/resource/An_Air_So_Pure> ns1:starring <http://dbpedia.org/resource/Pascal_Judelewicz> .
 

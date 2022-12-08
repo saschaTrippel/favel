@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Kip_Thorne> ns1:birthPlace <http://dbpedia.org/resource/Logan,_Utah> .
+<http://dbpedia.org/resource/William_King_Gregory> ns1:birthPlace <http://dbpedia.org/resource/Greenwich_(village),_New_York> .
 

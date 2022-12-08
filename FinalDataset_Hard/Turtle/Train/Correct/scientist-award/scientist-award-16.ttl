@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Guy_Rocher> ns1:award <http://dbpedia.org/resource/Order_of_Canada> .
+<http://dbpedia.org/resource/Jonathan_D._Cohen> ns1:award <http://dbpedia.org/resource/APA_Award_for_Distinguished_Scientific_Contributions_to_Psychology> .
 

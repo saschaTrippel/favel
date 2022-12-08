@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Lewis_Wolpert> ns1:award <http://dbpedia.org/resource/Viktor_Hamburger> .
+<http://dbpedia.org/resource/Leon_Kass> ns1:award <http://dbpedia.org/resource/Jefferson_Lecture> .
 

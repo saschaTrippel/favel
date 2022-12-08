@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Malcolm_Haines> ns1:birthPlace <http://dbpedia.org/resource/Belfast> .
+<http://dbpedia.org/resource/W._Horsley_Gantt> ns1:birthPlace <http://dbpedia.org/resource/Wingina,_Virginia> .
 

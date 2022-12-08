@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Douglas_Hofstadter> ns1:award <http://dbpedia.org/resource/National_Book_Award> .
+<http://dbpedia.org/resource/Maor_Farid> ns1:award <http://dbpedia.org/resource/Moskowitz_Prize_for_Zionism> .
 

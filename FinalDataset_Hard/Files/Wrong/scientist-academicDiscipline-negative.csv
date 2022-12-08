@@ -1,7 +1,7 @@
 subject;predicate;object;truth_value
 http://dbpedia.org/resource/Zohar_Manna;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/First-order_logic;0
 http://dbpedia.org/resource/Yves_Meyer;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Operator_theory;0
-http://dbpedia.org/resource/Wilmatte_Porter_Cockerell;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/United_States_National_Herbarium;0
+http://dbpedia.org/resource/Wilmatte_Porter_Cockerell;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Panama–Pacific_International_Exposition;0
 http://dbpedia.org/resource/William_Shadish;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Sociology;0
 http://dbpedia.org/resource/William_Nordhaus;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Stern_Review;0
 http://dbpedia.org/resource/William_Healey_Dall;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Anthropology;0
@@ -36,7 +36,6 @@ http://dbpedia.org/resource/Nikos_Logothetis;http://dbpedia.org/ontology/academi
 http://dbpedia.org/resource/Niklaus_Wirth;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Computer_hardware;0
 http://dbpedia.org/resource/Nelson_Cowan;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Neuroscience;0
 http://dbpedia.org/resource/Nancy_Pedersen;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Psychology;0
-http://dbpedia.org/resource/Nalini_Balbir;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Dravyasamgraha;0
 http://dbpedia.org/resource/Moriba_Jah;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Space_debris;0
 http://dbpedia.org/resource/Michael_Wertheimer_(psychologist);http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Psycholinguistics;0
 http://dbpedia.org/resource/Michael_Cole_(psychologist);http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Cross-cultural_psychology;0
@@ -48,4 +47,5 @@ http://dbpedia.org/resource/Lewis_Wolpert;http://dbpedia.org/ontology/academicDi
 http://dbpedia.org/resource/Leon_Kass;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Book_of_Genesis;0
 http://dbpedia.org/resource/Lawrence_B._Mohr;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Public_policy;0
 http://dbpedia.org/resource/Kristen_Nygaard;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Computer_program;0
-http://dbpedia.org/resource/Kip_Thorne;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Collier's_Encyclopedia;0
+http://dbpedia.org/resource/Kip_Thorne;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Gravitational_wave;0
+http://dbpedia.org/resource/Nalini_Balbir;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Lormont;0

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dead_Tired> ns1:director <http://dbpedia.org/resource/Daniel_Toscan_du_Plantier> .
+<http://dbpedia.org/resource/Alvin_and_the_Chipmunks:_Chipwrecked> ns1:director <http://dbpedia.org/resource/Alvin_and_the_Chipmunks> .
 

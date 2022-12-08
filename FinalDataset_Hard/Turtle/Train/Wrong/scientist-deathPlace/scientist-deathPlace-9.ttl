@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/William_Astbury> ns1:deathPlace <http://dbpedia.org/resource/United_Kingdom> .
+<http://dbpedia.org/resource/George_Everest> ns1:deathPlace <http://dbpedia.org/resource/Mount_Everest> .
 

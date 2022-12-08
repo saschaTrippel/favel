@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Desert_Blossoms> ns1:director <http://dbpedia.org/resource/Arthur_Rosson> .
+<http://dbpedia.org/resource/Dante's_Inferno:_An_Animated_Epic> ns1:director <http://dbpedia.org/resource/Yasuomi_Umetsu> .
 

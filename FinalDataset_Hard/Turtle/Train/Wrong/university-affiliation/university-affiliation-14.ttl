@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Jammu> ns1:affiliation <http://dbpedia.org/resource/Jammu_&_Kashmir_Bank> .
+<http://dbpedia.org/resource/University_of_Sussex> ns1:affiliation <http://dbpedia.org/resource/Bellerbys_College> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Peter_E._Toschek> ns1:academicDiscipline <http://dbpedia.org/resource/Spectroscopy> .
+<http://dbpedia.org/resource/Niklaus_Wirth> ns1:academicDiscipline <http://dbpedia.org/resource/Computer_hardware> .
 

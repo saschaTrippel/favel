@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Uttarakhand_Residential_University> ns1:affiliation <http://dbpedia.org/resource/Jawaharlal_Nehru_University> .
+<http://dbpedia.org/resource/University_of_Technology_Sarawak> ns1:affiliation <http://dbpedia.org/resource/Yayasan_Sarawak> .
 

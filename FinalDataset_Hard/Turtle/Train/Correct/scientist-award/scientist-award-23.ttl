@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Frank_Sargent_(scientist)> ns1:award <http://dbpedia.org/resource/Royal_Society_University_Research_Fellowship> .
+<http://dbpedia.org/resource/David_Goodall_(botanist)> ns1:award <http://dbpedia.org/resource/Order_of_Australia> .
 

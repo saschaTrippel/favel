@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dante's_Inferno:_An_Animated_Epic> ns1:producer <http://dbpedia.org/resource/Mitsuhisa_Ishikawa> .
+<http://dbpedia.org/resource/Cat_Feud> ns1:producer <http://dbpedia.org/resource/John_W._Burton_(film_producer)> .
 

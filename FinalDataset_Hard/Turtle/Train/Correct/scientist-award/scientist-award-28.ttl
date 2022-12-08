@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Joe_Neilands> ns1:award <http://dbpedia.org/resource/Guggenheim_Fellowship> .
+<http://dbpedia.org/resource/Donald_Hopkins> ns1:award <http://dbpedia.org/resource/MacArthur_Fellows_Program> .
 

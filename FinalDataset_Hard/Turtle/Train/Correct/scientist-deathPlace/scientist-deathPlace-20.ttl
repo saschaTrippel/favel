@@ -1,4 +1,4 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/George_Kauffman> ns1:deathPlace <http://dbpedia.org/resource/California> .
+<http://dbpedia.org/resource/Alexey_Okladnikov> ns1:deathPlace <http://dbpedia.org/resource/Novosibirsk> .
 

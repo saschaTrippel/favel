@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Sara_Nasserzadeh> ns1:academicDiscipline <http://dbpedia.org/resource/The_Orgasm_Answer_Guide> .
+<http://dbpedia.org/resource/Zohar_Manna> ns1:academicDiscipline <http://dbpedia.org/resource/First-order_logic> .
 
