@@ -4,7 +4,6 @@ from sklearn.metrics import *
 from sklearn.metrics import classification_report
 from sklearn.model_selection import *
 from sklearn.naive_bayes import *
-from sklearn.preprocessing import *
 from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
 import sys, ast
@@ -64,7 +63,7 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in createDataFrame: ', exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in createDataFrame: ' +' '+ str(e) + ' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            return False
+            raise e
 
 
     def get_model_name(self, model):
@@ -134,8 +133,7 @@ class ML:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             logging.error('Error in custom_model_train: ' +' '+str(e)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-
-            return False, False, False, False
+            raise e
 
 
     def custom_model_train_cv(self, X, y, model):
@@ -151,7 +149,7 @@ class ML:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             logging.error('Error in custom_model_train_cv: '+' '+str(e) +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            return False, False, False
+            raise e
 
 
 
@@ -198,7 +196,6 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             print('Error in train_model: ', ex, exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in train_model: ' +' '+str(ex)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-
             raise ex
 
 
@@ -240,9 +237,7 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in validate_model: ', exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in validate_model: ' +str(e)+ ' ' +str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            
-            return False
-
+            raise e
 
     def test_model(self, df, output_path):
         try:
@@ -274,8 +269,7 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in test_model: ', exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in test_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-
-            return False
+            raise e
 
 
 
