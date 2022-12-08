@@ -6,12 +6,12 @@ from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
 import logging
 import numpy as np
-import os
+import os, sys, ast, warnings
 import pandas as pd
 import pickle
 import sklearn
 import statistics
-import sys, ast
+if not sys.warnoptions: warnings.simplefilter("ignore")
 
 class ML:
 
