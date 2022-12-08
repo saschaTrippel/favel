@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Alagappa_University> ns1:city <http://dbpedia.org/resource/Karaikudi> .
+<http://dbpedia.org/resource/University_of_Sheffield> ns1:city <http://dbpedia.org/resource/Sheffield> .
 

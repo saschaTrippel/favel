@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_School_of_Law_and_Legal_Studies> ns1:chancellor <http://dbpedia.org/resource/Mahesh_Verma> .
+<http://dbpedia.org/resource/University_of_Glasgow> ns1:chancellor <http://dbpedia.org/resource/Amal_Azzudin> .
 

@@ -3,14 +3,12 @@ http://dbpedia.org/resource/Malcolm_Haines;http://dbpedia.org/ontology/birthPlac
 http://dbpedia.org/resource/Thomas_D._Cook;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Birkenhead;1,
 http://dbpedia.org/resource/Richard_Woodcock;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Oregon;1,
 http://dbpedia.org/resource/Yves_Meyer;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/France;1,
-http://dbpedia.org/resource/Wilson_Teixeira_Beraldo;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Brazil;1,
 http://dbpedia.org/resource/William_Silverman;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Cleveland;1,
 http://dbpedia.org/resource/Robert_Bentley_(botanist);http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Hitchin;1,
-http://dbpedia.org/resource/Kip_Thorne;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Logan,_Utah;1
+http://dbpedia.org/resource/Stephen_Hawking;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Oxford;1,
 http://dbpedia.org/resource/Maxwell_McCombs;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Alabama;1,
 http://dbpedia.org/resource/Norman_Allinger;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Alameda,_California;1
 http://dbpedia.org/resource/Oscar_Ratnoff;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/New_York_City;1,
-http://dbpedia.org/resource/Ray_Jayawardhana;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Sri_Lanka;1,
 http://dbpedia.org/resource/Norman_Rostoker;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Toronto;1,
 http://dbpedia.org/resource/Rogers_H._Wright;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Hoxie,_Arkansas;1
 http://dbpedia.org/resource/Maha_Ashour-Abdalla;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Kingdom_of_Egypt;1,
@@ -45,7 +43,9 @@ http://dbpedia.org/resource/Nalini_Balbir;http://dbpedia.org/ontology/birthPlace
 http://dbpedia.org/resource/Leo_Postman;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Saint_Petersburg;1,
 http://dbpedia.org/resource/Micha_Sharir;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Israel;1,
 http://dbpedia.org/resource/Simon_Biesheuvel;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Netherlands;1,
-http://dbpedia.org/resource/Teruko_Ishizaka;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Yamagata_(city);1,
+http://dbpedia.org/resource/Teruko_Ishizaka;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Yamagata;1,
 http://dbpedia.org/resource/Leon_Kass;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Chicago;1,
 http://dbpedia.org/resource/Kenneth_G._Wilson;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Waltham,_Massachusetts;1
 http://dbpedia.org/resource/Ubaidur_Rahman;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Presidencies_and_provinces_of_British_India;1,
+http://dbpedia.org/resource/Albert_Einstein;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/German_Empire;1,
+http://dbpedia.org/resource/Isaac_Newton;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Lincolnshire;1,

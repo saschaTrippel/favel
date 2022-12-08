@@ -1,17 +1,39 @@
-from sklearn import metrics
+import pandas as pd
 from sklearn import preprocessing
-from sklearn.model_selection import StratifiedKFold
-from sklearn.model_selection import cross_val_score
+from sklearn import metrics
+from sklearn.linear_model import *
+from sklearn.ensemble import *
+from sklearn.tree import *
+import numpy as np
+from sklearn.naive_bayes import *
+from sklearn.neighbors import *
+import pickle, sklearn
+from sklearn.neural_network import *
+from pathlib import Path
+from sklearn.metrics import *
+from sklearn.pipeline import *
+from sklearn.preprocessing import *
+from joblib import dump, load
+import pickle
+import csv,sys, ast
+from functools import reduce
+import operator
+import sys
+from sklearn.model_selection import *
+from sklearn.svm import *
+from sklearn import *
+import pdb
+import os, sys, warnings
+import logging, argparse, configparser
+from pathlib import Path
+import statistics
+from sklearn.metrics import classification_report
 from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
-import logging
-import numpy as np
-import os, sys, ast, warnings
-import pandas as pd
-import pickle
-import sklearn
-import statistics
 if not sys.warnoptions: warnings.simplefilter("ignore")
+import time
+time.ctime() # 'Mon Oct 18 13:35:29 2010'
+
 
 class ML:
 
@@ -58,7 +80,7 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in createDataFrame: ', exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in createDataFrame: ' +' '+ str(e) + ' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            raise e
+            return False
 
 
     def get_model_name(self, model):
@@ -118,9 +140,9 @@ class ML:
             # y_pred=model.predict_proba(X)[:, 1]
             y_pred=model.predict(X)
 
-            roc_auc = metrics.roc_auc_score(y, y_pred)
+            roc_auc = roc_auc_score(y, y_pred)
 
-            report_df = pd.DataFrame(metrics.classification_report(np.array(y, dtype=int), np.array(y_pred, dtype=int), output_dict=True)).T.reset_index(drop=False).rename(columns={'index': 'label'})
+            report_df = pd.DataFrame(classification_report(np.array(y, dtype=int), np.array(y_pred, dtype=int), output_dict=True)).T.reset_index(drop=False).rename(columns={'index': 'label'})
             # print('>>>>> trn acc: ', sum(np.array(y, dtype=int)==np.array(y_pred, dtype=int))/ len(y), roc_auc)
 
             return model, mdl_name, roc_auc, report_df
@@ -128,7 +150,8 @@ class ML:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             logging.error('Error in custom_model_train: ' +' '+str(e)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            raise e
+
+            return False, False, False, False
 
 
     def custom_model_train_cv(self, X, y, model):
@@ -144,8 +167,11 @@ class ML:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             logging.error('Error in custom_model_train_cv: '+' '+str(e) +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            raise e
+            return False, False, False
 
+
+
+    
     # Change model list here to be a single model
     def train_model(self, df, ml_model, output_path, dataset_path):
         """
@@ -188,6 +214,7 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             print('Error in train_model: ', ex, exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in train_model: ' +' '+str(ex)+' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+
             raise ex
 
 
@@ -218,7 +245,7 @@ class ML:
             
             df['ensemble_score'] = ensembleScore
 
-            roc_auc = metrics.roc_auc_score(y, ensembleScore)
+            roc_auc = roc_auc_score(y, ensembleScore)
 
             logging.info('Validation completed')
 
@@ -229,7 +256,9 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in validate_model: ', exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in validate_model: ' +str(e)+ ' ' +str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            raise e
+            
+            return False
+
 
     def test_model(self, df, output_path):
         try:
@@ -261,4 +290,10 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in test_model: ', exc_type, fname, exc_tb.tb_lineno)
             logging.error('Error in test_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            raise e
+
+            return False
+
+
+
+
+

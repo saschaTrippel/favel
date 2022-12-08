@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Paul_Milgrom> ns1:award <http://dbpedia.org/resource/2020_Nobel_Memorial_Prize_in_Economic_Sciences> .
+<http://dbpedia.org/resource/Walter_Hayman> ns1:award <http://dbpedia.org/resource/Fellow_of_the_Royal_Society> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/All_the_Best:_Fun_Begins> ns1:producer <http://dbpedia.org/resource/Ajay_Devgn> .
+<http://dbpedia.org/resource/Dastak_(1996_film)> ns1:producer <http://dbpedia.org/resource/Mukesh_Bhatt> .
 

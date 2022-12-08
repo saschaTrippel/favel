@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dastak_(1996_film)> ns1:producer <http://dbpedia.org/resource/Mukesh_Bhatt> .
+<http://dbpedia.org/resource/Death_to_Smoochy> ns1:producer <http://dbpedia.org/resource/Andrew_Lazar> .
 

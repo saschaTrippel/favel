@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/David_MacDougall> ns1:award <http://dbpedia.org/resource/Asia_Pacific_Screen_Awards> .
+<http://dbpedia.org/resource/Pardis_Sabeti> ns1:award <http://dbpedia.org/resource/Time_100> .
 

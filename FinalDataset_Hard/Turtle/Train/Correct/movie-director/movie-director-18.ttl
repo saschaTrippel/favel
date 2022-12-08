@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Alvin_and_the_Chipmunks:_Chipwrecked> ns1:director <http://dbpedia.org/resource/Mike_Mitchell_(director)> .
+<http://dbpedia.org/resource/Along_Came_Daffy> ns1:director <http://dbpedia.org/resource/Friz_Freleng> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Detouring_America> ns1:director <http://dbpedia.org/resource/Tex_Avery> .
+<http://dbpedia.org/resource/Vacanze_di_Natale> ns1:director <http://dbpedia.org/resource/Carlo_Vanzina> .
 

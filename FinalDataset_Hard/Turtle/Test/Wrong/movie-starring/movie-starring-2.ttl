@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Analyze_This> ns1:starring <http://dbpedia.org/resource/Molly_Shannon> .
+<http://dbpedia.org/resource/Day_of_the_Dead_(2008_film)> ns1:starring <http://dbpedia.org/resource/Jeffrey_Reddick> .
 

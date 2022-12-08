@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, logging
 from datastructures.exceptions.CacheException import CacheException
 
 class Cache:

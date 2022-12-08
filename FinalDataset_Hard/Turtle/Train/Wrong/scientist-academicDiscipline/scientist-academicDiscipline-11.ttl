@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Nikos_Logothetis> ns1:academicDiscipline <http://dbpedia.org/resource/Spectroscopy> .
+<http://dbpedia.org/resource/Paul_Farmer> ns1:academicDiscipline <http://dbpedia.org/resource/Mountains_Beyond_Mountains> .
 

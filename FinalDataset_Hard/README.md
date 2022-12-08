@@ -14,7 +14,7 @@ FAVEL Dataset contains data of 11 relations. This data is directly extracted fro
 |4| Movie - Starring | Person who is starring in the movie |
 |5| Scientist - Academic Discipline | Academic Discipline/ Specialization to which a scientist belong |
 |6| Scientist - Award | The awards which are received by the scientist|
-|7| Scientist - Deathplace | The scientist's death place |
+|7| Scientist - Education | The university in which scientist has studied |
 |8| Scientist - Birthplace | The scientist's birth place |
 |9| University - Affiliation | The organization from which university is affiliated |
 |10| University - Chancellor | The chancellor of the universtiy |

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Robert_Bell_(geologist)> ns1:birthPlace <http://dbpedia.org/resource/Canada> .
+<http://dbpedia.org/resource/William_Howard_Stein> ns1:birthPlace <http://dbpedia.org/resource/Scarsdale,_New_York> .
 

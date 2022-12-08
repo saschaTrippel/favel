@@ -1,17 +1,11 @@
-import logging, copy
+import logging
+import pandas as pd
 from datastructures.Assertion import Assertion
 from InputService.ReadFiles import ReadFiles
 
 class Input:
-    cache = dict()
     
     def getInput(self, filePath:str):
-        if not filePath in Input.cache.keys():
-            result = self.readInput(filePath)
-            Input.cache[filePath] = result
-        return copy.deepcopy(Input.cache[filePath])
-            
-    def readInput(self, filePath:str):
 
         rf = ReadFiles()
 

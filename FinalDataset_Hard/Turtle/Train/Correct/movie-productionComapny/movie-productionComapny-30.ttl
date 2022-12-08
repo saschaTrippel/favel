@@ -1,4 +1,0 @@
-@prefix ns1: <https://dbpedia.org/ontology/> .
-
-<http://dbpedia.org/resource/After_Your_Own_Heart> ns1:productionCompany <http://dbpedia.org/resource/Fox_Film> .
-

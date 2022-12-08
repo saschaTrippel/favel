@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Waikato> ns1:affiliation <http://dbpedia.org/resource/Toi_Ohomai_Institute_of_Technology> .
+<http://dbpedia.org/resource/Vellore_Institute_of_Technology> ns1:affiliation <http://dbpedia.org/resource/VIT_Bhopal_University> .
 

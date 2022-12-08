@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dedication_(film)> ns1:producer <http://dbpedia.org/resource/Celine_Rattray> .
+<http://dbpedia.org/resource/Bowery_Bugs> ns1:producer <http://dbpedia.org/resource/Edward_Selzer> .
 

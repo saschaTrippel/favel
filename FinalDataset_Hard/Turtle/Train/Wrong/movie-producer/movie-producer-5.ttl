@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vacanze_di_Natale> ns1:producer <http://dbpedia.org/resource/Carlo_Vanzina> .
+<http://dbpedia.org/resource/Cat_Feud> ns1:producer <http://dbpedia.org/resource/Merrie_Melodies> .
 

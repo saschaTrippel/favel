@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vellore_Institute_of_Technology> ns1:affiliation <http://dbpedia.org/resource/VIT_Bhopal_University> .
+<http://dbpedia.org/resource/Vinoba_Bhave_University> ns1:affiliation <http://dbpedia.org/resource/Ranchi_University> .
 

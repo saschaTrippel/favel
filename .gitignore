@@ -134,6 +134,3 @@ dmypy.json
 
 # Mac OS
 .DS_Store
-
-# Libereoffice
-.~lock.*

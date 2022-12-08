@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Pardis_Sabeti> ns1:award <http://dbpedia.org/resource/Time_100> .
+<http://dbpedia.org/resource/Lance_Liotta> ns1:award <http://dbpedia.org/resource/Surgeon_General's_Medallion> .
 

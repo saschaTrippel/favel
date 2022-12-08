@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Deep_Impact_(film)> ns1:director <http://dbpedia.org/resource/David_Brown_(producer)> .
+<http://dbpedia.org/resource/Along_Came_Daffy> ns1:director <http://dbpedia.org/resource/Virgil_Ross> .
 

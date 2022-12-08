@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Kota> ns1:affiliation <http://dbpedia.org/resource/Association_of_Indian_Universities> .
+<http://dbpedia.org/resource/Tamil_Nadu_Music_and_Fine_Arts_University> ns1:affiliation <http://dbpedia.org/resource/University_Grants_Commission_(India)> .
 

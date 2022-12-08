@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dan_in_Real_Life> ns1:director <http://dbpedia.org/resource/Alison_Sudol> .
+<http://dbpedia.org/resource/Almost_Married_(1932_film)> ns1:director <http://dbpedia.org/resource/Violet_Heming> .
 

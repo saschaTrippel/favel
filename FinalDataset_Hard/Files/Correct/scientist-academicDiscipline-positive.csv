@@ -1,7 +1,7 @@
 subject;predicate;object;truth_value
 http://dbpedia.org/resource/Zohar_Manna;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Computer_science;1
-http://dbpedia.org/resource/Yves_Meyer;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Mathematics;1
 http://dbpedia.org/resource/Wilmatte_Porter_Cockerell;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Entomology;1
+http://dbpedia.org/resource/Yves_Meyer;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Mathematics;1
 http://dbpedia.org/resource/William_Shadish;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Statistics;1
 http://dbpedia.org/resource/William_Nordhaus;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Environmental_economics;1
 http://dbpedia.org/resource/William_Healey_Dall;http://dbpedia.org/ontology/academicDiscipline;http://dbpedia.org/resource/Malacology;1

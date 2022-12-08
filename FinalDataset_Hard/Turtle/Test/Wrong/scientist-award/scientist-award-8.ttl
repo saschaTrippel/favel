@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Peter_Wells_(medical_physicist)> ns1:award <http://dbpedia.org/resource/Duddell_Medal_and_Prize> .
+<http://dbpedia.org/resource/Ted_Janssen> ns1:award <http://dbpedia.org/resource/Nobel_Prize_in_Chemistry> .
 

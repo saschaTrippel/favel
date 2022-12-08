@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Uzhaippali> ns1:producer <http://dbpedia.org/resource/B._Venkatarama_Reddy> .
+<http://dbpedia.org/resource/Along_Came_Daffy> ns1:producer <http://dbpedia.org/resource/Edward_Selzer> .
 

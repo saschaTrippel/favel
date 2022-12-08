@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Samuel_Greenhouse> ns1:academicDiscipline <http://dbpedia.org/resource/Analysis_of_variance> .
+<http://dbpedia.org/resource/Wilmatte_Porter_Cockerell> ns1:academicDiscipline <http://dbpedia.org/resource/Panama–Pacific_International_Exposition> .
 

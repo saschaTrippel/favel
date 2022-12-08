@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Harry_Kroto> ns1:deathPlace <http://dbpedia.org/resource/Lewes> .
+<http://dbpedia.org/resource/Bernhard_Neumann> ns1:deathPlace <http://dbpedia.org/resource/Canberra> .
 

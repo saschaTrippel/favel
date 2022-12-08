@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Ray_Jayawardhana> ns1:birthPlace <http://dbpedia.org/resource/Sri_Lanka> .
+<http://dbpedia.org/resource/Robert_Bell_(geologist)> ns1:birthPlace <http://dbpedia.org/resource/Toronto> .
 

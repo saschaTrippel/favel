@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Robert_H._Grubbs> ns1:academicDiscipline <http://dbpedia.org/resource/Organic_chemistry> .
+<http://dbpedia.org/resource/Zohar_Manna> ns1:academicDiscipline <http://dbpedia.org/resource/Computer_science> .
 

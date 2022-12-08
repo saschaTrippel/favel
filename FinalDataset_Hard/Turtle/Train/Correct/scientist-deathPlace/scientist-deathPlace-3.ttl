@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vladimir_Chelomey> ns1:deathPlace <http://dbpedia.org/resource/Russian_Soviet_Federative_Socialist_Republic> .
+<http://dbpedia.org/resource/Albrecht_Penck> ns1:deathPlace <http://dbpedia.org/resource/Protectorate_of_Bohemia_and_Moravia> .
 

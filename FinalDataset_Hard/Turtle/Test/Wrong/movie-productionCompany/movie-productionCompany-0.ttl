@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Bosko's_Knight-Mare> ns1:productionCompany <http://dbpedia.org/resource/Warner_Bros._Pictures> .
+<http://dbpedia.org/resource/Dante's_Inferno_(1935_film)> ns1:productionCompany <http://dbpedia.org/resource/Painting> .
 

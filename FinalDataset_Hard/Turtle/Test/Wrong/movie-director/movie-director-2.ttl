@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vacanze_di_Natale> ns1:director <http://dbpedia.org/resource/Aurelio_De_Laurentiis> .
+<http://dbpedia.org/resource/Desert_Blossoms> ns1:director <http://dbpedia.org/resource/Arthur_J._Zellner> .
 

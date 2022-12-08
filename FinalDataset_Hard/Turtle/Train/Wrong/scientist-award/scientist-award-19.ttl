@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Herbert_A._Simon> ns1:award <http://dbpedia.org/resource/APA_Award_for_Lifetime_Contributions_to_Psychology> .
+<http://dbpedia.org/resource/Donald_Kagan> ns1:award <http://dbpedia.org/resource/Jefferson_Lecture> .
 

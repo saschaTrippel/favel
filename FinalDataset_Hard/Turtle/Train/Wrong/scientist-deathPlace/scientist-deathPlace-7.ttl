@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Bert_Sutherland> ns1:deathPlace <http://dbpedia.org/resource/Hastings,_Nebraska> .
+<http://dbpedia.org/resource/Gene_F._Franklin> ns1:deathPlace <http://dbpedia.org/resource/United_States> .
 

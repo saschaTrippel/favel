@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/William_Bowie_(engineer)> ns1:deathPlace <http://dbpedia.org/resource/Bowie_Canyon> .
+<http://dbpedia.org/resource/Albert_Einstein> ns1:deathPlace <http://dbpedia.org/resource/Kingdom_of_Prussia> .
 

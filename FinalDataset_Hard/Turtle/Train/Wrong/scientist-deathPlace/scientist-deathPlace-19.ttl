@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/George_de_Hevesy> ns1:deathPlace <http://dbpedia.org/resource/Budapest> .
+<http://dbpedia.org/resource/Warren_Ambrose> ns1:deathPlace <http://dbpedia.org/resource/Virden,_Illinois> .
 
