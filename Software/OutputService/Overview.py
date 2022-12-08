@@ -83,4 +83,5 @@ class Overview:
     
     def _getDataset(self, datasetPath:str):
         pathLst = datasetPath.split('/')
+        pathLst = list(filter(lambda x: x != '', pathLst))
         return pathLst[-1]
