@@ -1,8 +1,6 @@
-import configparser, logging, argparse
-
-from os import path
 from controller.Controller import Controller
-from argparse import ArgumentParser
+from os import path
+import configparser, logging, argparse
 
 def main():
     args = _parseArguments()

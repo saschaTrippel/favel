@@ -1,5 +1,3 @@
-import logging
-
 from FactValidationService.AssertionsRunner import AssertionsRunner
 from FactValidationService.AssertionsCacheRunner import AssertionsCacheRunner
 

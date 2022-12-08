@@ -1,5 +1,4 @@
-import json, sys
-from builtins import object
+import json
 
 class Message:
     

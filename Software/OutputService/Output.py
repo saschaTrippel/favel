@@ -1,4 +1,3 @@
-import csv
 from os import path
 from OutputService.GerbilFormat import GerbilFormat
 from OutputService.Overview import Overview

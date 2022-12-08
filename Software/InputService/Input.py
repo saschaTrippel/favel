@@ -1,5 +1,4 @@
 import logging
-import pandas as pd
 from datastructures.Assertion import Assertion
 from InputService.ReadFiles import ReadFiles
 

@@ -1,4 +1,4 @@
-import logging, ast, os
+import logging, os
 
 from os import path
 from FactValidationService.Validator import Validator
@@ -6,7 +6,6 @@ from InputService.Input import Input
 from ContainerService.Containers import Containers
 from MLService.ML import ML
 from OutputService.Output import Output
-import pdb 
 
 class Controller:
     """
