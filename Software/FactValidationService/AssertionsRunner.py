@@ -1,5 +1,4 @@
 import threading
-import socket
 import logging
 from FactValidationService.AbstractJobRunner import AbstractJobRunner
 from datastructures.Assertion import Assertion

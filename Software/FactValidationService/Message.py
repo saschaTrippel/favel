@@ -1,5 +1,4 @@
 import json
-from builtins import object
 
 class Message:
     
@@ -43,6 +42,14 @@ class Message:
     def type(self, type):
         if type in ["call", "train", "test", "test_result", "ack", "type_response", "error"]:
             self._type = type
-        
-        
-
+            
+    @property
+    def score(self):
+        return self._score
+    
+    @score.setter
+    def score(self, score):
+        if float(score) == float('inf') or float(score) == float('-inf') or float(score) == float('nan'):
+            self._score = 0
+        else:
+            self._score = score

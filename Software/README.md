@@ -14,7 +14,9 @@ python3 Favel.py [options]
 ```
 
 ### Options
-* ```-e EXPIRIMENT``` name of the experiment, corresponds with the name of the experiment folder in the ```Evaluation``` directory
+* ```-e EXPERIMENT, --experiment EXPERIMENT``` name of the experiment, corresponds with the name of the experiment folder in the ```Evaluation``` directory
+* ```-b EXPERIMENT, --batch EXPERIMENT``` name of the experiment, corresponds with the name of the experiment folder in the ```Evaluation``` directory.
+Experiment will be run in batch mode, meaning that an experiment will be executed with every subset of the specified set of fact validation approaches.
 * ```-d DATA, --data DATA``` path to the dataset to validate
 * ```-c, --containers``` automatically Start/Stop containers
 

@@ -1,6 +1,4 @@
 import threading
-import socket
-import logging
 from os import path
 from FactValidationService.Cache import Cache
 from FactValidationService.AssertionsRunner import AssertionsRunner
