@@ -15,7 +15,7 @@ class Overview:
         self.approaches = list(approaches)
         self.approaches.sort()
         self.mlParameters = mlParameters
-        self.bestApproach, self.bestApproachScore = self._getBestApproach(df, approaches)
+        self.scoresApproaches, self.bestApproach, self.bestApproachScore = self._getBestApproach(df, approaches)
         self.testingAucRoc = self._testingAucRoc(df)
         
     def write(self):
@@ -23,10 +23,10 @@ class Overview:
         try:
             overviewFrame = pd.read_excel(path.join(self.evaluation, "Overview.xlsx"))
         except Exception as ex:
-            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Fact Validation Approaches", "#Approaches", "Best Single Approach", "Best Single Score", "ML Algorithm", "ML Parameters", "Training AUC-ROC Score", "Testing AUC-ROC Score", "Improvement"])
+            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Fact Validation Approaches", "#Approaches", "Approaches Scores", "Best Single Approach", "Best Single Score", "ML Algorithm", "ML Parameters", "Training AUC-ROC Score", "Testing AUC-ROC Score", "Improvement"])
             
         # Create a new row for current experiment
-        row = pd.Series([self.experiment, self.dataset, ", ".join(self.approaches), len(self.approaches), self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.mlParameters, self.trainingMetrics['overall'], self.testingAucRoc, self.testingAucRoc-self.bestApproachScore], index=overviewFrame.columns)
+        row = pd.Series([self.experiment, self.dataset, ", ".join(self.approaches), len(self.approaches), str(self.scoresApproaches), self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.mlParameters, self.trainingMetrics['overall'], self.testingAucRoc, self.testingAucRoc-self.bestApproachScore], index=overviewFrame.columns)
         
         # See if there already is a row for the current experiment and dataset
         dataSet = set(overviewFrame.index[overviewFrame.Dataset == row.Dataset].tolist())
@@ -41,6 +41,7 @@ class Overview:
                 overviewFrame.loc[index, ['Testing AUC-ROC Score']] = self.testingAucRoc
                 overviewFrame.loc[index, ['Training AUC-ROC Score']] = self.trainingMetrics['overall']
                 overviewFrame.loc[index, ['Improvement']] = self.testingAucRoc - self.bestApproachScore
+                overviewFrame.loc[index, ['Approaches Scores']] = str(self.scoresApproaches)
                 overviewFrame.loc[index, ['Best Single Approach']] = self.bestApproach
                 overviewFrame.loc[index, ['Best Single Score']] = self.bestApproachScore
                 overviewFrame.loc[index, ['Experiment']] = self.experiment
@@ -60,12 +61,14 @@ class Overview:
         
     def _getBestApproach(self, df, approaches):
         y = df.truth
+        results = dict()
         bestApproach = None
         bestScore = 0
         for approach in approaches:
             approachScore = df[approach]
             auc_roc_single = metrics.roc_auc_score(y, approachScore)
+            results[approach] = auc_roc_single
             if auc_roc_single > bestScore:
                 bestScore = auc_roc_single
                 bestApproach = approach
-        return bestApproach, bestScore
+        return results, bestApproach, bestScore
