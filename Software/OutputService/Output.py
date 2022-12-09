@@ -13,11 +13,11 @@ class Output():
 		"""
         df.to_csv(path.join(self.paths['SubExperimentPath'], "Output.csv"), index=False)
         
-    def writeOverview(self, df, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics):
+    def writeOverview(self, df, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics, normaliser_name:str):
         """
         Write Overview.xlsx
         """
-        overview = Overview(df, self.paths, approaches, mlAlgorithm, mlParameters, trainingMetrics)
+        overview = Overview(df, self.paths, approaches, mlAlgorithm, mlParameters, trainingMetrics, normaliser_name)
         overview.write()
     
     def gerbilFormat(self,testingData):
