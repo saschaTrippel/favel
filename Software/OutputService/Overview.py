@@ -5,12 +5,13 @@ import pandas as pd
 
 class Overview:
 
-    def __init__(self, df, paths:dict, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics):
+    def __init__(self, df, paths:dict, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics, normaliser_name):
         self.evaluation = paths['EvaluationPath']
         self.experiment = paths['SubExperimentName']
         self.dataset = paths['DatasetName']
         self.trainingMetrics = trainingMetrics
         self.mlAlgorithm = mlAlgorithm
+        self.normaliser_name = normaliser_name
         
         self.approaches = list(approaches)
         self.approaches.sort()
@@ -23,10 +24,10 @@ class Overview:
         try:
             overviewFrame = pd.read_excel(path.join(self.evaluation, "Overview.xlsx"))
         except Exception as ex:
-            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Fact Validation Approaches", "#Approaches", "Approaches Scores", "Best Single Approach", "Best Single Score", "ML Algorithm", "ML Parameters", "Training AUC-ROC Score", "Testing AUC-ROC Score", "Improvement"])
+            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Fact Validation Approaches", "#Approaches", "Approaches Scores", "Best Single Approach", "Best Single Score", "ML Algorithm", "ML Parameters", "Normaliser", "Training AUC-ROC Score", "Testing AUC-ROC Score", "Improvement"])
             
         # Create a new row for current experiment
-        row = pd.Series([self.experiment, self.dataset, ", ".join(self.approaches), len(self.approaches), str(self.scoresApproaches), self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.mlParameters, self.trainingMetrics['overall'], self.testingAucRoc, self.testingAucRoc-self.bestApproachScore], index=overviewFrame.columns)
+        row = pd.Series([self.experiment, self.dataset, ", ".join(self.approaches), len(self.approaches), str(self.scoresApproaches), self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.mlParameters, self.normaliser_name, self.trainingMetrics['overall'], self.testingAucRoc, self.testingAucRoc-self.bestApproachScore], index=overviewFrame.columns)
         
         # See if there already is a row for the current experiment and dataset
         dataSet = set(overviewFrame.index[overviewFrame.Dataset == row.Dataset].tolist())
