@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Devil_May_Hare> ns1:director <http://dbpedia.org/resource/Phil_DeLara> .
+<http://dbpedia.org/resource/Caroline_and_the_Rebels> ns1:director <http://dbpedia.org/resource/Daniel_Ceccaldi> .
 

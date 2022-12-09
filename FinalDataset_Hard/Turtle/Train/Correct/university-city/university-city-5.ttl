@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Vellore_Institute_of_Technology> ns1:city <http://dbpedia.org/resource/Vellore> .
+<http://dbpedia.org/resource/University_of_Sydney> ns1:city <http://dbpedia.org/resource/Sydney> .
 

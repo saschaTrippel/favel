@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Population_Research_Laboratory> ns1:affiliation <http://dbpedia.org/resource/Canadian_Interuniversity_Sport> .
+<http://dbpedia.org/resource/University_of_Victoria> ns1:affiliation <http://dbpedia.org/resource/British_Columbia> .
 

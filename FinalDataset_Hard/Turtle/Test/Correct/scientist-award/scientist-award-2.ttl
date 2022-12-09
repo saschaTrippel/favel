@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Ardem_Patapoutian> ns1:award <http://dbpedia.org/resource/Nobel_Prize_in_Physiology_or_Medicine> .
+<http://dbpedia.org/resource/William_King_Gregory> ns1:award <http://dbpedia.org/resource/National_Academy_of_Sciences> .
 

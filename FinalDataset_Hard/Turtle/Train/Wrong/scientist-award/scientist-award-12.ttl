@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Maor_Farid> ns1:award <http://dbpedia.org/resource/Fulbright_Program> .
+<http://dbpedia.org/resource/Tracy_Palmer> ns1:award <http://dbpedia.org/resource/Fleming_Prize_Lecture> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Almost_Married_(1932_film)> ns1:director <http://dbpedia.org/resource/William_Cameron_Menzies> .
+<http://dbpedia.org/resource/Vasuvum_Saravananum_Onna_Padichavanga> ns1:director <http://dbpedia.org/resource/M._Rajesh> .
 

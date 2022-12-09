@@ -1,4 +1,0 @@
-@prefix ns1: <http://dbpedia.org/property/> .
-
-<http://dbpedia.org/resource/Ronald_V._Clarke> ns1:education <http://dbpedia.org/resource/Temple_University> .
-

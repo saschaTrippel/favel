@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Samuel_Greenhouse> ns1:birthPlace <http://dbpedia.org/resource/The_Bronx> .
+<http://dbpedia.org/resource/Stephen_Hawking> ns1:birthPlace <http://dbpedia.org/resource/Oxford> .
 

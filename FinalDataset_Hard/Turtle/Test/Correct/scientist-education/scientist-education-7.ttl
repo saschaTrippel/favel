@@ -1,4 +1,0 @@
-@prefix ns1: <http://dbpedia.org/property/> .
-
-<http://dbpedia.org/resource/Zhi-Quan_Tom_Luo> ns1:education <http://dbpedia.org/resource/Peking_University> .
-

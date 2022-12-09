@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/University_of_Dar_es_Salaam> ns1:affiliation <http://dbpedia.org/resource/Association_of_African_Universities> .
+<http://dbpedia.org/resource/Universiti_Sains_Malaysia> ns1:affiliation <http://dbpedia.org/resource/Association_of_Commonwealth_Universities> .
 

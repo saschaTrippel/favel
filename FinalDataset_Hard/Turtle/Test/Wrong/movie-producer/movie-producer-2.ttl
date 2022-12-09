@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Devil_May_Hare> ns1:producer <http://dbpedia.org/resource/Phil_DeLara> .
+<http://dbpedia.org/resource/Amy_(2015_film)> ns1:producer <http://dbpedia.org/resource/Amy_Winehouse> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Darling_(2015_Indian_film)> ns1:starring <http://dbpedia.org/resource/Megha_(singer)> .
+<http://dbpedia.org/resource/All_Together_(1942_film)> ns1:starring <http://dbpedia.org/resource/Pinocchio> .
 

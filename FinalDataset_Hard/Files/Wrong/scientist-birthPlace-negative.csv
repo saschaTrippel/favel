@@ -25,15 +25,13 @@ http://dbpedia.org/resource/Thomas_Oakland;http://dbpedia.org/ontology/birthPlac
 http://dbpedia.org/resource/Ted_Janssen;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Groesbeek;0,
 http://dbpedia.org/resource/Micha_Sharir;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/United_States;0,
 http://dbpedia.org/resource/William_King_Gregory;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Greenwich_Village;0,
-http://dbpedia.org/resource/Kip_Thorne;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Relativistic_star;0,
-http://dbpedia.org/resource/Ray_Jayawardhana;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/HR_4796;0,
+http://dbpedia.org/resource/Stephen_Hawking;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Cambridge;0,
 http://dbpedia.org/resource/Yves_Meyer;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Tunis;0,
 http://dbpedia.org/resource/Maxwell_McCombs;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/United_States;0,
 http://dbpedia.org/resource/William_L._Kruer;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Kentucky;0,
 http://dbpedia.org/resource/Robert_Bentley_(botanist);http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Kensington;0,
 http://dbpedia.org/resource/Leonard_Broom;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Santa_Barbara,_California;0
 http://dbpedia.org/resource/Malcolm_Haines;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Cambridge;0,
-http://dbpedia.org/resource/Wilson_Teixeira_Beraldo;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Belo_Horizonte;0,
 http://dbpedia.org/resource/Leon_Kass;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Boston;0,
 http://dbpedia.org/resource/Rogers_H._Wright;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/California;0,
 http://dbpedia.org/resource/Richard_Woodcock;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/San_Diego;0,
@@ -49,3 +47,5 @@ http://dbpedia.org/resource/William_Healey_Dall;http://dbpedia.org/ontology/birt
 http://dbpedia.org/resource/Norman_Rostoker;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Irvine,_California;0
 http://dbpedia.org/resource/Sergi_Jikia;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Democratic_Republic_of_Georgia;0,
 http://dbpedia.org/resource/Simon_Biesheuvel;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Cape_Town;0,
+http://dbpedia.org/resource/Albert_Einstein;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Switzerland;0,
+http://dbpedia.org/resource/Isaac_Newton;http://dbpedia.org/ontology/birthPlace;http://dbpedia.org/resource/Kensington;0,

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Colin_L._Masters> ns1:award <http://dbpedia.org/resource/Florey_Medal> .
+<http://dbpedia.org/resource/James_F._Scott> ns1:award <http://dbpedia.org/resource/Fellow_of_the_Royal_Society> .
 

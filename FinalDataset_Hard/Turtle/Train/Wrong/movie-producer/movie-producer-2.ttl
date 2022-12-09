@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Desert_Blossoms> ns1:producer <http://dbpedia.org/resource/Arthur_J._Zellner> .
+<http://dbpedia.org/resource/Deep_Impact_(film)> ns1:producer <http://dbpedia.org/resource/David_M._Walker_(astronaut)> .
 

@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Kip_Thorne> ns1:academicDiscipline <http://dbpedia.org/resource/Collier's_Encyclopedia> .
+<http://dbpedia.org/resource/Simon_Biesheuvel> ns1:academicDiscipline <http://dbpedia.org/resource/Monograph> .
 

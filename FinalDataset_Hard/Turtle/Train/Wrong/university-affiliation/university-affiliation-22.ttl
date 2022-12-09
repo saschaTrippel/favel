@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Northern_University_of_Business_and_Technology_Khulna> ns1:affiliation <http://dbpedia.org/resource/Northern_University,_Bangladesh> .
+<http://dbpedia.org/resource/University_of_Queensland> ns1:affiliation <http://dbpedia.org/resource/UQ_Business_School> .
 

@@ -1,14 +1,15 @@
 import unittest
 from ContainerService.Containers import Containers
+from multiprocessing import Process
 
 
 class TestContainers(unittest.TestCase):
     def setUp(self):
         self.containers = Containers()
+        # self.containers.startContainers()
 
     def testStartContainers(self):
         pass
-        # self.containers.startContainers()
         # containers = self.containers.docker.compose.ps()
         # self.assertGreaterEqual(len(containers), 1)
 
@@ -24,4 +25,3 @@ class TestContainers(unittest.TestCase):
         self.containers.rmContainers()
         containers = self.containers.docker.compose.ps()
         self.assertEqual(len(containers), 0)
-

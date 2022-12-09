@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Ajit_Ram_Verma> ns1:award <http://dbpedia.org/resource/Shanti_Swarup_Bhatnagar_Prize_for_Science_and_Technology> .
+<http://dbpedia.org/resource/Lance_Liotta> ns1:award <http://dbpedia.org/resource/American_Association_for_Clinical_Chemistry> .
 

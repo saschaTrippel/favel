@@ -1,6 +1,5 @@
 import threading
-import socket
-import logging
+from os import path
 from FactValidationService.Cache import Cache
 from FactValidationService.AssertionsRunner import AssertionsRunner
 from FactValidationService.Message import Message
@@ -11,10 +10,17 @@ class AssertionsCacheRunner(AssertionsRunner):
     Overrides validation of an assertion to cache results in a database to speed up future validations.
     """
 
-    def __init__(self, approach:str, port:int, trainingAssertions:list, testingAssertions:list, cachePath:str):
+    def __init__(self, approach:str, port:int, trainingAssertions:list, testingAssertions:list):
         super().__init__(approach, port, trainingAssertions, testingAssertions)
         threading.Thread.__init__(self)
-        self.cachePath = cachePath
+        self.cachePath = self._loadCachePath()
+        
+    def _loadCachePath(self):
+        cacheRunnerPath = path.realpath(__file__)
+        pathLst = cacheRunnerPath.split('/')
+        favelPath = "/".join(pathLst[:-3])
+        favelPath = path.join(favelPath, ".cache")
+        return favelPath
     
     def run(self):
         try:

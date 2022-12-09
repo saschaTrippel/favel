@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/William_Nordhaus> ns1:academicDiscipline <http://dbpedia.org/resource/Environmental_economics> .
+<http://dbpedia.org/resource/Maxwell_McCombs> ns1:academicDiscipline <http://dbpedia.org/resource/Political_communication> .
 

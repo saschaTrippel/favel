@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Stephen_R._Bourne> ns1:academicDiscipline <http://dbpedia.org/resource/Mathematics> .
+<http://dbpedia.org/resource/Pardis_Sabeti> ns1:academicDiscipline <http://dbpedia.org/resource/Population_genetics> .
 

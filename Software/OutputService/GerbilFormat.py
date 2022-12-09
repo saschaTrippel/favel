@@ -1,5 +1,5 @@
+from os import path
 import pandas as pd
-import csv
 
 class GerbilFormat:
 
@@ -67,13 +67,13 @@ class GerbilFormat:
 		        # Truth Value
 				array += self.createTruthValueTriple(datasetName,rows["true_value"])
 		        
-				with open("{}favel.nt".format(self.experimentPath), "w+") as file:
+				with open(path.join(self.experimentPath, "favel.nt"), "w+") as file:
 					file.write(array)
 
 	def createOutputFileForEvaluation(self):
 		"""Writing the output file (for ensemble scores only) in the specified Format"""
 
-		data = pd.read_csv('{}Output.csv'.format(self.experimentPath))	# Read the Output from our software containing ensemble_score
+		data = pd.read_csv(path.join(self.experimentPath, 'Output.csv'))	# Read the Output from our software containing ensemble_score
 
 		array = " "
 		for outputFileIndex,rows in data.iterrows():
@@ -81,7 +81,7 @@ class GerbilFormat:
 			datasetName = self.title + str(outputFileIndex) + ">"
 			array += self.createTruthValueTriple(datasetName, str(rows['ensemble_score']))
 
-			with open("{}favel_ensemble.nt".format(self.experimentPath), "w+") as file:
+			with open(path.join(self.experimentPath, "favel_ensemble.nt"), "w+") as file:
 				file.write(array)
 
 	def getGerbilFormat(self):

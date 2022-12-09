@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Amy_(2015_film)> ns1:producer <http://dbpedia.org/resource/Amy_Winehouse> .
+<http://dbpedia.org/resource/Detouring_America> ns1:producer <http://dbpedia.org/resource/Merrie_Melodies> .
 

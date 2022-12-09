@@ -1,4 +1,0 @@
-@prefix ns1: <http://dbpedia.org/property/> .
-
-<http://dbpedia.org/resource/Thomas_Michael_O'Neil> ns1:education <http://dbpedia.org/resource/California_State_University,_Long_Beach> .
-

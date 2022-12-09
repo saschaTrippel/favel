@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Paul_Farmer> ns1:birthPlace <http://dbpedia.org/resource/Haiti> .
+<http://dbpedia.org/resource/William_Healey_Dall> ns1:birthPlace <http://dbpedia.org/resource/Denali_National_Park_and_Preserve> .
 

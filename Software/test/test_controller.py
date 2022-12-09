@@ -16,9 +16,9 @@ class TestController(unittest.TestCase):
         self.assertIn("cachePath", self.ctrl.configParser["General"])
         self.assertIn("useCache", self.ctrl.configParser["General"])
 
-    def testGetMethod(self):
-        method = self.ctrl.getMethod()
-        self.assertIn(method, ["train", "cache", "test"])
+    # def testGetMethod(self):
+    #     method = self.ctrl.getMethod()
+    #     self.assertIn(method, ["train", "cache", "test"])
 
     def testInput(self):
         self.ctrl.input()

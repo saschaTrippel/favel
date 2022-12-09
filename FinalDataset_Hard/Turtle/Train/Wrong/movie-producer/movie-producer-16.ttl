@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Detouring_America> ns1:producer <http://dbpedia.org/resource/Merrie_Melodies> .
+<http://dbpedia.org/resource/Africa_Squeaks> ns1:producer <http://dbpedia.org/resource/David_Livingstone> .
 
