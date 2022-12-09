@@ -10,7 +10,7 @@ http://dbpedia.org/resource/J._R._R._Tolkien,http://dbpedia.org/ontology/deathPl
 http://dbpedia.org/resource/Abbas_II_of_Egypt,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Alexandria,1,0.078208,0.111966,0.0,0.002625,0
 http://dbpedia.org/resource/John_von_Neumann,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Budapest,1,0.086776,0.239746,1.0,0.93,0
 http://dbpedia.org/resource/Joris_Ivens,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Nijmegen,1,0.063347,0.082732,1.0,0.0755,1
-http://dbpedia.org/resource/Benoit_Mandelbrot,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Warsaw,1,0.076464,0.085827,0.0,0.000875,1
+http://dbpedia.org/resource/Benoit_Mandelbrot,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Warsaw,1,0.076464,0.085827,0.0,0.000875,0
 http://dbpedia.org/resource/J._R._R._Tolkien,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Bloemfontein,1,0.0895,0.17132,1.0,0.073375,1
 http://dbpedia.org/resource/Anton_Chekhov,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Taganrog,1,0.127717,0.257007,1.0,0.05775,1
 http://dbpedia.org/resource/Aaliyah,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Marsh_Harbour,1,0.165825,0.247445,1.0,0.019,1
@@ -28,7 +28,7 @@ http://dbpedia.org/resource/John_A._Macdonald,http://dbpedia.org/ontology/deathP
 http://dbpedia.org/resource/John_A._Roebling,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/New_York_City,1,0.072156,0.170672,1.0,3.539625,0
 http://dbpedia.org/resource/James_Wilkinson,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Mexico_City,1,0.106414,0.805212,1.0,1.416125,0
 http://dbpedia.org/resource/Arthur_de_Gobineau,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Turin,1,0.062247,0.106688,1.0,0.247875,1
-http://dbpedia.org/resource/Frédéric_Bastiat,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Rome,1,0.062314,0.121024,1.0,1.2525,0
+http://dbpedia.org/resource/Frédéric_Bastiat,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Rome,1,0.062314,0.121024,1.0,1.2525,1
 http://dbpedia.org/resource/Adelaide_of_Italy,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Orbe,1,0.065264,0.051812,1.0,0.004625,1
 "http://dbpedia.org/resource/Albert_VII,_Archduke_of_Austria",http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Wiener_Neustadt,1,0.06119,0.06023,0.0,0.0,0
 http://dbpedia.org/resource/Irenaeus,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/İzmir,1,0.077524,0.134135,0.0,0.05025,0
@@ -67,7 +67,7 @@ http://dbpedia.org/resource/Emma_Goldman,http://dbpedia.org/ontology/birthPlace,
 http://dbpedia.org/resource/Alfred_Hitchcock,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/London,1,0.077036,0.262172,1.0,0.062125,1
 http://dbpedia.org/resource/Joe_Strummer,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Broomfield,_Somerset",1,0.05886,0.054811,1.0,0.0165,1
 http://dbpedia.org/resource/F._F._E._Yeo-Thomas,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/London,1,0.056491,0.076584,0.0,0.007,0
-"http://dbpedia.org/resource/Christina,_Queen_of_Sweden",http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Stockholm,1,0.065548,0.081909,0.0,0.00025,1
+"http://dbpedia.org/resource/Christina,_Queen_of_Sweden",http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Stockholm,1,0.065548,0.081909,0.0,0.00025,0
 http://dbpedia.org/resource/Aaliyah,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Brooklyn,1,0.074237,0.161808,0.0,0.169,0
 "http://dbpedia.org/resource/Diana,_Princess_of_Wales",http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Sandringham,_Norfolk",1,0.14522,0.153577,0.0,0.00175,0
 http://dbpedia.org/resource/Joseph_Conrad,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Bishopsbourne,1,0.090724,0.107905,1.0,0.011375,1
@@ -88,7 +88,7 @@ http://dbpedia.org/resource/John_Peel,http://dbpedia.org/ontology/birthPlace,htt
 http://dbpedia.org/resource/Alfonso_IV_of_Aragon,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Barcelona,1,0.073842,0.127094,1.0,0.0005,1
 http://dbpedia.org/resource/Ernst_Mayr,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Bedford,_Massachusetts",1,0.05878,0.053314,1.0,0.009125,1
 http://dbpedia.org/resource/Cornelius_Johnson_(artist),http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/London,1,0.055644,0.108933,1.0,0.9155,1
-http://dbpedia.org/resource/Fay_Wray,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Alberta,1,0.055191,0.084947,0.0,0.0,1
+http://dbpedia.org/resource/Fay_Wray,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Alberta,1,0.055191,0.084947,0.0,0.0,0
 http://dbpedia.org/resource/Austen_Henry_Layard,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Paris,1,0.067115,0.166131,1.0,0.009625,1
 http://dbpedia.org/resource/Frédéric_Bastiat,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Bayonne,1,0.058635,0.082435,1.0,0.04,1
 http://dbpedia.org/resource/André_Weil,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Paris,1,0.073082,0.10989,1.0,1.78925,1
@@ -138,7 +138,7 @@ http://dbpedia.org/resource/Anton_Chekhov,http://dbpedia.org/ontology/birthPlace
 http://dbpedia.org/resource/Austen_Henry_Layard,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Paris,0,0.067115,0.146762,0.0,0.009625,0
 http://dbpedia.org/resource/John_A._Macdonald,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Ottawa,0,0.112394,0.893574,0.0,0.842,0
 http://dbpedia.org/resource/Joe_Strummer,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Ankara,0,0.125081,0.893574,0.0,0.180375,0
-"http://dbpedia.org/resource/Albert_VII,_Archduke_of_Austria",http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Brussels,0,0.088676,0.089123,0.0,0.00025,1
+"http://dbpedia.org/resource/Albert_VII,_Archduke_of_Austria",http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Brussels,0,0.088676,0.089123,0.0,0.00025,0
 http://dbpedia.org/resource/Anton_Chekhov,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Taganrog,0,0.160763,0.893574,0.0,0.05775,0
 http://dbpedia.org/resource/Benoit_Mandelbrot,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Warsaw,0,0.076464,0.092955,1.0,0.000875,1
 http://dbpedia.org/resource/George_Frideric_Handel,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/London,0,0.090621,0.893574,0.0,4.32875,0
@@ -186,7 +186,7 @@ http://dbpedia.org/resource/Adelaide_of_Italy,http://dbpedia.org/ontology/birthP
 http://dbpedia.org/resource/Frédéric_Bastiat,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Bayonne,0,0.166372,0.893574,0.0,0.04,0
 http://dbpedia.org/resource/John_Stuart_Mill,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Avignon,0,0.159154,0.893574,0.0,0.044875,0
 http://dbpedia.org/resource/Carlo_Goldoni,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Paris,0,0.09787,0.893574,0.0,1.709375,0
-http://dbpedia.org/resource/Benoit_Mandelbrot,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Cambridge,_Massachusetts",0,0.081741,0.084959,0.0,0.001375,1
+http://dbpedia.org/resource/Benoit_Mandelbrot,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Cambridge,_Massachusetts",0,0.081741,0.084959,0.0,0.001375,0
 http://dbpedia.org/resource/Aaliyah,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Marsh_Harbour,0,0.312771,0.893574,0.0,0.019,0
 http://dbpedia.org/resource/Henry_I_of_England,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Lyons-la-Forêt,0,0.08401,0.072698,0.0,0.0,0
 http://dbpedia.org/resource/James_Clavell,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Vevey,0,0.187591,0.893574,0.0,0.019125,0

@@ -109,7 +109,7 @@ http://dbpedia.org/resource/Ambrose,http://dbpedia.org/ontology/birthPlace,http:
 http://dbpedia.org/resource/Frank_Capra,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Bisacquino,0,0.054012,0.0,0
 http://dbpedia.org/resource/Alexander_Kerensky,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Ulyanovsk,0,0.893574,0.0,0
 http://dbpedia.org/resource/Arthur_de_Gobineau,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Ville-d'Avray,0,0.893574,0.0,0
-http://dbpedia.org/resource/Eugene_Wigner,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Budapest,0,0.893574,1.0,0
+http://dbpedia.org/resource/Eugene_Wigner,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Budapest,0,0.893574,1.0,1
 http://dbpedia.org/resource/George_Frideric_Handel,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Halle_(Saale),0,0.893574,0.0,0
 http://dbpedia.org/resource/Douglas_Adams,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Santa_Barbara,_California",0,0.129734,0.0,0
 http://dbpedia.org/resource/Catherine_of_Aragon,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Huntingdonshire,0,0.060499,1.0,0
@@ -163,7 +163,7 @@ http://dbpedia.org/resource/Henry_Moseley,http://dbpedia.org/ontology/birthPlace
 http://dbpedia.org/resource/F._F._E._Yeo-Thomas,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Paris,0,0.073804,1.0,1
 http://dbpedia.org/resource/Henry_Moseley,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Weymouth,_Dorset",0,0.893574,0.0,0
 http://dbpedia.org/resource/Abd_al-Rahman_I,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Damascus,0,0.097114,0.0,0
-http://dbpedia.org/resource/C._S._Forester,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Cairo,0,0.893574,1.0,0
+http://dbpedia.org/resource/C._S._Forester,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Cairo,0,0.893574,1.0,1
 http://dbpedia.org/resource/Hawley_Harvey_Crippen,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Coldwater,_Michigan",0,0.893574,0.0,0
 http://dbpedia.org/resource/John_Peel,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Cusco,0,0.893574,0.0,0
 "http://dbpedia.org/resource/Christina,_Queen_of_Sweden",http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Rome,0,0.077242,1.0,1

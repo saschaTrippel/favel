@@ -8,7 +8,7 @@ http://dbpedia.org/resource/Augustus_II_the_Strong,http://dbpedia.org/ontology/b
 http://dbpedia.org/resource/Hawley_Harvey_Crippen,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/London,1,8.8e-05,2658.249021,1
 http://dbpedia.org/resource/J._R._R._Tolkien,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Bournemouth,1,0.005199,7205.996637,0
 http://dbpedia.org/resource/Abbas_II_of_Egypt,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Alexandria,1,0.0,421.423598,0
-http://dbpedia.org/resource/John_von_Neumann,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Budapest,1,0.001872,4162.407144,0
+http://dbpedia.org/resource/John_von_Neumann,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Budapest,1,0.001872,4162.407144,1
 http://dbpedia.org/resource/Joris_Ivens,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Nijmegen,1,0.003906,48075.214562,1
 http://dbpedia.org/resource/Benoit_Mandelbrot,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Warsaw,1,0.0,245.737563,0
 http://dbpedia.org/resource/J._R._R._Tolkien,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Bloemfontein,1,0.002342,8441.21223,1
@@ -117,7 +117,7 @@ http://dbpedia.org/resource/Alfonso_IV_of_Aragon,http://dbpedia.org/ontology/bir
 http://dbpedia.org/resource/Douglas_Adams,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Cambridge,0,0.000833,3972.383688,1
 http://dbpedia.org/resource/Joseph_Conrad,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Bishopsbourne,0,0.025,4530.157762,0
 http://dbpedia.org/resource/Alfonso_IV_of_Aragon,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Naples,0,0.0,-10.431265,1
-http://dbpedia.org/resource/Arthur_de_Gobineau,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Turin,0,0.001561,4256.723654,0
+http://dbpedia.org/resource/Arthur_de_Gobineau,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Turin,0,0.001561,4256.723654,1
 "http://dbpedia.org/resource/Albert_VII,_Archduke_of_Austria",http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Wiener_Neustadt,0,0.0,-14.538223,1
 http://dbpedia.org/resource/Joseph_Conrad,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Berdychiv,0,0.0,5309.848388,1
 http://dbpedia.org/resource/Catherine_of_Aragon,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Alcalá_de_Henares,0,0.0,-15.927615,0
@@ -180,11 +180,11 @@ http://dbpedia.org/resource/Austen_Henry_Layard,http://dbpedia.org/ontology/birt
 http://dbpedia.org/resource/Joe_Strummer,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Broomfield,_Somerset",0,0.0,11619.950091,1
 "http://dbpedia.org/resource/Christina,_Queen_of_Sweden",http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Stockholm,0,0.0,32.004599,1
 http://dbpedia.org/resource/Irenaeus,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Lyon,0,0.001873,4319.640951,0
-http://dbpedia.org/resource/Cornelius_Johnson_(artist),http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Utrecht,0,0.001623,4202.850869,0
+http://dbpedia.org/resource/Cornelius_Johnson_(artist),http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Utrecht,0,0.001623,4202.850869,1
 http://dbpedia.org/resource/Alfred_Hitchcock,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/London,0,0.000131,3006.419576,1
 http://dbpedia.org/resource/Adelaide_of_Italy,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Alsace,0,0.0,4652.011751,0
 http://dbpedia.org/resource/Frédéric_Bastiat,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Bayonne,0,0.005952,4868.40778,0
-http://dbpedia.org/resource/John_Stuart_Mill,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Avignon,0,0.003597,5007.339765,0
+http://dbpedia.org/resource/John_Stuart_Mill,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Avignon,0,0.003597,5007.339765,1
 http://dbpedia.org/resource/Carlo_Goldoni,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Paris,0,9.9e-05,3298.956521,0
 http://dbpedia.org/resource/Benoit_Mandelbrot,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Cambridge,_Massachusetts",0,0.0,286.631809,0
 http://dbpedia.org/resource/Aaliyah,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Marsh_Harbour,0,0.032258,7915.943901,1
@@ -199,7 +199,7 @@ http://dbpedia.org/resource/Bernardo_O'Higgins,http://dbpedia.org/ontology/death
 http://dbpedia.org/resource/Amerigo_Vespucci,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Florence,0,0.001671,9983.620543,0
 http://dbpedia.org/resource/C._S._Forester,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Fullerton,_California",0,0.0,4267.627345,0
 http://dbpedia.org/resource/Bernardo_O'Higgins,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Lima,0,0.001187,423.900918,0
-http://dbpedia.org/resource/John_A._Macdonald,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Glasgow,0,0.000433,3846.392276,0
+http://dbpedia.org/resource/John_A._Macdonald,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Glasgow,0,0.000433,3846.392276,1
 http://dbpedia.org/resource/Augustus_II_the_Strong,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Warsaw,0,0.0,252.210959,0
 http://dbpedia.org/resource/André_Weil,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Paris,0,0.000396,21636.490938,0
 http://dbpedia.org/resource/Abbas_II_of_Egypt,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Alexandria,0,0.0,421.423598,1

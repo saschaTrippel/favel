@@ -34,7 +34,7 @@ http://dbpedia.org/resource/Adelaide_of_Italy,http://dbpedia.org/ontology/birthP
 http://dbpedia.org/resource/Irenaeus,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/İzmir,1,0.134135,3550.124245,0.077524,0
 http://dbpedia.org/resource/Henry_Moseley,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Weymouth,_Dorset",1,0.122434,4694.308851,0.078409,0
 http://dbpedia.org/resource/Eduard_von_Böhm-Ermolli,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Ancona,1,0.053969,31.811331,0.060211,0
-http://dbpedia.org/resource/Henry_I_of_England,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Lyons-la-Forêt,1,0.067186,-18.354889,0.08401,0
+http://dbpedia.org/resource/Henry_I_of_England,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Lyons-la-Forêt,1,0.067186,-18.354889,0.08401,1
 http://dbpedia.org/resource/Irenaeus,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Lyon,1,0.296957,4319.640951,0.102502,0
 http://dbpedia.org/resource/F._F._E._Yeo-Thomas,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Paris,1,0.078266,3289.969428,0.059226,0
 http://dbpedia.org/resource/Eugene_Wigner,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Princeton,_New_Jersey",1,0.082176,4175.967395,0.083965,0
@@ -43,7 +43,7 @@ http://dbpedia.org/resource/Anton_Chekhov,http://dbpedia.org/ontology/deathPlace
 http://dbpedia.org/resource/Abd_al-Rahman_I,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Córdoba,_Spain",1,0.093226,-13.685083,0.072711,0
 http://dbpedia.org/resource/Frank_Capra,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Bisacquino,1,0.057957,-15.769936,0.062421,1
 "http://dbpedia.org/resource/Albert_VII,_Archduke_of_Austria",http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Brussels,1,0.099406,34.054267,0.088676,0
-http://dbpedia.org/resource/Catherine_of_Aragon,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Huntingdonshire,1,0.061096,-14.609771,0.062229,0
+http://dbpedia.org/resource/Catherine_of_Aragon,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Huntingdonshire,1,0.061096,-14.609771,0.062229,1
 http://dbpedia.org/resource/C._S._Forester,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Fullerton,_California",1,0.056259,4267.627345,0.049798,0
 http://dbpedia.org/resource/John_von_Neumann,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Washington,_D.C.",1,0.108229,1738.451826,0.067314,0
 "http://dbpedia.org/resource/Christina,_Queen_of_Sweden",http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Rome,1,0.074797,-9.193523,0.051436,0
@@ -54,7 +54,7 @@ http://dbpedia.org/resource/Gregory_Bateson,http://dbpedia.org/ontology/deathPla
 http://dbpedia.org/resource/Fay_Wray,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/New_York_City,1,0.183026,1091.203013,0.06804,0
 http://dbpedia.org/resource/Alfred_Hitchcock,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Bel_Air,_Los_Angeles",1,0.188224,7095.931011,0.121638,0
 http://dbpedia.org/resource/Frank_Capra,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/La_Quinta,_California",1,0.062664,26.398006,0.065209,0
-http://dbpedia.org/resource/Eduard_von_Böhm-Ermolli,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Opava,1,0.06237,-14.400721,0.060184,0
+http://dbpedia.org/resource/Eduard_von_Böhm-Ermolli,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Opava,1,0.06237,-14.400721,0.060184,1
 http://dbpedia.org/resource/James_Clavell,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Vevey,1,0.108607,8409.247979,0.077855,0
 http://dbpedia.org/resource/Hawley_Harvey_Crippen,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Coldwater,_Michigan",1,0.051623,2570.689749,0.049677,0
 http://dbpedia.org/resource/John_A._Macdonald,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Glasgow,1,0.096234,3846.392276,0.061554,0
@@ -118,7 +118,7 @@ http://dbpedia.org/resource/Douglas_Adams,http://dbpedia.org/ontology/deathPlace
 http://dbpedia.org/resource/Joseph_Conrad,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Bishopsbourne,0,0.893574,4530.157762,0.339454,0
 http://dbpedia.org/resource/Alfonso_IV_of_Aragon,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Naples,0,0.092856,-10.431265,0.065329,0
 http://dbpedia.org/resource/Arthur_de_Gobineau,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Turin,0,0.893574,4256.723654,0.122748,0
-"http://dbpedia.org/resource/Albert_VII,_Archduke_of_Austria",http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Wiener_Neustadt,0,0.064142,-14.538223,0.06119,0
+"http://dbpedia.org/resource/Albert_VII,_Archduke_of_Austria",http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Wiener_Neustadt,0,0.064142,-14.538223,0.06119,1
 http://dbpedia.org/resource/Joseph_Conrad,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Berdychiv,0,0.893574,5309.848388,0.208045,0
 http://dbpedia.org/resource/Catherine_of_Aragon,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Alcalá_de_Henares,0,0.069074,-15.927615,0.056907,0
 http://dbpedia.org/resource/Joris_Ivens,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Nijmegen,0,0.893574,48075.214562,0.155117,0
@@ -162,7 +162,7 @@ http://dbpedia.org/resource/Amerigo_Vespucci,http://dbpedia.org/ontology/birthPl
 http://dbpedia.org/resource/Henry_Moseley,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Gelibolu,0,0.090476,151.553694,0.075922,0
 http://dbpedia.org/resource/F._F._E._Yeo-Thomas,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Paris,0,0.073804,3289.969428,0.059226,0
 http://dbpedia.org/resource/Henry_Moseley,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Weymouth,_Dorset",0,0.893574,4694.308851,0.176279,0
-http://dbpedia.org/resource/Abd_al-Rahman_I,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Damascus,0,0.097114,-12.01276,0.070612,0
+http://dbpedia.org/resource/Abd_al-Rahman_I,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Damascus,0,0.097114,-12.01276,0.070612,1
 http://dbpedia.org/resource/C._S._Forester,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Cairo,0,0.893574,4181.19376,0.117458,0
 http://dbpedia.org/resource/Hawley_Harvey_Crippen,http://dbpedia.org/ontology/deathPlace,"http://dbpedia.org/resource/Coldwater,_Michigan",0,0.893574,2570.689749,0.192691,0
 http://dbpedia.org/resource/John_Peel,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Cusco,0,0.893574,3248.942372,0.178091,0

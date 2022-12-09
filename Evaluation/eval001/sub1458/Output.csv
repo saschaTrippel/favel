@@ -168,15 +168,15 @@ http://dbpedia.org/resource/Hawley_Harvey_Crippen,http://dbpedia.org/ontology/de
 http://dbpedia.org/resource/John_Peel,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Cusco,0,0.0,0.176005,0.0,0.016,1
 "http://dbpedia.org/resource/Christina,_Queen_of_Sweden",http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Rome,0,0.0,0.036437,0.0,0.0,1
 http://dbpedia.org/resource/John_Peel,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Heswall,0,0.0,0.243921,0.0,0.00475,0
-http://dbpedia.org/resource/André_Weil,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Princeton,_New_Jersey",0,0.0,0.162808,0.0,0.08075,0
+http://dbpedia.org/resource/André_Weil,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Princeton,_New_Jersey",0,0.0,0.162808,0.0,0.08075,1
 http://dbpedia.org/resource/John_von_Neumann,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Budapest,0,0.001872,0.188082,0.0,0.93,0
-http://dbpedia.org/resource/Eugene_Wigner,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Princeton,_New_Jersey",0,0.0,0.18221,0.0,0.07525,0
+http://dbpedia.org/resource/Eugene_Wigner,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Princeton,_New_Jersey",0,0.0,0.18221,0.0,0.07525,1
 http://dbpedia.org/resource/Emma_Goldman,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Toronto,0,0.000113,0.116027,0.0,1.332375,0
 http://dbpedia.org/resource/Augustus_II_the_Strong,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Dresden,0,0.0,0.096133,1.0,0.000875,1
 http://dbpedia.org/resource/Frédéric_Bastiat,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Rome,0,0.000316,0.127503,0.0,1.2525,0
 "http://dbpedia.org/resource/Francis_II,_Holy_Roman_Emperor",http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Florence,0,0.0,0.051986,1.0,0.000375,1
 http://dbpedia.org/resource/Eduard_von_Böhm-Ermolli,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Ancona,0,0.0,0.029753,1.0,0.000375,1
-http://dbpedia.org/resource/Austen_Henry_Layard,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/London,0,0.000131,0.075522,0.0,0.06475,0
+http://dbpedia.org/resource/Austen_Henry_Layard,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/London,0,0.000131,0.075522,0.0,0.06475,1
 http://dbpedia.org/resource/Joe_Strummer,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Broomfield,_Somerset",0,0.0,0.276488,0.0,0.0165,1
 "http://dbpedia.org/resource/Christina,_Queen_of_Sweden",http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Stockholm,0,0.0,0.040881,1.0,0.00025,1
 http://dbpedia.org/resource/Irenaeus,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Lyon,0,0.001873,0.09112,0.0,0.090875,1
@@ -192,7 +192,7 @@ http://dbpedia.org/resource/Henry_I_of_England,http://dbpedia.org/ontology/birth
 http://dbpedia.org/resource/James_Clavell,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Vevey,0,0.0,0.209789,0.0,0.019125,1
 http://dbpedia.org/resource/Irenaeus,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/İzmir,0,0.001799,0.052463,1.0,0.05025,1
 http://dbpedia.org/resource/Ernst_Mayr,http://dbpedia.org/ontology/birthPlace,"http://dbpedia.org/resource/Bedford,_Massachusetts",0,0.0,0.208455,0.0,0.009125,1
-http://dbpedia.org/resource/J._R._R._Tolkien,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Bournemouth,0,0.005199,0.222119,0.0,0.098875,1
+http://dbpedia.org/resource/J._R._R._Tolkien,http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Bournemouth,0,0.005199,0.222119,0.0,0.098875,0
 http://dbpedia.org/resource/Henry_I_of_England,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Selby,0,0.0,0.027368,1.0,0.00025,1
 http://dbpedia.org/resource/Bernardo_O'Higgins,http://dbpedia.org/ontology/deathPlace,http://dbpedia.org/resource/Chillán,0,0.015873,0.129044,1.0,0.003875,1
 "http://dbpedia.org/resource/Diana,_Princess_of_Wales",http://dbpedia.org/ontology/birthPlace,http://dbpedia.org/resource/Paris,0,9.9e-05,0.046397,0.0,0.002625,1
