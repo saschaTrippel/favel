@@ -4,14 +4,15 @@ import configparser, logging, argparse
 
 def main():
     args = _parseArguments()
-    experimentPath = _loadExperimentPath(args)
-    config = _loadConfig(experimentPath)
+    paths, configPath = _loadPaths(args)
+    config = _loadConfig(configPath)
     _configureLogging(config)
 
     if not args.experiment is None:
         logging.info("Experiment started")
         controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                experimentPath=experimentPath, datasetPath=args.data, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+                                paths=paths, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+        controller.createDirectories()
         controller.input()
         controller.validate()
         controller.train()
@@ -25,11 +26,13 @@ def main():
         for subset in subsetGen:
             if len(subset) >= 2:
                 logging.info("Experiment started")
-                subExperimentPath = path.join(experimentPath, f"sub{str(i).rjust(4, '0')}")
+                sub = f"sub{str(i).rjust(4, '0')}"
+                paths['SubExperimentPath'] = path.join(paths['ExperimentPath'], sub)
+                paths['SubExperimentName'] = f"{paths['ExperimentName']}.{sub}"
                 controller = Controller(approaches=dict(subset), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                        experimentPath=subExperimentPath, datasetPath=args.data, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+                                        paths=paths, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
                 
-                controller.createSubExperiment()
+                controller.createDirectories()
                 controller.input()
                 controller.validate()
                 controller.train()
@@ -61,15 +64,37 @@ def _parseArguments(argv=None):
     
     return argumentParser.parse_args(argv)
     
-def _loadExperimentPath(args):
+def _loadPaths(args):
+    paths = dict()
+    # Evaluation path
     favelPath = path.realpath(__file__)
     pathLst = favelPath.split('/')
     favelPath = "/".join(pathLst[:-2])
-    if not args.experiment is None:
-        return path.join(favelPath, "Evaluation", args.experiment)
-    if not args.batch is None:
-        return path.join(favelPath, "Evaluation", args.batch)
-        
+    paths['EvaluationPath'] = path.join(favelPath, "Evaluation")
+
+    # Dataset path
+    paths['DatasetPath'] = args.data
+
+    # Dataset name
+    pathLst = args.data.split('/')
+    pathLst = list(filter(lambda x: x != '', pathLst))
+    paths['DatasetName'] = pathLst[-1]
+
+    # Experiment name e.g. eval005.BPDP_Dataset
+    experiment = args.experiment if not args.experiment is None else args.batch
+    paths['ExperimentName'] = f"{experiment}.{paths['DatasetName']}"
+
+    # Experiment path e.g. .../Evaluation/eval005/BPDP_Dataset/
+    paths['ExperimentPath'] = path.join(paths['EvaluationPath'], experiment, paths['DatasetName'])
+    
+    # Sub-Experiment path e.g. .../Evaluation/eval005/BPDP_Dataset/sub0042/
+    paths['SubExperimentPath'] = paths['ExperimentPath']
+    
+    # Sub-Experiment name e.g. eval005.BPDP_Dataset.sub0042
+    paths['SubExperimentName'] = paths['ExperimentName']
+
+    return paths, path.join(paths['EvaluationPath'], experiment)
+    
 def _loadConfig(experimentPath:str):
     configPath = path.join(experimentPath, "favel.conf")
     if not path.exists(configPath):

@@ -5,10 +5,10 @@ import pandas as pd
 
 class Overview:
 
-    def __init__(self, df, experimentPath:str, datasetPath:str, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics):
-        self.evaluation = self._getEvaluation(experimentPath)
-        self.experiment = self._getExperiment(experimentPath)
-        self.dataset = self._getDataset(datasetPath)
+    def __init__(self, df, paths:dict, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics):
+        self.evaluation = paths['EvaluationPath']
+        self.experiment = paths['SubExperimentName']
+        self.dataset = paths['DatasetName']
         self.trainingMetrics = trainingMetrics
         self.mlAlgorithm = mlAlgorithm
         
@@ -69,19 +69,3 @@ class Overview:
                 bestScore = auc_roc_single
                 bestApproach = approach
         return bestApproach, bestScore
-  
-    def _getExperiment(self, experimentPath:str):
-        pathLst = experimentPath.split('/')
-        pathLst = pathLst[pathLst.index("Evaluation")+1:]
-        pathStr = ".".join(pathLst)
-        return pathStr
-    
-    def _getEvaluation(self, experimentPath:str):
-        pathLst = experimentPath.split('/')
-        pathStr = "/".join(pathLst[:pathLst.index("Evaluation")+1])
-        return pathStr
-    
-    def _getDataset(self, datasetPath:str):
-        pathLst = datasetPath.split('/')
-        pathLst = list(filter(lambda x: x != '', pathLst))
-        return pathLst[-1]

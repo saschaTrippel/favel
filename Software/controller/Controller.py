@@ -1,34 +1,34 @@
-import logging, os
-
-from os import path
+from ContainerService.Containers import Containers
 from FactValidationService.Validator import Validator
 from InputService.Input import Input
-from ContainerService.Containers import Containers
 from MLService.ML import ML
 from OutputService.Output import Output
+from os import path
+from pathlib import Path
+import logging, os
 
 class Controller:
     """
     Controler that interacts with the different services.
     """
-    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters, experimentPath:str, datasetPath:str, useCache:bool, handleContainers:bool):
+    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters, paths:dict, useCache:bool, handleContainers:bool):
         self.approaches = approaches
         self.mlAlgorithm = mlAlgorithm
         self.mlParameters = mlParameters
-        self.experimentPath = experimentPath
-        self.datasetPath = datasetPath
+        self.paths = paths
         self.useCache = useCache
         self.handleContainers = handleContainers
         self.testingData = None
         self.trainingData = None
 
-        self.ml = ML(log_file=path.join(self.experimentPath, "ml_logs.log"))
+        self.ml = ML(log_file=path.join(self.paths['ExperimentPath'], "ml_logs.log"))
         
-    def createSubExperiment(self):
-        try:
-            os.mkdir(self.experimentPath)
-        except FileExistsError:
-            pass
+    def createDirectories(self):
+        experimentPath = Path(self.paths['ExperimentPath'])
+        experimentPath.mkdir(parents=True, exist_ok=True)
+        if not self.paths['SubExperimentPath'] is None:
+            subExpPath = Path(self.paths['SubExperimentPath'])
+            subExpPath.mkdir(parents=True, exist_ok=True)
 
     def startContainers(self):
         if self.handleContainers:
@@ -49,7 +49,7 @@ class Controller:
         The assertions are held in self.assertions.
         """
         input = Input()
-        self.trainingData, self.testingData = input.getInput(self.datasetPath)
+        self.trainingData, self.testingData = input.getInput(self.paths['DatasetPath'])
 
     def validate(self):
         """
@@ -74,8 +74,8 @@ class Controller:
 
         self.model, self.lableEncoder, self.trainMetrics = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
-                                            output_path=self.experimentPath, 
-                                            dataset_path=self.datasetPath)
+                                            output_path=self.paths['SubExperimentPath'], 
+                                            dataset_path=self.paths['DatasetPath'])
 
     def test(self):
         """
@@ -85,8 +85,8 @@ class Controller:
         # if not testing_df: logging.info('[controller test] Error in createDataFrame')
 
         testing_result = self.ml.validate_model(df=testing_df, 
-                                                output_path=self.experimentPath, 
-                                                dataset_path=self.datasetPath)
+                                                output_path=self.paths['SubExperimentPath'], 
+                                                dataset_path=self.paths['DatasetPath'])
         # if not testing_result: logging.info('[controller test] Error in validate_model')
 
         self.ml_test_result = testing_result
@@ -97,8 +97,7 @@ class Controller:
         Write the results to disk.
         Also, Conversion to GERBIL format.
         """
-        op = Output(self.experimentPath)
+        op = Output(self.paths)
         op.writeOutput(self.ml_test_result)
-        op.writeOverview(self.ml_test_result, self.experimentPath, self.datasetPath,
-                         self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainMetrics)
+        op.writeOverview(self.ml_test_result, self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainMetrics)
         op.gerbilFormat(self.testingData)
