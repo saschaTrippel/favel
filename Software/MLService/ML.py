@@ -6,7 +6,7 @@ from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
 import logging
 import numpy as np
-import os, sys, ast, warnings
+import os, sys, ast, warnings, pdb
 import pandas as pd
 import pickle
 import sklearn
@@ -24,6 +24,37 @@ class ML:
             level=logging.INFO
         )
 
+    def get_normaliser_object(self, normaliser_name):
+        if normaliser_name.lower()=='Normalizer'.lower():
+            return preprocessing.Normalizer()
+
+        elif normaliser_name.lower()=='MinMaxScaler'.lower():
+            return preprocessing.MinMaxScaler()
+        
+        elif normaliser_name.lower()=='StandardScaler'.lower():
+            return preprocessing.StandardScaler()
+        
+        elif normaliser_name.lower()=='MaxAbsScaler'.lower():
+            return preprocessing.MaxAbsScaler()
+
+        elif normaliser_name.lower()=='RobustScaler'.lower():
+            return preprocessing.RobustScaler()
+
+
+    def normalise_data(self, df, normaliser_name=None, normaliser=None):
+        x = df.values #returns a numpy array
+        
+        if normaliser: 
+            x_scaled = normaliser.fit_transform(x)
+        elif normaliser_name == 'default':
+            normaliser=None
+            x_scaled = np.copy(x) # return the same matrix without normalising
+        else:
+            normaliser=self.get_normaliser_object(normaliser_name)
+            x_scaled = normaliser.fit_transform(x)
+       
+        df = pd.DataFrame(x_scaled)
+        return df, normaliser 
 
     def createDataFrame(self, assertions):
         try:
@@ -147,7 +178,7 @@ class ML:
             raise e
 
     # Change model list here to be a single model
-    def train_model(self, df, ml_model, output_path, dataset_path):
+    def train_model(self, df, ml_model, normaliser_name, output_path, dataset_path):
         """
         Returns:
             - Model
@@ -161,6 +192,11 @@ class ML:
 
             X=df.drop(['truth', 'subject', 'object'], axis=1)
             y=df.truth
+
+            X, normaliser = self.normalise_data(df=X, normaliser_name=normaliser_name, normaliser=None)
+            if normaliser: # when normaliser != default
+                with open(f'{output_path}/normaliser.pkl','wb') as fp:   pickle.dump(normaliser,fp)
+
 
             print('TRAIN: ', X.shape, y.shape, ml_model, y.dtypes)
 
@@ -214,7 +250,14 @@ class ML:
             X['predicate'] = le_predicate.transform(np.array(X['predicate'].astype(str), dtype=object))
             # X = df.drop(['subject','object'], axis=1)
 
+            try: 
+                with open(f'{output_path}/normaliser.pkl','rb') as fp: normaliser = pickle.load(fp)
+                X, normaliser = self.normalise_data(df=X, normaliser_name=None, normaliser=normaliser)
+            except: 
+                logging.info('No normaliser found')
+
             ensembleScore = ml_model.predict(X)
+            # pdb.set_trace()
             
             df['ensemble_score'] = ensembleScore
 
