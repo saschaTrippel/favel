@@ -49,7 +49,9 @@ class Message:
     
     @score.setter
     def score(self, score):
-        if float(score) == float('inf') or float(score) == float('-inf') or float(score) == float('nan'):
+        if(score == None):
+            pass
+        elif float(score) == float('inf') or float(score) == float('-inf') or float(score) == float('nan'):
             self._score = 0
         else:
             self._score = score
