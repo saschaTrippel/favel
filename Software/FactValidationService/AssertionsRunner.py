@@ -3,6 +3,7 @@ import logging
 from FactValidationService.AbstractJobRunner import AbstractJobRunner
 from datastructures.Assertion import Assertion
 from datastructures.exceptions.TrainingException import TrainingException
+from datastructures.exceptions.TestingException import TestingException
 
 class AssertionsRunner(AbstractJobRunner):
     """
@@ -92,13 +93,49 @@ class AssertionsRunner(AbstractJobRunner):
         assertions.extend(self.trainingAssertions)
         assertions.extend(self.testingAssertions)
 
-        for assertion in assertions:
-            response = self._validateAssertion(assertion)
+        if self.approach == "gfc":
+            self._train()
+            self._testGFC(assertions)
 
-            if response.type == "error":
-                assertion.score[self.approach] = None
-                self.errorCount += 1
-                logging.error("'{}' while validating {} using {}."
-                                .format(response.content, assertion, self.approach))
-            else:
-                assertion.score[self.approach] = float(response.score)
+        else:
+            for assertion in assertions:
+                response = self._validateAssertion(assertion)
+
+                if response.type == "error":
+                    assertion.score[self.approach] = None
+                    self.errorCount += 1
+                    logging.error("'{}' while validating {} using {}."
+                                    .format(response.content, assertion, self.approach))
+                else:
+                    assertion.score[self.approach] = float(response.score)
+
+    def _testGFC(self,assertions:list):
+        try:
+            # Send start testing call
+            response = self._testingStart()
+            if response.type != "ack":
+                raise TestingException("TestingException while calling {} to start testing".format(self.approach))
+            logging.info("Start testing {}".format(self.approach))
+            
+            # Send testing data
+            for assertion in assertions:
+                response = self._testAssertion(assertion)
+                if response.type != 'ack':
+                    raise TestingException("TestingException while Testing {}".format(self.approach))
+
+            # Send testing complete call
+            self._testingComplete()
+
+            logging.info("Testing of {} completed".format(self.approach))
+
+            # Get scores from the GFC
+            for assertion in assertions:
+                response = super()._validateAssertion(assertion)
+                if response.type != 'test_result':
+                    raise TestingException("TestingException while Testing {}".format(self.approach))
+                else:
+                    assertion.score[self.approach] = float(response.score)
+
+        except TestingException as ex:
+            logging.error("Something went wrong while testing {}".format(self.approach))
+            raise ex

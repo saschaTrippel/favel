@@ -67,7 +67,20 @@ class AbstractJobRunner(threading.Thread):
     def _trainingComplete(self):
         self._send(Message(type="call", content="training_complete"))
         return Message(text=self._receive())
+
+    def _testingStart(self):
+        self._send(Message(type="call", content="testing_start"))
+        return Message(text=self._receive())
     
+    def _testAssertion(self, assertion:Assertion):
+        self._send(Message(
+            type="testGFC", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object, score=assertion.expectedScore))
+        return Message(text=self._receive())
+
+    def _testingComplete(self):
+        self._send(Message(type="call", content="testing_complete"))
+        return Message(text=self._receive())
+
     def _connect(self):
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
