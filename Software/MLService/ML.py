@@ -12,6 +12,7 @@ import pickle
 import sklearn
 import statistics
 if not sys.warnoptions: warnings.simplefilter("ignore")
+np.random.seed(0)
 
 class ML:
 
