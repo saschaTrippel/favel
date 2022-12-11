@@ -57,6 +57,11 @@ services:
     ports:
       - 4010:4010
 
+  gfc:
+    build: ./gfc
+    ports:
+      - 4011:4011
+
   copaal: 
     build: ./copaal
     ports: 
