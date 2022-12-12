@@ -228,16 +228,8 @@ class ML:
             raise ex
 
 
-    def validate_model(self, df, output_path, normalizer_name:str):
+    def validate_model(self, df, ml_model, le_predicate, output_path, normalizer_name:str):
         try:
-            
-            # read saved model
-            with open(f'{output_path}/classifier.pkl','rb') as fp: ml_model = pickle.load(fp)
-
-            # read predicate label encoder
-            with open(f'{output_path}/predicate_le.pkl','rb') as fp: le_predicate = pickle.load(fp)
-
-
             X=df.drop(['truth','subject', 'object'], axis=1)
             y=df.truth
 
@@ -270,7 +262,7 @@ class ML:
 
             logging.info('Validation completed')
 
-            return df
+            return df, roc_auc
 
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
