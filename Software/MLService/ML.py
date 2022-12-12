@@ -251,18 +251,22 @@ class ML:
             X['predicate'] = le_predicate.transform(np.array(X['predicate'].astype(str), dtype=object))
             # X = df.drop(['subject','object'], axis=1)
 
-            try: 
-                with open(f'{output_path}/normaliser.pkl','rb') as fp: normaliser = pickle.load(fp)
-                X, normaliser = self.normalise_data(df=X, normaliser_name=None, normaliser=normaliser)
-            except: 
-                logging.info('No normaliser found')
+            if normaliser_name == 'default':
+                logging.info('Using default normaliser')
+            else:
+                try: 
+                    with open(f'{output_path}/normaliser.pkl','rb') as fp: normaliser = pickle.load(fp)
+                    X, normaliser = self.normalise_data(df=X, normaliser_name=None, normaliser=normaliser)
+                except: 
+                    logging.error('No normaliser found')
 
-            ensembleScore = ml_model.predict(X)
-            # pdb.set_trace()
-            
-            df['ensemble_score'] = ensembleScore
-
-            roc_auc = metrics.roc_auc_score(y, ensembleScore)
+                    
+            y_pred=ml_model.predict_proba(X)
+            class_1_index = 0 if list(set(y.astype(str)))[0]=='0' else 1
+            y_pred=y_pred[:, class_1_index]
+            df['ensemble_score'] = y_pred
+                    
+            roc_auc = metrics.roc_auc_score(y, y_pred)
 
             logging.info('Validation completed')
 
