@@ -11,12 +11,11 @@ def main():
     if not args.experiment is None:
         logging.info("Experiment started")
         controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+                                normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']), useCache=eval(config['General']['useCache']), handleContainers=args.containers)
         controller.createDirectories()
         controller.input()
         controller.validate()
-        controller.train()
-        controller.test()
+        controller.ensemble()
         controller.output()
         logging.info("Experiment finished")
         
@@ -30,13 +29,12 @@ def main():
                 paths['SubExperimentPath'] = path.join(paths['ExperimentPath'], sub)
                 paths['SubExperimentName'] = f"{paths['ExperimentName']}.{sub}"
                 controller = Controller(approaches=dict(subset), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                        normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+                                        normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']), useCache=eval(config['General']['useCache']), handleContainers=args.containers)
                 
                 controller.createDirectories()
                 controller.input()
                 controller.validate()
-                controller.train()
-                controller.test()
+                controller.ensemble()
                 controller.output()
                 logging.info("Experiment finished")
 

@@ -7,17 +7,19 @@ class Output():
     def __init__(self, paths:dict):
         self.paths = paths
 
-    def writeOutput(self, df):
+    def writeOutput(self, mlResults):
         """
 		Writes results to file.
 		"""
-        df.to_csv(path.join(self.paths['SubExperimentPath'], "Output.csv"), index=False)
+        for i in range(len(mlResults)):
+            df, auc_roc = mlResults[i]
+            df.to_csv(path.join(self.paths['SubExperimentPath'], f"Output_it{i}.csv"), index=False)
         
-    def writeOverview(self, df, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics, normaliser_name:str):
+    def writeOverview(self, testingResults, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics, normaliser_name:str):
         """
         Write Overview.xlsx
         """
-        overview = Overview(df, self.paths, approaches, mlAlgorithm, mlParameters, trainingMetrics, normaliser_name)
+        overview = Overview(testingResults, self.paths, approaches, mlAlgorithm, mlParameters, trainingMetrics, normaliser_name)
         overview.write()
     
     def gerbilFormat(self,testingData):
