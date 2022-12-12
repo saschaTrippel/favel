@@ -262,7 +262,7 @@ class ML:
 
                     
             y_pred=ml_model.predict_proba(X)
-            class_1_index = 0 if list(set(y.astype(str)))[0]=='0' else 1
+            class_1_index = 0 if list(set(y.astype(str)))[0]=='1' else 1
             y_pred=y_pred[:, class_1_index]
             df['ensemble_score'] = y_pred
                     
