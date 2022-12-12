@@ -27,7 +27,7 @@ class Overview:
         try:
             overviewFrame = pd.read_excel(path.join(self.evaluation, "Overview.xlsx"))
         except Exception as ex:
-            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Fact Validation Approaches", "#Approaches", "Approaches Scores", "Best Single Approach", "Best Single Score", "ML Algorithm", "ML Parameters", "Normaliser", "Iterations", "Training AUC-ROC Score Mean", "Training AUC-ROC STD. DEV.", "Testing AUC-ROC Score Mean", "Testing AUC-ROC STD. DEV.", "Improvement"])
+            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Fact Validation Approaches", "#Approaches", "Approaches Scores", "Best Single Approach", "Best Single Score", "ML Algorithm", "ML Parameters", "Normaliser", "Iterations", "Training AUC-ROC Mean", "Training AUC-ROC STD. DEV.", "Testing AUC-ROC Mean", "Testing AUC-ROC STD. DEV.", "Improvement"])
             
         # Create a new row for current experiment
         row = pd.Series([self.experiment, self.dataset, ", ".join(self.approaches), len(self.approaches), str(self.scoresApproaches), self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.mlParameters, self.normaliser_name, len(self.testingResults), self.trainingMean, self.trainingStDev, self.testingMean, self.testingStDev, self.testingMean - self.bestApproachScore], index=overviewFrame.columns)
@@ -37,14 +37,17 @@ class Overview:
         apSet = set(overviewFrame.index[overviewFrame["Fact Validation Approaches"] == row["Fact Validation Approaches"]].tolist())
         mlSet = set(overviewFrame.index[overviewFrame["ML Algorithm"] == row["ML Algorithm"]].tolist())
         mlParamSet = set(overviewFrame.index[overviewFrame["ML Parameters"] == row["ML Parameters"]].tolist())
-        inter = dataSet & apSet & mlSet & mlParamSet
+        itSet = set(overviewFrame.index[overviewFrame["Iterations"] == row["Iterations"]].tolist())
+        inter = dataSet & apSet & mlSet & mlParamSet & itSet
         if len(inter) > 0:
             # Update existing row
             for index in inter:
                 logging.debug(f"Updated row in evaluation overvew \n{row}")
-                overviewFrame.loc[index, ['Testing AUC-ROC Score']] = self.testingAucRoc
-                overviewFrame.loc[index, ['Training AUC-ROC Score']] = self.trainingMetrics['overall']
-                overviewFrame.loc[index, ['Improvement']] = self.testingAucRoc - self.bestApproachScore
+                overviewFrame.loc[index, ['Testing AUC-ROC Mean']] = self.testingMean
+                overviewFrame.loc[index, ['Testing AUC-ROC STD. DEV.']] = self.testingStDev
+                overviewFrame.loc[index, ['Training AUC-ROC Mean']] = self.trainingMean
+                overviewFrame.loc[index, ['Training AUC-ROC STD. DEV.']] = self.trainingStDev
+                overviewFrame.loc[index, ['Improvement']] = self.testingMean - self.bestApproachScore
                 overviewFrame.loc[index, ['Approaches Scores']] = str(self.scoresApproaches)
                 overviewFrame.loc[index, ['Best Single Approach']] = self.bestApproach
                 overviewFrame.loc[index, ['Best Single Score']] = self.bestApproachScore
