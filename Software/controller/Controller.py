@@ -11,11 +11,11 @@ class Controller:
     """
     Controler that interacts with the different services.
     """
-    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters, normaliser_name, paths:dict, useCache:bool, handleContainers:bool):
+    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters, normalizer_name, paths:dict, useCache:bool, handleContainers:bool):
         self.approaches = approaches
         self.mlAlgorithm = mlAlgorithm
         self.mlParameters = mlParameters
-        self.normaliser_name = normaliser_name
+        self.normalizer_name = normalizer_name
         self.paths = paths
         self.useCache = useCache
         self.handleContainers = handleContainers
@@ -75,9 +75,8 @@ class Controller:
 
         self.model, self.lableEncoder, self.trainMetrics = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
-                                            normaliser_name=self.normaliser_name,
-                                            output_path=self.paths['SubExperimentPath'], 
-                                            dataset_path=self.paths['DatasetPath'])
+                                            normalizer_name=self.normalizer_name,
+                                            output_path=self.paths['SubExperimentPath'])
 
     def test(self):
         """
@@ -89,7 +88,7 @@ class Controller:
 
         testing_result = self.ml.validate_model(df=testing_df, 
                                                 output_path=self.paths['SubExperimentPath'], 
-                                                dataset_path=self.paths['DatasetPath'])
+                                                normalizer_name=self.normalizer_name)
         # if not testing_result: logging.info('[controller test] Error in validate_model')
 
         self.ml_test_result = testing_result
@@ -102,5 +101,5 @@ class Controller:
         """
         op = Output(self.paths)
         op.writeOutput(self.ml_test_result)
-        op.writeOverview(self.ml_test_result, self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainMetrics, self.normaliser_name)
+        op.writeOverview(self.ml_test_result, self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainMetrics, self.normalizer_name)
         op.gerbilFormat(self.testingData)

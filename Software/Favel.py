@@ -11,7 +11,7 @@ def main():
     if not args.experiment is None:
         logging.info("Experiment started")
         controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                normaliser_name=config['MLAlgorithm']['normaliser'], paths=paths, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+                                normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
         controller.createDirectories()
         controller.input()
         controller.validate()
@@ -30,7 +30,7 @@ def main():
                 paths['SubExperimentPath'] = path.join(paths['ExperimentPath'], sub)
                 paths['SubExperimentName'] = f"{paths['ExperimentName']}.{sub}"
                 controller = Controller(approaches=dict(subset), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                        paths=paths, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+                                        normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
                 
                 controller.createDirectories()
                 controller.input()
