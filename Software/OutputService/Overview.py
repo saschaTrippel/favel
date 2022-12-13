@@ -6,72 +6,102 @@ import statistics
 
 class Overview:
 
-    def __init__(self, testingResults:list, paths:dict, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics, normaliser_name):
+    def __init__(self, testingResults:list, paths:dict, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics, normalizer_name):
         self.evaluation = paths['EvaluationPath']
-        self.experiment = paths['SubExperimentName']
-        self.dataset = paths['DatasetName']
-        self.mlAlgorithm = mlAlgorithm
-        self.normaliser_name = normaliser_name
+
+        self.primaryKey = ["Dataset", "ML Algorithm", "ML Parameters", "Normalizer", "Iterations", "Fact Validation Approaches"]
+        self.dependentProperties = ["Approaches Scores", "#Approaches", "Best Single Approach", "Best Single Score", "Experiment",
+                                    "Training AUC-ROC Min.", "Training AUC-ROC Max.", "Training AUC-ROC Mean", "Training AUC-ROC Std. Dev.",
+                                    "Testing AUC-ROC Min.", "Testing AUC-ROC Max.", "Testing AUC-ROC Mean", "Testing AUC-ROC Std. Dev.", "Improvement"]
         
-        self.approaches = list(approaches)
-        self.approaches.sort()
-        self.mlParameters = mlParameters
-        self.scoresApproaches, self.bestApproach, self.bestApproachScore = self._getBestApproach(testingResults[0][0], approaches)
-        self.testingResults = testingResults # [(df, ensemble auc_roc_score)]
+        self.keyData = dict()
+        self.keyData["Dataset"] = paths["DatasetName"]
+        approachesLst = list(approaches)
+        approachesLst.sort()
+        self.keyData["Fact Validation Approaches"] = ", ".join(approachesLst)
+        self.keyData["ML Algorithm"] = mlAlgorithm
+        self.keyData["ML Parameters"] = mlParameters
+        self.keyData["Iterations"] = len(testingResults)
+        self.keyData["Normalizer"] = normalizer_name
         
-        self.trainingMean, self.trainingStDev = self._trainingStatistics(trainingMetrics)
-        self.testingMean, self.testingStDev = self._testingStatistics(testingResults)
+        self.dependentData = dict()
+        self.dependentData["Experiment"] = paths["SubExperimentName"]
+        self.dependentData["Testing AUC-ROC Min."], self.dependentData["Testing AUC-ROC Max."], self.dependentData["Testing AUC-ROC Mean"], self.dependentData["Testing AUC-ROC Std. Dev."] = self._testingStatistics(testingResults)
+        self.dependentData["Training AUC-ROC Min."], self.dependentData["Training AUC-ROC Max."], self.dependentData["Training AUC-ROC Mean"], self.dependentData["Training AUC-ROC Std. Dev."] = self._trainingStatistics(trainingMetrics)
+        self.dependentData["Approaches Scores"], self.dependentData["Best Single Approach"], self.dependentData["Best Single Score"] = self._getBestApproach(testingResults[0][0], approaches)
+        self.dependentData["#Approaches"] = len(approaches)
+        self.dependentData["Improvement"] = self.dependentData["Testing AUC-ROC Mean"] - self.dependentData["Best Single Score"]
         
-    def write(self):
+        for key in self.primaryKey:
+            assert(key in self.keyData.keys())
+                
+        for key in self.dependentProperties:
+            assert(key in self.dependentData.keys())
+        
+    def writeExcel(self):
         # Read existing file, or create new data frame
         try:
             overviewFrame = pd.read_excel(path.join(self.evaluation, "Overview.xlsx"))
         except Exception as ex:
-            overviewFrame = pd.DataFrame(columns=["Experiment", "Dataset", "Fact Validation Approaches", "#Approaches", "Approaches Scores", "Best Single Approach", "Best Single Score", "ML Algorithm", "ML Parameters", "Normaliser", "Iterations", "Training AUC-ROC Mean", "Training AUC-ROC STD. DEV.", "Testing AUC-ROC Mean", "Testing AUC-ROC STD. DEV.", "Improvement"])
+            col = []
+            col.extend(self.primaryKey)
+            col.extend(self.dependentProperties)
+            overviewFrame = pd.DataFrame(columns=col)
             
-        # Create a new row for current experiment
-        row = pd.Series([self.experiment, self.dataset, ", ".join(self.approaches), len(self.approaches), str(self.scoresApproaches), self.bestApproach, self.bestApproachScore, self.mlAlgorithm, self.mlParameters, self.normaliser_name, len(self.testingResults), self.trainingMean, self.trainingStDev, self.testingMean, self.testingStDev, self.testingMean - self.bestApproachScore], index=overviewFrame.columns)
         
         # See if there already is a row for the current experiment and dataset
-        dataSet = set(overviewFrame.index[overviewFrame.Dataset == row.Dataset].tolist())
-        apSet = set(overviewFrame.index[overviewFrame["Fact Validation Approaches"] == row["Fact Validation Approaches"]].tolist())
-        mlSet = set(overviewFrame.index[overviewFrame["ML Algorithm"] == row["ML Algorithm"]].tolist())
-        mlParamSet = set(overviewFrame.index[overviewFrame["ML Parameters"] == row["ML Parameters"]].tolist())
-        itSet = set(overviewFrame.index[overviewFrame["Iterations"] == row["Iterations"]].tolist())
-        inter = dataSet & apSet & mlSet & mlParamSet & itSet
-        if len(inter) > 0:
+        intersection = self.findRow(overviewFrame)
+        if len(intersection) > 0:
             # Update existing row
-            for index in inter:
-                logging.debug(f"Updated row in evaluation overvew \n{row}")
-                overviewFrame.loc[index, ['Testing AUC-ROC Mean']] = self.testingMean
-                overviewFrame.loc[index, ['Testing AUC-ROC STD. DEV.']] = self.testingStDev
-                overviewFrame.loc[index, ['Training AUC-ROC Mean']] = self.trainingMean
-                overviewFrame.loc[index, ['Training AUC-ROC STD. DEV.']] = self.trainingStDev
-                overviewFrame.loc[index, ['Improvement']] = self.testingMean - self.bestApproachScore
-                overviewFrame.loc[index, ['Approaches Scores']] = str(self.scoresApproaches)
-                overviewFrame.loc[index, ['Best Single Approach']] = self.bestApproach
-                overviewFrame.loc[index, ['Best Single Score']] = self.bestApproachScore
-                overviewFrame.loc[index, ['Experiment']] = self.experiment
+            self.update(overviewFrame, intersection)
+            logging.debug(f"Updated row in evaluation overview")
 
         else:
             # Add new row
+            data = [self.keyData[key] for key in self.primaryKey]
+            data.extend([self.dependentData[key] for key in self.dependentProperties])
+            row = pd.Series(data, index=overviewFrame.columns)
+
             overviewFrame = overviewFrame.append(row, ignore_index=True)
             logging.debug(f"Added row to evaluation overview \n{row}")
 
             
         overviewFrame.to_excel(path.join(self.evaluation, "Overview.xlsx"), index=False)
         
+    def findRow(self, frame):
+        result = dict()
+        for key in self.primaryKey:
+            result[key] = set(frame.index[frame[key] == self.keyData[key]].tolist())
+
+        intersect = None
+        for key in self.primaryKey:
+            if intersect is None:
+                intersect = result[key]
+            else:
+                intersect &= result[key]
+        return intersect
+
+    def update(self, frame, intersection):
+        for index in intersection:
+            for key in self.dependentProperties:
+                frame.loc[index, [key]] = self.dependentData[key]
+        
     def _trainingStatistics(self, trainingMetrics):
-        tmp = []
-        for result in trainingMetrics:
-            tmp.append(result['overall'])
-        return statistics.mean(tmp), statistics.stdev(tmp)
+        return self._statistics(list(map(lambda x: x['overall'], trainingMetrics)))
     
     def _testingStatistics(self, testingResults):
         tmp = []
         for df, auc_roc in testingResults:
             tmp.append(auc_roc)
-        return statistics.mean(tmp), statistics.stdev(tmp)
+        return self._statistics(tmp)
+    
+    def _statistics(self, values:list):
+        """
+        Returns min, max, mean, stdev
+        """
+        if len(values) == 1:
+            return values[0], values[0], values[0], 0
+        return min(values), max(values), statistics.mean(values), statistics.stdev(values)
         
     def _getBestApproach(self, df, approaches):
         y = df.truth
@@ -85,4 +115,4 @@ class Overview:
             if auc_roc_single > bestScore:
                 bestScore = auc_roc_single
                 bestApproach = approach
-        return results, bestApproach, bestScore
+        return str(results), bestApproach, bestScore

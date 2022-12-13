@@ -20,7 +20,7 @@ class Output():
         Write Overview.xlsx
         """
         overview = Overview(testingResults, self.paths, approaches, mlAlgorithm, mlParameters, trainingMetrics, normaliser_name)
-        overview.write()
+        overview.writeExcel()
     
     def gerbilFormat(self,testingData):
         """
