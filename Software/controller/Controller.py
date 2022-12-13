@@ -24,8 +24,6 @@ class Controller:
         self.testingResults = []
         self.trainingData = None
         self.trainingMetrics = []
-
-        self.ml = ML(log_file=path.join(self.paths['ExperimentPath'], "ml_logs.log"))
         
     def createDirectories(self):
         experimentPath = Path(self.paths['ExperimentPath'])
@@ -76,8 +74,8 @@ class Controller:
         Train the ML model.
         Has to be called before self.test()
         """
+        self.ml = ML()
         training_df = self.ml.createDataFrame(self.trainingData)
-        # if not training_df: logging.info('[controller train] Error in createDataFrame')
 
         ml_model_name = self.mlAlgorithm
         ml_model = self.ml.get_sklearn_model(ml_model_name, self.mlParameters, training_df)

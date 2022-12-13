@@ -6,24 +6,17 @@ from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
 import logging
 import numpy as np
-import os, sys, ast, warnings, pdb
+import os, sys, ast, warnings, pdb, random
 import pandas as pd
 import pickle
 import sklearn
 import statistics
 if not sys.warnoptions: warnings.simplefilter("ignore")
-#np.random.seed(0)
 
 class ML:
-
-    def __init__(self, log_file):
-        logging.basicConfig(
-            filename=log_file,
-            filemode='a',
-            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-            datefmt='%H:%M:%S',
-            level=logging.INFO
-        )
+    
+    def __init__(self):
+        np.random.seed(random.randint(0, 10000))
 
     def get_normalizer_object(self, normalizer_name):
         if normalizer_name.lower()=='Normalizer'.lower():
