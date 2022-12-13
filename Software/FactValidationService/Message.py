@@ -20,8 +20,6 @@ class Message:
             return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object, "score": self.score})
         if self.type == "test":
             return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object})
-        if self.type == "testGFC":
-            return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object, "score": self.score})
     
     def parse(self, text:str):
         response = json.loads(text)
@@ -42,7 +40,7 @@ class Message:
     
     @type.setter
     def type(self, type):
-        if type in ["call", "train", "test", "testGFC", "test_result", "ack", "type_response", "error"]:
+        if type in ["call", "train", "test", "test_result", "ack", "type_response", "error"]:
             self._type = type
 
     @property
