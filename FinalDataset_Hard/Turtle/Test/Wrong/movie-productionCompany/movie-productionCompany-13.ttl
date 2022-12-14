@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/American_Wedding> ns1:productionCompany <http://dbpedia.org/resource/Wedding_dress> .
+<http://dbpedia.org/resource/All_in_a_Nutshell> ns1:productionCompany <http://dbpedia.org/resource/Nut_butter> .
 

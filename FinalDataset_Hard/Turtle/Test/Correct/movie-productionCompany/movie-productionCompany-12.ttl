@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Annayya_(2000_film)> ns1:productionCompany <http://dbpedia.org/resource/Allu_Aravind> .
+<http://dbpedia.org/resource/Along_Came_Polly> ns1:productionCompany <http://dbpedia.org/resource/Danny_DeVito> .
 
