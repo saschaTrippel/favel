@@ -2,6 +2,7 @@ import logging, ast, os
 
 from os import path
 
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score
@@ -12,10 +13,7 @@ from ContainerService.Containers import Containers
 from MLService.ML import ML
 from OutputService.Output import Output
 import pdb
-import keras
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.utils import to_categorical
+import tensorflow as tf
 
 
 class Controller:
@@ -92,18 +90,9 @@ class Controller:
         df = self.ml.createDataFrame(self.trainingData)
         X = df.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
         y = df.truth
-        model = Sequential()
-        model.add(Dense(500, activation='relu', input_dim=8))
-        model.add(Dense(100, activation='relu'))
-        model.add(Dense(50, activation='relu'))
-        model.add(Dense(2, activation='softmax'))
+        model = KNeighborsClassifier(n_neighbors=2)
 
-        # Compile the model
-        model.compile(optimizer='adam',
-                      loss='categorical_crossentropy',
-                      metrics=['accuracy'])
-
-        model.fit(X, y, epochs=20)
+        model.fit(X, y)
 
 
         df_test = self.ml.createDataFrame(self.testingData)
@@ -113,9 +102,12 @@ class Controller:
 
         yPredict = model.predict(X_test)
 
-        scores2 = model.evaluate(X_test, y_test, verbose=0)
+        #scores2 = model.evaluate(X_test, y_test, verbose=0)
 
-        print('Accuracy on test data: {}% \n Error on test data: {}'.format(scores2[1], 1 - scores2[1]))
+        #
+
+
+        #print('Accuracy on test data: {}% \n Error on test data: {}'.format(scores2[1], 1 - scores2[1]))
 
 
 
