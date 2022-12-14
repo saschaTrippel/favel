@@ -9,7 +9,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_val_score
 
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.ensemble import GradientBoostingClassifier, GradientBoostingRegressor
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score
 
@@ -102,19 +102,19 @@ class Controller:
 
         #model.fit(X, y)
 
-        for i in range(1, 10):
-            ax = plt.subplot(1, 15, i + 1)
-            plt.setp(ax, xticks=(), yticks=())
+        for i in range(1, 20):
+            original_params = {
+                "n_estimators": 400,
+                "max_leaf_nodes": 4,
+                "max_depth": None,
+                "random_state": 2,
+                "min_samples_split": 5,
+            }
+            params = dict(original_params)
 
-            polynomial_features = PolynomialFeatures(degree=i, include_bias=False)
-            linear_regression = LinearRegression()
-            pipeline = Pipeline(
-                [
-                    ("polynomial_features", polynomial_features),
-                    ("linear_regression", linear_regression),
-                ]
-            )
-            pipeline.fit(X, y)
+            model = GradientBoostingRegressor(**params)
+
+            model.fit(X, y)
 
             #Evaluate the models using crossvalidation
 
@@ -128,7 +128,7 @@ class Controller:
 
             X_test = df_test.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
             y_test = df_test.truth
-            yPredict = pipeline.predict(X_test)
+            yPredict = model.predict(X_test)
 
             roc_auc = roc_auc_score(y_test, yPredict)
 
