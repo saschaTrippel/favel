@@ -1,6 +1,12 @@
 import logging, ast, os
 
 from os import path
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import cross_val_score
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier
@@ -86,21 +92,71 @@ class Controller:
                                             output_path=self.experimentPath, 
                                             dataset_path=self.datasetPath)
 
+    def true_fun(X):
+        return np.cos(1.5 * np.pi * X)
     def testMe(self):
         df = self.ml.createDataFrame(self.trainingData)
         X = df.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
         y = df.truth
-        model = KNeighborsClassifier(n_neighbors=2)
+        #model = KNeighborsClassifier(n_neighbors=100)
 
-        model.fit(X, y)
+        #model.fit(X, y)
+
+        for i in range(1, 10):
+            ax = plt.subplot(1, 15, i + 1)
+            plt.setp(ax, xticks=(), yticks=())
+
+            polynomial_features = PolynomialFeatures(degree=i, include_bias=False)
+            linear_regression = LinearRegression()
+            pipeline = Pipeline(
+                [
+                    ("polynomial_features", polynomial_features),
+                    ("linear_regression", linear_regression),
+                ]
+            )
+            pipeline.fit(X, y)
+
+            #Evaluate the models using crossvalidation
 
 
-        df_test = self.ml.createDataFrame(self.testingData)
+            # scores2 = model.evaluate(X_test, y_test, verbose=0)
 
-        X_test = df_test.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
-        y_test = df_test.truth
+            #
 
-        yPredict = model.predict(X_test)
+            # print('Accuracy on test data: {}% \n Error on test data: {}'.format(scores2[1], 1 - scores2[1]))
+            df_test = self.ml.createDataFrame(self.testingData)
+
+            X_test = df_test.drop(['truth', 'subject', 'predicate', 'object'], axis=1)
+            y_test = df_test.truth
+            yPredict = pipeline.predict(X_test)
+
+            roc_auc = roc_auc_score(y_test, yPredict)
+
+            print("AUC " + str(roc_auc)+" for "+str(i))
+
+
+
+
+
+            # plt.plot(X_test, pipeline.predict(X_test[:, np.newaxis]), label="Model")
+            # plt.plot(X_test, self.true_fun(X_test), label="True function")
+            # plt.scatter(X, y, edgecolor="b", s=20, label="Samples")
+            # plt.xlabel("x")
+            # plt.ylabel("y")
+            # plt.xlim((0, 1))
+            # plt.ylim((-2, 2))
+            # plt.legend(loc="best")
+            # plt.title(
+            #     "Degree {}\nMSE = {:.2e}(+/- {:.2e})".format(
+            #         i, -scores.mean(), scores.std()
+            #     )
+            # )
+
+
+
+
+
+        #yPredict = model.predict(X_test)
 
         #scores2 = model.evaluate(X_test, y_test, verbose=0)
 
