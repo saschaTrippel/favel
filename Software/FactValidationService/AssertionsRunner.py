@@ -107,7 +107,7 @@ class AssertionsRunner(AbstractJobRunner):
                     continue
                 
                 else:
-                    assertion.score[self.approach] = None
+                    assertion.score[self.approach] = 0
                     self.errorCount += 1
                     logging.error("'{}' while validating {} using {}."
                                   .format(response.content, assertion, self.approach))
