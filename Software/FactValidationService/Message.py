@@ -19,7 +19,7 @@ class Message:
         if self.type == "train":
             return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object, "score": self.score})
         if self.type == "test":
-            return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object})
+            return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object, "score": self.score})
     
     def parse(self, text:str):
         response = json.loads(text)

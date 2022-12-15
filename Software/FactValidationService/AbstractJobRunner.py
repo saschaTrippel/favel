@@ -47,7 +47,7 @@ class AbstractJobRunner(threading.Thread):
         """
             
         # Send assertion
-        self._send(Message(type="test", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object))
+        self._send(Message(type="test", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object, score=assertion.expectedScore))
         
         # Receive score
         return Message(text=self._receive())
