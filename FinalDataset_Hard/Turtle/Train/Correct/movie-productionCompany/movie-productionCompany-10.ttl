@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Almost_Famous> ns1:productionCompany <http://dbpedia.org/resource/Vinyl_Films> .
+<http://dbpedia.org/resource/The_Care_Bears_Movie> ns1:productionCompany <http://dbpedia.org/resource/American_Greetings> .
 

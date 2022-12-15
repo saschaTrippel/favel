@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Davy_Crockett:_King_of_the_Wild_Frontier_(film)> ns1:productionCompany <http://dbpedia.org/resource/Walt_Disney_Pictures> .
+<http://dbpedia.org/resource/Death_to_Smoochy> ns1:productionCompany <http://dbpedia.org/resource/Film4_Productions> .
 
