@@ -21,6 +21,7 @@ def main():
         
     elif not args.batch is None:
         subsetGen = powerset(list(dict(config['Approaches']).items()))
+        numberOfExperiments = 2**len(list(dict(config['Approaches']).keys())) - (len(list(dict(config['Approaches']).keys())) + 1)
         i = 0
         for subset in subsetGen:
             if len(subset) >= 2:
@@ -39,6 +40,7 @@ def main():
                 logging.info("Experiment finished")
 
                 i += 1
+                logging.info(f"Finished {i} out of {numberOfExperiments} experiments.")
 
 def powerset(approaches:list):
     if len(approaches) <= 0:

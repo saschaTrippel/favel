@@ -210,7 +210,7 @@ class ML:
                 with open(f'{output_path}/classifier.pkl','wb') as fp:   pickle.dump(trained_model,fp)
                 with open(f'{output_path}/predicate_le.pkl','wb') as fp: pickle.dump(le,   fp)
 
-                logging.info('ML model and labelencoder saved in output path')
+                logging.debug('ML model and labelencoder saved in output path')
 
                 return trained_model, le, normalizer, metrics
         except Exception as ex:
@@ -237,7 +237,7 @@ class ML:
             # X = df.drop(['subject','object'], axis=1)
 
             if normalizer is None:
-                logging.info('Using default normalizer')
+                logging.debug('Using default normalizer')
             else:
                 try: 
                     X, normalizer = self.normalise_data(df=X, normalizer_name=None, normalizer=normalizer)
