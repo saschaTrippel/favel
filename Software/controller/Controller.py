@@ -80,7 +80,7 @@ class Controller:
         ml_model_name = self.mlAlgorithm
         ml_model = self.ml.get_sklearn_model(ml_model_name, self.mlParameters, training_df)
 
-        self.model, self.lableEncoder, trainMetrics = self.ml.train_model(df=training_df, 
+        self.model, self.lableEncoder, self.normalizer, trainMetrics = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
                                             normalizer_name=self.normalizer_name,
                                             output_path=self.paths['SubExperimentPath'])
@@ -94,8 +94,7 @@ class Controller:
         testing_df = self.ml.createDataFrame(self.testingData)
 
         testing_result = self.ml.validate_model(df=testing_df, ml_model=self.model, le_predicate=self.lableEncoder,
-                                                output_path=self.paths['SubExperimentPath'], 
-                                                normalizer_name=self.normalizer_name)
+                                                normalizer=self.normalizer)
 
         self.testingResults.append(testing_result)
     
