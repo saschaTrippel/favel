@@ -212,7 +212,7 @@ class ML:
 
                 logging.info('ML model and labelencoder saved in output path')
 
-                return trained_model, le, metrics
+                return trained_model, le, normalizer, metrics
         except Exception as ex:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
@@ -221,7 +221,7 @@ class ML:
             raise ex
 
 
-    def validate_model(self, df, ml_model, le_predicate, output_path, normalizer_name:str):
+    def validate_model(self, df, ml_model, le_predicate, normalizer):
         try:
             X=df.drop(['truth','subject', 'object'], axis=1)
             y=df.truth
@@ -236,11 +236,10 @@ class ML:
             X['predicate'] = le_predicate.transform(np.array(X['predicate'].astype(str), dtype=object))
             # X = df.drop(['subject','object'], axis=1)
 
-            if normalizer_name == 'default':
+            if normalizer is None:
                 logging.info('Using default normalizer')
             else:
                 try: 
-                    with open(f'{output_path}/normalizer.pkl','rb') as fp: normalizer = pickle.load(fp)
                     X, normalizer = self.normalise_data(df=X, normalizer_name=None, normalizer=normalizer)
                 except: 
                     logging.error('No normalizer found')
