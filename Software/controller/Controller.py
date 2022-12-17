@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_score, GridSearchCV
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier, GradientBoostingRegressor
@@ -102,19 +102,17 @@ class Controller:
 
         #model.fit(X, y)
 
-        for i in range(1, 20):
-            original_params = {
-                "n_estimators": 400,
-                "max_leaf_nodes": 4,
-                "max_depth": None,
-                "random_state": 2,
-                "min_samples_split": 5,
-            }
-            params = dict(original_params)
+        for i in range(1, 2):
+            param_test2 = {'max_depth': range(5, 16, 2), 'min_samples_split': range(200, 1001, 200)}
+            model = GridSearchCV(
+                estimator=GradientBoostingClassifier(learning_rate=0.1, n_estimators=100, max_features='sqrt',
+                                                     subsample=0.8, random_state=10),
+                param_grid=param_test2, scoring='roc_auc', n_jobs=4, cv=20)
 
-            model = GradientBoostingRegressor(**params)
+            # model = GradientBoostingRegressor(**params)
 
             model.fit(X, y)
+            print(model.best_params_, model.best_score_)
 
             #Evaluate the models using crossvalidation
 
@@ -167,10 +165,10 @@ class Controller:
 
 
 
-        roc_auc = roc_auc_score(y_test, yPredict)
+        #roc_auc = roc_auc_score(y_test, yPredict)
 
 
-        print("AUC "+str(roc_auc))
+        #print("AUC "+str(roc_auc))
 
         logging.info('ML model trained')
 
