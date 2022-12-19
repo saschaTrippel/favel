@@ -15,8 +15,9 @@ if not sys.warnoptions: warnings.simplefilter("ignore")
 
 class ML:
     
-    def __init__(self):
+    def __init__(self, output:bool):
         np.random.seed(random.randint(0, 10000))
+        self.output = output
 
     def get_normalizer_object(self, normalizer_name):
         if normalizer_name.lower()=='Normalizer'.lower():
@@ -188,7 +189,7 @@ class ML:
             y=df.truth
 
             X, normalizer = self.normalise_data(df=X, normalizer_name=normalizer_name, normalizer=None)
-            if normalizer: # when normalizer != default
+            if normalizer and self.output:
                 with open(f'{output_path}/normalizer.pkl','wb') as fp:   pickle.dump(normalizer,fp)
 
 
@@ -204,7 +205,7 @@ class ML:
 
             if trained_model==False and model_name==False and roc_auc_overall_score==False: 
                 return False
-            else:
+            elif self.output:
                 report_df.to_excel(f'{output_path}/Classifcation Report.xlsx', index=False)
 
                 with open(f'{output_path}/classifier.pkl','wb') as fp:   pickle.dump(trained_model,fp)
@@ -212,7 +213,7 @@ class ML:
 
                 logging.debug('ML model and labelencoder saved in output path')
 
-                return trained_model, le, normalizer, metrics
+            return trained_model, le, normalizer, metrics
         except Exception as ex:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]

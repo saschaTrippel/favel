@@ -11,7 +11,8 @@ def main():
     if not args.experiment is None:
         logging.info("Experiment started")
         controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']), useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+                                normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']),
+                                writeToDisk=args.write, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
         controller.createDirectories()
         controller.input()
         controller.validate()
@@ -30,7 +31,8 @@ def main():
                 paths['SubExperimentPath'] = path.join(paths['ExperimentPath'], sub)
                 paths['SubExperimentName'] = f"{paths['ExperimentName']}.{sub}"
                 controller = Controller(approaches=dict(subset), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
-                                        normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']), useCache=eval(config['General']['useCache']), handleContainers=args.containers)
+                                        normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']),
+                                        writeToDisk=args.write, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
                 
                 controller.createDirectories()
                 controller.input()
@@ -56,6 +58,7 @@ def _parseArguments(argv=None):
     argumentParser = argparse.ArgumentParser()
 
     argumentParser.add_argument("-d", "--data", required=True, help="Path to input data")
+    argumentParser.add_argument("-w", "--write", action="store_true", help="Write all possible outputs to disk. This includes all models and all result data frames. Without this option only the overview file is written to disk.")
     argumentParser.add_argument("-c", "--containers", action="store_true", help="To Start/Stop containers, if not already running")
 
     group = argumentParser.add_mutually_exclusive_group(required=True)
