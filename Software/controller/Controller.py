@@ -11,18 +11,20 @@ class Controller:
     """
     Controler that interacts with the different services.
     """
-    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters, normaliser_name, paths:dict, useCache:bool, handleContainers:bool):
+    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters:str, normalizer_name, paths:dict, iterations:int, writeToDisk:bool, useCache:bool, handleContainers:bool):
         self.approaches = approaches
         self.mlAlgorithm = mlAlgorithm
         self.mlParameters = mlParameters
-        self.normaliser_name = normaliser_name
+        self.normalizer_name = normalizer_name
         self.paths = paths
+        self.iterations = iterations
+        self.writeToDisk = writeToDisk
         self.useCache = useCache
         self.handleContainers = handleContainers
         self.testingData = None
+        self.testingResults = []
         self.trainingData = None
-
-        self.ml = ML(log_file=path.join(self.paths['ExperimentPath'], "ml_logs.log"))
+        self.trainingMetrics = []
         
     def createDirectories(self):
         experimentPath = Path(self.paths['ExperimentPath'])
@@ -62,37 +64,40 @@ class Controller:
         validator.validate(self.trainingData, self.testingData)
 
         self.stopContainers()
+        
+    def ensemble(self):
+        for i in range(self.iterations):
+            self.train()
+            self.test()
     
     def train(self):
         """
-        Train the ML model
+        Train the ML model.
+        Has to be called before self.test()
         """
+        self.ml = ML(self.writeToDisk)
         training_df = self.ml.createDataFrame(self.trainingData)
-        # if not training_df: logging.info('[controller train] Error in createDataFrame')
 
         ml_model_name = self.mlAlgorithm
         ml_model = self.ml.get_sklearn_model(ml_model_name, self.mlParameters, training_df)
 
-        self.model, self.lableEncoder, self.trainMetrics = self.ml.train_model(df=training_df, 
+        self.model, self.lableEncoder, self.normalizer, trainMetrics = self.ml.train_model(df=training_df, 
                                             ml_model=ml_model, 
-                                            normaliser_name=self.normaliser_name,
-                                            output_path=self.paths['SubExperimentPath'], 
-                                            dataset_path=self.paths['DatasetPath'])
+                                            normalizer_name=self.normalizer_name,
+                                            output_path=self.paths['SubExperimentPath'])
+        self.trainingMetrics.append(trainMetrics)
 
     def test(self):
         """
-        Test the ML model
+        Test the ML model created in the previous call of self.train().
+        Has to be called after self.train()
         """
         testing_df = self.ml.createDataFrame(self.testingData)
 
-        # if not testing_df: logging.info('[controller test] Error in createDataFrame')
+        testing_result = self.ml.validate_model(df=testing_df, ml_model=self.model, le_predicate=self.lableEncoder,
+                                                normalizer=self.normalizer)
 
-        testing_result = self.ml.validate_model(df=testing_df, 
-                                                output_path=self.paths['SubExperimentPath'], 
-                                                dataset_path=self.paths['DatasetPath'])
-        # if not testing_result: logging.info('[controller test] Error in validate_model')
-
-        self.ml_test_result = testing_result
+        self.testingResults.append(testing_result)
     
 
     def output(self):
@@ -101,6 +106,7 @@ class Controller:
         Also, Conversion to GERBIL format.
         """
         op = Output(self.paths)
-        op.writeOutput(self.ml_test_result)
-        op.writeOverview(self.ml_test_result, self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainMetrics, self.normaliser_name)
-        op.gerbilFormat(self.testingData)
+        op.writeOverview(self.testingResults, self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainingMetrics, self.normalizer_name)
+        if self.writeToDisk:
+            op.writeOutput(self.testingResults)
+            #op.gerbilFormat(self.testingData)

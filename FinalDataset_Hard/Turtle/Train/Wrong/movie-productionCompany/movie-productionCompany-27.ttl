@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Avengers:_Endgame> ns1:productionCompany <http://dbpedia.org/resource/Walt_Disney_Studios_Motion_Pictures> .
+<http://dbpedia.org/resource/Dark_Passage_(film)> ns1:productionCompany <http://dbpedia.org/resource/San_Francisco_cable_car_system> .
 

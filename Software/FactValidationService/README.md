@@ -5,12 +5,20 @@ The algorithms are executed in different processes, which are connected through 
 ## Interface
 The interface differs for supervised and unsupervised approaches.
 
+### Unsupervised
+
 ![Unsupervised communication](Interface_documentation/Unsupervised_Sequence-Diagram.png)
 
-![Supervised communication](Interface_documentation/Supervised_Sequence-Diagram.png)
+### Supervised
+There are two options for communication with supervised approaches. Some need the entire test set before they can validate facts. This is accounted for in the second option.
+
+![Supervised communication 1](Interface_documentation/Supervised_Sequence-Diagram.png)
+
+![Supervised communication 2](Interface_documentation/Supervised-batch_Sequence-Diagram.png)
 
 ## Fact Validation Algorithms
 Implementations that support this interface are:
 
 * <https://github.com/saschaTrippel/knowledgestream> offers multiple algorithms
 * <https://github.com/palaniappan1/COPAAL> offers COPAAL
+* <https://github.com/vaibhavc99/GDRB.git> offers GFC

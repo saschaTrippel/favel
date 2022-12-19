@@ -47,7 +47,7 @@ class AbstractJobRunner(threading.Thread):
         """
             
         # Send assertion
-        self._send(Message(type="test", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object))
+        self._send(Message(type="test", subject=assertion.subject, predicate=assertion.predicate, object=assertion.object, score=assertion.expectedScore))
         
         # Receive score
         return Message(text=self._receive())
@@ -67,7 +67,11 @@ class AbstractJobRunner(threading.Thread):
     def _trainingComplete(self):
         self._send(Message(type="call", content="training_complete"))
         return Message(text=self._receive())
-    
+
+    def _testingUploadComplete(self):
+        self._send(Message(type="call", content="test_upload_complete"))
+        return Message(text=self._receive())
+
     def _connect(self):
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

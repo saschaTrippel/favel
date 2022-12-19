@@ -3,12 +3,50 @@ FAVEL ML Service
 
 # Configuration
 
-The machine learning (ML) algorithm has to be specified in the configuration file favel.conf under the MLApproaches tag. The algorithm name must be the sklearn module. The parameters of this algorithm have to be passed in JSON format.
+MLApproches tag in the configuration file favel.conf has three variable method, parameters, and normalizer. 
 
 ```
 [MLApproches]
 method = GradientBoostingClassifier
+parameters = default
+normalizer = default
+```
+
+
+## method
+The machine learning (ML) algorithm has to be specified to the method. The algorithm name must be the sklearn module. 
+
+```
+method = GradientBoostingClassifier
+```
+
+## parameters
+```default``` is used to run an experiment on the default ML algorithm parameters.
+
+```
+parameters = default
+```
+
+To set specified parameters of ML algorithm. The parameters should be passed in JSON format.
+```
 parameters = {'n_estimators': 100, 'learning_rate': 1.0, 'max_depth': 1, 'random_state': 0}
+```
+
+For optimization of ML Algorithm parameters. Parameters name with range is specified.
+```
+parameters = [{'n_estimators': range:[1, 100]}, {'learning_rate': [1.0,5.0]}, {'max_depth': 1,10},]
+```
+
+## normalizer
+To normalize data used for ML. Any one of these normalizers should be specified in the config file.
+
+```
+normalizer = default
+normalizer = Normalizer
+normalizer = MinMaxScaler
+normalizer = StandardScaler
+normalizer = MaxAbsScaler
+normalizer = RobustScaler
 ```
 
 # Outputs 

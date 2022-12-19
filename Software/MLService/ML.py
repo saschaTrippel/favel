@@ -6,7 +6,7 @@ from skopt import BayesSearchCV
 from skopt.space import Real, Categorical, Integer
 import logging
 import numpy as np
-import os, sys, ast, warnings, pdb
+import os, sys, ast, warnings, pdb, random
 import pandas as pd
 import pickle
 import sklearn
@@ -14,47 +14,42 @@ import statistics
 if not sys.warnoptions: warnings.simplefilter("ignore")
 
 class ML:
+    
+    def __init__(self, output:bool):
+        np.random.seed(random.randint(0, 10000))
+        self.output = output
 
-    def __init__(self, log_file):
-        logging.basicConfig(
-            filename=log_file,
-            filemode='a',
-            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-            datefmt='%H:%M:%S',
-            level=logging.INFO
-        )
-
-    def get_normaliser_object(self, normaliser_name):
-        if normaliser_name.lower()=='Normalizer'.lower():
+    def get_normalizer_object(self, normalizer_name):
+        if normalizer_name.lower()=='Normalizer'.lower():
             return preprocessing.Normalizer()
 
-        elif normaliser_name.lower()=='MinMaxScaler'.lower():
+        elif normalizer_name.lower()=='MinMaxScaler'.lower():
             return preprocessing.MinMaxScaler()
         
-        elif normaliser_name.lower()=='StandardScaler'.lower():
+        elif normalizer_name.lower()=='StandardScaler'.lower():
             return preprocessing.StandardScaler()
         
-        elif normaliser_name.lower()=='MaxAbsScaler'.lower():
+        elif normalizer_name.lower()=='MaxAbsScaler'.lower():
             return preprocessing.MaxAbsScaler()
 
-        elif normaliser_name.lower()=='RobustScaler'.lower():
+        elif normalizer_name.lower()=='RobustScaler'.lower():
             return preprocessing.RobustScaler()
 
 
-    def normalise_data(self, df, normaliser_name=None, normaliser=None):
+    def normalise_data(self, df, normalizer_name=None, normalizer=None):
         x = df.values #returns a numpy array
         
-        if normaliser: 
-            x_scaled = normaliser.fit_transform(x)
-        elif normaliser_name == 'default':
-            normaliser=None
+        if normalizer: 
+            x_scaled = normalizer.fit_transform(x)
+        elif normalizer_name == 'default':
+            normalizer=None
             x_scaled = np.copy(x) # return the same matrix without normalising
         else:
-            normaliser=self.get_normaliser_object(normaliser_name)
-            x_scaled = normaliser.fit_transform(x)
+            normalizer=self.get_normalizer_object(normalizer_name)
+            x_scaled = normalizer.fit_transform(x)
        
         df = pd.DataFrame(x_scaled)
-        return df, normaliser 
+        return df, normalizer 
 
     def createDataFrame(self, assertions):
         try:
@@ -178,7 +173,7 @@ class ML:
             raise e
 
     # Change model list here to be a single model
-    def train_model(self, df, ml_model, normaliser_name, output_path, dataset_path):
+    def train_model(self, df, ml_model, normalizer_name, output_path):
         """
         Returns:
             - Model
@@ -193,9 +188,9 @@ class ML:
             X=df.drop(['truth', 'subject', 'object'], axis=1)
             y=df.truth
 
-            X, normaliser = self.normalise_data(df=X, normaliser_name=normaliser_name, normaliser=None)
-            if normaliser: # when normaliser != default
-                with open(f'{output_path}/normaliser.pkl','wb') as fp:   pickle.dump(normaliser,fp)
+            X, normalizer = self.normalise_data(df=X, normalizer_name=normalizer_name, normalizer=None)
+            if normalizer and self.output:
+                with open(f'{output_path}/normalizer.pkl','wb') as fp:   pickle.dump(normalizer,fp)
 
 
             print('TRAIN: ', X.shape, y.shape, ml_model, y.dtypes)
@@ -210,15 +205,15 @@ class ML:
 
             if trained_model==False and model_name==False and roc_auc_overall_score==False: 
                 return False
-            else:
+            elif self.output:
                 report_df.to_excel(f'{output_path}/Classifcation Report.xlsx', index=False)
 
                 with open(f'{output_path}/classifier.pkl','wb') as fp:   pickle.dump(trained_model,fp)
                 with open(f'{output_path}/predicate_le.pkl','wb') as fp: pickle.dump(le,   fp)
 
-                logging.info('ML model and labelencoder saved in output path')
+                logging.debug('ML model and labelencoder saved in output path')
 
-                return trained_model, le, metrics
+            return trained_model, le, normalizer, metrics
         except Exception as ex:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
@@ -227,16 +222,8 @@ class ML:
             raise ex
 
 
-    def validate_model(self, df, output_path, dataset_path):
+    def validate_model(self, df, ml_model, le_predicate, normalizer):
         try:
-            
-            # read saved model
-            with open(f'{output_path}/classifier.pkl','rb') as fp: ml_model = pickle.load(fp)
-
-            # read predicate label encoder
-            with open(f'{output_path}/predicate_le.pkl','rb') as fp: le_predicate = pickle.load(fp)
-
-
             X=df.drop(['truth','subject', 'object'], axis=1)
             y=df.truth
 
@@ -250,22 +237,25 @@ class ML:
             X['predicate'] = le_predicate.transform(np.array(X['predicate'].astype(str), dtype=object))
             # X = df.drop(['subject','object'], axis=1)
 
-            try: 
-                with open(f'{output_path}/normaliser.pkl','rb') as fp: normaliser = pickle.load(fp)
-                X, normaliser = self.normalise_data(df=X, normaliser_name=None, normaliser=normaliser)
-            except: 
-                logging.info('No normaliser found')
+            if normalizer is None:
+                logging.debug('Using default normalizer')
+            else:
+                try: 
+                    X, normalizer = self.normalise_data(df=X, normalizer_name=None, normalizer=normalizer)
+                except: 
+                    logging.error('No normalizer found')
 
-            ensembleScore = ml_model.predict(X)
-            # pdb.set_trace()
-            
-            df['ensemble_score'] = ensembleScore
-
-            roc_auc = metrics.roc_auc_score(y, ensembleScore)
+                    
+            y_pred=ml_model.predict_proba(X)
+            class_1_index = 0 if list(set(y.astype(str)))[0]=='1' else 1
+            y_pred=y_pred[:, class_1_index]
+            df['ensemble_score'] = y_pred
+                    
+            roc_auc = metrics.roc_auc_score(y, y_pred)
 
             logging.info('Validation completed')
 
-            return df
+            return df, roc_auc
 
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()

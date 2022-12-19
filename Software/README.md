@@ -18,5 +18,7 @@ python3 Favel.py [options]
 * ```-b EXPERIMENT, --batch EXPERIMENT``` name of the experiment, corresponds with the name of the experiment folder in the ```Evaluation``` directory.
 Experiment will be run in batch mode, meaning that an experiment will be executed with every subset of the specified set of fact validation approaches.
 * ```-d DATA, --data DATA``` path to the dataset to validate
+* ```-w, --write``` write everything to disk. If this flag is set, all possible outputs are written to disk. This includes models, normalizers, predicate encoders, and dataframes.
+If the flag is not set, only the overview is written to disk.
 * ```-c, --containers``` automatically Start/Stop containers
 

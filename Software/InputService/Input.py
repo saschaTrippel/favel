@@ -1,6 +1,7 @@
-import logging, copy
-from datastructures.Assertion import Assertion
 from InputService.ReadFiles import ReadFiles
+from datastructures.Assertion import Assertion
+from datastructures.exceptions.InputException import InputException
+import logging, copy
 
 class Input:
     cache = dict()
@@ -30,6 +31,8 @@ class Input:
             df_train, df_test = rf.getBPDP(filePath)
         result_train = self.parseTriples(df_train)
         result_test = self.parseTriples(df_test)
+        if len(result_train) == 0 or len(result_test) == 0:
+            raise InputException("The specified dataset does not contain any assertions.")
         logging.info("Read {} training assertions, {} testing assertions".format(len(result_train),len(result_test)))
         return result_train, result_test
             

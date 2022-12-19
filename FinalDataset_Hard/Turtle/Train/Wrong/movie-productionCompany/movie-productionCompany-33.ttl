@@ -1,4 +1,4 @@
 @prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Annayya_(2000_film)> ns1:productionCompany <http://dbpedia.org/resource/Geetha_Arts> .
+<http://dbpedia.org/resource/Avengers:_Endgame> ns1:productionCompany <http://dbpedia.org/resource/Walt_Disney_Studios_Motion_Pictures> .
 
