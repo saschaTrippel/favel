@@ -11,13 +11,14 @@ class Controller:
     """
     Controler that interacts with the different services.
     """
-    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters:str, normalizer_name, paths:dict, iterations:int, useCache:bool, handleContainers:bool):
+    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters:str, normalizer_name, paths:dict, iterations:int, writeToDisk:bool, useCache:bool, handleContainers:bool):
         self.approaches = approaches
         self.mlAlgorithm = mlAlgorithm
         self.mlParameters = mlParameters
         self.normalizer_name = normalizer_name
         self.paths = paths
         self.iterations = iterations
+        self.writeToDisk = writeToDisk
         self.useCache = useCache
         self.handleContainers = handleContainers
         self.testingData = None
@@ -74,7 +75,7 @@ class Controller:
         Train the ML model.
         Has to be called before self.test()
         """
-        self.ml = ML()
+        self.ml = ML(self.writeToDisk)
         training_df = self.ml.createDataFrame(self.trainingData)
 
         ml_model_name = self.mlAlgorithm
@@ -105,6 +106,7 @@ class Controller:
         Also, Conversion to GERBIL format.
         """
         op = Output(self.paths)
-        op.writeOutput(self.testingResults)
         op.writeOverview(self.testingResults, self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainingMetrics, self.normalizer_name)
-        #op.gerbilFormat(self.testingData)
+        if self.writeToDisk:
+            op.writeOutput(self.testingResults)
+            #op.gerbilFormat(self.testingData)
