@@ -25,6 +25,13 @@ def getFactBench(df):
 def getFavel(df):
     return df.loc[df['Dataset'] == "FinalDataset_Hard"]
 
+def plotImprovement(df):
+    df = df[["Improvement"]]
+    plot = df.plot(kind="box", figsize=(3.5, 5.5))
+    fig = plot.get_figure()
+    fig.savefig(path.join(PATHS["Analysis"], "improvement.pdf"))
+
+
 def plotPerformanceStdDev(df):
     df = df[["Testing AUC-ROC Mean", "Testing AUC-ROC Std. Dev."]]
     plot = df.plot(x="Testing AUC-ROC Mean", y="Testing AUC-ROC Std. Dev.", kind="scatter")
@@ -34,4 +41,5 @@ def plotPerformanceStdDev(df):
 PATHS = loadPaths()
 
 df = readOverview()
+plotImprovement(df)
 plotPerformanceStdDev(df)
