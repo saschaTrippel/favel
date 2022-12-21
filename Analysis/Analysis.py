@@ -62,29 +62,28 @@ def analyzeBestN(df, N:int):
     
     primaryKey = ["ML Algorithm", "ML Parameters", "Normalizer", "Iterations", "Fact Validation Approaches"]
     
-    result = dict()
+    result = {"Source Dataset": [], "Target Dataset": [], "Testing AUC-ROC Mean": [], "Improvement": []}
     for i in datasets.keys():
         for j in datasets.keys():
             if i != j:
                 """
                 Take N best configurations for dataset i.
                 Look up these configurations for dataset j.
-                Save in result['i -> j'] = df
                 """
-                best = {"Testing AUC-ROC Mean": [], "Improvement": []}
                 for index, row in datasets[i].head(n=N).iterrows():
                     tmp = _findRow(datasets[j], row, primaryKey)
                     if not tmp is None:
-                        best["Testing AUC-ROC Mean"].append(tmp["Testing AUC-ROC Mean"])
-                        best["Improvement"].append(tmp["Improvement"])
-                result[f"{i} -> {j}"] = pd.DataFrame(best)
+                        result["Source Dataset"].append(i)
+                        result["Target Dataset"].append(j)
+                        result["Testing AUC-ROC Mean"].append(tmp["Testing AUC-ROC Mean"])
+                        result["Improvement"].append(tmp["Improvement"])
     
     plt.figure()
+    result = pd.DataFrame(result)
     for key in result:
-        result[key].plot(kind="scatter", x="Testing AUC-ROC Mean", y="Improvement")
-        #fig = plot.get_figure()
-        #fig.savefig(path.join(PATHS["Analysis"], "nBest.pdf"))
-    plt.show()
+        plot = result.plot(kind="scatter", x="Testing AUC-ROC Mean", y="Improvement")
+        fig = plot.get_figure()
+        fig.savefig(path.join(PATHS["Analysis"], "nBest.pdf"))
     print(result)
         
 def _findRow(df, row, keys):
