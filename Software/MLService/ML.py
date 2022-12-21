@@ -118,7 +118,11 @@ class ML:
         y=train_data.truth
 
         xdf=pd.DataFrame(sklearn.utils.all_estimators())
-        model = xdf[xdf[0]==model_name][1].item()
+        try:
+            model = xdf[xdf[0]==model_name][1].item()
+        except ValueError as ex:
+            logging.error(f"Model '{model_name}' is unknown.")
+            raise ex
 
         if ml_model_params == 'default':
             model=model()
