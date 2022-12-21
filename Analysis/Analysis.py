@@ -80,8 +80,19 @@ def analyzeBestN(df, N:int):
     
     plt.figure()
     result = pd.DataFrame(result)
+    # Define colors
+    colors = []
+    for index, row in result.iterrows():
+        if row["Source Dataset"] == "bpdp":
+            colors.append('g')
+        if row["Source Dataset"] == "factBench":
+            colors.append('b')
+        if row["Source Dataset"] == "favel":
+            colors.append('r')
+            
+    # Plot results
     for key in result:
-        plot = result.plot(kind="scatter", x="Testing AUC-ROC Mean", y="Improvement")
+        plot = result.plot(kind="scatter", x="Testing AUC-ROC Mean", y="Improvement", c=colors)
         fig = plot.get_figure()
         fig.savefig(path.join(PATHS["Analysis"], "nBest.pdf"))
     print(result)
