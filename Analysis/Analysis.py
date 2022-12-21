@@ -51,9 +51,61 @@ def plotMlAlgorithms(df):
     fig = plot.get_figure()
     fig.savefig(path.join(PATHS["Analysis"], "performance-mlAlgorithm.pdf"))
     
+def analyzeBestN(df, N:int):
+    datasets = dict()
+    datasets['bpdp'] = getBpdp(df)
+    datasets['factBench'] = getFactBench(df)
+    datasets['favel'] = getFavel(df)
+    
+    for key in datasets.keys():
+        datasets[key].sort_values(by="Testing AUC-ROC Mean", ascending=False, inplace=True)
+    
+    primaryKey = ["ML Algorithm", "ML Parameters", "Normalizer", "Iterations", "Fact Validation Approaches"]
+    
+    result = dict()
+    for i in datasets.keys():
+        for j in datasets.keys():
+            if i != j:
+                """
+                Take N best configurations for dataset i.
+                Look up these configurations for dataset j.
+                Save in result['i -> j'] = df
+                """
+                best = {"Testing AUC-ROC Mean": [], "Improvement": []}
+                for index, row in datasets[i].head(n=N).iterrows():
+                    tmp = _findRow(datasets[j], row, primaryKey)
+                    if not tmp is None:
+                        best["Testing AUC-ROC Mean"].append(tmp["Testing AUC-ROC Mean"])
+                        best["Improvement"].append(tmp["Improvement"])
+                result[f"{i} -> {j}"] = pd.DataFrame(best)
+    
+    plt.figure()
+    for key in result:
+        result[key].plot(kind="scatter", x="Testing AUC-ROC Mean", y="Improvement")
+        #fig = plot.get_figure()
+        #fig.savefig(path.join(PATHS["Analysis"], "nBest.pdf"))
+    plt.show()
+    print(result)
+        
+def _findRow(df, row, keys):
+    result = dict()
+    for key in keys:
+        result[key] = set(df.index[df[key] == row[key]].tolist())
+
+    intersect = None
+    for key in keys:
+        if intersect is None:
+            intersect = result[key]
+        else:
+            intersect &= result[key]
+    
+    for i in intersect:
+        return df.loc[i]
+    
 PATHS = loadPaths()
 
 df = readOverview()
 plotImprovement(df)
 plotPerformanceStdDev(df)
 plotMlAlgorithms(df)
+analyzeBestN(df, 5)
