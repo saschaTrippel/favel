@@ -95,7 +95,6 @@ def analyzeBestN(df, N:int):
         plot = result.plot(kind="scatter", x="Testing AUC-ROC Mean", y="Improvement", c=colors)
         fig = plot.get_figure()
         fig.savefig(path.join(PATHS["Analysis"], "nBest.pdf"))
-    print(result)
         
 def _findRow(df, row, keys):
     result = dict()
