@@ -1,6 +1,15 @@
 import sqlite3
 from datastructures.exceptions.CacheException import CacheException
 
+def exceptionHandling(func):
+    def inner(*args, **kwargs):
+        for i in range(10):
+            try:
+                return func(*args, **kwargs)
+            except sqlite3.OperationalError as ex:
+                time.wait(0.1)
+    return inner
+
 class Cache:
     """
     Wrapper that encapsulates the SQL database
@@ -31,26 +40,15 @@ class Cache:
     def close(self):
         self.db.close()
         
+    @exceptionHandling
     def insert(self, sub:str, pred:str, obj:str, score:float):
         input = [(sub), (pred), (obj), (score)]
         self.db.execute("INSERT INTO {}_cache (subject, predicate, object, score) VALUES (?, ?, ?, ?)".format(self.approach), input)
         self.db.commit()
-        
-    def update(self, sub:str, pred:str, obj:str, score:float):
-        input = [(score), (sub), (pred), (obj)]
-        self.db.execute("UPDATE {}_cache SET score=? WHERE subject=? AND predicate=? AND object=?".format(self.approach), input)
-        self.db.commit()
     
+    @exceptionHandling
     def getScore(self, sub:str, pred:str, obj:str):
         input = [(sub), (pred), (obj)]
         cursor = self.db.execute('SELECT score FROM {}_cache WHERE subject=? AND predicate=? AND object=?'.format(self.approach), input)
         for row in cursor:
             return row[0]
-        
-    def getAll(self):
-        cursor = self.db.execute('SELECT * FROM {}_cache'.format(self.approach))
-        rows = []
-        for row in cursor:
-            rows.append(row)
-        return rows
-            
