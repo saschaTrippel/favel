@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Busting> ns1:producer <http://dbpedia.org/resource/Irwin_Winkler> .
+<http://dbpedia.org/resource/Double_or_Nothing_(1937_film)> ns1:producer <http://dbpedia.org/resource/Benjamin_Glazer> .
 

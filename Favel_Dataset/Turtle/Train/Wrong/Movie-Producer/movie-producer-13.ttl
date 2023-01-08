@@ -1,5 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Elegy_(film)> ns1:producer <http://dbpedia.org/resource/Emmett/Furla_Oasis>,
-        <http://dbpedia.org/resource/Jeffrey_Lau> .
+<http://dbpedia.org/resource/Double_or_Nothing_(1937_film)> ns1:producer <http://dbpedia.org/resource/David_Permut> .
 

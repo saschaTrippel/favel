@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Futurama:_Into_the_Wild_Green_Yonder> ns1:producer <http://dbpedia.org/resource/Claudia_Katz> .
+<http://dbpedia.org/resource/Annie_(1982_film)> ns1:producer <http://dbpedia.org/resource/Pandro_S._Berman> .
 

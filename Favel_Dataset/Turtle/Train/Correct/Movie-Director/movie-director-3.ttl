@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Affectionately_Yours> ns1:director <http://dbpedia.org/resource/Lloyd_Bacon> .
+<http://dbpedia.org/resource/The_Indian_Scarf> ns1:director <http://dbpedia.org/resource/Alfred_Vohrer> .
 

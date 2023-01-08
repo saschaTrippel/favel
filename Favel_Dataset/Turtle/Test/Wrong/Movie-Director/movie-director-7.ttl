@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Underground_(1941_film)> ns1:director <http://dbpedia.org/resource/Slatan_Dudow> .
+<http://dbpedia.org/resource/Arrest_Bulldog_Drummond> ns1:director <http://dbpedia.org/resource/Jeffrey_Dell> .
 

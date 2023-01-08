@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Aarhus_University> ns1:type <http://dbpedia.org/resource/Private_university> .
+<http://dbpedia.org/resource/Abat_Oliba_CEU_University> ns1:type <http://dbpedia.org/resource/Private_university> .
 

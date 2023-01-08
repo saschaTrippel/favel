@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Gidget_Goes_to_Rome> ns1:director <http://dbpedia.org/resource/Alan_Crosland> .
+<http://dbpedia.org/resource/Lawless_Cowboys> ns1:director <http://dbpedia.org/resource/Walter_Lang> .
 

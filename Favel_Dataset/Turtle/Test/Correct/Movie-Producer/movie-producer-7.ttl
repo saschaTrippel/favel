@@ -1,5 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/ABBA:_The_Movie> ns1:producer <http://dbpedia.org/resource/Reg_Grundy>,
-        <http://dbpedia.org/resource/Stig_Anderson> .
+<http://dbpedia.org/resource/Futurama:_Bender's_Game> ns1:producer <http://dbpedia.org/resource/Claudia_Katz> .
 

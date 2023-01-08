@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Bury_Me_Dead> ns1:director <http://dbpedia.org/resource/Bernard_Vorhaus> .
+<http://dbpedia.org/resource/Intimate_Confessions_of_a_Chinese_Courtesan> ns1:director <http://dbpedia.org/resource/Chor_Yuen> .
 

@@ -1,4 +1,5 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/20,000_Years_in_Sing_Sing> ns1:producer <http://dbpedia.org/resource/Raymond_Griffith> .
+<http://dbpedia.org/resource/Busting> ns1:producer <http://dbpedia.org/resource/Irwin_Winkler>,
+        <http://dbpedia.org/resource/Robert_Chartoff> .
 

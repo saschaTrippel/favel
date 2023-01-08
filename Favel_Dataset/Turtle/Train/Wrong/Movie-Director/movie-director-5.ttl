@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Sally_in_Our_Alley_(1927_film)> ns1:director <http://dbpedia.org/resource/Scot_McFadyen> .
+<http://dbpedia.org/resource/The_Stranger_(1946_film)> ns1:director <http://dbpedia.org/resource/Vishnuvardhan_(director)> .
 
