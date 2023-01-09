@@ -1,5 +1,4 @@
 import json
-import math
 
 class Message:
     
@@ -52,7 +51,7 @@ class Message:
     def score(self, score):
         if(score == None):
             pass
-        elif float(score) == float('inf') or float(score) == float('-inf') or float(score) == float('nan') or float(score) == float('NaN') or math.isnan(float(score)):
+        elif float(score) == float('inf') or float(score) == float('-inf') or float(score) == float('nan'):
             self._score = 0
         else:
             self._score = score
