@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Futurama:_The_Beast_with_a_Billion_Backs> ns1:producer <http://dbpedia.org/resource/Claudia_Katz> .
+<http://dbpedia.org/resource/Cry_'Havoc'_(film)> ns1:producer <http://dbpedia.org/resource/Edwin_H._Knopf> .
 

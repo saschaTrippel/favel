@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dr._Renault's_Secret> ns1:producer <http://dbpedia.org/resource/Berle_Adams> .
+<http://dbpedia.org/resource/Conflict_(1936_film)> ns1:producer <http://dbpedia.org/resource/George_Harrison> .
 

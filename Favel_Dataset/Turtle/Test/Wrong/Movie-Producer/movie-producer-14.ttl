@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Checking_Out_(1989_film)> ns1:producer <http://dbpedia.org/resource/Gary_Lucchesi> .
+<http://dbpedia.org/resource/Gypsies_Are_Found_Near_Heaven> ns1:producer <http://dbpedia.org/resource/Ray_Stark> .
 

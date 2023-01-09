@@ -1,5 +1,5 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/ABBA:_The_Movie> ns1:producer <http://dbpedia.org/resource/Gary_Cooper>,
-        <http://dbpedia.org/resource/John_Davis_(producer)> .
+<http://dbpedia.org/resource/Elegy_(film)> ns1:producer <http://dbpedia.org/resource/Emmett/Furla_Oasis>,
+        <http://dbpedia.org/resource/Jeffrey_Lau> .
 

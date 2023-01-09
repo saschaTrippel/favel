@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Yeto_Vellipoyindhi_Manasu> ns1:director <http://dbpedia.org/resource/Gautham_Vasudev_Menon> .
+<http://dbpedia.org/resource/Sally_in_Our_Alley_(1927_film)> ns1:director <http://dbpedia.org/resource/Walter_Lang> .
 

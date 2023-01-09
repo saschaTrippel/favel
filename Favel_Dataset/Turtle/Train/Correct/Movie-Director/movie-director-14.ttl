@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Deep_Blue_Sea_(1999_film)> ns1:director <http://dbpedia.org/resource/Renny_Harlin> .
+<http://dbpedia.org/resource/Heyy_Babyy> ns1:director <http://dbpedia.org/resource/Sajid_Khan_(director)> .
 

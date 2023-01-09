@@ -1,5 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Elegy_(film)> ns1:producer <http://dbpedia.org/resource/Gary_Lucchesi>,
-        <http://dbpedia.org/resource/Tom_Rosenberg> .
+<http://dbpedia.org/resource/Force_of_Arms> ns1:producer <http://dbpedia.org/resource/Anthony_Veiller> .
 

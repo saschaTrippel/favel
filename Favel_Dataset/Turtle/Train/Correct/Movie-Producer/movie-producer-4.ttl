@@ -1,5 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Hard_Cash_(2002_film)> ns1:producer <http://dbpedia.org/resource/Emmett/Furla_Oasis>,
-        <http://dbpedia.org/resource/Randall_Emmett> .
+<http://dbpedia.org/resource/A_Gentleman_of_Paris_(1931_film)> ns1:producer <http://dbpedia.org/resource/Michael_Balcon> .
 

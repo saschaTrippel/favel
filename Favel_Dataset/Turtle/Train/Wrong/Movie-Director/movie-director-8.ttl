@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Alpine_Antics_(1936_film)> ns1:director <http://dbpedia.org/resource/Steve_Sekely> .
+<http://dbpedia.org/resource/Babe:_Pig_in_the_City> ns1:director <http://dbpedia.org/resource/Vincent_Sherman> .
 

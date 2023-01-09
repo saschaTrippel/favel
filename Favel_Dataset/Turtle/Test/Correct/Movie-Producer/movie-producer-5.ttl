@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Dr._Renault's_Secret> ns1:producer <http://dbpedia.org/resource/Sol_M._Wurtzel> .
+<http://dbpedia.org/resource/Eastern_Condors> ns1:producer <http://dbpedia.org/resource/Corey_Yuen> .
 

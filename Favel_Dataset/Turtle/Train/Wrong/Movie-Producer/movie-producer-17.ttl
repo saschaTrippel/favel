@@ -1,4 +1,6 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Annie_(1982_film)> ns1:producer <http://dbpedia.org/resource/Pandro_S._Berman> .
+<http://dbpedia.org/resource/Eastern_Condors> ns1:producer <http://dbpedia.org/resource/Denis_O'Brien_(producer)>,
+        <http://dbpedia.org/resource/Edwin_H._Knopf>,
+        <http://dbpedia.org/resource/George_Shapiro> .
 

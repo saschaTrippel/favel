@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Northwest_Territory_(film)> ns1:director <http://dbpedia.org/resource/Clyde_Geronimi> .
+<http://dbpedia.org/resource/Kuhle_Wampe> ns1:director <http://dbpedia.org/resource/Edward_Buzzell> .
 

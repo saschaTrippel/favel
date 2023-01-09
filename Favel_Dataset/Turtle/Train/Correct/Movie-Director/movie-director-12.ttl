@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/The_Stranger_(1946_film)> ns1:director <http://dbpedia.org/resource/Orson_Welles> .
+<http://dbpedia.org/resource/Little_Tokyo,_U.S.A.> ns1:director <http://dbpedia.org/resource/Otto_Brower> .
 

@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Im_Banne_des_Unheimlichen> ns1:director <http://dbpedia.org/resource/Alfred_Vohrer> .
+<http://dbpedia.org/resource/Ship_Ahoy> ns1:director <http://dbpedia.org/resource/Edward_Buzzell> .
 

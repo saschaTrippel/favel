@@ -1,4 +1,5 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Futurama:_Bender's_Game> ns1:producer <http://dbpedia.org/resource/Claudia_Katz> .
+<http://dbpedia.org/resource/Hard_Cash_(2002_film)> ns1:producer <http://dbpedia.org/resource/Emmett/Furla_Oasis>,
+        <http://dbpedia.org/resource/Randall_Emmett> .
 
