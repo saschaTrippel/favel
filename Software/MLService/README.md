@@ -34,7 +34,11 @@ parameters = {'n_estimators': 100, 'learning_rate': 1.0, 'max_depth': 1, 'random
 
 For optimization of ML Algorithm parameters. Parameters name with range is specified.
 ```
-parameters = [{'n_estimators': range:[1, 100]}, {'learning_rate': [1.0,5.0]}, {'max_depth': 1,10},]
+parameters = [
+            {'name':'n_estimators',  'range':(1, 3)},
+            {'name':'learning_rate', 'range':(1.0,2.0)},
+            {'name': 'warm_start', 'range':[True, False]}
+            ]
 ```
 
 ## normalizer

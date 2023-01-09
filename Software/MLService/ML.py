@@ -19,6 +19,7 @@ class ML:
         np.random.seed(random.randint(0, 10000))
         self.output = output
 
+
     def get_normalizer_object(self, normalizer_name):
         if normalizer_name.lower()=='Normalizer'.lower():
             return preprocessing.Normalizer()
@@ -50,6 +51,7 @@ class ML:
        
         df = pd.DataFrame(x_scaled)
         return df, normalizer 
+
 
     def createDataFrame(self, assertions):
         try:
@@ -113,7 +115,10 @@ class ML:
         best_params=dict(opt.best_params_)
         return best_params
 
+
     def get_sklearn_model(self, model_name, ml_model_params, train_data):
+        ''' from model name string specified in conf file, here we get the actual sklearn model obj '''
+
         X=train_data.drop(['subject', 'predicate', 'object', 'truth'], axis=1)
         y=train_data.truth
 
@@ -145,13 +150,18 @@ class ML:
         try:
             model=model.fit(X, y)
             mdl_name=self.get_model_name(model)
-            # y_pred=model.predict_proba(X)[:, 1]
-            y_pred=model.predict(X)
 
+            # calculate roc_auc
+            y_pred=model.predict_proba(X)
+
+            class_1_index = 0 if model.classes_[0]=='1' else 1
+
+            y_pred=y_pred[:, class_1_index]
+                    
             roc_auc = metrics.roc_auc_score(y, y_pred)
 
-            report_df = pd.DataFrame(metrics.classification_report(np.array(y, dtype=int), np.array(y_pred, dtype=int), output_dict=True)).T.reset_index(drop=False).rename(columns={'index': 'label'})
-            # print('>>>>> trn acc: ', sum(np.array(y, dtype=int)==np.array(y_pred, dtype=int))/ len(y), roc_auc)
+            y_pred_class=model.predict(X)
+            report_df = pd.DataFrame(metrics.classification_report(np.array(y, dtype=int), np.array(y_pred_class, dtype=int), output_dict=True)).T.reset_index(drop=False).rename(columns={'index': 'label'})
 
             return model, mdl_name, roc_auc, report_df
         except Exception as e:
@@ -165,9 +175,6 @@ class ML:
         try:
             skfold=StratifiedKFold(n_splits=5)
             scores=cross_val_score(model, X, y,cv=skfold, scoring="roc_auc")
-            # roc_auc_cv = np.mean(scores)
-
-            mdl_name=self.get_model_name(model)
 
             return scores
         except Exception as e:
@@ -175,6 +182,7 @@ class ML:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             logging.error('Error in custom_model_train_cv: '+' '+str(e) +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
             raise e
+
 
     # Change model list here to be a single model
     def train_model(self, df, ml_model, normalizer_name, output_path):
@@ -226,13 +234,10 @@ class ML:
             raise ex
 
 
-    def validate_model(self, df, ml_model, le_predicate, normalizer):
+    def test_model(self, df, ml_model, le_predicate, normalizer):
         try:
             X=df.drop(['truth','subject', 'object'], axis=1)
             y=df.truth
-
-            # predict on test df
-            ensembleScore = []
 
             X['predicate'] = X['predicate'].map(lambda s: '-1' if s not in le_predicate.classes_ else s)
             le_predicate.classes_ = np.append(le_predicate.classes_, '-1')
@@ -249,9 +254,9 @@ class ML:
                 except: 
                     logging.error('No normalizer found')
 
-                    
             y_pred=ml_model.predict_proba(X)
-            class_1_index = 0 if list(set(y.astype(str)))[0]=='1' else 1
+            class_1_index = 0 if ml_model.classes_[0]=='1' else 1
+
             y_pred=y_pred[:, class_1_index]
             df['ensemble_score'] = y_pred
                     
@@ -264,38 +269,6 @@ class ML:
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            # print('Error in validate_model: ', exc_type, fname, exc_tb.tb_lineno)
-            logging.error('Error in validate_model: ' +str(e)+ ' ' +str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
-            raise e
-
-    def test_model(self, df, output_path):
-        try:
-            # read saved model
-            with open(f'{output_path}/classifier.pkl','rb') as fp: ml_model = pickle.load(fp)
-
-            # read predicate label encoder
-            with open(f'{output_path}/predicate_le.pkl','rb') as fp: le_predicate = pickle.load(fp)
-
-
-            X=df.drop(['truth','subject', 'object'], axis=1)
-
-            # predict on test df
-            ensembleScore = []
-            X['predicate'] = X['predicate'].map(lambda s: -1 if s not in le_predicate.classes_ else s)
-            le_predicate.classes_ = np.append(le_predicate.classes_, -1)
-            X.predicate = le_predicate.transform(X.predicate)
-            # X = df.drop(['subject','object'], axis=1)
-            ensembleScore = ml_model.predict(X)
-            
-            df['ensemble_score'] = ensembleScore
-
-            logging.info('predictions done')
-
-            return df
-
-        except Exception as e:
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             # print('Error in test_model: ', exc_type, fname, exc_tb.tb_lineno)
-            logging.error('Error in test_model: ' +' '+ str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
+            logging.error('Error in test_model: ' +str(e)+ ' ' +str(exc_type) +' '+ str(fname) +' '+ str(exc_tb.tb_lineno))
             raise e
