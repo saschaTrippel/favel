@@ -30,14 +30,14 @@ def plotImprovement(df):
     df = df[["Improvement"]]
     plot = df.plot(kind="box", figsize=(3.5, 5.5))
     fig = plot.get_figure()
-    fig.savefig(path.join(PATHS["Analysis"], "improvement.pdf"))
+    fig.savefig(path.join(PATHS["Analysis"], "improvement.png"))
 
 def plotPerformanceStdDev(df):
     plt.figure()
     df = df[["Testing AUC-ROC Mean", "Testing AUC-ROC Std. Dev."]]
     plot = df.plot(x="Testing AUC-ROC Mean", y="Testing AUC-ROC Std. Dev.", kind="scatter")
     fig = plot.get_figure()
-    fig.savefig(path.join(PATHS["Analysis"], "performance-stdDev.pdf"))
+    fig.savefig(path.join(PATHS["Analysis"], "performance-stdDev.png"))
     
 def plotMlAlgorithms(df):
     plt.figure()
@@ -49,7 +49,7 @@ def plotMlAlgorithms(df):
     series = pd.Series(result)
     plot = series.plot(kind='bar', ylabel="Best AUC-ROC score", rot=10)
     fig = plot.get_figure()
-    fig.savefig(path.join(PATHS["Analysis"], "performance-mlAlgorithm.pdf"))
+    fig.savefig(path.join(PATHS["Analysis"], "performance-mlAlgorithm.png"))
     
 def analyzeBestN(df, N:int):
     datasets = dict()
@@ -94,7 +94,7 @@ def analyzeBestN(df, N:int):
     for key in result:
         plot = result.plot(kind="scatter", x="Testing AUC-ROC Mean", y="Improvement", c=colors)
         fig = plot.get_figure()
-        fig.savefig(path.join(PATHS["Analysis"], "nBest.pdf"))
+        fig.savefig(path.join(PATHS["Analysis"], "nBest.png"))
         
 def _findRow(df, row, keys):
     result = dict()
