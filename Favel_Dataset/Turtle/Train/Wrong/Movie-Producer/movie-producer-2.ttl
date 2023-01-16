@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/A_Gentleman_of_Paris_(1931_film)> ns1:producer <http://dbpedia.org/resource/Sam_Wood> .
+<http://dbpedia.org/resource/Along_Came_Jones_(film)> ns1:producer <http://dbpedia.org/resource/John_Jacobs_(producer)> .
 

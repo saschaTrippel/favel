@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Bert_Rigby,_You're_a_Fool> ns1:producer <http://dbpedia.org/resource/George_Shapiro> .
+<http://dbpedia.org/resource/Futurama:_The_Beast_with_a_Billion_Backs> ns1:producer <http://dbpedia.org/resource/Claudia_Katz> .
 

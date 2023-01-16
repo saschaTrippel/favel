@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/The_Life_of_Larry_and_Larry_&_Steve> ns1:director <http://dbpedia.org/resource/Seth_MacFarlane> .
+<http://dbpedia.org/resource/Action_Jackson_(1988_film)> ns1:director <http://dbpedia.org/resource/Craig_R._Baxley> .
 

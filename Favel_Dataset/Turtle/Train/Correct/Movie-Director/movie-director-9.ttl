@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/A_Tremendously_Rich_Man> ns1:director <http://dbpedia.org/resource/Steve_Sekely> .
+<http://dbpedia.org/resource/Carlton-Browne_of_the_F.O.> ns1:director <http://dbpedia.org/resource/Jeffrey_Dell> .
 

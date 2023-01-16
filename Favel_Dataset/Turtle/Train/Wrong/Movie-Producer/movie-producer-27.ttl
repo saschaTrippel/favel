@@ -1,4 +1,5 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Funny_Girl_(film)> ns1:producer <http://dbpedia.org/resource/Stig_Anderson> .
+<http://dbpedia.org/resource/Charlie_Bartlett> ns1:producer <http://dbpedia.org/resource/Randall_Emmett>,
+        <http://dbpedia.org/resource/Sol_M._Wurtzel> .
 

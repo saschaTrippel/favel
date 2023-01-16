@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Call_for_Love> ns1:producer <http://dbpedia.org/resource/Han_Sanping> .
+<http://dbpedia.org/resource/20,000_Years_in_Sing_Sing> ns1:producer <http://dbpedia.org/resource/Raymond_Griffith> .
 

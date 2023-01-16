@@ -1,5 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Checking_Out_(1989_film)> ns1:producer <http://dbpedia.org/resource/Denis_O'Brien_(producer)>,
-        <http://dbpedia.org/resource/George_Harrison> .
+<http://dbpedia.org/resource/God's_Gun> ns1:producer <http://dbpedia.org/resource/Menahem_Golan> .
 

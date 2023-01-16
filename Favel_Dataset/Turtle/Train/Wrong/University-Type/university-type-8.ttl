@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/National_Sun_Yat-sen_University> ns1:type <http://dbpedia.org/resource/Private_university> .
+<http://dbpedia.org/resource/Acharya_Nagarjuna_University> ns1:type <http://dbpedia.org/resource/Research_university> .
 

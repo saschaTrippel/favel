@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Adventure's_End> ns1:producer <http://dbpedia.org/resource/Trem_Carr> .
+<http://dbpedia.org/resource/Elegy_(film)> ns1:producer <http://dbpedia.org/resource/Tom_Rosenberg> .
 

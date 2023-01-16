@@ -1,4 +1,5 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Garfield_Gets_Real> ns1:producer <http://dbpedia.org/resource/John_Davis_(producer)> .
+<http://dbpedia.org/resource/Busting> ns1:producer <http://dbpedia.org/resource/Irwin_Winkler>,
+        <http://dbpedia.org/resource/Robert_Chartoff> .
 

@@ -1,4 +1,0 @@
-@prefix ns1: <http://dbpedia.org/property/> .
-
-<http://dbpedia.org/resource/David_Keightley> ns1:education <http://dbpedia.org/resource/New_Mexico_State_University> .
-

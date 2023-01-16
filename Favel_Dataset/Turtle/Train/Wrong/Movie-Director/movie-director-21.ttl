@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Henry_V_(1944_film)> ns1:director <http://dbpedia.org/resource/Mark_A._Reyes> .
+<http://dbpedia.org/resource/The_Virgin_Queen_(1928_film)> ns1:director <http://dbpedia.org/resource/Levan_Gabriadze> .
 

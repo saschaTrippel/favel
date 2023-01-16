@@ -1,4 +1,4 @@
-@prefix ns1: <http://dbpedia.org/property/> .
+@prefix ns1: <http://dbpedia.org/ontology/> .
 
-<http://dbpedia.org/resource/Along_Came_Jones_(film)> ns1:producer <http://dbpedia.org/resource/John_Jacobs_(producer)> .
+<http://dbpedia.org/resource/Dr._Renault's_Secret> ns1:producer <http://dbpedia.org/resource/Berle_Adams> .
 
