@@ -47,9 +47,21 @@ def plotMlAlgorithms(df):
     for group in gb.groups.keys():
         result[group] = float(df.loc[gb.groups[group]][["Testing AUC-ROC Mean"]].max())
     series = pd.Series(result)
-    plot = series.plot(kind='bar', ylabel="Best AUC-ROC score", rot=10)
+    plot = series.plot(kind='bar', ylabel="Best AUC-ROC Score", rot=10)
     fig = plot.get_figure()
     fig.savefig(path.join(PATHS["Analysis"], "performance-mlAlgorithm.png"))
+
+def plotDataset(df):
+    plt.figure()
+    df = df[["Testing AUC-ROC Mean", "Dataset"]]
+    gb = df.groupby(by="Dataset")
+    result = dict()
+    for group in gb.groups.keys():
+        result[group] = float(df.loc[gb.groups[group]][["Testing AUC-ROC Mean"]].max())
+    series = pd.Series(result)
+    plot = series.plot(kind='bar', ylabel="Best AUC-ROC Score", rot=10)
+    fig = plot.get_figure()
+    fig.savefig(path.join(PATHS["Analysis"], "performance-dataset.png"))
     
 def analyzeBestN(df, N:int):
     datasets = dict()
@@ -117,4 +129,5 @@ df = readOverview()
 plotImprovement(df)
 plotPerformanceStdDev(df)
 plotMlAlgorithms(df)
+plotDataset(df)
 analyzeBestN(df, 5)
