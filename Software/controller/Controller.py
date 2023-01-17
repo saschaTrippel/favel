@@ -3,15 +3,15 @@ from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from MLService.ML import ML
 from OutputService.Output import Output
-from os import path
 from pathlib import Path
-import logging, os
+import logging
 
 class Controller:
     """
     Controler that interacts with the different services.
     """
-    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters:str, normalizer_name, paths:dict, iterations:int, writeToDisk:bool, useCache:bool, handleContainers:bool):
+
+    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters:str, normalizer_name:str, paths:dict, iterations:int, writeToDisk:bool, useCache:bool, handleContainers:bool):
         self.approaches = approaches
         self.mlAlgorithm = mlAlgorithm
         self.mlParameters = mlParameters
@@ -27,20 +27,27 @@ class Controller:
         self.trainingMetrics = []
         
     def createDirectories(self):
-        experimentPath = Path(self.paths['ExperimentPath'])
-        experimentPath.mkdir(parents=True, exist_ok=True)
-        if not self.paths['SubExperimentPath'] is None:
-            subExpPath = Path(self.paths['SubExperimentPath'])
-            subExpPath.mkdir(parents=True, exist_ok=True)
+        if self.writeToDisk:
+            experimentPath = Path(self.paths['ExperimentPath'])
+            experimentPath.mkdir(parents=True, exist_ok=True)
+            if not self.paths['SubExperimentPath'] is None:
+                subExpPath = Path(self.paths['SubExperimentPath'])
+                subExpPath.mkdir(parents=True, exist_ok=True)
 
-    def startContainers(self):
+    def _startContainers(self):
+        """
+        If -c flag was set, start the containers that hold the fact validation approaches.
+        """
         if self.handleContainers:
             logging.info("Starting Containers")
             c = Containers()
             c.startContainers() 
             c.status()
     
-    def stopContainers(self):
+    def _stopContainers(self):
+        """
+        If -c flag was set, stop the containers that hold the fact validation approaches.
+        """
         if self.handleContainers:
             logging.info("Stopping Containers")
             c = Containers()
@@ -58,12 +65,12 @@ class Controller:
         """
         Validate the assertions that are held in self.assertions.
         """
-        self.startContainers()
+        self._startContainers()
         
         validator = Validator(self.approaches, self.useCache)
         validator.validate(self.trainingData, self.testingData)
 
-        self.stopContainers()
+        self._stopContainers()
         
     def ensemble(self):
         for i in range(self.iterations):
