@@ -3,14 +3,18 @@ from OutputService.GerbilFormat import GerbilFormat
 from OutputService.Overview import Overview
 
 class Output():
+    """
+    Main class of the OutputService.
+    Responsible for writing the different output files.
+    """
 
     def __init__(self, paths:dict):
         self.paths = paths
 
     def writeOutput(self, mlResults):
         """
-		Writes results to file.
-		"""
+        Writes results to file.
+        """
         for i in range(len(mlResults)):
             df, auc_roc = mlResults[i]
             df.to_csv(path.join(self.paths['SubExperimentPath'], f"Output_it{i}.csv"), index=False)
