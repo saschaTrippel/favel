@@ -4,6 +4,7 @@ Execute as 'python3 Analysis.py'
 
 from os import path
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 def loadPaths():
@@ -66,22 +67,40 @@ def plotMlAlgorithms(df):
 
 def plotDataset(df):
     """
-    Bar chart showing the best performance grouped by dataset
+    Bar chart showing the best ensemble performance
+    compared to the best single performance grouped by dataset
     """
     plt.figure()
+
+    labels = []
+    ensemble = []
+    single = []
+
+    # Get best ensemble and best single score for each dataset
     df = df[["Testing AUC-ROC Mean", "Dataset", "Best Single Score"]]
     gb = df.groupby(by="Dataset")
-    result = dict()
-    colors = []
     for group in gb.groups.keys():
-        result[f"{group} Ensemble"] = float(df.loc[gb.groups[group]][["Testing AUC-ROC Mean"]].max())
-        result[f"{group} Single"] = float(df.loc[gb.groups[group]][["Best Single Score"]].max())
-        colors.append('g')
-        colors.append('b')
-    series = pd.Series(result)
-    plot = series.plot(kind='bar', ylabel="Best AUC-ROC Score", color=colors, rot=10)
-    fig = plot.get_figure()
+        e = float(df.loc[gb.groups[group]][["Testing AUC-ROC Mean"]].max())
+        s = float(df.loc[gb.groups[group]][["Best Single Score"]].max())
+        labels.append(group)
+        ensemble.append(round(e, 4))
+        single.append(round(s, 4))
+
+    x = np.arange(len(labels))
+    width = 0.35
+
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(x - width/2, ensemble, width, label='Men')
+    rects2 = ax.bar(x + width/2, single, width, label='Women')
+    ax.set_ylabel("AUC-ROC Score")
+    ax.set_xticks(x, labels)
+    ax.bar_label(rects1, padding=3)
+    ax.bar_label(rects2, padding=3)
+
+    fig.tight_layout()
+
     fig.savefig(path.join(PATHS["Analysis"], "performance-dataset.png"))
+
     
 def analyzeBestN(df, N:int):
     """
