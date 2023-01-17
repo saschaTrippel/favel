@@ -46,6 +46,12 @@ cd favel/Software
 python3 Favel.py [options]
 ```
 
+## How to run test
+
+```
+python3 -m unittest
+```
+
 ### Options
 * ```-e EXPERIMENT, --experiment EXPERIMENT``` name of the experiment, corresponds with the name of the experiment folder in the ```Evaluation``` directory
 * ```-b EXPERIMENT, --batch EXPERIMENT``` name of the experiment, corresponds with the name of the experiment folder in the ```Evaluation``` directory.
