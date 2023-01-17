@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, time
 from datastructures.exceptions.CacheException import CacheException
 
 def exceptionHandling(func):
@@ -7,7 +7,7 @@ def exceptionHandling(func):
             try:
                 return func(*args, **kwargs)
             except sqlite3.OperationalError as ex:
-                time.wait(0.1)
+                time.sleep(0.1)
     return inner
 
 class Cache:
