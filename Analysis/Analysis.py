@@ -69,13 +69,17 @@ def plotDataset(df):
     Bar chart showing the best performance grouped by dataset
     """
     plt.figure()
-    df = df[["Testing AUC-ROC Mean", "Dataset"]]
+    df = df[["Testing AUC-ROC Mean", "Dataset", "Best Single Score"]]
     gb = df.groupby(by="Dataset")
     result = dict()
+    colors = []
     for group in gb.groups.keys():
-        result[group] = float(df.loc[gb.groups[group]][["Testing AUC-ROC Mean"]].max())
+        result[f"{group} Ensemble"] = float(df.loc[gb.groups[group]][["Testing AUC-ROC Mean"]].max())
+        result[f"{group} Single"] = float(df.loc[gb.groups[group]][["Best Single Score"]].max())
+        colors.append('g')
+        colors.append('b')
     series = pd.Series(result)
-    plot = series.plot(kind='bar', ylabel="Best AUC-ROC Score", rot=10)
+    plot = series.plot(kind='bar', ylabel="Best AUC-ROC Score", color=colors, rot=10)
     fig = plot.get_figure()
     fig.savefig(path.join(PATHS["Analysis"], "performance-dataset.png"))
     
