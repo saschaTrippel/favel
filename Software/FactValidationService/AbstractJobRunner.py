@@ -10,7 +10,7 @@ class AbstractJobRunner(threading.Thread):
     Abstract class that implements basic functionality.
     - Connect to a fact validation approach
     - Get the type of a fact validation approach (supervised / unsupervised)
-    - Send training data to supervised approaches
+    - Send training assertion to supervised approaches
     - Send assertions to approaches for validation
     """
 

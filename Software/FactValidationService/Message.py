@@ -2,6 +2,10 @@ import json
 import math
 
 class Message:
+    """
+    Responsible for serializing and parsing messages that are being exchanged with the fact validation approaches.
+    For documentation of the available messages look at the sequence diagrams in favel/Software/FactValidationService/Interface_documentation.
+    """
     
     def __init__(self, type:str=None, content=None, subject:str=None, predicate:str=None, object:str=None, score=None, text:str=None):
         if text != None:
@@ -15,6 +19,9 @@ class Message:
             self.score = score
     
     def serialize(self):
+        """
+        Serialize self.
+        """
         if self.type == "call":
             return json.dumps({"type": self.type, "content": self.content})
         if self.type == "train":
@@ -23,6 +30,10 @@ class Message:
             return json.dumps({"type": self.type, "subject": self.subject, "predicate": self.predicate, "object": self.object, "score": self.score})
     
     def parse(self, text:str):
+        """
+        Parse text.
+        Initialize self with the properties defined in text.
+        """
         response = json.loads(text)
         self.type = response["type"]
 

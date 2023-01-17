@@ -6,7 +6,7 @@ from FactValidationService.Message import Message
 
 class AssertionsCacheRunner(AssertionsRunner):
     """
-    Uses the functionality of AssertionsRunner to validate a list of assertions.
+    Uses the functionality of AssertionsRunner to validate lists of assertions.
     Overrides validation of an assertion to cache results in a database to speed up future validations.
     """
 
