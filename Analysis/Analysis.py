@@ -1,3 +1,7 @@
+"""
+Execute as 'python3 Analysis.py'
+"""
+
 from os import path
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -26,6 +30,9 @@ def getFavel(df):
     return df.loc[df['Dataset'] == "FinalDataset_Hard"]
 
 def plotImprovement(df):
+    """
+    Boxplot of improvement over all experiments
+    """
     plt.figure()
     df = df[["Improvement"]]
     plot = df.plot(kind="box", figsize=(3.5, 5.5))
@@ -33,6 +40,9 @@ def plotImprovement(df):
     fig.savefig(path.join(PATHS["Analysis"], "improvement.png"))
 
 def plotPerformanceStdDev(df):
+    """
+    Scatter plot of standard deviation depending on performance
+    """
     plt.figure()
     df = df[["Testing AUC-ROC Mean", "Testing AUC-ROC Std. Dev."]]
     plot = df.plot(x="Testing AUC-ROC Mean", y="Testing AUC-ROC Std. Dev.", kind="scatter")
@@ -40,6 +50,9 @@ def plotPerformanceStdDev(df):
     fig.savefig(path.join(PATHS["Analysis"], "performance-stdDev.png"))
     
 def plotMlAlgorithms(df):
+    """
+    Bar chart showing the best performance grouped by ML algorithm
+    """
     plt.figure()
     df = df[["Testing AUC-ROC Mean", "ML Algorithm"]]
     gb = df.groupby(by="ML Algorithm")
@@ -52,6 +65,9 @@ def plotMlAlgorithms(df):
     fig.savefig(path.join(PATHS["Analysis"], "performance-mlAlgorithm.png"))
 
 def plotDataset(df):
+    """
+    Bar chart showing the best performance grouped by dataset
+    """
     plt.figure()
     df = df[["Testing AUC-ROC Mean", "Dataset"]]
     gb = df.groupby(by="Dataset")
@@ -64,6 +80,11 @@ def plotDataset(df):
     fig.savefig(path.join(PATHS["Analysis"], "performance-dataset.png"))
     
 def analyzeBestN(df, N:int):
+    """
+    Scatter plot.
+    For every combination of two datasets, take N best configurations for the first dataset,
+    plot how they improve in the second dataset.
+    """
     datasets = dict()
     datasets['bpdp'] = getBpdp(df)
     datasets['factBench'] = getFactBench(df)
