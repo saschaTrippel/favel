@@ -13,7 +13,6 @@ def main():
         controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
                                 normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']),
                                 writeToDisk=args.write, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
-        controller.createDirectories()
         controller.input()
         controller.validate()
         controller.ensemble()
@@ -34,7 +33,6 @@ def main():
                                         normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']),
                                         writeToDisk=args.write, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
                 
-                controller.createDirectories()
                 controller.input()
                 controller.validate()
                 controller.ensemble()

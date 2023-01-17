@@ -9,6 +9,11 @@ import logging
 class Controller:
     """
     Controler that interacts with the different services.
+    Typical call order:
+        - controller.input()
+        - controller.validate()
+        - controller.ensemble()
+        - controller.output()
     """
 
     def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters:str, normalizer_name:str, paths:dict, iterations:int, writeToDisk:bool, useCache:bool, handleContainers:bool):
@@ -25,8 +30,13 @@ class Controller:
         self.testingResults = []
         self.trainingData = None
         self.trainingMetrics = []
+
+        self.createDirectories()
         
     def createDirectories(self):
+        """
+        If -w flag is set, create directories for output files.
+        """
         if self.writeToDisk:
             experimentPath = Path(self.paths['ExperimentPath'])
             experimentPath.mkdir(parents=True, exist_ok=True)
@@ -36,7 +46,7 @@ class Controller:
 
     def _startContainers(self):
         """
-        If -c flag was set, start the containers that hold the fact validation approaches.
+        If -c flag is set, start the containers that hold the fact validation approaches.
         """
         if self.handleContainers:
             logging.info("Starting Containers")
@@ -46,7 +56,7 @@ class Controller:
     
     def _stopContainers(self):
         """
-        If -c flag was set, stop the containers that hold the fact validation approaches.
+        If -c flag is set, stop the containers that hold the fact validation approaches.
         """
         if self.handleContainers:
             logging.info("Stopping Containers")
@@ -55,15 +65,16 @@ class Controller:
         
     def input(self):
         """
-        Read the input dataset that was specified using the '-d' argument.
-        The assertions are held in self.assertions.
+        Read the input dataset that is specified in the '-d' argument.
+        The assertions are held in self.trainingData and self.testingData.
         """
         input = Input()
         self.trainingData, self.testingData = input.getInput(self.paths['DatasetPath'])
 
     def validate(self):
         """
-        Validate the assertions that are held in self.assertions.
+        Validate the assertions in self.trainingData and self.testingData
+        on the fact validation approaches specified in self.approaches.
         """
         self._startContainers()
         
@@ -73,6 +84,9 @@ class Controller:
         self._stopContainers()
         
     def ensemble(self):
+        """
+        Repeat training and testing as often as specified in the configuration.
+        """
         for i in range(self.iterations):
             self.train()
             self.test()
@@ -110,7 +124,6 @@ class Controller:
     def output(self):
         """
         Write the results to disk.
-        Also, Conversion to GERBIL format.
         """
         op = Output(self.paths)
         op.writeOverview(self.testingResults, self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainingMetrics, self.normalizer_name)
