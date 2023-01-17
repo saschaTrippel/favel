@@ -2,8 +2,13 @@ from FactValidationService.AssertionsRunner import AssertionsRunner
 from FactValidationService.AssertionsCacheRunner import AssertionsCacheRunner
 
 class Validator:
+    """
+    Main class of FactValidationService.
+    Responsible for creating a validation job for each
+    fact validation approach.
+    """
     
-    def __init__(self, approaches, useCache:bool=True):
+    def __init__(self, approaches:dict, useCache:bool=True):
         self.approaches = approaches
         if type(useCache) == str:
             self.useCache = useCache == 'True'
@@ -13,8 +18,8 @@ class Validator:
     def validate(self, trainingAssertions:list, testingAssertions:list):
         """
         Validate the given assertions on every approach.
-        Assertions expected as a list of assertions.
-        Returns list of assertions with their scores added to the Assertion.score[approach] dictionary.
+        Assertions expected as lists of assertions, split into training and test.
+        Returns lists of assertions with their scores added to the Assertion.score[approach] dictionary.
         """
         jobs = []
         

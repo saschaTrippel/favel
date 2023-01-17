@@ -3,15 +3,20 @@ from FactValidationService.Validator import Validator
 from InputService.Input import Input
 from MLService.ML import ML
 from OutputService.Output import Output
-from os import path
 from pathlib import Path
-import logging, os
+import logging
 
 class Controller:
     """
     Controler that interacts with the different services.
+    Typical call order:
+        - controller.input()
+        - controller.validate()
+        - controller.ensemble()
+        - controller.output()
     """
-    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters:str, normalizer_name, paths:dict, iterations:int, writeToDisk:bool, useCache:bool, handleContainers:bool):
+
+    def __init__(self, approaches:dict, mlAlgorithm:str, mlParameters:str, normalizer_name:str, paths:dict, iterations:int, writeToDisk:bool, useCache:bool, handleContainers:bool):
         self.approaches = approaches
         self.mlAlgorithm = mlAlgorithm
         self.mlParameters = mlParameters
@@ -25,22 +30,34 @@ class Controller:
         self.testingResults = []
         self.trainingData = None
         self.trainingMetrics = []
+
+        self.createDirectories()
         
     def createDirectories(self):
-        experimentPath = Path(self.paths['ExperimentPath'])
-        experimentPath.mkdir(parents=True, exist_ok=True)
-        if not self.paths['SubExperimentPath'] is None:
-            subExpPath = Path(self.paths['SubExperimentPath'])
-            subExpPath.mkdir(parents=True, exist_ok=True)
+        """
+        If -w flag is set, create directories for output files.
+        """
+        if self.writeToDisk:
+            experimentPath = Path(self.paths['ExperimentPath'])
+            experimentPath.mkdir(parents=True, exist_ok=True)
+            if not self.paths['SubExperimentPath'] is None:
+                subExpPath = Path(self.paths['SubExperimentPath'])
+                subExpPath.mkdir(parents=True, exist_ok=True)
 
-    def startContainers(self):
+    def _startContainers(self):
+        """
+        If -c flag is set, start the containers that hold the fact validation approaches.
+        """
         if self.handleContainers:
             logging.info("Starting Containers")
             c = Containers()
             c.startContainers() 
             c.status()
     
-    def stopContainers(self):
+    def _stopContainers(self):
+        """
+        If -c flag is set, stop the containers that hold the fact validation approaches.
+        """
         if self.handleContainers:
             logging.info("Stopping Containers")
             c = Containers()
@@ -48,24 +65,28 @@ class Controller:
         
     def input(self):
         """
-        Read the input dataset that was specified using the '-d' argument.
-        The assertions are held in self.assertions.
+        Read the input dataset that is specified in the '-d' argument.
+        The assertions are held in self.trainingData and self.testingData.
         """
         input = Input()
         self.trainingData, self.testingData = input.getInput(self.paths['DatasetPath'])
 
     def validate(self):
         """
-        Validate the assertions that are held in self.assertions.
+        Validate the assertions in self.trainingData and self.testingData
+        on the fact validation approaches specified in self.approaches.
         """
-        self.startContainers()
+        self._startContainers()
         
         validator = Validator(self.approaches, self.useCache)
         validator.validate(self.trainingData, self.testingData)
 
-        self.stopContainers()
+        self._stopContainers()
         
     def ensemble(self):
+        """
+        Repeat training and testing as often as specified in the configuration.
+        """
         for i in range(self.iterations):
             self.train()
             self.test()
@@ -103,7 +124,6 @@ class Controller:
     def output(self):
         """
         Write the results to disk.
-        Also, Conversion to GERBIL format.
         """
         op = Output(self.paths)
         op.writeOverview(self.testingResults, self.approaches.keys(), self.mlAlgorithm, self.mlParameters, self.trainingMetrics, self.normalizer_name)

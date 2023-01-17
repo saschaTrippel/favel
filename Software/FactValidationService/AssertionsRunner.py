@@ -8,7 +8,7 @@ from datastructures.exceptions.TestingException import TestingException
 class AssertionsRunner(AbstractJobRunner):
     """
     Subclass of AbstractJobRunner.
-    Uses the functionality of AbstracJobRunner to validate a list of assertions.
+    Uses the functionality of AbstracJobRunner to validate lists of assertions.
     """
 
     def __init__(self, approach:str, port:int, trainingAssertions:list, testingAssertions:list):
@@ -37,6 +37,7 @@ class AssertionsRunner(AbstractJobRunner):
                          .format(size - self.errorCount, size, self.approach))
         
     def join(self):
+        # Raise exception that occured in job thread in main thread.
         threading.Thread.join(self)
         if self.exception:
             raise self.exception
@@ -94,6 +95,8 @@ class AssertionsRunner(AbstractJobRunner):
         assertions.extend(self.testingAssertions)
 
         secondIterationsRequired = True
+        # An approach might require the entire dataset to be uploaded before it can validate assertions.
+        # In that case, upload the data in the first iteration, get the scores in the second iteration.
         while secondIterationsRequired:
             for assertion in assertions:
                 response = self._validateAssertion(assertion)
@@ -103,7 +106,7 @@ class AssertionsRunner(AbstractJobRunner):
                     assertion.score[self.approach] = float(response.score)
     
                 elif response.type == "ack" and response.content == "test_ack":
-                    # Second iteration is required, approach needs all assertions at once.
+                    # Second iteration is required, approach needs all assertions before it can start validating.
                     continue
                 
                 else:
