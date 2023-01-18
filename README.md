@@ -12,12 +12,14 @@ To achieve this vision this project offers:
 * Two datasets that can be used for evaluation
 
 # Structure of the Repository
-* Software: Software for exploring the vision
-* Evaluation: The software will save results to this directory
-* Analysis: Rudamentory script to plot diagrams based on the results in Evaluation
-* Favel_Dataset: First dataset
-* FinalDataset_Hard: Second dataset
 
+- [**Analysis**](Analysis): Simple script to plot diagrams based on the data in [**Evaluation/Overview**](Evaluation/Overview.xlsx)
+- [**Evaluation**](Evaluation): The software saves results to this directory
+- [**Favel_Dataset**](Favel_Dataset): Dataset with simple example.  You can find the documentation [**here**](Favel_Dataset/README.md).
+  
+- [**FinalDataset_Hard**](FinalDataset_Hard) : Dataset with harder examples.  You can find the documentation [**here**](Favel_Dataset/README.md).
+  
+- [**Software**](Software): Software for exploring the vision
 # Installation
 ```
 git clone https://github.com/saschaTrippel/favel
@@ -26,18 +28,18 @@ cd favel/Software
 
 # Usage
 * To conduct an experiment with the software execute the following steps:
-    1. Create a direcotry inside the Evaluation directory.\
+    1. Create a directory inside the Evaluation directory.\
         The name of the directory is the name of the experiment \
         Example: ```favel/Evaluation/experiment42```
     2. Create a configuration file ```favel.conf``` inside the experiment directory. \
         The configuration file defines the set of fact validation approaches and the machine learning algorithm. \
-        A basic configuration file is ```favel/Evaluation/example/favel.conf``` \
-        For more advaced configuration options look at ```favel/Software/MLService/README.md``` \
+        A basic configuration file is can be found [**here**](Evaluation/example/favel.conf). \
+        For more advaced configuration options look [**here**](Software/MLService/README.md). \
         Example: ```favel/Evaluation/experiment42/favel.conf```
     3. Execute the software. \
         For the software to be able to use fact validation approaches, these approaches might have to be started manually. \
         An exaustive description how to run the software can be found in the following section. \
-        Results will be saved to the ```favel/Evaluation/``` directory. \
+        Results will be saved to the [**favel/Evaluation/**](Evaluation) directory. \
         Example: ```python3 favel/Software/Favel.py -d favel/FinalDataset_Hard -e experiment42```
 
 ## How to run
@@ -54,6 +56,12 @@ Experiment will be run in batch mode, meaning that an experiment will be execute
 * ```-w, --write``` write everything to disk. If this flag is set, all possible outputs are written to disk. This includes models, normalizers, predicate encoders, and dataframes.
 If the flag is not set, only the overview is written to disk.
 * ```-c, --containers``` automatically Start/Stop containers which encapsulate the fact validation approaches
+
+## How to test
+
+```
+python3 -m unittest
+```
 
 # Additional Resources
 
