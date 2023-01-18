@@ -1,0 +1,24 @@
+# Structure
+- [**ContainerService**](Software/ContainerService) : This folder contains all the fact validations approaches used in this software with Dockerfile to lauch them. As well as the ContainerService responsible of launching and stopping containers programmatically.
+    - [**adamic_adar**](Software/ContainerService/adamic_adar)
+    - [**copaal**](Software/ContainerService/copaal)
+    - [**degree_product**](Software/ContainerService/degree_product)
+    - [**jaccard**](Software/ContainerService/jaccard)
+    - [**katz**](Software/ContainerService/katz)
+    - [**klinker**](Software/ContainerService/klinker)
+    - [**knowledgestream**](Software/ContainerService/knowledgestream)
+    - [**pathent**](Software/ContainerService/pathent)
+    - [**pra**](Software/ContainerService/pra)
+    - [**predpath**](Software/ContainerService/predpath)
+    - [**relklinker**](Software/ContainerService/relklinker)
+    - [**simrank**](Software/ContainerService/simrank)
+- [**controller**](Software/controller): The controller of the application. Calling other module or organizing the work from input to output.
+- [**datastructures**](Software/datastructures): The data structure defining classes like Assertion as a python object and Definition of custom class exceptions
+    - [**exceptions**](Software/datastructures/exceptions): Custom module exceptions
+- [**FactValidationService**](Software/FactValidationService): Module containing fact validation services responsible of validating the insertions he gets as input. It sends fact to the containers, gets the response, and caches if necessary.
+    - [**Interface_documentation**](Software/FactValidationService/Interface_documentation)
+- [**InputService**](Software/InputService): The input service, reads the input dataset and transform it into a format that the software can easily use.
+- [**FAVEL ML Service**](Software/MLService): The Machine learning service. Responsible of receiving a dataset of fact validation with scores from different approaches, train a given machine learning model and test a given assertion to predict it's veracity using the trained model
+    - [**models**](Software/MLService/models)
+- [**FAVEL Output Service**](Software/OutputService): Write the result in an evaluation format like Gerbil or in the evaluation folder.
+- [**test**](Software/test): All the test written for the software
