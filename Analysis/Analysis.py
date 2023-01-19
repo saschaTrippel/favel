@@ -6,6 +6,7 @@ from os import path
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 
 def loadPaths():
     paths = dict()
@@ -206,6 +207,7 @@ def analyzeUniversalConfig(df):
 def analyzeUniversalGoodConfig(df):
     """
     Scatter plot.
+    Find configurations that improve over the best single score in every dataset.
     """
     datasets = dict()
     datasets['bpdp'] = getBpdp(df)
@@ -225,6 +227,9 @@ def analyzeUniversalGoodConfig(df):
     result = {"Dataset": [], "Testing AUC-ROC Mean": [], "Improvement": []}
     datasetKeys = list(datasets.keys())
     i = datasetKeys.pop()
+    mColors = list(mcolors.BASE_COLORS.keys())
+    mColors.remove('w')
+    colors = []
     for index, row in datasets[i].iterrows():
         if row["Testing AUC-ROC Mean"] < bestSingleScore[i]:
             break
@@ -238,6 +243,8 @@ def analyzeUniversalGoodConfig(df):
                 good = False
                 break
         if good:
+            c = mColors.pop(0)
+            colors.extend([c for z in datasets.keys()])
             result["Dataset"].append(i)
             result["Testing AUC-ROC Mean"].append(row["Testing AUC-ROC Mean"])
             result["Improvement"].append(row["Improvement"])
@@ -252,7 +259,7 @@ def analyzeUniversalGoodConfig(df):
             
     # Plot results
     for key in result:
-        plot = result.plot(kind="scatter", x="Dataset", y="Improvement")
+        plot = result.plot(kind="scatter", x="Dataset", y="Improvement", c=colors)
         fig = plot.get_figure()
         fig.savefig(path.join(PATHS["Analysis"], "universalGoodConfig.png"))
 
@@ -274,9 +281,9 @@ def _findRow(df, row, keys):
 PATHS = loadPaths()
 
 df = readOverview()
-# plotImprovement(df)
-# plotPerformanceStdDev(df)
-# plotMlAlgorithms(df)
-# plotDataset(df)
-# analyzeBestN(df, 5)
+plotImprovement(df)
+plotPerformanceStdDev(df)
+plotMlAlgorithms(df)
+plotDataset(df)
+analyzeBestN(df, 5)
 analyzeUniversalGoodConfig(df)
