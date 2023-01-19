@@ -148,7 +148,7 @@ def analyzeBestN(df, N:int):
             
     # Plot results
     for key in result:
-        plot = result.plot(kind="scatter", x="Testing AUC-ROC Mean", y="Improvement", c=colors)
+        plot = result.plot(kind="scatter", x="Target Dataset", y="Improvement", c=colors)
         fig = plot.get_figure()
         fig.savefig(path.join(PATHS["Analysis"], "nBest.png"))
         
