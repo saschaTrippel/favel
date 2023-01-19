@@ -202,6 +202,59 @@ def analyzeUniversalConfig(df):
         plot = result.plot(kind="scatter", x="Target Dataset", y="Improvement", c=colors)
         fig = plot.get_figure()
         fig.savefig(path.join(PATHS["Analysis"], "universalConfig.png"))
+        
+def analyzeUniversalGoodConfig(df):
+    """
+    Scatter plot.
+    """
+    datasets = dict()
+    datasets['bpdp'] = getBpdp(df)
+    datasets['factBench'] = getFactBench(df)
+    datasets['favel'] = getFavel(df)
+    
+    bestSingleScore = dict()
+    for dataset in datasets.keys():
+        bestSingleScore[dataset] = float(datasets[dataset][["Best Single Score"]].max())
+
+    # Sort the datasets by performance
+    for key in datasets.keys():
+        datasets[key].sort_values(by="Testing AUC-ROC Mean", ascending=False, inplace=True)
+    
+    primaryKey = ["ML Algorithm", "ML Parameters", "Normalizer", "Iterations", "Fact Validation Approaches"]
+    
+    result = {"Dataset": [], "Testing AUC-ROC Mean": [], "Improvement": []}
+    datasetKeys = list(datasets.keys())
+    i = datasetKeys.pop()
+    for index, row in datasets[i].iterrows():
+        if row["Testing AUC-ROC Mean"] < bestSingleScore[i]:
+            break
+
+        rows = dict()
+        for j in datasetKeys:
+            rows[j] = _findRow(datasets[j], row, primaryKey)
+        good = True
+        for j in rows.keys():
+            if rows[j]["Testing AUC-ROC Mean"] <= bestSingleScore[j]:
+                good = False
+                break
+        if good:
+            result["Dataset"].append(i)
+            result["Testing AUC-ROC Mean"].append(row["Testing AUC-ROC Mean"])
+            result["Improvement"].append(row["Improvement"])
+
+            for key in datasetKeys:
+                result["Dataset"].append(key)
+                result["Testing AUC-ROC Mean"].append(rows[key]["Testing AUC-ROC Mean"])
+                result["Improvement"].append(rows[key]["Improvement"])
+    
+    plt.figure()
+    result = pd.DataFrame(result)
+            
+    # Plot results
+    for key in result:
+        plot = result.plot(kind="scatter", x="Dataset", y="Improvement")
+        fig = plot.get_figure()
+        fig.savefig(path.join(PATHS["Analysis"], "universalGoodConfig.png"))
 
 def _findRow(df, row, keys):
     result = dict()
@@ -226,4 +279,4 @@ df = readOverview()
 # plotMlAlgorithms(df)
 # plotDataset(df)
 # analyzeBestN(df, 5)
-analyzeUniversalConfig(df)
+analyzeUniversalGoodConfig(df)
