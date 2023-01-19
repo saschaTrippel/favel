@@ -152,6 +152,57 @@ def analyzeBestN(df, N:int):
         fig = plot.get_figure()
         fig.savefig(path.join(PATHS["Analysis"], "nBest.png"))
         
+def analyzeUniversalConfig(df):
+    """
+    Scatter plot.
+    """
+    datasets = dict()
+    datasets['bpdp'] = getBpdp(df)
+    datasets['factBench'] = getFactBench(df)
+    datasets['favel'] = getFavel(df)
+    
+    # Sort the datasets by performance
+    for key in datasets.keys():
+        datasets[key].sort_values(by="Testing AUC-ROC Mean", ascending=False, inplace=True)
+    
+    primaryKey = ["ML Algorithm", "ML Parameters", "Normalizer", "Iterations", "Fact Validation Approaches"]
+    
+    result = {"Source Dataset": [], "Target Dataset": [], "Testing AUC-ROC Mean": [], "Improvement": []}
+    for i in datasets.keys():
+        for j in datasets.keys():
+            if i != j:
+                """
+                Take N best configurations for dataset i.
+                Look up these configurations for dataset j.
+                """
+                for index, row in datasets[i].iterrows():
+                    if row["Improvement"] <= 0:
+                        break
+                    tmp = _findRow(datasets[j], row, primaryKey)
+                    if not tmp is None and tmp["Improvement"] > 0:
+                        result["Source Dataset"].append(i)
+                        result["Target Dataset"].append(j)
+                        result["Testing AUC-ROC Mean"].append(tmp["Testing AUC-ROC Mean"])
+                        result["Improvement"].append(tmp["Improvement"])
+    
+    plt.figure()
+    result = pd.DataFrame(result)
+    # Define colors
+    colors = []
+    for index, row in result.iterrows():
+        if row["Source Dataset"] == "bpdp":
+            colors.append('g')
+        if row["Source Dataset"] == "factBench":
+            colors.append('b')
+        if row["Source Dataset"] == "favel":
+            colors.append('r')
+            
+    # Plot results
+    for key in result:
+        plot = result.plot(kind="scatter", x="Target Dataset", y="Improvement", c=colors)
+        fig = plot.get_figure()
+        fig.savefig(path.join(PATHS["Analysis"], "universalConfig.png"))
+
 def _findRow(df, row, keys):
     result = dict()
     for key in keys:
@@ -170,8 +221,9 @@ def _findRow(df, row, keys):
 PATHS = loadPaths()
 
 df = readOverview()
-plotImprovement(df)
-plotPerformanceStdDev(df)
-plotMlAlgorithms(df)
-plotDataset(df)
-analyzeBestN(df, 5)
+# plotImprovement(df)
+# plotPerformanceStdDev(df)
+# plotMlAlgorithms(df)
+# plotDataset(df)
+# analyzeBestN(df, 5)
+analyzeUniversalConfig(df)
