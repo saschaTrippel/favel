@@ -13,7 +13,7 @@ class Input:
     
     def getInput(self, filePath:str):
         """
-        Get the dataset located at 'filePath' devided into test and training data.
+        Get the dataset located at 'filePath' divided into test and training data.
         If the dataset has been read before, it is cached in 'cache'.
         """
         if not filePath in Input.cache.keys():
