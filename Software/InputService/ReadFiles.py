@@ -3,6 +3,9 @@ import os
 import pandas as pd
 
 class ReadFiles:
+    """
+    Class that reads the different datasets.
+    """
     
     def extract_favel_triples(self, path):
         g = Graph()
