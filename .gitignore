@@ -140,3 +140,4 @@ dmypy.json
 
 # Plots
 Analysis/*.pdf
+Analysis/*.png

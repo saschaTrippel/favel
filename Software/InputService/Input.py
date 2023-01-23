@@ -4,15 +4,24 @@ from datastructures.exceptions.InputException import InputException
 import logging, copy
 
 class Input:
+    """
+    Main class of InputService.
+    Class that is called to read the input dataset.
+    """
+
     cache = dict()
     
     def getInput(self, filePath:str):
+        """
+        Get the dataset located at 'filePath' divided into test and training data.
+        If the dataset has been read before, it is cached in 'cache'.
+        """
         if not filePath in Input.cache.keys():
-            result = self.readInput(filePath)
+            result = self._readInput(filePath)
             Input.cache[filePath] = result
         return copy.deepcopy(Input.cache[filePath])
             
-    def readInput(self, filePath:str):
+    def _readInput(self, filePath:str):
 
         rf = ReadFiles()
 

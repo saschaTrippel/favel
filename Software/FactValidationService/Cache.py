@@ -1,13 +1,18 @@
-import sqlite3
+import sqlite3, time
 from datastructures.exceptions.CacheException import CacheException
 
 def exceptionHandling(func):
+    """
+    Decorator function.
+    Database operations might fail because the database is locked by another thread.
+    If that is the case, the operation will be repeated up to 9 times, if this decorator is used.
+    """
     def inner(*args, **kwargs):
         for i in range(10):
             try:
                 return func(*args, **kwargs)
             except sqlite3.OperationalError as ex:
-                time.wait(0.1)
+                time.sleep(0.1)
     return inner
 
 class Cache:
@@ -25,7 +30,7 @@ class Cache:
         self.approach = approach
         try:
             self.createTable()
-        except sqlite3.OperationalError as ex:
+        except sqlite3.OperationalError:
             pass
         
     def createTable(self):

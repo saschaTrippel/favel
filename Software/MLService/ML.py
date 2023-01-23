@@ -21,6 +21,9 @@ class ML:
 
 
     def get_normalizer_object(self, normalizer_name):
+        """
+        Parse the sklearn normalizer defined in the configuration file as a string into a real normaliser
+        """
         if normalizer_name.lower()=='Normalizer'.lower():
             return preprocessing.Normalizer()
 
@@ -38,6 +41,9 @@ class ML:
 
 
     def normalise_data(self, df, normalizer_name=None, normalizer=None):
+        """
+        Normalise a given data using the normalizer specified as parameters
+        """
         x = df.values #returns a numpy array
         
         if normalizer: 
@@ -54,10 +60,11 @@ class ML:
 
 
     def createDataFrame(self, assertions):
+        """
+        To create the DataFrame that consists of triples and scores from each approach for that particular triple.
+        """
         try:
-            """
-            To create the DataFrame that consists of triples and scores from each approach for that particular triple.
-            """
+            
             result = dict()
             result['subject'] = []
             result['predicate'] = []
@@ -90,11 +97,18 @@ class ML:
 
 
     def get_model_name(self, model):
+        """
+        Get the model name
+        """
         mdl_name=model.__class__.__name__ if model.__class__.__name__!='Pipeline' else model[1].__class__.__name__
         return mdl_name
 
 
     def search_best_params(self,model, ml_model_params, X, y):
+        """
+        With a given range, this function search for the best parameters giving optimal perfomance to the given model. 
+        Done using https://scikit-optimize.github.io/stable/modules/generated/skopt.BayesSearchCV.html 
+        """
         params_range_dict={}
         for x in ml_model_params:
             if type(x['range'])==tuple:
@@ -147,6 +161,9 @@ class ML:
 
 
     def custom_model_train(self,X, y, model):
+        """
+        Training a model without cross validation
+        """
         try:
             model=model.fit(X, y)
             mdl_name=self.get_model_name(model)
@@ -172,6 +189,9 @@ class ML:
 
 
     def custom_model_train_cv(self, X, y, model):
+        """
+        Training a model with cross validation
+        """
         try:
             skfold=StratifiedKFold(n_splits=5)
             scores=cross_val_score(model, X, y,cv=skfold, scoring="roc_auc")
@@ -187,6 +207,8 @@ class ML:
     # Change model list here to be a single model
     def train_model(self, df, ml_model, normalizer_name, output_path):
         """
+        Train a model using a specified algorithm (Given in the favel.conf file)
+
         Returns:
             - Model
             - Predicate lable encoder
@@ -235,6 +257,9 @@ class ML:
 
 
     def test_model(self, df, ml_model, le_predicate, normalizer):
+        """
+        Given a trained model, this function predict scores of the assertions given in the df dataframe
+        """
         try:
             X=df.drop(['truth','subject', 'object'], axis=1)
             y=df.truth

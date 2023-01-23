@@ -5,6 +5,13 @@ import pandas as pd
 import statistics
 
 class Overview:
+    """
+    Write or update favel/Evaluation/Overview.xlsx.
+    The overview file has primaryKey attributes and dependentProperties.
+    A certain configuration of primaryKey attributes can only exist once in the overview.
+    If an existing configuration of primaryKey attributes appears a second time, the dependentProperties of the first
+    appearance are updated.
+    """
 
     def __init__(self, testingResults:list, paths:dict, approaches:list, mlAlgorithm:str, mlParameters:str, trainingMetrics, normalizer_name):
         self.evaluation = paths['EvaluationPath']
@@ -14,6 +21,7 @@ class Overview:
                                     "Training AUC-ROC Min.", "Training AUC-ROC Max.", "Training AUC-ROC Mean", "Training AUC-ROC Std. Dev.",
                                     "Testing AUC-ROC Min.", "Testing AUC-ROC Max.", "Testing AUC-ROC Mean", "Testing AUC-ROC Std. Dev.", "Improvement"]
         
+        # Set the key attributes
         self.keyData = dict()
         self.keyData["Dataset"] = paths["DatasetName"]
         approachesLst = list(approaches)
@@ -24,6 +32,7 @@ class Overview:
         self.keyData["Iterations"] = len(testingResults)
         self.keyData["Normalizer"] = normalizer_name
         
+        # Set the dependent attributes
         self.dependentData = dict()
         self.dependentData["Experiment"] = paths["SubExperimentName"]
         self.dependentData["Testing AUC-ROC Min."], self.dependentData["Testing AUC-ROC Max."], self.dependentData["Testing AUC-ROC Mean"], self.dependentData["Testing AUC-ROC Std. Dev."] = self._testingStatistics(testingResults)
@@ -39,7 +48,9 @@ class Overview:
             assert(key in self.dependentData.keys())
         
     def writeExcel(self):
-        # Read existing file, or create new data frame
+        """
+        Read an existing overview file, or create new data frame.
+        """
         try:
             overviewFrame = pd.read_excel(path.join(self.evaluation, "Overview.xlsx"))
         except Exception as ex:
@@ -69,6 +80,9 @@ class Overview:
         overviewFrame.to_excel(path.join(self.evaluation, "Overview.xlsx"), index=False)
         
     def findRow(self, frame):
+        """
+        Find a row that has the same primaryKey attributes as self.
+        """
         result = dict()
         for key in self.primaryKey:
             result[key] = set(frame.index[frame[key] == self.keyData[key]].tolist())
@@ -82,14 +96,23 @@ class Overview:
         return intersect
 
     def update(self, frame, intersection):
+        """
+        Update the dependentProperties of an existing row.
+        """
         for index in intersection:
             for key in self.dependentProperties:
                 frame.loc[index, [key]] = self.dependentData[key]
         
     def _trainingStatistics(self, trainingMetrics):
+        """
+        Calculate statistics on training results.
+        """
         return self._statistics(list(map(lambda x: x['overall'], trainingMetrics)))
     
     def _testingStatistics(self, testingResults):
+        """
+        Calculate statistics on testing results.
+        """
         tmp = []
         for df, auc_roc in testingResults:
             tmp.append(auc_roc)
@@ -104,6 +127,9 @@ class Overview:
         return min(values), max(values), statistics.mean(values), statistics.stdev(values)
         
     def _getBestApproach(self, df, approaches):
+        """
+        Find the best single approach used in self.
+        """
         y = df.truth
         results = dict()
         bestApproach = None

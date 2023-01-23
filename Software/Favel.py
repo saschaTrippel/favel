@@ -3,23 +3,25 @@ from os import path
 import configparser, logging, argparse
 
 def main():
+    # Parse arguments, load configuration
     args = _parseArguments()
     paths, configPath = _loadPaths(args)
     config = _loadConfig(configPath)
     _configureLogging(config)
 
+    # Conduct a single experiment (-e flag)
     if not args.experiment is None:
         logging.info("Experiment started")
         controller = Controller(approaches=dict(config['Approaches']), mlAlgorithm=config['MLAlgorithm']['method'], mlParameters=config['MLAlgorithm']['parameters'],
                                 normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']),
                                 writeToDisk=args.write, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
-        controller.createDirectories()
         controller.input()
         controller.validate()
         controller.ensemble()
         controller.output()
         logging.info("Experiment finished")
         
+    # Conduct experiments in batch mode (-b flag)
     elif not args.batch is None:
         subsetGen = powerset(list(dict(config['Approaches']).items()))
         numberOfExperiments = 2**len(list(dict(config['Approaches']).keys())) - (len(list(dict(config['Approaches']).keys())) + 1)
@@ -34,7 +36,6 @@ def main():
                                         normalizer_name=config['MLAlgorithm']['normalizer'], paths=paths, iterations=int(config['General']['iterations']),
                                         writeToDisk=args.write, useCache=eval(config['General']['useCache']), handleContainers=args.containers)
                 
-                controller.createDirectories()
                 controller.input()
                 controller.validate()
                 controller.ensemble()

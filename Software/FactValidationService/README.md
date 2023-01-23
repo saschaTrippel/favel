@@ -21,4 +21,3 @@ Implementations that support this interface are:
 
 * <https://github.com/saschaTrippel/knowledgestream> offers multiple algorithms
 * <https://github.com/palaniappan1/COPAAL> offers COPAAL
-* <https://github.com/vaibhavc99/GDRB.git> offers GFC
