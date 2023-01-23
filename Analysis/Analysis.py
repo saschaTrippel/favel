@@ -91,8 +91,8 @@ def plotDataset(df):
     width = 0.35
 
     fig, ax = plt.subplots()
-    rects1 = ax.bar(x - width/2, ensemble, width, label='Men')
-    rects2 = ax.bar(x + width/2, single, width, label='Women')
+    rects1 = ax.bar(x - width/2, ensemble, width, label='Ensemble')
+    rects2 = ax.bar(x + width/2, single, width, label='Single')
     ax.set_ylabel("AUC-ROC Score")
     ax.set_xticks(x, labels)
     ax.bar_label(rects1, padding=3)
@@ -248,11 +248,13 @@ def analyzeUniversalGoodConfig(df):
             result["Dataset"].append(i)
             result["Testing AUC-ROC Mean"].append(row["Testing AUC-ROC Mean"])
             result["Improvement"].append(row["Improvement"])
+            print(f"Universally good configuration {row['Experiment']}")
 
             for key in datasetKeys:
                 result["Dataset"].append(key)
                 result["Testing AUC-ROC Mean"].append(rows[key]["Testing AUC-ROC Mean"])
                 result["Improvement"].append(rows[key]["Improvement"])
+                print(f"Universally good configuration {rows[key]['Experiment']}")
     
     plt.figure()
     result = pd.DataFrame(result)
