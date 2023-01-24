@@ -41,6 +41,27 @@ def plotImprovement(df):
     fig = plot.get_figure()
     fig.savefig(path.join(PATHS["Analysis"], "improvement.png"))
 
+def plotStdDev(df):
+    """
+    Boxplot of standart deviation over all experiments
+    """
+    plt.figure()
+    df = df[["Testing AUC-ROC Std. Dev."]]
+    plot = df.plot(kind="box", figsize=(3.5, 5.5), showfliers=False)
+    fig = plot.get_figure()
+    fig.savefig(path.join(PATHS["Analysis"], "stdDev.png"))
+
+def plotStdDevGood(df):
+    """
+    Boxplot of standart deviation over all experiments with an Improvement > 0
+    """
+    plt.figure()
+    good = df[df["Improvement"] > 0]
+    good = good[["Testing AUC-ROC Std. Dev."]]
+    plot = good.plot(kind="box", figsize=(4, 5.5), showfliers=False)
+    fig = plot.get_figure()
+    fig.savefig(path.join(PATHS["Analysis"], "stdDevGood.png"))
+
 def plotPerformanceStdDev(df):
     """
     Scatter plot of standard deviation depending on performance
@@ -288,6 +309,8 @@ PATHS = loadPaths()
 
 df = readOverview()
 plotImprovement(df)
+plotStdDev(df)
+plotStdDevGood(df)
 plotPerformanceStdDev(df)
 plotMlAlgorithms(df)
 plotDataset(df)
