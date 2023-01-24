@@ -41,26 +41,26 @@ def plotImprovement(df):
     fig = plot.get_figure()
     fig.savefig(path.join(PATHS["Analysis"], "improvement.png"))
 
-def plotStdDev(df):
+def plotStdDev(df, outliers=False):
     """
     Boxplot of standart deviation over all experiments
     """
     plt.figure()
     df = df[["Testing AUC-ROC Std. Dev."]]
-    plot = df.plot(kind="box", figsize=(3.5, 5.5), showfliers=True)
+    plot = df.plot(kind="box", figsize=(3.5, 5.5), showfliers=outliers)
     fig = plot.get_figure()
-    fig.savefig(path.join(PATHS["Analysis"], "stdDev.png"))
+    fig.savefig(path.join(PATHS["Analysis"], f"stdDev{'Outliers' if outliers else ''}.png"))
 
-def plotStdDevGood(df):
+def plotStdDevGood(df, outliers=False):
     """
     Boxplot of standart deviation over all experiments with an Improvement > 0
     """
     plt.figure()
     good = df[df["Improvement"] > 0]
     good = good[["Testing AUC-ROC Std. Dev."]]
-    plot = good.plot(kind="box", figsize=(4, 5.5), showfliers=True)
+    plot = good.plot(kind="box", figsize=(4, 5.5), showfliers=outliers)
     fig = plot.get_figure()
-    fig.savefig(path.join(PATHS["Analysis"], "stdDevGood.png"))
+    fig.savefig(path.join(PATHS["Analysis"], f"stdDevGood{'Outliers' if outliers else ''}.png"))
 
 def plotPerformanceStdDev(df):
     """
@@ -309,8 +309,10 @@ PATHS = loadPaths()
 
 df = readOverview()
 plotImprovement(df)
-plotStdDev(df)
-plotStdDevGood(df)
+plotStdDev(df, True)
+plotStdDevGood(df, True)
+plotStdDev(df, False)
+plotStdDevGood(df, False)
 plotPerformanceStdDev(df)
 plotMlAlgorithms(df)
 plotDataset(df)
