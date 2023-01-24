@@ -47,7 +47,7 @@ def plotStdDev(df):
     """
     plt.figure()
     df = df[["Testing AUC-ROC Std. Dev."]]
-    plot = df.plot(kind="box", figsize=(3.5, 5.5), showfliers=False)
+    plot = df.plot(kind="box", figsize=(3.5, 5.5), showfliers=True)
     fig = plot.get_figure()
     fig.savefig(path.join(PATHS["Analysis"], "stdDev.png"))
 
@@ -58,7 +58,7 @@ def plotStdDevGood(df):
     plt.figure()
     good = df[df["Improvement"] > 0]
     good = good[["Testing AUC-ROC Std. Dev."]]
-    plot = good.plot(kind="box", figsize=(4, 5.5), showfliers=False)
+    plot = good.plot(kind="box", figsize=(4, 5.5), showfliers=True)
     fig = plot.get_figure()
     fig.savefig(path.join(PATHS["Analysis"], "stdDevGood.png"))
 
