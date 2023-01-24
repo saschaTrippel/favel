@@ -156,6 +156,7 @@ def analyzeBestN(df, N:int):
 def analyzeUniversalConfig(df):
     """
     Scatter plot.
+    Find all configurations that have an improvement > 0 on all datasets.
     """
     datasets = dict()
     datasets['bpdp'] = getBpdp(df)
