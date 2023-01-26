@@ -41,6 +41,27 @@ def plotImprovement(df):
     fig = plot.get_figure()
     fig.savefig(path.join(PATHS["Analysis"], "improvement.png"))
 
+def plotStdDev(df, outliers=False):
+    """
+    Boxplot of standart deviation over all experiments
+    """
+    plt.figure()
+    df = df[["Testing AUC-ROC Std. Dev."]]
+    plot = df.plot(kind="box", figsize=(3.5, 5.5), showfliers=outliers)
+    fig = plot.get_figure()
+    fig.savefig(path.join(PATHS["Analysis"], f"stdDev{'Outliers' if outliers else ''}.png"))
+
+def plotStdDevGood(df, outliers=False):
+    """
+    Boxplot of standart deviation over all experiments with an Improvement > 0
+    """
+    plt.figure()
+    good = df[df["Improvement"] > 0]
+    good = good[["Testing AUC-ROC Std. Dev."]]
+    plot = good.plot(kind="box", figsize=(4, 5.5), showfliers=outliers)
+    fig = plot.get_figure()
+    fig.savefig(path.join(PATHS["Analysis"], f"stdDevGood{'Outliers' if outliers else ''}.png"))
+
 def plotPerformanceStdDev(df):
     """
     Scatter plot of standard deviation depending on performance
@@ -91,8 +112,8 @@ def plotDataset(df):
     width = 0.35
 
     fig, ax = plt.subplots()
-    rects1 = ax.bar(x - width/2, ensemble, width, label='Men')
-    rects2 = ax.bar(x + width/2, single, width, label='Women')
+    rects1 = ax.bar(x - width/2, ensemble, width, label='Ensemble')
+    rects2 = ax.bar(x + width/2, single, width, label='Single')
     ax.set_ylabel("AUC-ROC Score")
     ax.set_xticks(x, labels)
     ax.bar_label(rects1, padding=3)
@@ -156,6 +177,7 @@ def analyzeBestN(df, N:int):
 def analyzeUniversalConfig(df):
     """
     Scatter plot.
+    Find all configurations that have an improvement > 0 on all datasets.
     """
     datasets = dict()
     datasets['bpdp'] = getBpdp(df)
@@ -168,39 +190,42 @@ def analyzeUniversalConfig(df):
     
     primaryKey = ["ML Algorithm", "ML Parameters", "Normalizer", "Iterations", "Fact Validation Approaches"]
     
-    result = {"Source Dataset": [], "Target Dataset": [], "Testing AUC-ROC Mean": [], "Improvement": []}
-    for i in datasets.keys():
-        for j in datasets.keys():
-            if i != j:
-                """
-                Take N best configurations for dataset i.
-                Look up these configurations for dataset j.
-                """
-                for index, row in datasets[i].iterrows():
-                    if row["Improvement"] <= 0:
-                        break
-                    tmp = _findRow(datasets[j], row, primaryKey)
-                    if not tmp is None and tmp["Improvement"] > 0:
-                        result["Source Dataset"].append(i)
-                        result["Target Dataset"].append(j)
-                        result["Testing AUC-ROC Mean"].append(tmp["Testing AUC-ROC Mean"])
-                        result["Improvement"].append(tmp["Improvement"])
+    result = {"Dataset": [], "Testing AUC-ROC Mean": [], "Improvement": []}
+    datasetKeys = list(datasets.keys())
+    i = datasetKeys.pop()
+    mColors = list(mcolors.BASE_COLORS.keys())
+    mColors.remove('w')
+    colors = []
+    for index, row in datasets[i].iterrows():
+        if row["Improvement"] <= 0:
+            break
+
+        rows = dict()
+        for j in datasetKeys:
+            rows[j] = _findRow(datasets[j], row, primaryKey)
+        good = True
+        for j in rows.keys():
+            if rows[j]["Improvement"] <= 0:
+                good = False
+                break
+        if good:
+            c = mColors.pop(0)
+            colors.extend([c for z in datasets.keys()])
+            result["Dataset"].append(i)
+            result["Testing AUC-ROC Mean"].append(row["Testing AUC-ROC Mean"])
+            result["Improvement"].append(row["Improvement"])
+
+            for key in datasetKeys:
+                result["Dataset"].append(key)
+                result["Testing AUC-ROC Mean"].append(rows[key]["Testing AUC-ROC Mean"])
+                result["Improvement"].append(rows[key]["Improvement"])
     
     plt.figure()
     result = pd.DataFrame(result)
-    # Define colors
-    colors = []
-    for index, row in result.iterrows():
-        if row["Source Dataset"] == "bpdp":
-            colors.append('g')
-        if row["Source Dataset"] == "factBench":
-            colors.append('b')
-        if row["Source Dataset"] == "favel":
-            colors.append('r')
             
     # Plot results
     for key in result:
-        plot = result.plot(kind="scatter", x="Target Dataset", y="Improvement", c=colors)
+        plot = result.plot(kind="scatter", x="Dataset", y="Improvement", c=colors)
         fig = plot.get_figure()
         fig.savefig(path.join(PATHS["Analysis"], "universalConfig.png"))
         
@@ -248,11 +273,13 @@ def analyzeUniversalGoodConfig(df):
             result["Dataset"].append(i)
             result["Testing AUC-ROC Mean"].append(row["Testing AUC-ROC Mean"])
             result["Improvement"].append(row["Improvement"])
+            print(f"Universally good configuration {row['Experiment']}")
 
             for key in datasetKeys:
                 result["Dataset"].append(key)
                 result["Testing AUC-ROC Mean"].append(rows[key]["Testing AUC-ROC Mean"])
                 result["Improvement"].append(rows[key]["Improvement"])
+                print(f"Universally good configuration {rows[key]['Experiment']}")
     
     plt.figure()
     result = pd.DataFrame(result)
@@ -282,8 +309,13 @@ PATHS = loadPaths()
 
 df = readOverview()
 plotImprovement(df)
+plotStdDev(df, True)
+plotStdDevGood(df, True)
+plotStdDev(df, False)
+plotStdDevGood(df, False)
 plotPerformanceStdDev(df)
 plotMlAlgorithms(df)
 plotDataset(df)
 analyzeBestN(df, 5)
+analyzeUniversalConfig(df)
 analyzeUniversalGoodConfig(df)
